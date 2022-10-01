@@ -2,9 +2,9 @@ import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
 import styles from '../../styles/Bouquet.module.css';
 import BlockContent from '@sanity/block-content-to-react';
-import {Toolbar} from '../../components/Toollbar'
+import {Toolbar} from '../../src/components/Toollbar'
 
-export const Bouquet = ({ title, description, image }) => {
+export const Bouquet = ({ title, description, image, price }) => {
   const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
@@ -56,6 +56,8 @@ export const getServerSideProps = async pageContext => {
         description: bouquet.description.ru,
         title: bouquet.title.ru,
         image: bouquet.mainImage,
+        price: bouquet.price,
+        slug: bouquet.slug,
       }
     }
   }

@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css'
-import { Toolbar } from '../components/Toollbar';
+import { Toolbar } from '../src/components/Toollbar';
 import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -34,7 +34,7 @@ export default function Home({ bouquets }) {
       <div className={styles.main}>
         <div className={styles.feed}>
           {mappedBouquets.length ? mappedBouquets.map((p, index) => (
-            <div onClick={() => router.push(`/bouquet/${p.slug.current}`)} key={index} className={styles.post}>
+            <div onClick={() => router.push(`/catalog/${p.slug.current}`)} key={index} className={styles.post}>
               <h3>{p.title.ru}</h3>
               <img className={styles.mainImage} src={p.mainImage} />
             </div>
