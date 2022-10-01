@@ -1,5 +1,5 @@
+import React from 'react'
 import styles from '../styles/Home.module.css'
-import { Toolbar } from '../src/components/Toollbar';
 import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -30,7 +30,6 @@ export default function Home({ bouquets }) {
 
   return (
     <div>
-      <Toolbar />
       <div className={styles.main}>
         <div className={styles.feed}>
           {mappedBouquets.length ? mappedBouquets.map((p, index) => (

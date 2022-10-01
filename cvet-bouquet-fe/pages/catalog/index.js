@@ -1,9 +1,8 @@
 import styles from '../styles/Catalog.module.css';
-import { Toolbar } from '../src/components/Toollbar';
 import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import BouquetCard from '../src/components/BouquetCard';
+import BouquetCard from '../../src/components/BouquetCard';
 
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
@@ -41,7 +40,6 @@ export default function Home({ bouquets }) {
       pr={{ xs: 2, lg: 24 }}
       component='main'
     >
-      <Toolbar />
       <Box sx={{ width: '100%' }} className={styles.cardsContainer}>
         <Grid
           container

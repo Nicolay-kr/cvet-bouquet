@@ -1,8 +1,8 @@
+import React from 'react';
 import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
 import styles from '../../styles/Bouquet.module.css';
 import BlockContent from '@sanity/block-content-to-react';
-import {Toolbar} from '../../src/components/Toollbar'
 
 export const Bouquet = ({ title, description, image, price }) => {
   const [imageUrl, setImageUrl] = useState('');
@@ -18,7 +18,6 @@ export const Bouquet = ({ title, description, image, price }) => {
 
   return (
     <div>
-      <Toolbar />
       <div className={styles.main}>
         <h1>{title}</h1>
         {imageUrl && <img className={styles.mainImage} src={imageUrl} />}
