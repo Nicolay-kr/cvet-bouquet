@@ -1,11 +1,11 @@
 import React from 'react';
-import { Toolbar } from './Toollbar';
+import { Header } from './Header';
 import Footer from './Footer';
 
 export default function Layout({ children }) {
   return (
     <>
-      <Toolbar />
+      <Header />
       <main>{children}</main>
       <Footer />
     </>

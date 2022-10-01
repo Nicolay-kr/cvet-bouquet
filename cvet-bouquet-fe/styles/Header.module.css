@@ -1,0 +1,59 @@
+.header {
+  display: block;
+  width: 100%;
+}
+
+.logoConteiner {
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  width: 284px;
+  height: 72px;
+}
+
+.logoConteiner img+img {
+  margin-top: 20px;
+}
+
+.headerContent {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 6fr 3fr;
+  column-gap: 30px;
+  padding: 40px 0px;
+  border-bottom: 2px solid #A08863;
+}
+
+.navigation {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr 1fr;
+  column-gap: 30px;
+  list-style: none;
+}
+
+.navigation li {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+
+.navigation li:hover {
+  color: rgb(168, 168, 168);
+}
+
+.iconsConteiner {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  align-items: center;
+  justify-content: right;
+  column-gap: 20px;
+}
+
+.iconsConteiner>a {
+  cursor: pointer;
+  justify-self: end;
+}
+.iconsConteiner>img{
+  cursor: pointer;
+}
