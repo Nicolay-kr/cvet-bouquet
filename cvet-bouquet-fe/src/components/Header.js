@@ -13,6 +13,10 @@ import instaIcon from '../assets/icons/insta.svg';
 import bagIcon from '../assets/icons/bag.svg';
 import IconButton from '@mui/material/IconButton';
 
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import DropList from './DropList';
+
 export const Header = () => {
   const router = useRouter();
 
@@ -29,10 +33,21 @@ export const Header = () => {
           <Image src={logoText} alt='logo flower'></Image>
         </Box>
         <ul className={styles.navigation}>
-          <li onClick={() => router.push('/catalog')}>Каталог</li>
-          <li onClick={() => router.push('/delivery')}>Доставка и оплата</li>
-          <li onClick={() => router.push('/contacts')}>Контакты</li>
-          <li onClick={() => router.push('/aboutus')}>О нас</li>
+          <li>
+            <a onClick={() => router.push('/catalog')}>Каталог</a>
+            <DropList />
+          </li>
+
+          <li>
+            <a onClick={() => router.push('/delivery')}>Доставка и оплата</a>
+            <DropList />
+          </li>
+          <li>
+            <a onClick={() => router.push('/contacts')}>Контакты</a>
+          </li>
+          <li>
+            <a onClick={() => router.push('/aboutus')}>О нас</a>
+          </li>
         </ul>
         <Box className={styles.iconsConteiner}>
           <IconButton component={Link} href='/'>

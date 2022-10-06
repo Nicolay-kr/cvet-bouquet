@@ -4,9 +4,9 @@ import { red } from '@mui/material/colors';
 export const customFontsSize = {
   xl: 2,
   widthMobile: 0.875,
-  h1: { regular: 56, adaptiv: '2.91vw' },
-  h2: { regular: 28, adaptiv: '1.4vw' },
-  h3: { regular: 24, adaptiv: '1.25vw' },
+  h1: { regular: 140, adaptiv: '7.3vw' },
+  h2: { regular: 80, adaptiv: '4.2vw' },
+  h3: { regular: 32, adaptiv: '1.7vw' },
   h4: { regular: 20, adaptiv: '1.04vw' },
   h5: { regular: 19, adaptiv: '0.94vw' },
   h6: { regular: 17, adaptiv: '0.86vw' },
@@ -20,7 +20,7 @@ export const customFontsSize = {
 
 // Create a theme instance.
 const theme = createTheme({
-  // spacing: 4,
+  spacing: 4,
   breakpoints: {
     values: {
       xs: 0,
@@ -58,11 +58,11 @@ const theme = createTheme({
 
     h1: {
       fontSize: customFontsSize.h1.regular,
-      color: 'white',
-      lineHeight: 1.1,
+      lineHeight: 0.7,
       letterSpacing: '0.02em',
-      fontWeight: 700,
+      fontWeight: 400,
       fontStyle: 'normal',
+      fontFamily:'Zeferino One',
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h1.adaptiv,
       },
@@ -73,11 +73,10 @@ const theme = createTheme({
     h2: {
       fontSize: customFontsSize.h2.regular,
       lineHeight: 1.2,
-      fontWeight: 600,
-      textTransform: 'uppercase',
+      fontWeight: 300,
+      fontFamily:'Raleway',
       letterSpacing: '0.015em',
       fontStyle: 'normal',
-      color: '#4F4F4F',
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h2.adaptiv,
       },

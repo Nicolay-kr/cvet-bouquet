@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import IntroBlock from '../src/components/IntroBlock';
 
 export default function Home({ bouquets }) {
   const router = useRouter();
@@ -29,18 +30,21 @@ export default function Home({ bouquets }) {
   }, [bouquets]);
 
   return (
-    <div>
-      <div className={styles.main}>
-        <div className={styles.feed}>
-          {mappedBouquets.length ? mappedBouquets.map((p, index) => (
-            <div onClick={() => router.push(`/catalog/${p.slug.current}`)} key={index} className={styles.post}>
-              <h3>{p.title.ru}</h3>
-              <img className={styles.mainImage} src={p.mainImage} />
-            </div>
-          )) : <>No Posts Yet</>}
-        </div>
-      </div>
-    </div>
+    <>
+    <IntroBlock></IntroBlock>
+    </>
+    // <div>
+    //   <div className={styles.main}>
+    //     <div className={styles.feed}>
+    //       {mappedBouquets.length ? mappedBouquets.map((p, index) => (
+    //         <div onClick={() => router.push(`/catalog/${p.slug.current}`)} key={index} className={styles.post}>
+    //           <h3>{p.title.ru}</h3>
+    //           <img className={styles.mainImage} src={p.mainImage} />
+    //         </div>
+    //       )) : <>No Posts Yet</>}
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 

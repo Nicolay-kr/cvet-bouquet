@@ -1,5 +1,4 @@
 
-
 .content {
   display: grid;
   grid-template-rows: auto auto;
@@ -22,7 +21,7 @@
 .links {
   display: grid;
   grid-template-columns: 4fr 4fr 2fr 2fr;
-  column-gap: 32px;
+  column-gap: 30px;
   list-style: none;
 }
 
@@ -40,9 +39,11 @@
   grid-template-columns: 6fr 6fr;
   align-items: flex-start;
   row-gap: 52px;
-  column-gap: 32px;
+  column-gap: 30px;
 }
-
+.doubleColumn p{
+  font-family: 'Zeferino One', arial;
+}
 .lastColumn{
   display: grid;
   grid-template-rows: auto auto auto;

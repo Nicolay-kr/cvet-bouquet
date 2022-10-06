@@ -34,11 +34,17 @@
 
 .navigation li {
   display: flex;
-  cursor: pointer;
+  /* cursor: pointer; */
   align-items: center;
 }
+.navigation a {
+  margin-right: 5px;
+  /* display: flex; */
+  cursor: pointer;
+  /* align-items: center; */
+}
 
-.navigation li:hover {
+.navigation a:hover {
   color: rgb(168, 168, 168);
 }
 

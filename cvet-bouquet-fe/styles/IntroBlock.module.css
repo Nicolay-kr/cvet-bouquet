@@ -1,0 +1,51 @@
+.content {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  column-gap: 30px;
+}
+
+.textBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.textBoxTitle {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonBox{
+  display: grid;
+  grid-template-columns: 3fr 3fr;
+
+}
+
+.textBoxTitle h1+h1 {
+  text-align: end;
+}
+
+.mediaBox{
+  position: relative;
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+}
+
+.mainImage {
+  position: relative;
+  width: 100%;
+  margin-top: 60px;
+  z-index: 2;
+  object-fit: contain;
+  object-position: top;
+}
+
+.mediaBox img+img {
+  position: absolute;
+  width: calc(4/7*100%);
+  top: 0;
+  right: 0;
+  z-index: 1;
+  object-fit: contain;
+  object-position: top;
+}
