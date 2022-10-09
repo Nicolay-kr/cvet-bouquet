@@ -31,11 +31,19 @@ const theme = createTheme({
     },
   },
   palette: {
+    fon: {
+      main: '#F8F2EA',
+      contrastText: '#fff',
+    },
     primary: {
       main: '#746449',
+      light: '#AEA595',
+      dark: '#463D2F',
     },
     secondary: {
       main: '#463D2F',
+      light: '#AEA595',
+      dark: '#463D2F',
     },
     error: {
       main: red.A400,
