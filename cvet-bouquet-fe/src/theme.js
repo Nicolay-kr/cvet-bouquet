@@ -179,6 +179,9 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.subtitle1.adaptiv,
       },
+      '@media (max-width:600px)': {
+        fontSize: 14,
+      },
     },
     subtitle2: {
       fontSize: customFontsSize.subtitle2.regular,

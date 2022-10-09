@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import styles from '../../styles/Header.module.css';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Link from '../Link';
 import { Box } from '@mui/system';
 import logoFlower from '../assets/images/logo_flower.svg';
@@ -15,8 +15,8 @@ import burgerIcon from '../assets/icons/burger.svg';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+// import MenuItem from '@mui/material/MenuItem';
+// import Select from '@mui/material/Select';
 import DropList from './DropList';
 
 export const Header = () => {

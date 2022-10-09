@@ -6,6 +6,13 @@
   list-style: none;
   row-gap: 52px;
 }
+@media only screen and (max-width: 768px) {
+  .content {
+    grid-template-rows: repeat(3, auto);
+    row-gap: 30px;
+    row-gap: 20px;
+  }
+}
 
 .logoConteiner {
   display: flex;
@@ -23,6 +30,16 @@
   grid-template-columns: 4fr 4fr 2fr 2fr;
   column-gap: 30px;
   list-style: none;
+}
+@media only screen and (max-width: 600px) {
+  .links {
+    display: grid;
+    /* grid-template-rows: repeat(6, auto); */
+    row-gap: 30px;
+    grid-template-columns: 2fr 2fr;
+    column-gap: 10px;
+    list-style: none;
+  }
 }
 
 .doubleRow{
@@ -88,6 +105,11 @@
 .info{
   display: grid;
   grid-template-columns: 5fr 7fr;
+}
+@media only screen and (max-width: 600px) {
+  .info{
+    grid-template-columns: 1fr;
+  }
 }
 .infoContent{
   display: grid;
