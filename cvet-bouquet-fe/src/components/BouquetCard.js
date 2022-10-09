@@ -8,13 +8,23 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import Box from '@mui/material/Box';
 import Link from '../../src/Link';
 
-export default function BouquetCard({ title, imagePath, price, slug }) {
+export default function BouquetCard({ id, title, imagePath, price, slug }) {
+  const [isHovered, setIsHovered] = React.useState(false);
   return (
     <Card
-      // sx={{ width:'100%', maxWidth: 345, height: '100%' }}
-      width='100%'
-      // sx={{ width: { xs: 164, sm: 300, md: 340 }, height: '100%' }}
+      sx={{ width: '100%', maxWidth: 345, height: '100%', bgcolor: 'fon.main' }}
       className={styles.cardConteiner}
+      elevation={isHovered ? 10 : 0}
+      raised={true}
+      onMouseOver={() => {
+        setIsHovered(true);
+      }}
+      onMouseOut={() => {
+        setIsHovered(false);
+      }}
+      component={Link}
+      href={`/catalog/${slug.current}`}
+      noLinkStyle
     >
       {/* <CardActionArea > */}
       <CardMedia
@@ -28,7 +38,12 @@ export default function BouquetCard({ title, imagePath, price, slug }) {
           {title}
         </Typography>
         <Box width='100%' display='inline-flex' justifyContent='space-between'>
-          <Typography gutterBottom variant='h5' component='p'>
+          <Typography
+            gutterBottom
+            variant='h5'
+            component='p'
+            sx={{ fontWeight: 700 }}
+          >
             {price} руб.
           </Typography>
           <Typography gutterBottom variant='h5' component='p'>
@@ -39,14 +54,11 @@ export default function BouquetCard({ title, imagePath, price, slug }) {
       {/* </CardActionArea> */}
       <CardActions sx={{ marginTop: 'auto', padding: '0' }}>
         <Button
-          variant='outlined'
+          variant={isHovered ? 'contained' : 'outlined'}
           color='primary'
-          sx={{ width: '100%' }}
-          component={Link}
-          noLinkStyle
-          href={`/catalog/${slug.current}`}
+          sx={{ width: '100%', height: '60px' }}
         >
-          Оформить заказ
+          В корзину
         </Button>
       </CardActions>
     </Card>

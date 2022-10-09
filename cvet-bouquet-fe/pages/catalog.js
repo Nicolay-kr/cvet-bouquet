@@ -34,22 +34,15 @@ export default function Home({ bouquets }) {
   }, [bouquets]);
 
   return (
-    <Box
-      pl={{ xs: 2, lg: 24 }}
-      pr={{ xs: 2, lg: 24 }}
-      mt={3} 
-    >
-      <Box sx={{ width: '100%' }} className={styles.cardsContainer}>
-        <Grid
-          container
-          rowSpacing={10}
-          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-        >
+    <Box sx={{ width: '100%',}}   mt={3}>
+      <Box sx={{ width: '100%', mx:'auto'}} className={styles.cardsContainer}>
+        <Grid container rowSpacing={10} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {mappedBouquets.length ? (
             mappedBouquets.map(
-              ({ title, description, mainImage, price, slug }, index) => (
-                <Grid xs={6} md={3} key={index} >
+              ({ _id, title, description, mainImage, price, slug }, index) => (
+                <Grid xs={6} md={4} xl={3} key={_id}>
                   <BouquetCard
+                    id={_id}
                     title={title.ru}
                     price={price}
                     // description={description.ru}
