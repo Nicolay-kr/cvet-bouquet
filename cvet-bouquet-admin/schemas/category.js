@@ -1,11 +1,13 @@
+import category from './category'
+
 export default {
   name: 'category',
-  title: 'Category',
+  title: 'Категории',
   type: 'document',
   fields: [
     {
       name: 'title',
-      title: 'Title',
+      title: 'Название',
       type: 'string',
     },
     {
@@ -19,19 +21,24 @@ export default {
     },
     {
       name: 'description',
-      title: 'Description',
+      title: 'Описание',
       type: 'text',
     },
-    {
-      name: 'parents',
-      title: 'Parent categories',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{type: 'category'}],
-        },
-      ],
-    },
+    // {
+    //   name: 'parents',
+    //   title: 'Parent categories',
+    //   type: 'array',
+    //   of: [
+    //     {
+    //       type: 'reference',
+    //       to: [{type: 'category'}],
+    //     },
+    //   ],
+    // },
   ],
+  preview: {
+    select: {
+      title: 'title',
+    },
+  }
 }

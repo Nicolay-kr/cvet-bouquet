@@ -9,6 +9,12 @@ export default {
       type: 'localeString',
     },
     {
+      name: 'category',
+      title: 'Категория',
+      type: 'reference',
+      to: { type: 'category' },
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -32,11 +38,11 @@ export default {
       title: 'Стоимость',
       type: 'number',
     },
-    {
-      name: 'mainImage',
-      title: 'Главное Изображение',
-      type: 'image',
-    },
+    // {
+    //   name: 'mainImage',
+    //   title: 'Главное Изображение',
+    //   type: 'image',
+    // },
     {
       name: 'images',
       title: 'Images',
@@ -44,6 +50,7 @@ export default {
       of: [
         {
           type: 'image',
+          // name: 'image',
           options: {
             hotspot: true,
           },
@@ -65,12 +72,45 @@ export default {
       },
     },
   ],
+  // orderings: [
+  //   {
+  //     title: 'Release Date, New',
+  //     name: 'releaseDateDesc',
+  //     by: [
+  //       {field: 'releaseDate', direction: 'desc'}
+  //     ]
+  //   },
+  //   {
+  //     title: 'Release Date, Old',
+  //     name: 'releaseDateAsc',
+  //     by: [
+  //       {field: 'releaseDate', direction: 'asc'}
+  //     ]
+  //   },
+  //   {
+  //     title: 'Категория',
+  //     name: 'category',
+  //     by: [
+  //       {field: 'category', direction: 'desc'}
+  //     ]
+  //   }
+  // ],
 
   preview: {
     select: {
       title: 'title.ru',
-      subtitle: 'price',
-      media: 'mainImage',
+      price: 'price',
+      images: 'images',
+      category: 'category'
+    },
+    prepare: ({ title, category, price, images }) => {
+      console.log(category)
+      return {
+        title: `${title} `,
+        // subtitle: `Категория: ${category.title}`,
+        subtitle: `${price}руб`,
+        media: images[0],
+      };
     },
   },
-}
+};

@@ -75,11 +75,25 @@ export default {
     },
   ],
 
+  // preview: {
+  //   select: {
+  //     title: 'title',
+  //     subtitle: 'categories[0]',
+  //     media: 'defaultProductVariant.images[0]',
+  //   },
+  // },
   preview: {
     select: {
       title: 'title',
-      manufactor: 'manufactor.title',
-      media: 'defaultProductVariant.images[0]',
+      category: 'categories'
+    },
+    prepare: ({ title, category }) => {
+      console.log(category[0]._ref)
+      return {
+        title: `${title}`,
+        // subtitle: `Категория: ${category[0]._ref}`,
+        // media: images[0],
+      };
     },
   },
 }
