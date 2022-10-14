@@ -1,14 +1,25 @@
 .cardConteiner {
   height: 100%;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.card {
   display: flex;
   flex-direction: column;
-  cursor: pointer;
   padding: 10px;
-  /* border:none; */
-  /* box-shadow: none; */
   transition: 0.3s;
 }
+
 .cardConteiner:hover{
-  /* padding: 5px; */
   transition: 0.3s;
 }
+
+.cardHeart{
+  
+  position: absolute !important;
+  right:8%;
+  top:4%;
+  background-color: #F8F2EA !important;
+}
+

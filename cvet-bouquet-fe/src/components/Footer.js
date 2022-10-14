@@ -35,7 +35,7 @@ export default function Footer() {
       >
         <Box className={styles.content}>
           <Box className={styles.links}>
-            {sm ? (
+            {lg ? (
               <>
                 <Box
                   className={styles.logoConteiner}
@@ -550,7 +550,7 @@ export default function Footer() {
               </Typography>
             </Box>
           </Box>
-          {sm ? (
+          {lg ? (
             <>
               <Box columnGap={1.5} className={styles.iconsConteiner}>
                 <IconButton component={Link} href='/'>

@@ -14,16 +14,19 @@ import bagIcon from '../assets/icons/bag.svg';
 import burgerIcon from '../assets/icons/burger.svg';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Badge from '@mui/material/Badge';
 
 // import MenuItem from '@mui/material/MenuItem';
 // import Select from '@mui/material/Select';
 import DropList from './DropList';
+import { useAppContext } from './context/HeartContext';
 
 export const Header = () => {
   const router = useRouter();
   const sm = useMediaQuery('(max-width:600px)');
   const lg = useMediaQuery('(max-width:1200px)');
   const xl = useMediaQuery('(max-width:1536px)');
+  const bouckeList = useAppContext();
 
   const navList = (
     <ul className={styles.navigation}>
@@ -47,7 +50,7 @@ export const Header = () => {
   return (
     <Box width='100%' px='10%' component='header'>
       <Box className={styles.headerContent} component='nav'>
-        {sm ? (
+        {lg ? (
           <Box className={styles.iconsConteiner}>
             <IconButton component={Link} href='/'>
               <Image src={burgerIcon} alt='burger icon'></Image>
@@ -70,10 +73,10 @@ export const Header = () => {
           <Image src={logoFlower} alt='logo flower'></Image>
           <Image src={logoText} alt='logo flower'></Image>
         </Box>
-        {sm ? null : navList}
+        {lg ? null : navList}
 
         <Box className={styles.iconsConteiner}>
-          {sm ? null : (
+          {lg ? null : (
             <IconButton component={Link} href='/'>
               <Image
                 src={searchIcon}
@@ -83,8 +86,10 @@ export const Header = () => {
               ></Image>
             </IconButton>
           )}
-          <IconButton component={Link} href='/'>
+          <IconButton component={Link} href='/favorites'>
+          <Badge color="primary" badgeContent={bouckeList.bouquetList.length}>
             <Image src={heartIcon} alt='heart icon'></Image>
+            </Badge>
           </IconButton>
           <IconButton component={Link} href='/'>
             <Image src={instaIcon} alt='insta icon'></Image>

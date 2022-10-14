@@ -31,7 +31,7 @@
   column-gap: 30px;
   list-style: none;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1200px) {
   .links {
     display: grid;
     /* grid-template-rows: repeat(6, auto); */
