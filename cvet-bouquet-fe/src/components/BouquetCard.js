@@ -20,7 +20,18 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
   const addToFavoritList = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
-    bouckeList.addOrRemoveBouquet({
+    bouckeList.addOrRemoveToFavorite({
+      id,
+      title,
+      imagePath: imagePath.toString(),
+      price,
+      slug,
+    });
+  };
+  const addToCart = (e) => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    bouckeList.addOrRemoveToCart({
       id,
       title,
       imagePath: imagePath.toString(),
@@ -38,7 +49,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
       >
         <Image
           src={
-            bouckeList.bouquetList.find((item) => item.id === id)
+            bouckeList.favoriteBouquets.find((item) => item.id === id)
               ? heartIconFill
               : heartIcon
           }
@@ -102,6 +113,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
             variant={isHovered ? 'contained' : 'outlined'}
             color='primary'
             sx={{ width: '100%', height: '60px' }}
+            onClick={addToCart}
           >
             В корзину
           </Button>

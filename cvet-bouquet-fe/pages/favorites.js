@@ -1,40 +1,14 @@
 import React from 'react';
 import styles from '../styles/Catalog.module.css';
-import imageUrlBuilder from '@sanity/image-url';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import BouquetCard from '../src/components/BouquetCard';
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { useAppContext } from '../src/components/context/HeartContext';
+import { Typography } from '../node_modules/@mui/material/index';
 
 export default function Favorites() {
-  // const router = useRouter();
-  const bouquetsContext = useAppContext()
-  const bouquets = bouquetsContext.bouquetList;
-  // const [mappedBouquets, setMappedBouquets] = useState([]);
-
-  // useEffect(() => {
-  //   if (bouquets.length) {
-  //     const imgBuilder = imageUrlBuilder({
-  //       projectId: '444cz5oj',
-  //       dataset: 'production',
-  //     });
-
-  //     setMappedBouquets(
-  //       bouquets.map((p) => {
-  //         return {
-  //           ...p,
-  //           mainImage: imgBuilder.image(p.mainImage).width(500).height(250),
-  //         };
-  //       })
-  //     );
-  //   } else {
-  //     setMappedBouquets([]);
-  //   }
-  // }, [bouquets]);
+  const bouquetsContext = useAppContext();
+  const bouquets = bouquetsContext.favoriteBouquets;
 
   return (
     <Box sx={{ width: '100%', px: '10%', my: 3 }}>
@@ -56,24 +30,15 @@ export default function Favorites() {
               )
             )
           ) : (
-            <>No Bouquet Yet</>
+            <>
+              <Typography variant='h3' component='h2' mt={4}>
+                Здесь хранятся понравившиеся вам букеты
+              </Typography>
+              <Box sx={{ height: '50vh', width:'100%' }}></Box>
+            </>
           )}
         </Grid>
       </Box>
-      {/* <div className={styles.feed}>
-          {mappedBouquets.length ? (
-            mappedBouquets.map(({ title, description, mainImage }, index) => (
-              <BouquetCard
-                title={title.ru}
-                // description={description.ru}
-                imagePath={mainImage}
-              ></BouquetCard>
-            ))
-          ) : (
-            <>No Posts Yet</>
-          )}
-        </div> */}
     </Box>
   );
 }
-
