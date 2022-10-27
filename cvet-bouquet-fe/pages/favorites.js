@@ -3,10 +3,11 @@ import styles from '../styles/Catalog.module.css';
 import BouquetCard from '../src/components/BouquetCard';
 import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box';
-import { useAppContext } from '../src/components/context/HeartContext';
+import { useAppContext } from '../src/components/context/BouquetsContext';
 import { Typography } from '../node_modules/@mui/material/index';
 
 export default function Favorites() {
+  const [checked, setChecked] = React.useState(false);
   const bouquetsContext = useAppContext();
   const bouquets = bouquetsContext.favoriteBouquets;
 
@@ -31,7 +32,7 @@ export default function Favorites() {
             )
           ) : (
             <>
-              <Typography variant='h3' component='h2' mt={4}>
+              <Typography variant='h4' component='h2' mt={4}>
                 Здесь хранятся понравившиеся вам букеты
               </Typography>
               <Box sx={{ height: '50vh', width:'100%' }}></Box>

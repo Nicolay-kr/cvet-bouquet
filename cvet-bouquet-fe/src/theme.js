@@ -6,12 +6,12 @@ export const customFontsSize = {
   widthMobile: 0.875,
   h1: { regular: 140, adaptiv: '7.3vw' },
   h2: { regular: 36, adaptiv: '1.8vw' },
-  h3: { regular: 32, adaptiv: '1.7vw' },
-  h4: { regular: 20, adaptiv: '1.04vw' },
-  h5: { regular: 19, adaptiv: '0.94vw' },
-  h6: { regular: 17, adaptiv: '0.86vw' },
+  h3: { regular: 32, adaptiv: '1.6vw' },
+  h4: { regular: 24, adaptiv: '1.25vw' },
+  h5: { regular: 20, adaptiv: '1.04vw' },
+  h6: { regular: 18, adaptiv: '0.86vw' },
   body1: { regular: 16, adaptiv: '0.83vw' },
-  body2: { regular: 12, adaptiv: '0.63vw' },
+  body2: { regular: 14, adaptiv: '0.63vw' },
   subtitle1: { regular: 18, adaptiv: '0.86vw' }, //links
   subtitle2: { regular: 14, adaptiv: '0.73vw' },
   button: { regular: 14, adaptiv: '0.73vw' },
@@ -28,6 +28,7 @@ const theme = createTheme({
       md: 900,
       lg: 1200,
       xl: 1536,
+      xxl: 1921,
     },
   },
   palette: {
@@ -108,7 +109,6 @@ const theme = createTheme({
       lineHeight: 1.4,
       fontWeight: 500,
       fontStyle: 'normal',
-      textTransform: 'uppercase',
       color: '#333333',
       fontFamily: ['Montserrat', 'sans-serif'].join(','),
       '@media (min-width:1921px)': {
@@ -124,7 +124,7 @@ const theme = createTheme({
       lineHeight: 1.4,
       fontWeight: 500,
       fontStyle: 'normal',
-      textTransform: 'uppercase',
+      // textTransform: 'uppercase',
       color: '#333',
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h5.adaptiv,
@@ -135,7 +135,7 @@ const theme = createTheme({
       lineHeight: 1.4,
       fontWeight: 600,
       fontStyle: 'normal',
-      textTransform: 'uppercase',
+      // textTransform: 'uppercase',
       color: '#4F4F4F',
       scrollbarWidth: 'none',
       '@media (min-width:1921px)': {

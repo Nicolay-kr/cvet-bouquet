@@ -24,7 +24,7 @@ export default function IntroBlock() {
               вкусом
             </Typography>
           </Box>
-          <Typography my='auto' variant='h3' component='p'>
+          <Typography my='auto' variant='h4' component='p'>
             Выбирайте лучшее из того, что можно позволить. Создавайте сказку, не
             дожидаясь завтра!
           </Typography>

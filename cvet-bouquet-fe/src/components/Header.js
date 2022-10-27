@@ -19,7 +19,7 @@ import Badge from '@mui/material/Badge';
 // import MenuItem from '@mui/material/MenuItem';
 // import Select from '@mui/material/Select';
 import DropList from './DropList';
-import { useAppContext } from './context/HeartContext';
+import { useAppContext } from './context/BouquetsContext';
 
 export const Header = () => {
   const router = useRouter();
@@ -87,15 +87,23 @@ export const Header = () => {
             </IconButton>
           )}
           <IconButton component={Link} href='/favorites'>
-          <Badge color="primary" badgeContent={bouckeList.favoriteBouquets.length}>
-            <Image src={heartIcon} alt='heart icon'></Image>
+            <Badge
+              color='primary'
+              badgeContent={bouckeList.favoriteBouquets.length}
+            >
+              <Image src={heartIcon} alt='heart icon'></Image>
             </Badge>
           </IconButton>
           <IconButton component={Link} href='/'>
             <Image src={instaIcon} alt='insta icon'></Image>
           </IconButton>
           <IconButton component={Link} href='/cart'>
-            <Image src={bagIcon} alt='cart icon'></Image>
+            <Badge
+              color='primary'
+              badgeContent={bouckeList.bouquetsInCarts.length}
+            >
+              <Image src={bagIcon} alt='cart icon'></Image>
+            </Badge>
           </IconButton>
         </Box>
       </Box>

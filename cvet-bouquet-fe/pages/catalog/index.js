@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from '../styles/Catalog.module.css';
+import styles from '../../styles/Catalog.module.css';
 import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import BouquetCard from '../src/components/BouquetCard';
+import BouquetCard from '../../src/components/BouquetCard';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2';
 import Paper from '@mui/material/Paper';
@@ -34,13 +34,13 @@ export default function Home({ bouquets }) {
   }, [bouquets]);
 
   return (
-    <Box sx={{ width: '100%',}}   mt={3} component='main'>
-      <Box sx={{ width: '100%', mx:'auto'}} className={styles.cardsContainer}>
+    <Box sx={{ width: '100%', px: '10%', my: 3 }}>
+      <Box sx={{ width: '100%', mx: 'auto' }} className={styles.cardsContainer}>
         <Grid container rowSpacing={10} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {mappedBouquets.length ? (
             mappedBouquets.map(
               ({ _id, title, description, mainImage, price, slug }, index) => (
-                <Grid xs={6} md={4} xl={3} key={_id}>
+                <Grid xs={12} sm={6} md={4} xl={3} key={_id}>
                   <BouquetCard
                     id={_id}
                     title={title.ru}
@@ -86,7 +86,7 @@ export const getServerSideProps = async (pageContext) => {
       },
     };
   } else {
-    console.log(result.result);
+    // console.log(result.result);
     return {
       props: {
         bouquets: result.result,

@@ -1,3 +1,21 @@
 .conteiner{
+  display:grid;
+  grid-template-columns: 8fr 3fr;
+  column-gap: max(30px,1.5vw);
+}
+.summConteiner{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 4.4vw;
+  padding-bottom: 1.8vw;
+}
+.price{
+  display: flex;
+  justify-content: center;
   
+}
+.deliveryPrice{
+  display: flex;
 }

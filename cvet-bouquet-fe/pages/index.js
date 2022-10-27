@@ -60,7 +60,6 @@ export const getServerSideProps = async pageContext => {
       }
     }
   } else {
-    console.log(result.result)
     return {
       props: {
         bouquets: result.result,
