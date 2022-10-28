@@ -50,7 +50,7 @@ export default {
       of: [
         {
           type: 'image',
-          // name: 'image',
+          name: 'image',
           options: {
             hotspot: true,
           },
@@ -70,6 +70,12 @@ export default {
       options: {
         layout: 'tags',
       },
+    },
+    {
+      name: "order",
+      title: "Order",
+      type: "number",
+      hidden: true,
     },
   ],
   // orderings: [
