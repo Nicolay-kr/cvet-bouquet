@@ -78,7 +78,7 @@ export default function Checkout() {
       <Box
         sx={{
           width: '60%',
-          mb: 'max(80px,4.2vw)',
+          my: 'max(80px,4.2vw)',
           display: 'grid',
           rowGap: 'max(50px,2.6vw)',
         }}

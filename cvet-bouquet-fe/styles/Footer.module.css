@@ -28,7 +28,7 @@
 .links {
   display: grid;
   grid-template-columns: 4fr 4fr 2fr 2fr;
-  column-gap: 30px;
+  column-gap: max(30px,1.5vw);;
   list-style: none;
 }
 @media only screen and (max-width: 1200px) {
@@ -56,7 +56,7 @@
   grid-template-columns: 6fr 6fr;
   align-items: flex-start;
   row-gap: 52px;
-  column-gap: 30px;
+  column-gap: max(30px,1.5vw);;
 }
 .doubleColumn p{
   font-family: 'Zeferino One', arial;

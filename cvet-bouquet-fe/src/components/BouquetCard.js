@@ -64,6 +64,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
       // subscription.unsubscribe();
     };
   });
+  console.log(imagePath.toString());
   return (
     <div className={styles.cardConteiner}>
       <div>
@@ -101,7 +102,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
             maxWidth: '345px',
             height: '100%',
             bgcolor: 'fon.main',
-            boxShadow: isHovered ?'0px 0px 15px 7px #00000012':null,
+            boxShadow: isHovered ? '0px 0px 15px 7px #00000012' : null,
           }}
           className={styles.card}
           elevation={0}
@@ -124,12 +125,19 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
             noLinkStyle
             href={`/catalog/${slug.current}`}
           >
-            <CardMedia
-              component='img'
-              height='360'
-              image={imagePath.toString()}
+            <Box sx={{
+              position:'relative',
+              width:'100%',
+              height: '360px',
+            }}>
+            <Image
+              layout='fill'
+              fill={true}
+              src={imagePath.toString()}
               alt='Bouquet image'
             />
+            </Box>
+           
             <CardContent
               sx={{ display: 'flex', flexDirection: 'column', flexGrow: '1' }}
             >

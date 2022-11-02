@@ -2,7 +2,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 5fr 7fr;
-  column-gap: 30px;
+  column-gap: max(30px,1.5vw);;
 }
 
 .textBox {
