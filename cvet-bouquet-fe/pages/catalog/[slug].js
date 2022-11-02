@@ -54,7 +54,7 @@ export const getServerSideProps = async pageContext => {
       props: {
         description: bouquet.description.ru,
         title: bouquet.title.ru,
-        image: bouquet.mainImage,
+        image: bouquet.images[0],
         price: bouquet.price,
         slug: bouquet.slug,
       }

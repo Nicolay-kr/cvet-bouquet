@@ -8,6 +8,10 @@ const nextConfig = {
       { hostname: 'source.unsplash.com' },
     ],
   },
+  i18n: {
+    locales: ["ru"],
+    defaultLocale: "ru",
+  },
 }
 
 module.exports = nextConfig

@@ -110,7 +110,6 @@ const theme = createTheme({
       fontWeight: 500,
       fontStyle: 'normal',
       color: '#333333',
-      fontFamily: ['Montserrat', 'sans-serif'].join(','),
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h4.adaptiv,
       },

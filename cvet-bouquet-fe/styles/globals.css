@@ -38,3 +38,6 @@ a {
     background: black;
   } */
 }
+.MuiPickersPopper-root button{
+  font-size: 16px;
+}

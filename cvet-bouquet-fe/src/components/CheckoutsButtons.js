@@ -12,21 +12,24 @@ import { useAppContext } from './context/BouquetsContext';
 export default function CheckoutsButtons({
   title,
   leftBtnTitle,
-  leftBtnSubtitle=null,
+  leftBtnSubtitle = null,
   rightBtnTitle,
-  rightBtnSubtitle=null,
+  rightBtnSubtitle = null,
+  handleClick,
 }) {
   const [actveButton, setActveButton] = React.useState({
     btn1: true,
     btn2: false,
   });
   const handleActiveBtn1 = (e) => {
+    handleClick(true);
     setActveButton({
       btn1: true,
       btn2: false,
     });
   };
   const handleActiveBtn2 = (e) => {
+    handleClick(false);
     setActveButton({
       btn1: false,
       btn2: true,

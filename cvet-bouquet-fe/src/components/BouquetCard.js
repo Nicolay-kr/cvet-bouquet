@@ -32,6 +32,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
       slug,
     });
   };
+  // console.log(imagePath)
 
   const addToCart = (e) => {
     setIsOpenSnack(true);
@@ -100,9 +101,10 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
             maxWidth: '345px',
             height: '100%',
             bgcolor: 'fon.main',
+            boxShadow: isHovered ?'0px 0px 15px 7px #00000012':null,
           }}
           className={styles.card}
-          elevation={isHovered ? 10 : 0}
+          elevation={0}
           raised={true}
           onMouseOver={() => {
             setIsHovered(true);

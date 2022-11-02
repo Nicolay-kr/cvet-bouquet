@@ -17,6 +17,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import CounterButtons from '../src/components/CounterButtons';
 import Checkout from '../src/components/Checkout';
+import Link from '../src/Link';
 
 const CartRow = ({ id, title, price, image, quantity }) => {
   const bouquetsContext = useAppContext();
@@ -88,6 +89,10 @@ const CartRow = ({ id, title, price, image, quantity }) => {
 export default function Cart() {
   const bouquetsContext = useAppContext();
   const bouquets = bouquetsContext.bouquetsInCarts;
+  const [isCheckout, setIsCheckout] = React.useState(false);
+  const handleToCheckout = () => {
+    setIsCheckout(true);
+  };
 
   return (
     <Box
@@ -96,9 +101,7 @@ export default function Cart() {
         pb: 10,
       }}
     >
-      <Box
-        className={styles.conteiner}
-      >
+      <Box className={styles.conteiner}>
         <TableContainer sx={{ width: '100%', my: 6 }} component='div'>
           <Table sx={{ minWidth: 650 }} aria-label='simple table'>
             <TableHead>
@@ -142,7 +145,7 @@ export default function Cart() {
             variant='h5'
             component='p'
           >
-            {bouquets.reduce((akk, item) => akk + item.quantity, 0)} товара
+            {bouquets.reduce((akk, item) => akk + item.quantity, 0)} товаров
           </Typography>
           <Typography
             sx={{
@@ -205,17 +208,32 @@ export default function Cart() {
               <sup>BYN</sup>
             </Typography>
           </Box>
-          <Button
-            sx={{
-              mt: 10,
-            }}
-            variant='contained'
-          >
-            К оформлению
-          </Button>
+          {isCheckout ? (
+            <Typography
+              component={Link}
+              href='/catalog'
+              variant='h5'
+              sx={{
+                textDecoration: 'underline',
+                mt: 10,
+              }}
+            >
+              Вернуться в католог
+            </Typography>
+          ) : (
+            <Button
+              sx={{
+                mt: 10,
+              }}
+              variant='contained'
+              onClick={handleToCheckout}
+            >
+              К оформлению
+            </Button>
+          )}
         </Paper>
       </Box>
-      <Checkout></Checkout>
+      {isCheckout ? <Checkout></Checkout> : null}
     </Box>
   );
 }

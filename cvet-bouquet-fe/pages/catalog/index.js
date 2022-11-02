@@ -1,19 +1,14 @@
 import React from 'react';
 import styles from '../../styles/Catalog.module.css';
 import imageUrlBuilder from '@sanity/image-url';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import BouquetCard from '../../src/components/BouquetCard';
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 
 export default function Home({ bouquets }) {
-  const router = useRouter();
-  const [mappedBouquets, setMappedBouquets] = useState([]);
+  const [mappedBouquets, setMappedBouquets] = React.useState([]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (bouquets.length) {
       const imgBuilder = imageUrlBuilder({
         projectId: '444cz5oj',
@@ -24,7 +19,7 @@ export default function Home({ bouquets }) {
         bouquets.map((p) => {
           return {
             ...p,
-            mainImage: imgBuilder.image(p.mainImage).width(500).height(250),
+            mainImage: imgBuilder.image(p.images[0]).width(720).height(900),
           };
         })
       );
@@ -33,12 +28,14 @@ export default function Home({ bouquets }) {
     }
   }, [bouquets]);
 
+  const orderedList = mappedBouquets?.sort((a,b)=>(a.order-b.order))
+
   return (
     <Box sx={{ width: '100%', px: '10%', my: 3 }}>
       <Box sx={{ width: '100%', mx: 'auto' }} className={styles.cardsContainer}>
         <Grid container rowSpacing={10} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {mappedBouquets.length ? (
-            mappedBouquets.map(
+            orderedList.map(
               ({ _id, title, description, mainImage, price, slug }, index) => (
                 <Grid xs={12} sm={6} md={4} xl={3} key={_id}>
                   <BouquetCard
@@ -86,7 +83,7 @@ export const getServerSideProps = async (pageContext) => {
       },
     };
   } else {
-    // console.log(result.result);
+    console.log(result.result);
     return {
       props: {
         bouquets: result.result,
