@@ -19,23 +19,25 @@
 .headerContent {
   width: 100%;
   display: grid;
-  grid-template-columns: 3fr 6fr 3fr;
-  column-gap: max(30px,1.5vw);;
+  grid-template-columns: 5fr 5fr 2fr;
+  /* column-gap: max(30px,1.5vw);; */
   padding: 40px 0px;
   border-bottom: 2px solid #A08863;
 }
 
 .navigation {
   display: grid;
-  grid-template-columns: 2fr 3fr 1fr 1fr;
+  grid-template-columns:1fr 2fr 1fr 1fr;
   column-gap: max(30px,1.5vw);;
   list-style: none;
+  padding: 0;
 }
 
 .navigation li {
   display: flex;
   /* cursor: pointer; */
   align-items: center;
+  white-space: nowrap
 }
 .navigation a {
   margin-right: 5px;
@@ -51,9 +53,10 @@
 .iconsConteiner {
   display: grid;
   grid-template-columns: repeat(4, auto);
+  margin-left: max(30px,1.5vw);
   align-items: center;
   justify-content: right;
-  column-gap: max(30px,1.5vw);;
+  column-gap: max(10px,0.5vw);;
 }
 
 .iconsConteiner>a {

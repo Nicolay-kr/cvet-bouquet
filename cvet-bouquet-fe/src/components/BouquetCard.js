@@ -2,9 +2,8 @@ import * as React from 'react';
 import styles from '../../styles/BouquetCard.module.css';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Button, CardActions } from '@mui/material';
 import Box from '@mui/material/Box';
 import Link from '../../src/Link';
 import heartIcon from '../assets/icons/heart.svg';
@@ -69,8 +68,8 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
     <div className={styles.cardConteiner}>
       <div>
         <Snackbar
-          sx={{ bgolor: 'primary.main' }}
-          autoHideDuration={1500}
+          // sx={{ background: 'primary.main' }}
+          autoHideDuration={1000}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           open={isOpenSnack}
           message='Букет добавлен в корзину'
@@ -166,9 +165,9 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
           </Box>
           <CardActions sx={{ padding: '0' }}>
             <Button
-              variant={isHovered ? 'contained' : 'outlined'}
+              variant={'outlined'}
               color='primary'
-              sx={{ width: '100%', height: '60px', borderWidth: '1.5px' }}
+              sx={{ width: '100%', height: '60px', borderWidth: '1.5px','&:hover':{backgroundColor:'primary.main', color:'#fff'} }}
               onClick={addToCart}
             >
               {bouckeList.bouquetsInCarts.find((item) => item.id === id)

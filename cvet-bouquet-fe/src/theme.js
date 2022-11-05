@@ -218,6 +218,38 @@ const theme = createTheme({
     },
     srOnly: {},
   },
+
+  components: {
+    // Name of the component
+    MuiButton: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          textTransform: 'capitalize',
+        },
+      },
+      variants: [
+        // {
+        //   props: { variant: 'contained', color: 'primary' },
+        //   style: {
+        //     border: `4px dashed ${red[500]}`,
+        //     backgroundColor: 'red',
+        //   },
+        // },
+      ],
+    },
+    MuiSnackbarContent: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          background: '#746449',
+        },
+      },
+     
+    },
+  },
   
 });
 
