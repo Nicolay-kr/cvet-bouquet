@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css'
 import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import IntroBlock from '../src/components/IntroBlock';
+import IntroBlock from '../src/components/IntroBlock/IntroBlock';
 
 export default function Home({ bouquets }) {
   const router = useRouter();

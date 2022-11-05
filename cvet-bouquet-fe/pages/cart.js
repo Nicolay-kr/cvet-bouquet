@@ -15,8 +15,8 @@ import Image from 'next/future/image';
 import { Box, Button } from '../node_modules/@mui/material/index';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import CounterButtons from '../src/components/CounterButtons';
-import Checkout from '../src/components/Checkout';
+import CounterButtons from '../src/components/CounterButtons/CounterButtons';
+import Checkout from '../src/components/Checkout/Checkout';
 import Link from '../src/Link';
 
 const CartRow = ({ id, title, price, image, quantity }) => {

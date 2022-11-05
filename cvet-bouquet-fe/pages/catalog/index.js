@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../styles/Catalog.module.css';
 import imageUrlBuilder from '@sanity/image-url';
-import BouquetCard from '../../src/components/BouquetCard';
+import BouquetCard from '../../src/components/BouquetCard/BouquetCard';
 import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box';
 

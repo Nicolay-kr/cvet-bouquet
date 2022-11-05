@@ -1,12 +1,12 @@
 import * as React from 'react';
-import styles from '../../styles/IntroBlock.module.css';
+import styles from './IntroBlock.module.css';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Link from '../Link';
+import Link from '../../Link';
 import Image from 'next/future/image';
-import introImg1 from '../assets/images/intro_img1.png';
-import introImg2 from '../assets/images/intro_img2.png';
+import introImg1 from '../../assets/images/intro_img1.png';
+import introImg2 from '../../assets/images/intro_img2.png';
 
 export default function IntroBlock() {
   return (

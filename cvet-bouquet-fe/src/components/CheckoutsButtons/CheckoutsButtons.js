@@ -1,13 +1,13 @@
 import React from 'react';
-import { Header } from './Header';
-import Footer from './Footer';
+import { Header } from '../Header/Header';
+import Footer from '../Footer/Footer';
 import {
   Box,
   Button,
   ButtonGroup,
   Typography,
-} from '../../node_modules/@mui/material/index';
-import { useAppContext } from './context/BouquetsContext';
+} from '../../../node_modules/@mui/material/index';
+import { useAppContext } from '../context/BouquetsContext';
 
 export default function CheckoutsButtons({
   title,

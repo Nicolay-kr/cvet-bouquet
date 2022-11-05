@@ -5,7 +5,7 @@ import styles from '../../styles/BouquetPage.module.css';
 import BlockContent from '@sanity/block-content-to-react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import CounterButtons from '../../src/components/CounterButtons';
+import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
 import butttonHeart from '../../src/assets/icons/buttonHeart.svg';
 import Image from 'next/future/image';
 import { useAppContext } from '../../src/components/context/BouquetsContext';

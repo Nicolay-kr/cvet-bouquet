@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import navArrow from '../assets/icons/navArrow.svg';
-import { IconButton, MenuList } from '../../node_modules/@mui/material/index';
+import navArrow from '../../assets/icons/navArrow.svg';
+import { IconButton, MenuList } from '../../../node_modules/@mui/material/index';
 import Image from 'next/future/image';
 
 export default function DropList() {

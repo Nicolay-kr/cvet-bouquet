@@ -2,7 +2,7 @@ import * as React from 'react';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useAppContext } from './context/BouquetsContext';
+import { useAppContext } from '../context/BouquetsContext';
 
 export default function CounterButtons({ id, value, isFlexSize = false }) {
   const bouckeList = useAppContext();

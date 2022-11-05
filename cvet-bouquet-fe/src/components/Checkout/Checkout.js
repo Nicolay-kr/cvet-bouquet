@@ -6,15 +6,15 @@ import Radio from '@mui/material/Radio';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Image from 'next/future/image';
-import metroIcon from '../assets/icons/metro.svg';
-import CheckoutsButtons from './CheckoutsButtons';
+import metroIcon from '../../assets/icons/metro.svg';
+import CheckoutsButtons from '../CheckoutsButtons/CheckoutsButtons';
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import styles from '../../styles/Checkout.module.css';
+import styles from './Checkout.module.css';
 import ruLocale from "date-fns/locale/ru";
 import enLocale from "date-fns/locale/en-US";
 

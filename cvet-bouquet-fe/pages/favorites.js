@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/Catalog.module.css';
-import BouquetCard from '../src/components/BouquetCard';
+import BouquetCard from '../src/components/BouquetCard/BouquetCard';
 import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box';
 import { useAppContext } from '../src/components/context/BouquetsContext';

@@ -1,25 +1,25 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import styles from '../../styles/Header.module.css';
+import styles from './Header.module.css';
 // import Button from '@mui/material/Button';
-import Link from '../Link';
-import { Box } from '@mui/system';
-import logoFlower from '../assets/images/logo_flower.svg';
-import logoText from '../assets/images/logo_text.svg';
+import Link from '../../Link';
+import Box from '@mui/material/Box';
+import logoFlower from '../../assets/images/logo_flower.svg';
+import logoText from '../../assets/images/logo_text.svg';
 import Image from 'next/future/image';
-import searchIcon from '../assets/icons/search.svg';
-import heartIcon from '../assets/icons/heart.svg';
-import instaIcon from '../assets/icons/insta.svg';
-import bagIcon from '../assets/icons/bag.svg';
-import burgerIcon from '../assets/icons/burger.svg';
+import searchIcon from '../../assets/icons/search.svg';
+import heartIcon from '../../assets/icons/heart.svg';
+import instaIcon from '../../assets/icons/insta.svg';
+import bagIcon from '../../assets/icons/bag.svg';
+import burgerIcon from '../../assets/icons/burger.svg';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Badge from '@mui/material/Badge';
 
 // import MenuItem from '@mui/material/MenuItem';
 // import Select from '@mui/material/Select';
-import DropList from './DropList';
-import { useAppContext } from './context/BouquetsContext';
+import DropList from '../DropList/DropList';
+import { useAppContext } from '../context/BouquetsContext';
 
 export const Header = () => {
   const router = useRouter();
