@@ -3,7 +3,7 @@ import styles from './BouquetCard.module.css';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Button, CardActions } from '@mui/material';
+import CardActions from '@mui/material/CardActions';
 import Box from '@mui/material/Box';
 import Link from '../../Link';
 import heartIcon from '../../assets/icons/heart.svg';
@@ -11,48 +11,22 @@ import heartIconFill from '../../assets/icons/heartFill.svg';
 import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
 import { useAppContext } from '../context/BouquetsContext';
-import Snackbar from '@mui/material/Snackbar';
 import Zoom from '@mui/material/Zoom';
 import { useEffect } from 'react';
+import AddToCartButton from '../AddToCartButton/AddToCartButton';
 
 export default function BouquetCard({ id, title, imagePath, price, slug }) {
   const [isHovered, setIsHovered] = React.useState(false);
-  const [isOpenSnack, setIsOpenSnack] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
   const bouckeList = useAppContext();
+
+  const bouquet = { id, title, imagePath: imagePath.toString(), price, slug };
   const addToFavoritList = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
     bouckeList.addOrRemoveToFavorite({
-      id,
-      title,
-      imagePath: imagePath.toString(),
-      price,
-      slug,
+      bouquet,
     });
-  };
-  // console.log(imagePath)
-
-  const addToCart = (e) => {
-    setIsOpenSnack(true);
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-    bouckeList.addToCart({
-      id,
-      title,
-      imagePath: imagePath.toString(),
-      price,
-      slug,
-      quantity: 1,
-    });
-  };
-
-  const handleCloseSnackbar = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setIsOpenSnack(false);
   };
 
   useEffect(() => {
@@ -66,16 +40,6 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
 
   return (
     <div className={styles.cardConteiner}>
-      <div>
-        <Snackbar
-          // sx={{ background: 'primary.main' }}
-          autoHideDuration={1000}
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          open={isOpenSnack}
-          message='Букет добавлен в корзину'
-          onClose={handleCloseSnackbar}
-        />
-      </div>
       <IconButton
         onMouseOver={() => {
           setIsHovered(true);
@@ -124,19 +88,21 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
             noLinkStyle
             href={`/catalog/${slug.current}`}
           >
-            <Box sx={{
-              position:'relative',
-              width:'100%',
-              height: '360px',
-            }}>
-            <Image
-              layout='fill'
-              fill={true}
-              src={imagePath.toString()}
-              alt='Bouquet image'
-            />
+            <Box
+              sx={{
+                position: 'relative',
+                width: '100%',
+                height: '360px',
+              }}
+            >
+              <Image
+                layout='fill'
+                fill={true}
+                src={imagePath.toString()}
+                alt='Bouquet image'
+              />
             </Box>
-           
+
             <CardContent
               sx={{ display: 'flex', flexDirection: 'column', flexGrow: '1' }}
             >
@@ -164,16 +130,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
             </CardContent>
           </Box>
           <CardActions sx={{ padding: '0' }}>
-            <Button
-              variant={'outlined'}
-              color='primary'
-              sx={{ width: '100%', height: '60px', borderWidth: '1.5px','&:hover':{backgroundColor:'primary.main', color:'#fff'} }}
-              onClick={addToCart}
-            >
-              {bouckeList.bouquetsInCarts.find((item) => item.id === id)
-                ? 'В корзине'
-                : 'В корзину'}
-            </Button>
+            <AddToCartButton bouquet={{...bouquet,quantity: 1}}></AddToCartButton>
           </CardActions>
         </Card>
       </Zoom>

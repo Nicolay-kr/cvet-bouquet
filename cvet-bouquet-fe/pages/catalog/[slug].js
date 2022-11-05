@@ -8,14 +8,26 @@ import Button from '@mui/material/Button';
 import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
 import butttonHeart from '../../src/assets/icons/buttonHeart.svg';
 import Image from 'next/future/image';
-import { useAppContext } from '../../src/components/context/BouquetsContext';
 import AccordionCustom from '../../src/components/AccordionCustom/AccordionCustom';
+import AddToCartButton from '../../src/components/AddToCartButton/AddToCartButton';
 
-export const Bouquet = ({ id, title, description, image, price }) => {
+
+export const Bouquet = ({ id, title, description, image, price,slug }) => {
   const [imageUrl, setImageUrl] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const imgBuilder = imageUrlBuilder({
+    projectId: '444cz5oj',
+    dataset: 'production',
+  });
+  const imagePath =  imgBuilder.image(image).width(720).height(900);
+  const bouquet = { id, title, description, imagePath:imagePath?.toString(), price, quantity:quantity,slug };
 
-  const bouckeList = useAppContext();
-  console.log(id);
+  const handlePlus = () => {
+    setQuantity((state) => state + 1);
+  };
+  const handleMinus = () => {
+    setQuantity((state) => (state > 1 ? state - 1 : 1));
+  };
 
   useEffect(() => {
     const imgBuilder = imageUrlBuilder({
@@ -112,11 +124,16 @@ export const Bouquet = ({ id, title, description, image, price }) => {
           Бесплатная доставка в пределах МКАД
         </Typography>
         <div className={styles.buttonsConteiner}>
-          <CounterButtons id={id} value={1} isFlexSize={true}></CounterButtons>
+          <CounterButtons
+            id={id}
+            value={quantity}
+            isFlexSize={true}
+            customHandlers={{ plus: handlePlus, minus: handleMinus }}
+          ></CounterButtons>
           <div className={styles.buttons}>
-            <Button sx={{ width: '100%' }} variant='contained' color='primary'>
-              В корзину
-            </Button>
+            <AddToCartButton
+              bouquet={bouquet}
+            ></AddToCartButton>
             <Button sx={{ ml: 2.5 }} variant='contained' color='primary'>
               <Image
                 className={styles.iconImage}

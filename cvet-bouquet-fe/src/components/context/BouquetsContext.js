@@ -6,6 +6,7 @@ const defaultState = {
   },
   bouquetsInCarts: [],
   addToCart: (bouquet) => {
+
     defaultState.bouquetsInCarts.push(bouquet);
   },
   removeFromCart: (bouquet) => {},
@@ -51,10 +52,14 @@ class BouquetsProvider extends React.Component {
     this.setState((state) => {
       let newBouquetList = [];
       let carrentBouquetList = [...state.bouquetsInCarts];
-      if (!carrentBouquetList.find((item) => item.id === bouquet.id)) {
+      let currentBouquetInCart =carrentBouquetList.find((item) => item.id === bouquet.id)
+      if (!currentBouquetInCart) {
         newBouquetList = [...carrentBouquetList, bouquet];
         localStorage.setItem('Cart', JSON.stringify(newBouquetList));
       } else {
+        if(currentBouquetInCart.quantity !== bouquet.quantity){
+          currentBouquetInCart.quantity = bouquet.quantity
+        }
         newBouquetList = carrentBouquetList;
       }
       console.log(newBouquetList)
