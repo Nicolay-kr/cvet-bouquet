@@ -9,12 +9,13 @@ import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
 import butttonHeart from '../../src/assets/icons/buttonHeart.svg';
 import Image from 'next/future/image';
 import { useAppContext } from '../../src/components/context/BouquetsContext';
+import AccordionCustom from '../../src/components/AccordionCustom/AccordionCustom';
 
 export const Bouquet = ({ id, title, description, image, price }) => {
   const [imageUrl, setImageUrl] = useState('');
 
   const bouckeList = useAppContext();
-  console.log(id)
+  console.log(id);
 
   useEffect(() => {
     const imgBuilder = imageUrlBuilder({
@@ -24,6 +25,26 @@ export const Bouquet = ({ id, title, description, image, price }) => {
 
     setImageUrl(imgBuilder.image(image));
   }, [image]);
+  const serviceList = [
+    {
+      title: 'Описание',
+      desc: `Мы формируем букет для Вас максимально схожим с фото, сохраняя цветовую гамму и наполнение.  
+      Также можем учесть Ваши особенные пожелания (поменять детали композиции, добавить любимый цветок,
+         прикрепить фирменную открытку с Вашим текстом и  т.д.)`,
+    },
+    {
+      title: 'Доставка',
+      desc: `Мы формируем букет для Вас максимально схожим с фото, сохраняя цветовую гамму и наполнение.  
+      Также можем учесть Ваши особенные пожелания (поменять детали композиции, добавить любимый цветок,
+         прикрепить фирменную открытку с Вашим текстом и  т.д.)`,
+    },
+    {
+      title: 'Уход за букетом',
+      desc: `Мы формируем букет для Вас максимально схожим с фото, сохраняя цветовую гамму и наполнение.  
+      Также можем учесть Ваши особенные пожелания (поменять детали композиции, добавить любимый цветок,
+         прикрепить фирменную открытку с Вашим текстом и  т.д.)`,
+    },
+  ];
 
   return (
     <div className={styles.conteiner}>
@@ -97,13 +118,18 @@ export const Bouquet = ({ id, title, description, image, price }) => {
               В корзину
             </Button>
             <Button sx={{ ml: 2.5 }} variant='contained' color='primary'>
-              <Image className={styles.iconImage} src={butttonHeart} alt='heart icon' />
+              <Image
+                className={styles.iconImage}
+                src={butttonHeart}
+                alt='heart icon'
+              />
             </Button>
           </div>
         </div>
         <div className={styles.description}>
-          <BlockContent blocks={description} />
+          <AccordionCustom fieldList={serviceList}></AccordionCustom>
         </div>
+        {/* <BlockContent blocks={description} /> */}
       </div>
     </div>
   );
