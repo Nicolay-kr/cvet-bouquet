@@ -7,6 +7,7 @@ export default {
       name: 'title',
       title: 'Название',
       type: 'localeString',
+      validation: Rule => Rule.required().error('Поле должно быть заполнено'),
     },
     {
       name: 'category',
@@ -18,6 +19,7 @@ export default {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      validation: Rule => Rule.required().error('Поле должно быть заполнено, пожалуйста нажмите кнопку Generate'),
       options: {
         source: 'title.ru',
         maxLength: 96,
@@ -37,6 +39,7 @@ export default {
       name: 'price',
       title: 'Стоимость',
       type: 'number',
+      validation: Rule => Rule.required().error('Стоимость должна быть указана')
     },
     // {
     //   name: 'mainImage',
