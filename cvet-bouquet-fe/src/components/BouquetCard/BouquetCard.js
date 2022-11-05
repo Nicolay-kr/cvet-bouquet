@@ -63,7 +63,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
       // subscription.unsubscribe();
     };
   });
-  console.log(imagePath.toString());
+
   return (
     <div className={styles.cardConteiner}>
       <div>

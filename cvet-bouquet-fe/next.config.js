@@ -1,4 +1,5 @@
-/** @type {import('next').NextConfig} */
+// /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
@@ -11,6 +12,13 @@ const nextConfig = {
   i18n: {
     locales: ["ru"],
     defaultLocale: "ru",
+  },
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
   },
 }
 

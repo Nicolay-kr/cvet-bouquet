@@ -19,8 +19,9 @@ import CounterButtons from '../src/components/CounterButtons/CounterButtons';
 import Checkout from '../src/components/Checkout/Checkout';
 import Link from '../src/Link';
 
-const CartRow = ({ id, title, price, image, quantity }) => {
+const CartRow = ({ id, title, price, image, quantity,slug }) => {
   const bouquetsContext = useAppContext();
+  console.log(id)
 
   const removeFromCart = () => {
     bouquetsContext.removeFromCart(id);
@@ -42,13 +43,16 @@ const CartRow = ({ id, title, price, image, quantity }) => {
             '& img': { objectFit: 'cover' },
           }}
         >
-          <Image
-            layout='fill'
-            width={100}
-            height={125}
-            src={image}
-            alt='bouquet'
-          ></Image>
+          <Link href={`/catalog/${slug.current}`}>
+            <Image
+              layout='fill'
+              width={100}
+              height={125}
+              src={image}
+              alt='bouquet'
+            ></Image>
+          </Link>
+
           <Typography variant='body1'>{title}</Typography>
         </Box>
       </TableCell>
@@ -122,6 +126,7 @@ export default function Cart() {
                   price={bouquet.price}
                   image={bouquet.imagePath}
                   quantity={bouquet.quantity}
+                  slug={bouquet.slug}
                 ></CartRow>
               ))}
             </TableBody>

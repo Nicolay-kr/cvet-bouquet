@@ -14,7 +14,7 @@ export const Bouquet = ({ id, title, description, image, price }) => {
   const [imageUrl, setImageUrl] = useState('');
 
   const bouckeList = useAppContext();
-  console.log(bouckeList)
+  console.log(id)
 
   useEffect(() => {
     const imgBuilder = imageUrlBuilder({
@@ -97,7 +97,7 @@ export const Bouquet = ({ id, title, description, image, price }) => {
               В корзину
             </Button>
             <Button sx={{ ml: 2.5 }} variant='contained' color='primary'>
-              <Image className={styles.iconImage} src={butttonHeart} />
+              <Image className={styles.iconImage} src={butttonHeart} alt='heart icon' />
             </Button>
           </div>
         </div>
@@ -138,7 +138,7 @@ export const getServerSideProps = async (pageContext) => {
         image: bouquet.images[0],
         price: bouquet.price,
         slug: bouquet.slug,
-        id: bouquet.id,
+        id: bouquet._id,
       },
     };
   }
