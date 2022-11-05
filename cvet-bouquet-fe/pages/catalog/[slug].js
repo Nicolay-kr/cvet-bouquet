@@ -7,26 +7,35 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
 import butttonHeart from '../../src/assets/icons/buttonHeart.svg';
+import butttonHeartFill from '../../src/assets/icons/buttonHeartFill.svg';
 import Image from 'next/future/image';
 import AccordionCustom from '../../src/components/AccordionCustom/AccordionCustom';
 import AddToCartButton from '../../src/components/AddToCartButton/AddToCartButton';
+import { useAppContext } from '../../src/components/context/BouquetsContext';
 
 
 export const Bouquet = ({ id, title, description, image, price,slug }) => {
   const [imageUrl, setImageUrl] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const bouckeList = useAppContext();
   const imgBuilder = imageUrlBuilder({
     projectId: '444cz5oj',
     dataset: 'production',
   });
   const imagePath =  imgBuilder.image(image).width(720).height(900);
-  const bouquet = { id, title, description, imagePath:imagePath?.toString(), price, quantity:quantity,slug };
+  const bouquet = { id, title, description, imagePath, price, quantity:quantity,slug };
 
   const handlePlus = () => {
     setQuantity((state) => state + 1);
   };
   const handleMinus = () => {
     setQuantity((state) => (state > 1 ? state - 1 : 1));
+  };
+
+  const addToFavoritList = (e) => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    bouckeList.addOrRemoveToFavorite(bouquet);
   };
 
   useEffect(() => {
@@ -133,11 +142,16 @@ export const Bouquet = ({ id, title, description, image, price,slug }) => {
           <div className={styles.buttons}>
             <AddToCartButton
               bouquet={bouquet}
+              variant='contained'
             ></AddToCartButton>
-            <Button sx={{ ml: 2.5 }} variant='contained' color='primary'>
+            <Button sx={{ ml: 2.5 }} variant='contained' color='primary' onClick={addToFavoritList}>
               <Image
                 className={styles.iconImage}
-                src={butttonHeart}
+                src={
+                  bouckeList.favoriteBouquets.find((item) => item.id === id)
+                    ? butttonHeartFill
+                    : butttonHeart
+                }
                 alt='heart icon'
               />
             </Button>

@@ -20,14 +20,13 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
   const [checked, setChecked] = React.useState(false);
   const bouckeList = useAppContext();
 
-  const bouquet = { id, title, imagePath: imagePath.toString(), price, slug };
+  const bouquet = { id, title, imagePath: imagePath, price, slug };
   const addToFavoritList = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
-    bouckeList.addOrRemoveToFavorite({
-      bouquet,
-    });
+    bouckeList.addOrRemoveToFavorite(bouquet);
   };
+  console.log(bouquet)
 
   useEffect(() => {
     setChecked(true);
@@ -41,6 +40,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
   return (
     <div className={styles.cardConteiner}>
       <IconButton
+        sx={{zIndex:'2'}}
         onMouseOver={() => {
           setIsHovered(true);
         }}
@@ -86,7 +86,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
             }}
             component={Link}
             noLinkStyle
-            href={`/catalog/${slug.current}`}
+            href={`/catalog/${slug?.current}`}
           >
             <Box
               sx={{
@@ -98,7 +98,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
               <Image
                 layout='fill'
                 fill={true}
-                src={imagePath.toString()}
+                src={imagePath?.toString()}
                 alt='Bouquet image'
               />
             </Box>

@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import { useAppContext } from '../context/BouquetsContext';
 import Snackbar from '@mui/material/Snackbar';
 
-export default function AddToCartButton({ bouquet }) {
+export default function AddToCartButton({ bouquet,variant='outlined' }) {
   const { id, title, imagePath, price, slug, quantity } = bouquet;
   const [isOpenSnack, setIsOpenSnack] = React.useState(false);
   const bouckeList = useAppContext();
@@ -41,7 +41,7 @@ export default function AddToCartButton({ bouquet }) {
         />
       </div>
       <Button
-        variant={'outlined'}
+        variant= {variant}
         color='primary'
         sx={{
           width: '100%',
