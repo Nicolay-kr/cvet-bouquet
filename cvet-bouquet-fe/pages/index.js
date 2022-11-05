@@ -4,6 +4,8 @@ import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import IntroBlock from '../src/components/IntroBlock/IntroBlock';
+import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
+import Box from '@mui/material/Box';
 
 export default function Home({ bouquets }) {
   const router = useRouter();
@@ -32,6 +34,9 @@ export default function Home({ bouquets }) {
   return (
     <>
     <IntroBlock></IntroBlock>
+    <Box sx={{mt:'max(300px,15vw)',mb:'max(150px,7vw)'}}>
+        <InstagramBlock></InstagramBlock>
+      </Box>
     </>
     // <div>
     //   <div className={styles.main}>

@@ -5,6 +5,7 @@ import styles from '../../styles/BouquetPage.module.css';
 import BlockContent from '@sanity/block-content-to-react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
 import butttonHeart from '../../src/assets/icons/buttonHeart.svg';
 import butttonHeartFill from '../../src/assets/icons/buttonHeartFill.svg';
@@ -12,9 +13,9 @@ import Image from 'next/future/image';
 import AccordionCustom from '../../src/components/AccordionCustom/AccordionCustom';
 import AddToCartButton from '../../src/components/AddToCartButton/AddToCartButton';
 import { useAppContext } from '../../src/components/context/BouquetsContext';
+import InstagramBlock from '../../src/components/InstagramBlock/InstagramBlock';
 
-
-export const Bouquet = ({ id, title, description, image, price,slug }) => {
+export const Bouquet = ({ id, title, description, image, price, slug }) => {
   const [imageUrl, setImageUrl] = useState('');
   const [quantity, setQuantity] = useState(1);
   const bouckeList = useAppContext();
@@ -22,8 +23,16 @@ export const Bouquet = ({ id, title, description, image, price,slug }) => {
     projectId: '444cz5oj',
     dataset: 'production',
   });
-  const imagePath =  imgBuilder.image(image).width(720).height(900);
-  const bouquet = { id, title, description, imagePath, price, quantity:quantity,slug };
+  const imagePath = imgBuilder.image(image).width(720).height(900);
+  const bouquet = {
+    id,
+    title,
+    description,
+    imagePath,
+    price,
+    quantity: quantity,
+    slug,
+  };
 
   const handlePlus = () => {
     setQuantity((state) => state + 1);
@@ -69,99 +78,109 @@ export const Bouquet = ({ id, title, description, image, price,slug }) => {
 
   return (
     <div className={styles.conteiner}>
-      <div className={styles.mainImage}>
-        {imageUrl && (
-          <Image
-            fill={true}
-            style={{ objectFit: 'cover' }}
-            src={imageUrl.toString()}
-            alt='main bouquet image'
-          ></Image>
-        )}
-      </div>
-      <div className={styles.secondaryImagesConteiner}>
-        <div className={styles.secondaryImage}>
-          {imageUrl && (
-            <Image
-              fill={true}
-              src={imageUrl.toString()}
-              style={{ objectFit: 'cover' }}
-              alt='bouquet image'
-            ></Image>
-          )}
-        </div>
-        <div className={styles.secondaryImage}>
-          {imageUrl && (
-            <Image
-              fill={true}
-              src={imageUrl.toString()}
-              style={{ objectFit: 'cover' }}
-              alt='bouquet image'
-            ></Image>
-          )}
-        </div>
-        <div className={styles.secondaryImage}>
+      <div className={styles.content}>
+        <div className={styles.mainImage}>
           {imageUrl && (
             <Image
               fill={true}
               style={{ objectFit: 'cover' }}
               src={imageUrl.toString()}
-              alt='bouquet image'
+              alt='main bouquet image'
             ></Image>
           )}
         </div>
-      </div>
-      <div className={styles.infoConteiner}>
-        <Typography variant='h3' component='h1' color='initial'>
-          {title}
-        </Typography>
-        <Typography
-          sx={{ fontWeight: 700, mt: 7.5 }}
-          variant='h3'
-          component='p'
-          color='initial'
-        >
-          {price}
-          <sup>BYN</sup>
-        </Typography>
-        <Typography
-          sx={{ mt: 4, opacity: '0.5' }}
-          variant='body1'
-          component='p'
-          color='initial'
-        >
-          Бесплатная доставка в пределах МКАД
-        </Typography>
-        <div className={styles.buttonsConteiner}>
-          <CounterButtons
-            id={id}
-            value={quantity}
-            isFlexSize={true}
-            customHandlers={{ plus: handlePlus, minus: handleMinus }}
-          ></CounterButtons>
-          <div className={styles.buttons}>
-            <AddToCartButton
-              bouquet={bouquet}
-              variant='contained'
-            ></AddToCartButton>
-            <Button sx={{ ml: 2.5 }} variant='contained' color='primary' onClick={addToFavoritList}>
+        <div className={styles.secondaryImagesConteiner}>
+          <div className={styles.secondaryImage}>
+            {imageUrl && (
               <Image
-                className={styles.iconImage}
-                src={
-                  bouckeList.favoriteBouquets.find((item) => item.id === id)
-                    ? butttonHeartFill
-                    : butttonHeart
-                }
-                alt='heart icon'
-              />
-            </Button>
+                fill={true}
+                src={imageUrl.toString()}
+                style={{ objectFit: 'cover' }}
+                alt='bouquet image'
+              ></Image>
+            )}
+          </div>
+          <div className={styles.secondaryImage}>
+            {imageUrl && (
+              <Image
+                fill={true}
+                src={imageUrl.toString()}
+                style={{ objectFit: 'cover' }}
+                alt='bouquet image'
+              ></Image>
+            )}
+          </div>
+          <div className={styles.secondaryImage}>
+            {imageUrl && (
+              <Image
+                fill={true}
+                style={{ objectFit: 'cover' }}
+                src={imageUrl.toString()}
+                alt='bouquet image'
+              ></Image>
+            )}
           </div>
         </div>
-        <div className={styles.description}>
-          <AccordionCustom fieldList={serviceList}></AccordionCustom>
+        <div className={styles.infoConteiner}>
+          <Typography variant='h3' component='h1' color='initial'>
+            {title}
+          </Typography>
+          <Typography
+            sx={{ fontWeight: 700, mt: 7.5 }}
+            variant='h3'
+            component='p'
+            color='initial'
+          >
+            {price}
+            <sup>BYN</sup>
+          </Typography>
+          <Typography
+            sx={{ mt: 4, opacity: '0.5' }}
+            variant='body1'
+            component='p'
+            color='initial'
+          >
+            Бесплатная доставка в пределах МКАД
+          </Typography>
+          <div className={styles.buttonsConteiner}>
+            <CounterButtons
+              id={id}
+              value={quantity}
+              isFlexSize={true}
+              customHandlers={{ plus: handlePlus, minus: handleMinus }}
+            ></CounterButtons>
+            <div className={styles.buttons}>
+              <AddToCartButton
+                bouquet={bouquet}
+                variant='contained'
+              ></AddToCartButton>
+              <Button
+                sx={{ ml: 2.5 }}
+                variant='contained'
+                color='primary'
+                onClick={addToFavoritList}
+              >
+                <Image
+                  className={styles.iconImage}
+                  src={
+                    bouckeList.favoriteBouquets.find((item) => item.id === id)
+                      ? butttonHeartFill
+                      : butttonHeart
+                  }
+                  alt='heart icon'
+                />
+              </Button>
+            </div>
+          </div>
+          <div className={styles.description}>
+            <AccordionCustom fieldList={serviceList}></AccordionCustom>
+          </div>
+          {/* <BlockContent blocks={description} /> */}
         </div>
-        {/* <BlockContent blocks={description} /> */}
       </div>
+      <Box sx={{mt:'max(300px,15vw)',mb:'max(150px,7vw)'}}>
+        <InstagramBlock></InstagramBlock>
+      </Box>
     </div>
   );
 };

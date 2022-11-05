@@ -1,0 +1,19 @@
+
+.сonteiner{
+  padding: 0 10%;
+}
+.imagesConteiner{
+  display:grid;
+  grid-template-columns: repeat(3, 25vw);
+  grid-template-rows: 25vw 25vw;
+  justify-content: space-between;
+  row-gap: calc(4vw/2);
+  margin-top: 60px;
+}
+
+.titleConteiner{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}

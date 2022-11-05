@@ -1,4 +1,4 @@
-.conteiner{
+.content{
   display: grid;
   grid-template-columns: 5fr 2fr 5fr;
   padding: 0 10% 0 10%;
