@@ -43,7 +43,6 @@ export default function Checkout() {
     checkoutOptionsDefault
   );
   const [isPrivareHouse, setIsPrivareHouse] = React.useState(false);
-  console.log(checkoutOptions);
 
   const handleDeliveryChange = (value) => {
     setCtOptions({ ...checkoutOptions, delivery: value });

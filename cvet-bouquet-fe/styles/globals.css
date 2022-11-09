@@ -41,3 +41,7 @@ a {
 .MuiPickersPopper-root button{
   font-size: 16px;
 }
+
+.swiper{
+  padding: 20px 0 !important;
+}

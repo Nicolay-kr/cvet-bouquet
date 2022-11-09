@@ -21,7 +21,7 @@ import Link from '../src/Link';
 
 const CartRow = ({ id, title, price, image, quantity,slug }) => {
   const bouquetsContext = useAppContext();
-  console.log(id)
+  // console.log(id)
 
   const removeFromCart = () => {
     bouquetsContext.removeFromCart(id);

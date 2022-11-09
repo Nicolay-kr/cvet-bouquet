@@ -26,7 +26,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
     e.nativeEvent.stopImmediatePropagation();
     bouckeList.addOrRemoveToFavorite(bouquet);
   };
-  console.log(bouquet)
+  // console.log(bouquet)
 
   useEffect(() => {
     setChecked(true);

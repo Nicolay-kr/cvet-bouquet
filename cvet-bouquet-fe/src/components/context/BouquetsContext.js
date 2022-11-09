@@ -62,7 +62,6 @@ class BouquetsProvider extends React.Component {
         }
         newBouquetList = carrentBouquetList;
       }
-      console.log(newBouquetList)
       return {
         bouquetsInCarts: newBouquetList,
       };
@@ -111,7 +110,6 @@ class BouquetsProvider extends React.Component {
       let carrentBouquetList = [...state.bouquetsInCarts];
       if (carrentBouquetList.find((item) => item.id === id)) {
         newBouquetList = carrentBouquetList.filter((item) => item.id !== id);
-        console.log('newBouquetList', newBouquetList);
         localStorage.setItem('Cart', JSON.stringify(newBouquetList));
       } else {
         newBouquetList = carrentBouquetList;

@@ -34,7 +34,6 @@ export default function IntroBlock() {
                 fontSize: {
                   md: '60px',
                   xl: 'max(82px,4.3vw)',
-                  'max-device-pixel-ratio: 1.25': '30px',
                 },
               }}
               variant='h2'
