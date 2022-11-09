@@ -94,7 +94,7 @@ export const Header = () => {
               <Image src={heartIcon} alt='heart icon'></Image>
             </Badge>
           </IconButton>
-          <IconButton component={Link} href='/'>
+          <IconButton component={Link} href='https://www.instagram.com/cvetbuket.by/'>
             <Image src={instaIcon} alt='insta icon'></Image>
           </IconButton>
           <IconButton component={Link} href='/cart'>

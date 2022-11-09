@@ -13,14 +13,33 @@ export default function IntroBlock() {
     <Box width='100%' px='10%'>
       <Box mb={10} className={styles.content}>
         <Box className={styles.textBox}>
-          <Box pt={12.5} className={styles.textBoxTitle}>
-            <Typography variant='h2' component='h1'>
+          <Box pt='100px' className={styles.textBoxTitle}>
+            <Typography
+              sx={{ fontSize: { md: '60px', xl: 'max(82px,4.3vw)' } }}
+              variant='h2'
+              component='h1'
+            >
               Флористика
             </Typography>
-            <Typography variant='h1' component='h1'>
+            <Typography
+              sx={{ fontSize: { md: '100px', xl: 'max(140px,7.3vw)' } }}
+              variant='h1'
+              component='h1'
+              className={styles.specialFont}
+            >
               с утонченным
             </Typography>
-            <Typography variant='h2' component='h1'>
+            <Typography
+              sx={{
+                fontSize: {
+                  md: '60px',
+                  xl: 'max(82px,4.3vw)',
+                  'max-device-pixel-ratio: 1.25': '30px',
+                },
+              }}
+              variant='h2'
+              component='h1'
+            >
               вкусом
             </Typography>
           </Box>

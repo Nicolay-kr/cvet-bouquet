@@ -4,8 +4,9 @@ import imageUrlBuilder from '@sanity/image-url';
 import BouquetCard from '../../src/components/BouquetCard/BouquetCard';
 import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box';
+import InstagramBlock from '../../src/components/InstagramBlock/InstagramBlock';
 
-export default function Home({ bouquets }) {
+export default function Home({ bouquets, instagramPosts }) {
   const [mappedBouquets, setMappedBouquets] = React.useState([]);
 
   React.useEffect(() => {
@@ -67,6 +68,10 @@ export default function Home({ bouquets }) {
             <>No Posts Yet</>
           )}
         </div> */}
+        <Box sx={{my:'max(100px,5vw)'}}>
+        <InstagramBlock instagramPosts={instagramPosts} />
+
+        </Box>
     </Box>
   );
 }
@@ -76,7 +81,11 @@ export const getServerSideProps = async (pageContext) => {
   const url = `https://444cz5oj.api.sanity.io/v1/data/query/production?query=${query}`;
   const result = await fetch(url).then((res) => res.json());
 
-  if (!result.result || !result.result.length) {
+  const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`
+  const data = await fetch(instagramUrl)
+  const instagramPosts = await data.json();
+
+  if (!result.result || !result.result.length || !instagramPosts.data) {
     return {
       props: {
         bouquets: [],
@@ -87,6 +96,7 @@ export const getServerSideProps = async (pageContext) => {
     return {
       props: {
         bouquets: result.result,
+        instagramPosts,
       },
     };
   }

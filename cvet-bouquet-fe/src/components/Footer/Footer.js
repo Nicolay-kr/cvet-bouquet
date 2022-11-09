@@ -154,7 +154,7 @@ export default function Footer() {
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('/delivery')}
+                      onClick={() => router.push('https://www.instagram.com/cvetbuket.by/')}
                     >
                       <Image src={insta_mini} alt='insta icon'></Image>
                       <Typography

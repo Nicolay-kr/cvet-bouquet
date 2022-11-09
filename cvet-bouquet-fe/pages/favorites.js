@@ -50,9 +50,9 @@ export default function Favorites() {
           </Grid>
         </Box>
       </Box>
-      <Box sx={{ mt: 'max(150px,7vw)', mb: 'max(150px,7vw)' }}>
+      {/* <Box sx={{ mt: 'max(150px,7vw)', mb: 'max(150px,7vw)' }}>
         <InstagramBlock></InstagramBlock>
-      </Box>
+      </Box> */}
     </>
   );
 }

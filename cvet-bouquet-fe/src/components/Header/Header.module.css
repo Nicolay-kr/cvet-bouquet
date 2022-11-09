@@ -41,6 +41,7 @@
 }
 .navigation a {
   margin-right: 5px;
+  font-size: max(20px,1.05vw);
   /* display: flex; */
   cursor: pointer;
   /* align-items: center; */

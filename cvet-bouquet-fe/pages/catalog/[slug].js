@@ -15,7 +15,7 @@ import AddToCartButton from '../../src/components/AddToCartButton/AddToCartButto
 import { useAppContext } from '../../src/components/context/BouquetsContext';
 import InstagramBlock from '../../src/components/InstagramBlock/InstagramBlock';
 
-export const Bouquet = ({ id, title, description, image, price, slug }) => {
+export const Bouquet = ({ id, title, description, image, price, slug ,instagramPosts}) => {
   const [imageUrl, setImageUrl] = useState('');
   const [quantity, setQuantity] = useState(1);
   const bouckeList = useAppContext();
@@ -178,8 +178,8 @@ export const Bouquet = ({ id, title, description, image, price, slug }) => {
           {/* <BlockContent blocks={description} /> */}
         </div>
       </div>
-      <Box sx={{mt:'max(300px,15vw)',mb:'max(150px,7vw)'}}>
-        <InstagramBlock></InstagramBlock>
+      <Box sx={{my:'max(100px,5vw)',px:'10%'}}>
+        <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </div>
   );
@@ -202,6 +202,10 @@ export const getServerSideProps = async (pageContext) => {
   const result = await fetch(url).then((res) => res.json());
   const bouquet = result.result[0];
 
+  const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`
+  const data = await fetch(instagramUrl)
+  const instagramPosts = await data.json();
+
   if (!bouquet) {
     return {
       notFound: true,
@@ -215,6 +219,7 @@ export const getServerSideProps = async (pageContext) => {
         price: bouquet.price,
         slug: bouquet.slug,
         id: bouquet._id,
+        instagramPosts:instagramPosts?instagramPosts:[]
       },
     };
   }
