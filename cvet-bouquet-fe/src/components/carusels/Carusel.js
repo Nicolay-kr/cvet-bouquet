@@ -5,24 +5,36 @@ import SwiperCore, { Mousewheel, FreeMode } from 'swiper';
 import { SwiperSlide } from 'swiper/react';
 import style from './Carusel.module.css';
 import BouquetCard from '../BouquetCard/BouquetCard';
+import SimpleBouquetCard from '../SimpleBouquetCard/SimpleBouquetCard';
 
 SwiperCore.use([Mousewheel, FreeMode]);
 
-const Carusel = ({ bouquets, caruselRef }) => {
+const Carusel = ({ bouquets, caruselRef, isSpec }) => {
   // let gap = Math.round((20 / +window?.screen?.width) * 5000);
-  console.log(bouquets)
+  console.log(bouquets);
 
   const listItem = bouquets?.map((bouquet) => {
     return (
       <SwiperSlide className={style.bouquetBox} key={bouquet._id}>
-        <BouquetCard
-          id={bouquet._id}
-          title={bouquet.title.ru}
-          price={bouquet.price}
-          // description={description.ru}
-          imagePath={bouquet.mainImage}
-          slug={bouquet.slug}
-        ></BouquetCard>
+        {isSpec ? (
+          <SimpleBouquetCard
+            id={bouquet._id}
+            title={bouquet.title.ru}
+            price={bouquet.price}
+            // description={description.ru}
+            imagePath={bouquet.mainImage}
+            slug={bouquet.slug}
+          ></SimpleBouquetCard>
+        ) : (
+          <BouquetCard
+            id={bouquet._id}
+            title={bouquet.title.ru}
+            price={bouquet.price}
+            // description={description.ru}
+            imagePath={bouquet.mainImage}
+            slug={bouquet.slug}
+          ></BouquetCard>
+        )}
       </SwiperSlide>
     );
   });

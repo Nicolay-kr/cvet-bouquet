@@ -7,6 +7,7 @@ import Link from '../../Link';
 import Image from 'next/future/image';
 import introImg1 from '../../assets/images/intro_img1.png';
 import introImg2 from '../../assets/images/intro_img2.png';
+import ArcheConteiner from '../ArcheConteiner/ArcheConteiner';
 
 export default function IntroBlock() {
   return (
@@ -56,11 +57,15 @@ export default function IntroBlock() {
           </Box>
         </Box>
         <Box pl={12.5} className={styles.mediaBox}>
-          <Image
+          {/* <Image
             className={styles.mainImage}
             src={introImg1}
             alt='image'
-          ></Image>
+          ></Image> */}
+          <Box sx={{mt:'60px'}}>
+          <ArcheConteiner src={introImg1}></ArcheConteiner>
+
+          </Box>
           <Image src={introImg2} alt='image'></Image>
         </Box>
       </Box>

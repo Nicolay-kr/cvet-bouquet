@@ -9,28 +9,42 @@ import rightArrow from '../../assets/icons/rightArrow.svg';
 import IconButton from '@mui/material/IconButton';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import Carusel from '../carusels/Carusel';
+import ArcheConteiner from '../ArcheConteiner/ArcheConteiner';
+import introImg1 from '../../assets/images/intro_img1.png';
 
-export default function CaruselBlock({ bouquets, isSpec=false }) {
+export default function CaruselBlock({
+  bouquets,
+  isSpec = false,
+  title,
+  subtitle,
+}) {
   const caruselRef = useRef(null);
 
   const handleRightArrowClick = () => {
     caruselRef.current.swiper.slideNext();
+    console.log(bouquets)
+    console.log(bouquets[caruselRef.current.swiper.activeIndex])
   };
   const handleLeftArrowClick = () => {
     caruselRef.current.swiper.slidePrev();
+    console.log(bouquets)
+    console.log(bouquets[caruselRef.current.swiper.activeIndex])
   };
 
   return (
     <>
-      <Box sx={{ width: '100%', pl: isSpec?'10%':0, mt: '100px' }}>
+      <Box sx={{ width: '100%', pl: isSpec ? '10%' : 0, mt: '100px' }}>
         <TitleWithSubtitle
-          title={'Выберите '}
-          subtitle={'категорию'}
+          title={title}
+          subtitle={subtitle}
         ></TitleWithSubtitle>
         <Box
           sx={{ display: 'flex', justifyContent: 'space-between', mb: '40px' }}
         >
-          <IconButton onClick={handleLeftArrowClick} sx={{ marginLeft: '10vw' }}>
+          <IconButton
+            onClick={handleLeftArrowClick}
+            sx={{ marginLeft: isSpec ? 0 : '10vw' }}
+          >
             <Image src={leftArrow} alt='leftArrow icon'></Image>
           </IconButton>
           <IconButton
@@ -40,7 +54,14 @@ export default function CaruselBlock({ bouquets, isSpec=false }) {
             <Image src={rightArrow} alt='rightArrow icon'></Image>
           </IconButton>
         </Box>
-        <Carusel bouquets={bouquets} caruselRef={caruselRef} />
+        <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
+          {isSpec ? <Box sx={{mr:'30px'}}><ArcheConteiner src={introImg1} /></Box> : null}
+          <Carusel
+            bouquets={bouquets}
+            caruselRef={caruselRef}
+            isSpec={isSpec}
+          />
+        </Box>
       </Box>
     </>
   );

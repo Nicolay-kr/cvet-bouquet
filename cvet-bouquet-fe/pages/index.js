@@ -39,7 +39,8 @@ export default function Home({ bouquets, instagramPosts }) {
   return (
     <>
       <IntroBlock></IntroBlock>
-      <CaruselBlock bouquets={orderedBouquetsList}></CaruselBlock>
+      <CaruselBlock bouquets={orderedBouquetsList} title={'Выберите '} subtitle={'категорию'} isSpec={true}></CaruselBlock>
+      <CaruselBlock bouquets={orderedBouquetsList} title={'Популярные'} subtitle={'букеты'}></CaruselBlock>
       <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
