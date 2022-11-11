@@ -9,7 +9,11 @@ import category from './category'
 import product from './product'
 import bouquet from './bouquet'
 import vendor from './vendor'
+import clients from './clients'
+import orders from './orders'
 import productVariant from './productVariant'
+import mainPage from './pages/mainPage'
+import aboutusPage from './pages/aboutusPage'
 
 import localeString from './locale/String'
 import localeText from './locale/Text'
@@ -24,10 +28,14 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
-    bouquet,
-    product,
-    vendor,
     category,
+    bouquet,
+    clients,
+    orders,
+    mainPage,
+    aboutusPage,
+    // product,
+    // vendor,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,

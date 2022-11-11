@@ -1,7 +1,11 @@
+import { BsFlower1 } from 'react-icons/bs'
+
+
 export default {
   name: 'bouquet',
-  title: 'Букеты',
+  title: 'Список всех букетов',
   type: 'document',
+  icon: BsFlower1,
   fields: [
     {
       name: 'title',
@@ -9,31 +13,24 @@ export default {
       type: 'localeString',
       validation: Rule => Rule.required().error('Поле должно быть заполнено'),
     },
-    {
-      name: 'category',
-      title: 'Категория',
-      type: 'reference',
-      to: { type: 'category' },
-    },
+    // {
+    //   name: 'category',
+    //   title: 'Категория',
+    //   type: 'reference',
+    //   to: { type: 'category' },
+    // },
     {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      description:'Поле для url адреса',
+      initialValue: 'This string',
       validation: Rule => Rule.required().error('Поле должно быть заполнено, пожалуйста нажмите кнопку Generate'),
       options: {
         source: 'title.ru',
         maxLength: 96,
+        // isUnique:true,
       },
-    },
-    {
-      name: 'description',
-      title: 'Описание',
-      type: 'localeBlockContent',
-    },
-    {
-      name: 'delivery',
-      title: 'Доставка',
-      type: 'localeBlockContent',
     },
     {
       name: 'price',
@@ -48,7 +45,7 @@ export default {
     // },
     {
       name: 'images',
-      title: 'Images',
+      title: 'Изображения',
       type: 'array',
       of: [
         {
@@ -60,20 +57,36 @@ export default {
         },
       ],
     },
-
     {
-      title: 'Tags',
-      name: 'tags',
-      type: 'array',
-      of: [
-        {
-          type: 'string',
-        },
-      ],
-      options: {
-        layout: 'tags',
-      },
+      name: 'description',
+      title: 'Описание',
+      type: 'localeBlockContent',
     },
+    // {
+    //   name: 'delivery',
+    //   title: 'Доставка',
+    //   type: 'localeBlockContent',
+    // },
+    // {
+    //   name: 'bouquetCare',
+    //   title: 'Уход за букетом',
+    //   type: 'localeBlockContent',
+    // },
+
+
+    // {
+    //   title: 'Tags',
+    //   name: 'tags',
+    //   type: 'array',
+    //   of: [
+    //     {
+    //       type: 'string',
+    //     },
+    //   ],
+    //   options: {
+    //     layout: 'tags',
+    //   },
+    // },
     {
       name: "order",
       title: "Order",
