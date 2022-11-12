@@ -21,7 +21,7 @@ export default {
     // },
     {
       name: 'slug',
-      title: 'Slug',
+      title: 'Ссылка',
       type: 'slug',
       description:'Поле для url адреса',
       initialValue: 'This string',

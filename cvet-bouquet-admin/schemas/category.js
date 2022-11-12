@@ -9,12 +9,12 @@ export default {
   fields: [
     {
       name: 'title',
-      title: 'Название',
+      title: 'Название категории',
       type: 'string',
     },
     {
       name: 'slug',
-      title: 'Slug',
+      title: 'Ссылка',
       type: 'slug',
       description:'Поле для url адреса',
       validation: Rule => Rule.required().error('Поле должно быть заполнено, пожалуйста нажмите кнопку Generate'),

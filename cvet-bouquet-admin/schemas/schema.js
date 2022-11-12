@@ -14,6 +14,13 @@ import orders from './orders'
 import productVariant from './productVariant'
 import mainPage from './pages/mainPage'
 import aboutusPage from './pages/aboutusPage'
+import contactsPage from './pages/contactsPage'
+import deliveryPage from './pages/deliveryPage'
+import bonuscardPage from './pages/bonuscardPage'
+import corporateclientsPage from './pages/corporateclientsPage'
+import eposPage from './pages/eposPage'
+import generalInfo from './generalInfo'
+
 
 import localeString from './locale/String'
 import localeText from './locale/Text'
@@ -34,6 +41,12 @@ export default createSchema({
     orders,
     mainPage,
     aboutusPage,
+    contactsPage,
+    deliveryPage,
+    bonuscardPage,
+    eposPage,
+    generalInfo,
+    corporateclientsPage,
     // product,
     // vendor,
     // When added to this list, object types can be used as
