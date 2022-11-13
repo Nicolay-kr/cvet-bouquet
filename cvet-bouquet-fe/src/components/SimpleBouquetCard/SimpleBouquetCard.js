@@ -93,7 +93,7 @@ export default function SimpleBouquetCard({ id, title, imagePath, price, slug })
               sx={{
                 position: 'relative',
                 width: '100%',
-                height: '460px',
+                height: '360px',
               }}
             >
               <Image

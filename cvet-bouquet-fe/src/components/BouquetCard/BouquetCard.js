@@ -121,7 +121,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug,category
                   component='p'
                   sx={{ fontWeight: 700, mt: 'auto' }}
                 >
-                  {price} BYN
+                  {price} <sup style={{fontSize:'12px'}}>BYN</sup>
                 </Typography>
                 <Typography gutterBottom variant='h5' component='p'>
                   с доставкой

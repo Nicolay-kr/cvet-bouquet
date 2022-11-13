@@ -41,7 +41,7 @@ export default function Home({ category, instagramPosts }) {
   const orderedList = mappedBouquets?.sort((a,b)=>(a.order-b.order))
 
   return (
-    <Box sx={{ width: '100%', px: '10%', my: 3 }}>
+    <Box sx={{ width: '100%', px: '10%', my: '40px' }}>
       <Box sx={{ width: '100%', mx: 'auto' }} className={styles.cardsContainer}>
         <Grid container rowSpacing={10} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {mappedBouquets.length ? (

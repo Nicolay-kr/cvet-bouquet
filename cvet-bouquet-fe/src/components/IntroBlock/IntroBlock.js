@@ -51,6 +51,8 @@ export default function IntroBlock() {
             <Button
               sx={{ height: '60px', width: '100%', bgcolor: 'primary.main' }}
               variant='contained'
+              component={Link}
+              href='/catalog'
             >
               Выбрать букет
             </Button>

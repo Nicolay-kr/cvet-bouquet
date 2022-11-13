@@ -10,6 +10,10 @@
   padding: 10px;
   transition: 0.3s;
 }
+.card img{
+  object-fit: cover;
+}
+
 
 .cardConteiner:hover{
   transition: 0.3s;
