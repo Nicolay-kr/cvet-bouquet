@@ -1,13 +1,24 @@
-import React, { useEffect } from 'react';
-import styles from '../../styles/Catalog.module.css';
+import React from 'react';
 import imageUrlBuilder from '@sanity/image-url';
-import Grid from '@mui/material/Unstable_Grid2';
+import { useState, useEffect } from 'react';
+import styles from '../../../styles/BouquetPage.module.css';
+import BlockContent from '@sanity/block-content-to-react';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import InstagramBlock from '../../src/components/InstagramBlock/InstagramBlock';
-import { sanityClient } from '../../sanity';
-import SimpleBouquetCard from '../../src/components/SimpleBouquetCard/SimpleBouquetCard';
+import CounterButtons from '../../../src/components/CounterButtons/CounterButtons';
+import butttonHeart from '../../../src/assets/icons/buttonHeart.svg';
+import butttonHeartFill from '../../../src/assets/icons/buttonHeartFill.svg';
+import Image from 'next/future/image';
+import AccordionCustom from '../../../src/components/AccordionCustom/AccordionCustom';
+import AddToCartButton from '../../../src/components/AddToCartButton/AddToCartButton';
+import { useAppContext } from '../../../src/components/context/BouquetsContext';
+import InstagramBlock from '../../../src/components/InstagramBlock/InstagramBlock';
+import { sanityClient } from '../../../sanity';
+import BouquetCard from '../../../src/components/BouquetCard/BouquetCard';
+import Grid from '@mui/material/Unstable_Grid2';
 
-export default function Home({ category, instagramPosts }) {
+export const CategoryBouquets = ({ category, instagramPosts }) => {
   const [mappedBouquets, setMappedBouquets] = React.useState([]);
 
   useEffect(() => {
@@ -21,14 +32,14 @@ export default function Home({ category, instagramPosts }) {
         category.map((p) => {
           return {
             ...p,
-            bouqets: p.bouqets.map(bouqet=>{
+            bouqets: p.bouqets.map((bouqet) => {
               return {
                 ...bouqet,
-                images: bouqet.images.map(image=>imgBuilder.image(image).width(720).height(900)),
-
-              }
-            }
-            ),
+                images: bouqet.images.map((image) =>
+                  imgBuilder.image(image).width(720).height(900)
+                ),
+              };
+            }),
             mainImage: imgBuilder.image(p.mainImage).width(720).height(900),
           };
         })
@@ -38,54 +49,44 @@ export default function Home({ category, instagramPosts }) {
     }
   }, [category]);
 
-  const orderedList = mappedBouquets?.sort((a,b)=>(a.order-b.order))
+  // const orderedList = mappedBouquets?.sort((a, b) => a.order - b.order);
+  console.log(mappedBouquets[0]?.bouqets)
 
   return (
     <Box sx={{ width: '100%', px: '10%', my: 3 }}>
       <Box sx={{ width: '100%', mx: 'auto' }} className={styles.cardsContainer}>
         <Grid container rowSpacing={10} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {mappedBouquets.length ? (
-            orderedList.map(
-              ({ _id, title, description, mainImage, price, slug }, index) => (
+            mappedBouquets[0]?.bouqets?.map(
+              ({ _id, title, description, images, price, slug }, index) => (
                 <Grid xs={12} sm={6} md={4} xl={3} key={_id}>
-                  <SimpleBouquetCard
+                  <BouquetCard
                     id={_id}
-                    title={title}
-                    imagePath={mainImage}
+                    title={title.ru}
+                    imagePath={images[0]}
                     slug={slug}
-                    price={null}
-                  ></SimpleBouquetCard>
+                    categorySlug={mappedBouquets[0].slug.current}
+                    price={price}
+                  ></BouquetCard>
                 </Grid>
               )
             )
           ) : (
-            <>No Posts Yet</>
+            <>No Bouqets Yet</>
           )}
         </Grid>
       </Box>
-      {/* <div className={styles.feed}>
-          {mappedBouquets.length ? (
-            mappedBouquets.map(({ title, description, mainImage }, index) => (
-              <BouquetCard
-                title={title.ru}
-                // description={description.ru}
-                imagePath={mainImage}
-              ></BouquetCard>
-            ))
-          ) : (
-            <>No Posts Yet</>
-          )}
-        </div> */}
         <Box sx={{my:'max(100px,5vw)'}}>
         <InstagramBlock instagramPosts={instagramPosts} />
 
         </Box>
     </Box>
   );
-}
+};
 
 export const getServerSideProps = async (pageContext) => {
-  const queryCategory = `*[ _type == "category"]
+  const pageSlug = pageContext.query.slug;
+  const queryCategory = `*[ _type == "category" && slug.current == "${pageSlug}"]
   {
     _id,
     slug,
@@ -122,3 +123,4 @@ export const getServerSideProps = async (pageContext) => {
     };
   }
 };
+export default CategoryBouquets;

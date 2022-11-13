@@ -19,7 +19,7 @@ const Carusel = ({ bouquets, caruselRef, isSpec }) => {
         {isSpec ? (
           <SimpleBouquetCard
             id={bouquet._id}
-            title={bouquet.title.ru}
+            title={bouquet.title.ru?bouquet.title.ru:bouquet.title}
             price={bouquet.price}
             // description={description.ru}
             imagePath={bouquet.mainImage}
@@ -31,7 +31,7 @@ const Carusel = ({ bouquets, caruselRef, isSpec }) => {
             title={bouquet.title.ru}
             price={bouquet.price}
             // description={description.ru}
-            imagePath={bouquet.mainImage}
+            imagePath={bouquet.images[0]}
             slug={bouquet.slug}
           ></BouquetCard>
         )}

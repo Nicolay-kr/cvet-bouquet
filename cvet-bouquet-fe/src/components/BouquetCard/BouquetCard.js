@@ -15,7 +15,7 @@ import Zoom from '@mui/material/Zoom';
 import { useEffect } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 
-export default function BouquetCard({ id, title, imagePath, price, slug }) {
+export default function BouquetCard({ id, title, imagePath, price, slug,categorySlug=null }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
   const bouckeList = useAppContext();
@@ -86,7 +86,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
             }}
             component={Link}
             noLinkStyle
-            href={`/catalog/${slug?.current}`}
+            href={`/catalog/${categorySlug?categorySlug+'/':''}${slug?.current}`}
           >
             <Box
               sx={{
@@ -121,7 +121,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug }) {
                   component='p'
                   sx={{ fontWeight: 700, mt: 'auto' }}
                 >
-                  {price} руб.
+                  {price} BYN
                 </Typography>
                 <Typography gutterBottom variant='h5' component='p'>
                   с доставкой

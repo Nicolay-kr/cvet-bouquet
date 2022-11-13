@@ -22,18 +22,14 @@ export default function CaruselBlock({
 
   const handleRightArrowClick = () => {
     caruselRef.current.swiper.slideNext();
-    console.log(bouquets)
-    console.log(bouquets[caruselRef.current.swiper.activeIndex])
   };
   const handleLeftArrowClick = () => {
     caruselRef.current.swiper.slidePrev();
-    console.log(bouquets)
-    console.log(bouquets[caruselRef.current.swiper.activeIndex])
   };
 
   return (
     <>
-      <Box sx={{ width: '100%', pl: isSpec ? '10%' : 0, mt: '100px' }}>
+      <Box sx={{ width: '100%', pl: isSpec ? '10%' : 0, mt: '200px' }}>
         <TitleWithSubtitle
           title={title}
           subtitle={subtitle}

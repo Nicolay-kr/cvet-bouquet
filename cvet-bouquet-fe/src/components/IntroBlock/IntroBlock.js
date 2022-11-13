@@ -23,7 +23,7 @@ export default function IntroBlock() {
               Флористика
             </Typography>
             <Typography
-              sx={{ fontSize: { md: '100px', xl: 'max(140px,7.3vw)' } }}
+              sx={{ fontSize: { md: '140px', xl: 'max(140px,7.3vw)' } }}
               variant='h1'
               component='h1'
               className={styles.specialFont}

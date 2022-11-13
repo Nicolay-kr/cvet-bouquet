@@ -4,11 +4,14 @@ import MenuItem from '@mui/material/MenuItem';
 import navArrow from '../../assets/icons/navArrow.svg';
 import { IconButton } from '../../../node_modules/@mui/material/index';
 import Image from 'next/future/image';
+import { useRouter } from 'next/router';
 
 export default function DropList() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const router = useRouter();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
+    router.push('/catalog')
     setAnchorEl(event.currentTarget.parentElement);
   };
   const handleClose = () => {
@@ -48,13 +51,25 @@ export default function DropList() {
         }}
       >
         <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
-          Profile
+        Авторские букеты
         </MenuItem>
         <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
-          My account
+        В коробке
         </MenuItem>
         <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
-          Logout
+        Монобукеты
+        </MenuItem>
+        <MenuItem sx={{ bgcolor: '#FFFBF6',fontFamily:'Zeferino One',fontSize:'30px' }} onClick={handleClose}>
+        Премиум флористика
+        </MenuItem>
+        <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
+        Цветочные письма
+        </MenuItem>
+        <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
+        Свадебная флористика
+        </MenuItem>
+        <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
+        Корзины с цветами
         </MenuItem>
       </Menu>
     </>

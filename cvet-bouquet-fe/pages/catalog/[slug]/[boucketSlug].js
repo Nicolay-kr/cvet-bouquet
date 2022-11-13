@@ -1,19 +1,19 @@
 import React from 'react';
 import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
-import styles from '../../styles/BouquetPage.module.css';
+import styles from '../../../styles/BouquetPage.module.css';
 import BlockContent from '@sanity/block-content-to-react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
-import butttonHeart from '../../src/assets/icons/buttonHeart.svg';
-import butttonHeartFill from '../../src/assets/icons/buttonHeartFill.svg';
+import CounterButtons from '../../../src/components/CounterButtons/CounterButtons';
+import butttonHeart from '../../../src/assets/icons/buttonHeart.svg';
+import butttonHeartFill from '../../../src/assets/icons/buttonHeartFill.svg';
 import Image from 'next/future/image';
-import AccordionCustom from '../../src/components/AccordionCustom/AccordionCustom';
-import AddToCartButton from '../../src/components/AddToCartButton/AddToCartButton';
-import { useAppContext } from '../../src/components/context/BouquetsContext';
-import InstagramBlock from '../../src/components/InstagramBlock/InstagramBlock';
+import AccordionCustom from '../../../src/components/AccordionCustom/AccordionCustom';
+import AddToCartButton from '../../../src/components/AddToCartButton/AddToCartButton';
+import { useAppContext } from '../../../src/components/context/BouquetsContext';
+import InstagramBlock from '../../../src/components/InstagramBlock/InstagramBlock';
 
 export const Bouquet = ({ id, title, description, image, price, slug ,instagramPosts}) => {
   const [imageUrl, setImageUrl] = useState('');
@@ -186,16 +186,16 @@ export const Bouquet = ({ id, title, description, image, price, slug ,instagramP
 };
 
 export const getServerSideProps = async (pageContext) => {
-  const pageSlug = pageContext.query.slug;
+  const boucketSlug = pageContext.query.boucketSlug;
 
-  if (!pageSlug) {
+  if (!boucketSlug) {
     return {
       notFound: true,
     };
   }
 
   const query = encodeURIComponent(
-    `*[ _type == "bouquet" && slug.current == "${pageSlug}" ]`
+    `*[ _type == "bouquet" && slug.current == "${boucketSlug}" ]`
   );
   const url = `https://444cz5oj.api.sanity.io/v1/data/query/production?query=${query}`;
 

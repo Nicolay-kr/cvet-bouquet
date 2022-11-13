@@ -44,4 +44,5 @@ a {
 
 .swiper{
   padding: 20px 0 !important;
+  height: auto !important;
 }

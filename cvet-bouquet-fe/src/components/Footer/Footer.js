@@ -29,10 +29,10 @@ export default function Footer() {
       <Box
         width='100%'
         px='10%'
-        pt={12.5}
         pb={10}
         bgcolor='secondary.main'
         component='footer'
+        sx={{pt:'100px'}}
       >
         <Box className={styles.content}>
           <Box className={styles.links}>

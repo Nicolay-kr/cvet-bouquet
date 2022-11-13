@@ -15,7 +15,7 @@ import Zoom from '@mui/material/Zoom';
 import { useEffect } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 
-export default function BouquetCard({ id, title, imagePath, price, slug }) {
+export default function SimpleBouquetCard({ id, title, imagePath, price, slug }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
   const bouckeList = useAppContext();
