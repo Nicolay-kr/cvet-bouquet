@@ -4,12 +4,12 @@ import Footer from '../Footer/Footer';
 import { Typography } from '../../../node_modules/@mui/material/index';
 import { useAppContext } from '../context/BouquetsContext';
 
-export default function Layout({ children }) {
+export default function Layout({ children,category }) {
   return (
     <>
-      <Header />
+      <Header category={category} />
       <main>{children}</main>
-      <Footer />
+      <Footer category={category}/>
     </>
   );
 }

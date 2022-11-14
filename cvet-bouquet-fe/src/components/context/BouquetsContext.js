@@ -12,6 +12,8 @@ const defaultState = {
   removeFromCart: (bouquet) => {},
   icreaseQuantity: (bouquet) => {},
   decreaseQuantity: (bouquet) => {},
+  setbouquetsCategories: (bouquet) => {},
+  bouquetsCategories:[],
 };
 
 const BouquetsContext = React.createContext(defaultState);
@@ -22,6 +24,8 @@ class BouquetsProvider extends React.Component {
     this.state = {
       favoriteBouquets: [],
       bouquetsInCarts: [],
+      bouquetsCategories:[],
+
     };
   }
   // state = {
@@ -120,6 +124,10 @@ class BouquetsProvider extends React.Component {
     });
   };
 
+  setbouquetsCategories = (bouquetsCategories) => {
+    this.state.bouquetsCategories = bouquetsCategories ;
+  }
+
   componentDidMount() {
     const heartsList = JSON.parse(localStorage.getItem('Hearts'));
     if (heartsList) {
@@ -133,17 +141,19 @@ class BouquetsProvider extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { favoriteBouquets, bouquetsInCarts } = this.state;
+    const { favoriteBouquets, bouquetsInCarts, bouquetsCategories } = this.state;
     return (
       <BouquetsContext.Provider
         value={{
           favoriteBouquets,
           bouquetsInCarts,
+          bouquetsCategories,
           addOrRemoveToFavorite: this.addOrRemoveToFavorite,
           addToCart: this.addToCart,
           removeFromCart: this.removeFromCart,
           icreaseQuantity: this.icreaseQuantity,
           decreaseQuantity: this.decreaseQuantity,
+          setbouquetsCategories: this.setbouquetsCategories,
         }}
       >
         {children}

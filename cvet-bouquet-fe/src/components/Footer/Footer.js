@@ -19,7 +19,7 @@ import whatsapp from '../../assets/icons/whatsapp.svg';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-export default function Footer() {
+export default function Footer({data}) {
   const router = useRouter();
   const sm = useMediaQuery('(max-width:600px)');
   const lg = useMediaQuery('(max-width:1200px)');

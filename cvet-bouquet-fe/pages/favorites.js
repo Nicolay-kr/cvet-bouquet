@@ -11,6 +11,8 @@ export default function Favorites() {
   const [checked, setChecked] = React.useState(false);
   const bouquetsContext = useAppContext();
   const bouquets = bouquetsContext.favoriteBouquets;
+  console.log(bouquets)
+  // console.log(bouquets[0].imagePath)
 
   return (
     <>

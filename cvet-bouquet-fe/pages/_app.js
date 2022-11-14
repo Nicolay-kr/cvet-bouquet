@@ -9,12 +9,14 @@ import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 import Layout from '../src/components/Layout/Layout';
 import { BouquetsProvider } from '../src/components/context/BouquetsContext';
+// import { sanityClient } from '../sanity';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  console.log(pageProps)
 
   return (
     <CacheProvider value={emotionCache}>
@@ -25,7 +27,7 @@ export default function MyApp(props) {
         <BouquetsProvider>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. For MUI*/}
           {/* <CssBaseline /> */}
-          <Layout>
+          <Layout category = {pageProps.category}>
             <Component {...pageProps} />
           </Layout>
         </BouquetsProvider>
@@ -39,3 +41,28 @@ MyApp.propTypes = {
   emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };
+
+
+// export const getServerSideProps = async (pageContext) => {
+//   const queryCategory = `*[ _type == "category"]
+//   {
+//     slug,
+//     title,
+//   }`;
+
+//   const resultCategory = await sanityClient.fetch(queryCategory);
+
+//   if (!resultCategory.length) {
+//     return {
+//       props: {
+//         bouquets: [],
+//       },
+//     };
+//   } else {
+//     return {
+//       props: {
+//         category: resultCategory,
+//       },
+//     };
+//   }
+// };

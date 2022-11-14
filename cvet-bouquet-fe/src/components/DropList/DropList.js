@@ -5,16 +5,20 @@ import navArrow from '../../assets/icons/navArrow.svg';
 import { IconButton } from '../../../node_modules/@mui/material/index';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
+import logoFlower from '../../assets/images/logo_flower.svg';
 
-export default function DropList() {
+export default function DropList({ list }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const router = useRouter();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    router.push('/catalog')
     setAnchorEl(event.currentTarget.parentElement);
   };
   const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleClickListItem = (e, slug) => {
+    router.push(`/catalog/${slug}`);
     setAnchorEl(null);
   };
 
@@ -50,27 +54,39 @@ export default function DropList() {
           horizontal: 'left',
         }}
       >
-        <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
-        Авторские букеты
-        </MenuItem>
-        <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
-        В коробке
-        </MenuItem>
-        <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
-        Монобукеты
-        </MenuItem>
-        <MenuItem sx={{ bgcolor: '#FFFBF6',fontFamily:'Zeferino One',fontSize:'30px' }} onClick={handleClose}>
-        Премиум флористика
-        </MenuItem>
-        <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
-        Цветочные письма
-        </MenuItem>
-        <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
-        Свадебная флористика
-        </MenuItem>
-        <MenuItem sx={{ bgcolor: '#FFFBF6' }} onClick={handleClose}>
-        Корзины с цветами
-        </MenuItem>
+        {list?.map((item) => {
+          if (item.title === 'Премиум флористика') {
+            return (
+              <MenuItem
+                key={`${item.slug.current}-list`}
+                sx={{ bgcolor: '#FFFBF6', position: 'relative' }}
+                onClick={(e) => handleClickListItem(e, item.slug.current)}
+              >
+                <span style={{ zIndex: '3' }}>Премиум флористика</span>
+                <Image
+                  style={{
+                    position: 'absolute',
+                    right: '15px',
+                    width: '40px',
+                    zIndex: '2',
+                  }}
+                  src={logoFlower}
+                  alt='logo flower'
+                ></Image>
+              </MenuItem>
+            );
+          } else {
+            return (
+              <MenuItem
+                key={`${item.slug.current}-list`}
+                sx={{ bgcolor: '#FFFBF6' }}
+                onClick={(e) => handleClickListItem(e, item.slug.current)}
+              >
+                {item.title}
+              </MenuItem>
+            );
+          }
+        })}
       </Menu>
     </>
   );

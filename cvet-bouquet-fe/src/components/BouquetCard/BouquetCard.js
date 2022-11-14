@@ -20,7 +20,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug,category
   const [checked, setChecked] = React.useState(false);
   const bouckeList = useAppContext();
 
-  const bouquet = { id, title, imagePath: imagePath, price, slug };
+  const bouquet = { id, title, imagePath: imagePath.toString(), price, slug, categorySlug };
   const addToFavoritList = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
@@ -95,12 +95,13 @@ export default function BouquetCard({ id, title, imagePath, price, slug,category
                 height: '360px',
               }}
             >
-              <Image
+              {imagePath? <Image
                 layout='fill'
                 fill={true}
-                src={imagePath?.toString()}
+                src={imagePath.toString()}
                 alt='Bouquet image'
-              />
+              />:null}
+             
             </Box>
 
             <CardContent

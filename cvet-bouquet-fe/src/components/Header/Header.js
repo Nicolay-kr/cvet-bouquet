@@ -21,22 +21,22 @@ import Badge from '@mui/material/Badge';
 import DropList from '../DropList/DropList';
 import { useAppContext } from '../context/BouquetsContext';
 
-export const Header = () => {
+export const Header = ({category}) => {
   const router = useRouter();
   const sm = useMediaQuery('(max-width:600px)');
   const lg = useMediaQuery('(max-width:1200px)');
   const xl = useMediaQuery('(max-width:1536px)');
   const bouckeList = useAppContext();
-
+  
   const navList = (
     <ul className={styles.navigation}>
       <li>
         <a onClick={() => router.push('/catalog')}>Каталог</a>
-        <DropList />
+        <DropList list={bouckeList.bouquetsCategories} />
       </li>
       <li>
         <a onClick={() => router.push('/delivery')}>Доставка и оплата</a>
-        <DropList />
+        <DropList list={null}/>
       </li>
       <li>
         <a onClick={() => router.push('/contacts')}>Контакты</a>

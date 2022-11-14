@@ -9,9 +9,8 @@ import SimpleBouquetCard from '../SimpleBouquetCard/SimpleBouquetCard';
 
 SwiperCore.use([Mousewheel, FreeMode]);
 
-const Carusel = ({ bouquets, caruselRef, isSpec }) => {
+const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug }) => {
   // let gap = Math.round((20 / +window?.screen?.width) * 5000);
-  console.log(bouquets);
 
   const listItem = bouquets?.map((bouquet) => {
     return (
@@ -30,6 +29,7 @@ const Carusel = ({ bouquets, caruselRef, isSpec }) => {
             id={bouquet._id}
             title={bouquet.title.ru}
             price={bouquet.price}
+            categorySlug={categoryslug}
             // description={description.ru}
             imagePath={bouquet.images[0]}
             slug={bouquet.slug}

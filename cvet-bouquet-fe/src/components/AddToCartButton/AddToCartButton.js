@@ -4,7 +4,7 @@ import { useAppContext } from '../context/BouquetsContext';
 import Snackbar from '@mui/material/Snackbar';
 
 export default function AddToCartButton({ bouquet,variant='outlined' }) {
-  const { id, title, imagePath, price, slug, quantity } = bouquet;
+  const { id, title, imagePath, price, slug, quantity,categorySlug } = bouquet;
   const [isOpenSnack, setIsOpenSnack] = React.useState(false);
   const bouckeList = useAppContext();
   const addToCart = (e) => {
@@ -18,6 +18,7 @@ export default function AddToCartButton({ bouquet,variant='outlined' }) {
       price,
       slug,
       quantity,
+      categorySlug,
     });
   };
 

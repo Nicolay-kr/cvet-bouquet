@@ -17,6 +17,7 @@ export default function CaruselBlock({
   isSpec = false,
   title,
   subtitle,
+  categoryslug=null,
 }) {
   const caruselRef = useRef(null);
 
@@ -56,6 +57,7 @@ export default function CaruselBlock({
             bouquets={bouquets}
             caruselRef={caruselRef}
             isSpec={isSpec}
+            categoryslug={categoryslug}
           />
         </Box>
       </Box>

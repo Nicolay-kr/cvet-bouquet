@@ -19,7 +19,7 @@ import CounterButtons from '../src/components/CounterButtons/CounterButtons';
 import Checkout from '../src/components/Checkout/Checkout';
 import Link from '../src/Link';
 
-const CartRow = ({ id, title, price, image, quantity,slug }) => {
+const CartRow = ({ id, title, price, image, quantity,slug,categorySlug }) => {
   const bouquetsContext = useAppContext();
   // console.log(id)
 
@@ -43,7 +43,7 @@ const CartRow = ({ id, title, price, image, quantity,slug }) => {
             '& img': { objectFit: 'cover' },
           }}
         >
-          <Link href={`/catalog/${slug.current}`}>
+          <Link href={`/catalog/${categorySlug}/${slug.current}`}>
             <Image
               layout='fill'
               width={100}
@@ -127,6 +127,8 @@ export default function Cart() {
                   image={bouquet.imagePath}
                   quantity={bouquet.quantity}
                   slug={bouquet.slug}
+                  categorySlug={bouquet.categorySlug}
+                  
                 ></CartRow>
               ))}
             </TableBody>

@@ -1,20 +1,17 @@
 import React from 'react';
-import styles from '../styles/Home.module.css';
 import imageUrlBuilder from '@sanity/image-url';
-import { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import IntroBlock from '../src/components/IntroBlock/IntroBlock';
 import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import CaruselBlock from '../src/components/CaruselBlock/CaruselBlock';
 import { sanityClient } from '../sanity';
-import Bouquet from './catalog/[slug]';
+import { useAppContext } from '../src/components/context/BouquetsContext';
 
 export default function Home({ instagramPosts, category }) {
-  const router = useRouter();
   const [mappedBouquets, setMappedBouquets] = useState([]);
-  const caruselRef = useRef(null);
-  console.log(category);
+  const bouquetsContext = useAppContext();
+  bouquetsContext.setbouquetsCategories(category)
 
   useEffect(() => {
     if (category?.length) {
@@ -43,9 +40,11 @@ export default function Home({ instagramPosts, category }) {
       setMappedBouquets([]);
     }
   }, [category]);
-  // const popular = mappedBouquets.find((category=>category.slug.current==='populyarnye-buket'))
+  // const popular = mappedBouquets.find(category=>category.slug.current==='populyarnye-buket')
   const popular = mappedBouquets[7];
-  console.log('popular',popular);
+  bouquetsContext.setbouquetsCategories(category);
+
+  // console.log('popular',popular);
 
   // const orderedBouquetsList = mappedBouquets?.sort((a, b) => a.order - b.order);
   // const orderedCategorysList = mappedBouquets?.sort(
@@ -66,6 +65,7 @@ export default function Home({ instagramPosts, category }) {
         bouquets={popular?.bouqets}
         title={'Популярные'}
         subtitle={'букеты'}
+        categoryslug={popular.slug.current}
       ></CaruselBlock>):null}
   
       <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
