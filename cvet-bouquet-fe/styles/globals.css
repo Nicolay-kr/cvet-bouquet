@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
-
 html,
 body {
   padding: 0;
@@ -24,9 +22,18 @@ a {
   src: url('../public/fonts/ZeferinoOne.eot?#iefix') format('embedded-opentype'),
       url('../public/fonts/ZeferinoOne.woff2') format('woff2'),
       url('../public/fonts/ZeferinoOne.woff') format('woff');
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
-  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zeferino One';
+  src: url('../public/fonts/ZeferinoOne.eot');
+  src: url('../public/fonts/ZeferinoOne.eot?#iefix') format('embedded-opentype'),
+      url('../public/fonts/ZeferinoOne.woff2') format('woff2'),
+      url('../public/fonts/ZeferinoOne.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
 }
 
 @media (prefers-color-scheme: dark) {

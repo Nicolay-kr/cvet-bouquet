@@ -58,8 +58,6 @@ export const Header = ({category}) => {
             <Image
               src={searchIcon}
               alt='search icon'
-              component={Link}
-              href='/'
             ></Image>
           </Box>
         ) : null}
@@ -81,8 +79,6 @@ export const Header = ({category}) => {
               <Image
                 src={searchIcon}
                 alt='search icon'
-                component={Link}
-                href='/'
               ></Image>
             </IconButton>
           )}

@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import '../styles/import.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
