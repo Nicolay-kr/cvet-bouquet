@@ -125,8 +125,8 @@ class BouquetsProvider extends React.Component {
   };
 
   setbouquetsCategories = (bouquetsCategories) => {
-    // this.setState({ bouquetsCategories });
-    this.state.bouquetsCategories = bouquetsCategories ;
+    this.setState({ bouquetsCategories });
+    // this.state.bouquetsCategories = bouquetsCategories ;
   }
 
   componentDidMount() {
