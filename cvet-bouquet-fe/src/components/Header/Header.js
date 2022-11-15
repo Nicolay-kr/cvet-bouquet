@@ -21,22 +21,28 @@ import Badge from '@mui/material/Badge';
 import DropList from '../DropList/DropList';
 import { useAppContext } from '../context/BouquetsContext';
 
-export const Header = ({category}) => {
+export const Header = ({ category }) => {
   const router = useRouter();
   const sm = useMediaQuery('(max-width:600px)');
   const lg = useMediaQuery('(max-width:1200px)');
   const xl = useMediaQuery('(max-width:1536px)');
   const bouckeList = useAppContext();
-  
+
+  const pages = [
+    { title: 'Свободный платеж', slug: {current:'/freepay'} },
+    { title: 'E-pos оплата', slug: {current:'/e-pos'} },
+    { title: 'Доставка и самовывоз', slug: {current:'/delivery'} },
+  ];
+
   const navList = (
     <ul className={styles.navigation}>
       <li>
         <a onClick={() => router.push('/catalog')}>Каталог</a>
-        <DropList list={bouckeList.bouquetsCategories} />
+        <DropList list={bouckeList.bouquetsCategories} prevSlug={'/catalog'} />
       </li>
       <li>
         <a onClick={() => router.push('/delivery')}>Доставка и оплата</a>
-        <DropList list={null}/>
+        <DropList list={pages} prevSlug={null} />
       </li>
       <li>
         <a onClick={() => router.push('/contacts')}>Контакты</a>
@@ -55,10 +61,7 @@ export const Header = ({category}) => {
             <IconButton component={Link} href='/'>
               <Image src={burgerIcon} alt='burger icon'></Image>
             </IconButton>
-            <Image
-              src={searchIcon}
-              alt='search icon'
-            ></Image>
+            <Image src={searchIcon} alt='search icon'></Image>
           </Box>
         ) : null}
 
@@ -76,10 +79,7 @@ export const Header = ({category}) => {
         <Box className={styles.iconsConteiner}>
           {lg ? null : (
             <IconButton component={Link} href='/'>
-              <Image
-                src={searchIcon}
-                alt='search icon'
-              ></Image>
+              <Image src={searchIcon} alt='search icon'></Image>
             </IconButton>
           )}
           <IconButton component={Link} href='/favorites'>
@@ -90,7 +90,10 @@ export const Header = ({category}) => {
               <Image src={heartIcon} alt='heart icon'></Image>
             </Badge>
           </IconButton>
-          <IconButton component={Link} href='https://www.instagram.com/cvetbuket.by/'>
+          <IconButton
+            component={Link}
+            href='https://www.instagram.com/cvetbuket.by/'
+          >
             <Image src={instaIcon} alt='insta icon'></Image>
           </IconButton>
           <IconButton component={Link} href='/cart'>

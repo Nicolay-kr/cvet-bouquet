@@ -7,7 +7,7 @@ import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import logoFlower from '../../assets/images/logo_flower.svg';
 
-export default function DropList({ list }) {
+export default function DropList({ list, prevSlug }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const router = useRouter();
   const open = Boolean(anchorEl);
@@ -18,7 +18,7 @@ export default function DropList({ list }) {
     setAnchorEl(null);
   };
   const handleClickListItem = (e, slug) => {
-    router.push(`/catalog/${slug}`);
+    router.push(slug);
     setAnchorEl(null);
   };
 
@@ -60,13 +60,13 @@ export default function DropList({ list }) {
               <MenuItem
                 key={`${item.slug.current}-list`}
                 sx={{ bgcolor: '#FFFBF6', position: 'relative' }}
-                onClick={(e) => handleClickListItem(e, item.slug.current)}
+                onClick={(e) => handleClickListItem(e, `${prevSlug? prevSlug:''}/${item.slug.current}`)}
               >
-                <span style={{ zIndex: '3' }}>Премиум флористика</span>
+                <span style={{ zIndex: '3' }}>{item.title}</span>
                 <Image
                   style={{
                     position: 'absolute',
-                    right: '15px',
+                    right: '1%',
                     width: '40px',
                     zIndex: '2',
                   }}
@@ -80,7 +80,7 @@ export default function DropList({ list }) {
               <MenuItem
                 key={`${item.slug.current}-list`}
                 sx={{ bgcolor: '#FFFBF6' }}
-                onClick={(e) => handleClickListItem(e, item.slug.current)}
+                onClick={(e) => handleClickListItem(e, `${prevSlug? prevSlug:''}/${item.slug.current}`)}
               >
                 {item.title}
               </MenuItem>

@@ -6,74 +6,136 @@ import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import CaruselBlock from '../src/components/CaruselBlock/CaruselBlock';
 import { sanityClient } from '../sanity';
-import { useAppContext } from '../src/components/context/BouquetsContext';
+import BouquetsContext, { useAppContext } from '../src/components/context/BouquetsContext';
 
-export default function Home({ instagramPosts, category }) {
-  const [mappedBouquets, setMappedBouquets] = useState([]);
-  const bouquetsContext = useAppContext();
-  bouquetsContext.setbouquetsCategories(mappedBouquets)
+// export default function Home({ instagramPosts, category }) {
+//   const [mappedBouquets, setMappedBouquets] = useState([]);
+//   const bouquetsContext = useAppContext();
+//   bouquetsContext.setbouquetsCategories(mappedBouquets)
 
-  useEffect(() => {
-    if (category?.length) {
+//   useEffect(() => {
+//     if (category?.length) {
+//       const imgBuilder = imageUrlBuilder({
+//         projectId: '444cz5oj',
+//         dataset: 'production',
+//       });
+
+//       setMappedBouquets(
+//         category.map((p) => {
+//           return {
+//             ...p,
+//             bouqets: p.bouqets.map(bouqet=>{
+//               return {
+//                 ...bouqet,
+//                 images: bouqet.images.map(image=>imgBuilder.image(image).width(720).height(900)),
+
+//               }
+//             }
+//             ),
+//             mainImage: imgBuilder.image(p.mainImage).width(720).height(900),
+//           };
+//         })
+//       );
+//     } else {
+//       setMappedBouquets([]);
+//     }
+//   }, [category]);
+//   const popular = mappedBouquets[7];
+//   bouquetsContext.setbouquetsCategories(category);
+
+//   return (
+//     <>
+//       <IntroBlock></IntroBlock>
+//       <CaruselBlock
+//         bouquets={mappedBouquets}
+//         title={'Выберите '}
+//         subtitle={'категорию'}
+//         isSpec={true}
+//       ></CaruselBlock>
+//       {popular?.bouqets? (    <CaruselBlock
+//         bouquets={popular?.bouqets}
+//         title={'Популярные'}
+//         subtitle={'букеты'}
+//         categoryslug={popular.slug.current}
+//       ></CaruselBlock>):null}
+
+//       <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
+//         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
+//       </Box>
+//     </>
+//   );
+// }
+
+export default class Home extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = { mappedBouquets: [] };
+    this.genresRef = React.createRef();
+  }
+  static contextType = BouquetsContext;
+
+  componentDidMount() {
+    if (this.props.category?.length) {
       const imgBuilder = imageUrlBuilder({
         projectId: '444cz5oj',
         dataset: 'production',
       });
-
-      setMappedBouquets(
-        category.map((p) => {
+      // @ts-ignore
+      this.context.setbouquetsCategories(this.props.category)
+      
+      this.setState({
+        mappedBouquets: this.props.category.map((p) => {
           return {
             ...p,
-            bouqets: p.bouqets.map(bouqet=>{
+            bouqets: p.bouqets.map((bouqet) => {
               return {
                 ...bouqet,
-                images: bouqet.images.map(image=>imgBuilder.image(image).width(720).height(900)),
-
-              }
-            }
-            ),
+                images: bouqet.images.map((image) =>
+                  imgBuilder.image(image).width(720).height(900)
+                ),
+              };
+            }),
             mainImage: imgBuilder.image(p.mainImage).width(720).height(900),
           };
-        })
-      );
+        }),
+      });
     } else {
-      setMappedBouquets([]);
+      this.setState({mappedBouquets:[]});
     }
-  }, [category]);
-  // const popular = mappedBouquets.find(category=>category.slug.current==='populyarnye-buket')
-  const popular = mappedBouquets[7];
-  bouquetsContext.setbouquetsCategories(category);
-
-  // console.log('popular',popular);
-
-  // const orderedBouquetsList = mappedBouquets?.sort((a, b) => a.order - b.order);
-  // const orderedCategorysList = mappedBouquets?.sort(
-  //   (a, b) => a.order - b.order
-  // );
-  // console.log(orderedBouquetsList);
-
-  return (
-    <>
-      <IntroBlock></IntroBlock>
-      <CaruselBlock
-        bouquets={mappedBouquets}
-        title={'Выберите '}
-        subtitle={'категорию'}
-        isSpec={true}
-      ></CaruselBlock>
-      {popular?.bouqets? (    <CaruselBlock
-        bouquets={popular?.bouqets}
-        title={'Популярные'}
-        subtitle={'букеты'}
-        categoryslug={popular.slug.current}
-      ></CaruselBlock>):null}
+  }
   
-      <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
-        <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
-      </Box>
-    </>
-  );
+
+  render() {
+    const popular = this.state.mappedBouquets[7];
+
+    return (
+      <>
+        <IntroBlock></IntroBlock>
+        <CaruselBlock
+          bouquets={this.state.mappedBouquets}
+          title={'Выберите '}
+          subtitle={'категорию'}
+          isSpec={true}
+        ></CaruselBlock>
+        {popular?.bouqets ? (
+          <CaruselBlock
+            bouquets={popular?.bouqets}
+            title={'Популярные'}
+            subtitle={'букеты'}
+            categoryslug={popular.slug.current}
+          ></CaruselBlock>
+        ) : null}
+
+        <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
+          <InstagramBlock
+            instagramPosts={this.props.instagramPosts}
+          ></InstagramBlock>
+        </Box>
+      </>
+    );
+  }
 }
+// Home.contextType = BouquetsContext;
 
 export const getServerSideProps = async (pageContext) => {
   const queryCategory = `*[ _type == "category"]
