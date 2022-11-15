@@ -11,7 +11,7 @@ import { useAppContext } from '../src/components/context/BouquetsContext';
 export default function Home({ instagramPosts, category }) {
   const [mappedBouquets, setMappedBouquets] = useState([]);
   const bouquetsContext = useAppContext();
-  bouquetsContext.setbouquetsCategories(category)
+  bouquetsContext.setbouquetsCategories(mappedBouquets)
 
   useEffect(() => {
     if (category?.length) {
