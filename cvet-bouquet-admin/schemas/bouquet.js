@@ -8,6 +8,12 @@ export default {
   icon: BsFlower1,
   fields: [
     {
+      title: 'Отображать на сайте',
+      name: 'published',
+      type: 'boolean',
+      initialValue: true
+    },
+    {
       name: 'title',
       title: 'Название',
       type: 'localeString',

@@ -9,6 +9,12 @@ export default {
   icon:GiFlowers,
   fields: [
     {
+      title: 'Отображать на сайте',
+      name: 'published',
+      type: 'boolean',
+      initialValue: true
+    },
+    {
       name: 'title',
       title: 'Название категории',
       type: 'string',
