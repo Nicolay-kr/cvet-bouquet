@@ -6,6 +6,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 // We import object and document schemas
 import blockContent from './blockContent'
 import category from './category'
+import categoryList from './categoryList'
 import product from './product'
 import bouquet from './bouquet'
 import vendor from './vendor'
@@ -36,6 +37,7 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     category,
+    categoryList,
     bouquet,
     clients,
     orders,

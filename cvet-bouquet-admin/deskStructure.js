@@ -2,6 +2,7 @@ import S from '@sanity/desk-tool/structure-builder';
 import { IconContext } from 'react-icons/lib';
 import { RiPagesLine } from 'react-icons/ri';
 import { AiFillSetting } from 'react-icons/ai';
+import { GiFlowers } from 'react-icons/gi'
 
 export default () =>
   S.list()
@@ -98,10 +99,22 @@ export default () =>
                 ),
             ])
         ),
+        S.listItem()
+        .icon(GiFlowers)
+        .id('categoryList')
+        .title('Категории букетов')
+        .child(
+          S.document()
+            .id('categoryList')
+            .title('Категории букетов')
+            .schemaType('categoryList')
+            .documentId('categoryList')
+        ),
+
       // We also need to remove the new singletons from the main list
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          !['mainPage', 'aboutusPage', 'generalInfo','contactsPage','deliveryPage','bonuscardPage','corporateclientsPage','eposPage'].includes(listItem.getId())
+          !['mainPage', 'aboutusPage', 'generalInfo','contactsPage','deliveryPage','bonuscardPage','corporateclientsPage','eposPage','categoryList','category'].includes(listItem.getId())
       ),
       S.listItem()
         .icon(AiFillSetting)

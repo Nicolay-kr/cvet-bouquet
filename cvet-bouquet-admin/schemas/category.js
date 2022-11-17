@@ -1,4 +1,5 @@
 import { GiFlowers } from 'react-icons/gi'
+import client from 'part:@sanity/base/client';
 
 
 export default {
@@ -19,8 +20,10 @@ export default {
       description:'Поле для url адреса',
       validation: Rule => Rule.required().error('Поле должно быть заполнено, пожалуйста нажмите кнопку Generate'),
       options: {
-        source: 'title',
         maxLength: 96,
+        source: async (doc,options) => {
+          return `${options.parent.title}`;
+        },
       },
     },
     {

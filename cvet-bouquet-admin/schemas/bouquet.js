@@ -27,8 +27,15 @@ export default {
       initialValue: 'This string',
       validation: Rule => Rule.required().error('Поле должно быть заполнено, пожалуйста нажмите кнопку Generate'),
       options: {
-        source: 'title.ru',
+        // source: 'title.ru',
         maxLength: 96,
+        source: async (doc,options) => {
+          if(doc.categories){
+            return `${options.parent.title.ru}`
+          }else{
+            return `${doc.title.ru}`
+          }
+        },
         // isUnique:true,
       },
     },
