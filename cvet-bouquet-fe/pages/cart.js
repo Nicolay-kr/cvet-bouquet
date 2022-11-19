@@ -17,7 +17,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import CounterButtons from '../src/components/CounterButtons/CounterButtons';
 import Checkout from '../src/components/Checkout/Checkout';
-import Link from '../src/Link';
+import Link from '../src/components/CustopNextComponents/Link';
 
 const CartRow = ({ id, title, price, image, quantity,slug,categorySlug }) => {
   const bouquetsContext = useAppContext();

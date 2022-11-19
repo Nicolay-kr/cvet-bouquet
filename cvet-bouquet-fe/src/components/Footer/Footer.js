@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
-import Link from '../../Link';
+import Link from '../CustopNextComponents/Link';
 import logoFlower from '../../assets/images/logo_flower_white.svg';
 import logoText from '../../assets/images/logo_text_white.svg';
 import visa from '../../assets/icons/visa.svg';

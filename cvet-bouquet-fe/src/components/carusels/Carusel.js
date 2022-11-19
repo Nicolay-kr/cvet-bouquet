@@ -6,11 +6,15 @@ import { SwiperSlide } from 'swiper/react';
 import style from './Carusel.module.css';
 import BouquetCard from '../BouquetCard/BouquetCard';
 import SimpleBouquetCard from '../SimpleBouquetCard/SimpleBouquetCard';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 SwiperCore.use([Mousewheel, FreeMode]);
 
 const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug }) => {
   // let gap = Math.round((20 / +window?.screen?.width) * 5000);
+  const sm = useMediaQuery('(max-width:600px)');
+  const lg = useMediaQuery('(max-width:1200px)');
+  const xl = useMediaQuery('(max-width:1536px)');
 
   const listItem = bouquets?.map((bouquet) => {
     return (
@@ -43,7 +47,7 @@ const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug }) => {
     <Swiper
       ref={caruselRef}
       // slidesPerView={breakpoints.m ? (breakpoints.xs ? "2" : "3") : "5"}
-      slidesPerView='auto'
+      slidesPerView={sm?2:'auto'}
       loopedSlides={5}
       grabCursor={true}
       loop={true}

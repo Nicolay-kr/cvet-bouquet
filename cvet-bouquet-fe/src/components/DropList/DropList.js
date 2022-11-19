@@ -21,7 +21,7 @@ export default function DropList({ list, prevSlug }) {
     router.push(slug);
     setAnchorEl(null);
   };
-  console.log(list)
+  // console.log(list)
 
   return (
     <>

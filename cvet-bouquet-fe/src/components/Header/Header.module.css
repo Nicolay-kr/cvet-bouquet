@@ -17,6 +17,8 @@
 }
 
 .headerContent {
+  position: relative;
+  z-index: 2;
   width: 100%;
   display: grid;
   grid-template-columns: 5fr 5fr 2fr;

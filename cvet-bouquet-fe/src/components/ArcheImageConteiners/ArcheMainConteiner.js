@@ -1,9 +1,10 @@
 import * as React from 'react';
 
 import Box from '@mui/material/Box';
+import { useEffect, useState } from 'react';
 // import Image from 'next/future/image';
 
-export default function ArcheConteiner({ src }) {
+export default function ArcheMainConteiner({ src }) {
   return (
     <Box
       style={{
@@ -15,9 +16,9 @@ export default function ArcheConteiner({ src }) {
         overflow: 'hidden',
         borderTop: '5px solid #F8F2EA',
         borderRight: '4px solid #F8F2EA',
-        background:` no-repeat url(${src.src})`,
+        background:` no-repeat url(${src})`,
         backgroundOrigin: 'border-box',
-        // backgroundSize: 'cover',
+        backgroundSize: 'cover',
         flexShrink: 0,
       }}
     >

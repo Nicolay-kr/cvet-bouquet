@@ -1,5 +1,6 @@
 import {createPreviewSubscriptionHook, createCurrentUserHook,createClient} from 'next-sanity';
 import createImageUrlBuilder from '@sanity/image-url';
+import { useNextSanityImage } from 'next-sanity-image';
 
 const config = {
   /**
@@ -10,7 +11,7 @@ const config = {
    * https://nextjs.org/docs/basic-features/environment-variables
    **/
   dataset: process.env.SANITY_DATASET || 'production',
-  projectId: process.env.SANITY_PROJECT_ID,
+  projectId: '444cz5oj',
   // apiVersion: '2021-10-21', // Learn more: https://www.sanity.io/docs/api-versioning
   /**
    * Set useCdn to `false` if your application require the freshest possible

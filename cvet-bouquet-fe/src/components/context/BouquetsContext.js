@@ -126,7 +126,7 @@ class BouquetsProvider extends React.Component {
 
   setbouquetsCategories = (bouquetsCategories) => {
     this.setState({ bouquetsCategories });
-    localStorage.setItem('Categories', JSON.stringify(bouquetsCategories));
+    // localStorage.setItem('Categories', JSON.stringify(bouquetsCategories));
     // this.state.bouquetsCategories = bouquetsCategories ;
   }
 
@@ -139,10 +139,10 @@ class BouquetsProvider extends React.Component {
     if (cartList) {
       this.setState({ bouquetsInCarts: cartList });
     }
-    const Categories = JSON.parse(localStorage.getItem('Categories'));
-    if (cartList) {
-      this.setState({ bouquetsCategories: Categories });
-    }
+    // const Categories = JSON.parse(localStorage.getItem('Categories'));
+    // if (cartList) {
+    //   this.setState({ bouquetsCategories: Categories });
+    // }
   }
 
   render() {

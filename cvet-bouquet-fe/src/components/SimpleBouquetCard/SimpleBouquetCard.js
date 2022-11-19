@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Box from '@mui/material/Box';
-import Link from '../../Link';
+import Link from '../CustopNextComponents/Link';
 import heartIcon from '../../assets/icons/heart.svg';
 import heartIconFill from '../../assets/icons/heartFill.svg';
 import IconButton from '@mui/material/IconButton';
@@ -14,8 +14,16 @@ import { useAppContext } from '../context/BouquetsContext';
 import Zoom from '@mui/material/Zoom';
 import { useEffect } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
+import { urlFor } from '../../../sanity';
+import { NextSanityIMG } from '../CustopNextComponents/NextSanityIMG';
 
-export default function SimpleBouquetCard({ id, title, imagePath, price, slug }) {
+export default function SimpleBouquetCard({
+  id,
+  title,
+  imagePath,
+  price,
+  slug,
+}) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
   const bouckeList = useAppContext();
@@ -65,7 +73,7 @@ export default function SimpleBouquetCard({ id, title, imagePath, price, slug })
             maxWidth: '345px',
             height: '100%',
             bgcolor: 'fon.main',
-            p:'0',
+            p: '0',
             // boxShadow: isHovered ? '0px 0px 15px 7px #00000012' : null,
           }}
           className={styles.card}
@@ -99,15 +107,23 @@ export default function SimpleBouquetCard({ id, title, imagePath, price, slug })
               <Image
                 layout='fill'
                 fill={true}
-                src={imagePath?.toString()}
+                sizes='(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw'
+                src={urlFor(imagePath).width(500).url()}
                 alt='Bouquet image'
               />
+              {/* <NextSanityIMG image={imagePath}></NextSanityIMG> */}
             </Box>
 
             <CardContent
               sx={{ display: 'flex', flexDirection: 'column', flexGrow: '1' }}
             >
-              <Typography sx={{ textAlign:'center'}} variant='h5' component='p'>
+              <Typography
+                sx={{ textAlign: 'center' }}
+                variant='h5'
+                component='p'
+              >
                 {title}
               </Typography>
               <Box

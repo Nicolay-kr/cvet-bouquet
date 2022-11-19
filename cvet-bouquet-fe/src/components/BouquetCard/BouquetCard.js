@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Box from '@mui/material/Box';
-import Link from '../../Link';
+import Link from '../CustopNextComponents/Link';
 import heartIcon from '../../assets/icons/heart.svg';
 import heartIconFill from '../../assets/icons/heartFill.svg';
 import IconButton from '@mui/material/IconButton';
@@ -14,19 +14,39 @@ import { useAppContext } from '../context/BouquetsContext';
 import Zoom from '@mui/material/Zoom';
 import { useEffect } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
+import { urlFor } from '../../../sanity';
+import { NextSanityIMG } from '../CustopNextComponents/NextSanityIMG';
 
-export default function BouquetCard({ id, title, imagePath, price, slug,categorySlug=null }) {
+// import AspectRatio from '@mui/joy/AspectRatio';
+// import { CssVarsProvider } from '@mui/joy/styles';
+
+// npm install @mui/joy @emotion/react @emotion/styled
+
+export default function BouquetCard({
+  id,
+  title,
+  imagePath,
+  price,
+  slug,
+  categorySlug = null,
+}) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
   const bouckeList = useAppContext();
-
-  const bouquet = { id, title, imagePath: imagePath.toString(), price, slug, categorySlug };
+  // console.log(imagePath);
+  const bouquet = {
+    id,
+    title,
+    imagePath,
+    price,
+    slug,
+    categorySlug,
+  };
   const addToFavoritList = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
     bouckeList.addOrRemoveToFavorite(bouquet);
   };
-  // console.log(bvercelouquet)
 
   useEffect(() => {
     setChecked(true);
@@ -40,7 +60,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug,category
   return (
     <div className={styles.cardConteiner}>
       <IconButton
-        sx={{zIndex:'2'}}
+        sx={{ zIndex: '2' }}
         onMouseOver={() => {
           setIsHovered(true);
         }}
@@ -86,7 +106,9 @@ export default function BouquetCard({ id, title, imagePath, price, slug,category
             }}
             component={Link}
             noLinkStyle
-            href={`/catalog/${categorySlug?categorySlug+'/':''}${slug?.current}`}
+            href={`/catalog/${categorySlug ? categorySlug + '/' : ''}${
+              slug?.current
+            }`}
           >
             <Box
               sx={{
@@ -95,13 +117,22 @@ export default function BouquetCard({ id, title, imagePath, price, slug,category
                 height: '360px',
               }}
             >
-              {imagePath? <Image
-                layout='fill'
-                fill={true}
-                src={imagePath.toString()}
-                alt='Bouquet image'
-              />:null}
-             
+              {imagePath ? (
+                // <CssVarsProvider>
+                //   <AspectRatio ratio='3/4'>
+                <Image
+                  layout='fill'
+                  fill={true}
+                  sizes='(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw'
+                  src={urlFor(imagePath).width(500).url()}
+                  alt='Bouquet image'
+                />
+              ) : // <NextSanityIMG image={imagePath}></NextSanityIMG>
+              //</Box> </AspectRatio>
+              // </CssVarsProvider>
+              null}
             </Box>
 
             <CardContent
@@ -122,7 +153,7 @@ export default function BouquetCard({ id, title, imagePath, price, slug,category
                   component='p'
                   sx={{ fontWeight: 700, mt: 'auto' }}
                 >
-                  {price} <sup style={{fontSize:'12px'}}>BYN</sup>
+                  {price} <sup style={{ fontSize: '12px' }}>BYN</sup>
                 </Typography>
                 <Typography gutterBottom variant='h5' component='p'>
                   с доставкой
@@ -131,7 +162,9 @@ export default function BouquetCard({ id, title, imagePath, price, slug,category
             </CardContent>
           </Box>
           <CardActions sx={{ padding: '0' }}>
-            <AddToCartButton bouquet={{...bouquet,quantity: 1}}></AddToCartButton>
+            <AddToCartButton
+              bouquet={{ ...bouquet, quantity: 1 }}
+            ></AddToCartButton>
           </CardActions>
         </Card>
       </Zoom>

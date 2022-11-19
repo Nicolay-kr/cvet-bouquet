@@ -8,35 +8,35 @@ import { sanityClient } from '../../sanity';
 import SimpleBouquetCard from '../../src/components/SimpleBouquetCard/SimpleBouquetCard';
 
 export default function Home({ category, instagramPosts }) {
-  const [mappedBouquets, setMappedBouquets] = React.useState([]);
+  const [mappedBouquets, setMappedBouquets] = React.useState(category);
 
-  useEffect(() => {
-    if (category?.length) {
-      const imgBuilder = imageUrlBuilder({
-        projectId: '444cz5oj',
-        dataset: 'production',
-      });
+  // useEffect(() => {
+  //   if (category?.length) {
+  //     const imgBuilder = imageUrlBuilder({
+  //       projectId: '444cz5oj',
+  //       dataset: 'production',
+  //     });
 
-      setMappedBouquets(
-        category.map((p) => {
-          return {
-            ...p,
-            bouqets: p.bouqets.map(bouqet=>{
-              return {
-                ...bouqet,
-                images: bouqet.images.map(image=>imgBuilder.image(image).width(720).height(900)),
+  //     setMappedBouquets(
+  //       category.map((p) => {
+  //         return {
+  //           ...p,
+  //           bouqets: p.bouqets.map(bouqet=>{
+  //             return {
+  //               ...bouqet,
+  //               images: bouqet.images.map(image=>imgBuilder.image(image).width(720).height(900)),
 
-              }
-            }
-            ),
-            mainImage: imgBuilder.image(p.mainImage).width(720).height(900),
-          };
-        })
-      );
-    } else {
-      setMappedBouquets([]);
-    }
-  }, [category]);
+  //             }
+  //           }
+  //           ),
+  //           mainImage: imgBuilder.image(p.mainImage).width(720).height(900),
+  //         };
+  //       })
+  //     );
+  //   } else {
+  //     setMappedBouquets([]);
+  //   }
+  // }, [category]);
 
   const orderedList = mappedBouquets?.sort((a,b)=>(a.order-b.order))
 

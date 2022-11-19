@@ -6,12 +6,28 @@ export default {
     {
       name: 'title',
       title: 'Заголовок',
-      type: 'string',
+      type: 'localeBlockContent',
     },
     {
-      name: 'subtitle',
-      title: 'Подзаголовок',
-      type: 'string',
+      name: 'text',
+      title: 'Текст',
+      type: 'localeBlockContent',
+    },
+    {
+      name: 'mainImage',
+      title: 'Первое изображение',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: 'secondImage',
+      title: 'Второе изображение',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
   ],
   // preview: {

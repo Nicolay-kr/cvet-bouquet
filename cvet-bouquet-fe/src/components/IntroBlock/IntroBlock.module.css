@@ -2,30 +2,11 @@
   position: relative;
   display: grid;
   grid-template-columns: 5fr 7fr;
-  column-gap: max(30px,1.5vw);;
+  column-gap: max(30px, 1.5vw);
+  ;
 }
 
-.textBox {
-  display: flex;
-  flex-direction: column;
-}
-
-.textBoxTitle {
-  display: flex;
-  flex-direction: column;
-}
-
-.buttonBox{
-  display: grid;
-  grid-template-columns: 3fr 3fr;
-
-}
-
-.textBoxTitle h1+h1 {
-  text-align: end;
-}
-
-.mediaBox{
+.mediaBox {
   position: relative;
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -41,7 +22,7 @@
   object-position: top;
 }
 
-.mediaBox>img {
+.mediaBox image {
   position: absolute;
   width: calc(4/7*100%);
   top: 0;
@@ -49,13 +30,4 @@
   z-index: 1;
   object-fit: contain;
   object-position: top;
-}
-
-@media (-webkit-min-device-pixel-ratio: 1.25) {
-  .textBoxTitle h1 {
-    font-size: 72px;
-  }
-  .textBoxTitle .specialFont {
-    font-size: 100px;
-  }
 }

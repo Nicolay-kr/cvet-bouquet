@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import styles from './Header.module.css';
 // import Button from '@mui/material/Button';
-import Link from '../../Link';
+import Link from '../CustopNextComponents/Link';
 import Box from '@mui/material/Box';
 import logoFlower from '../../assets/images/logo_flower.svg';
 import logoText from '../../assets/images/logo_text.svg';

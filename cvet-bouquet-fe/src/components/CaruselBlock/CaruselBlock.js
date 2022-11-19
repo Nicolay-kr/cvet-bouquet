@@ -9,7 +9,7 @@ import rightArrow from '../../assets/icons/rightArrow.svg';
 import IconButton from '@mui/material/IconButton';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import Carusel from '../carusels/Carusel';
-import ArcheConteiner from '../ArcheConteiner/ArcheConteiner';
+import ArcheMainConteiner from '../ArcheImageConteiners/ArcheMainConteiner';
 import introImg1 from '../../assets/images/intro_img1.png';
 
 export default function CaruselBlock({
@@ -52,7 +52,7 @@ export default function CaruselBlock({
           </IconButton>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
-          {isSpec ? <Box sx={{mr:'30px'}}><ArcheConteiner src={introImg1} /></Box> : null}
+          {isSpec ? <Box sx={{mr:'30px'}}><ArcheMainConteiner src={introImg1} /></Box> : null}
           <Carusel
             bouquets={bouquets}
             caruselRef={caruselRef}
