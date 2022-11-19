@@ -15,7 +15,7 @@ export default function ArcheConteiner({ src }) {
         overflow: 'hidden',
         borderTop: '5px solid #F8F2EA',
         borderRight: '4px solid #F8F2EA',
-        backgroundImage:`url(${src.src})`,
+        background:` no-repeat url(${src.src})`,
         backgroundOrigin: 'border-box',
         // backgroundSize: 'cover',
         flexShrink: 0,

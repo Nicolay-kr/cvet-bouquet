@@ -29,9 +29,44 @@ export const Header = ({ category }) => {
   const bouckeList = useAppContext();
 
   const pages = [
-    { title: 'Свободный платеж', slug: {current:'/freepay'} },
-    { title: 'E-pos оплата', slug: {current:'/e-pos'} },
-    { title: 'Доставка и самовывоз', slug: {current:'/delivery'} },
+    { title: 'Свободный платеж', slug: { current: '/freepay' } },
+    { title: 'E-pos оплата', slug: { current: '/e-pos' } },
+    { title: 'Доставка и самовывоз', slug: { current: '/delivery' } },
+  ];
+
+  const bouquetsCategory = [
+    {
+      title: 'Цветочные письма',
+      slug: { _type: 'slug', current: 'cvetochnye-pisma' },
+    },
+    {
+      title: 'Цветочные письма',
+      slug: { _type: 'slug', current: 'cvetochnye-pisma' },
+    },
+    {
+      title: 'Букет невесты',
+      slug: { _type: 'slug', current: 'buket-nevesty' },
+    },
+    {
+      title: 'Монобукет',
+      slug: { _type: 'slug', current: 'monobukety' },
+    },
+    {
+      title: 'Авторские букеты',
+      slug: { _type: 'slug', current: 'avtorskie-bukety' },
+    },
+    {
+      title: 'Премиум флористика',
+      slug: { _type: 'slug', current: 'premium-floristika' },
+    },
+    {
+      title: 'В коробке',
+      slug: { _type: 'slug', current: 'v-korobke' },
+    },
+    {
+      title: 'В корзине',
+      slug: { _type: 'slug', current: 'v-korzine' },
+    },
   ];
 
   const navList = (
