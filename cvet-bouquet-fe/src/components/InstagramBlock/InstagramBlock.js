@@ -8,25 +8,29 @@ import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 
 export default function InstagramBlock({ instagramPosts }) {
   return (
-    <div>
+    <>
       <TitleWithSubtitle
         title={'Подписыватесь'}
         subtitle={'на наш инстаграм'}
       ></TitleWithSubtitle>
-      <Typography
-        variant='h1'
+      <Box
         component='p'
         sx={{
+          fontFamily: 'Zeferino One, serif',
           fontSize: {
+            xs: '24px',
+            sm: '40px',
             md: '60px',
             xl: '3.3vw',
           },
+          m:'0',
+
           textAlign: 'end',
           mt: 'max(20px,1vw)',
         }}
       >
         @cvetbuket.by
-      </Typography>
+      </Box>
       <div className={styles.imagesConteiner}>
         {instagramPosts.data.map((item, index) => {
           if (index <= 5) {
@@ -40,6 +44,6 @@ export default function InstagramBlock({ instagramPosts }) {
           }
         })}
       </div>
-    </div>
+    </>
   );
 }

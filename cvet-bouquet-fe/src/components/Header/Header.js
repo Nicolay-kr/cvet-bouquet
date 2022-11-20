@@ -89,14 +89,16 @@ export const Header = ({ category }) => {
   );
 
   return (
-    <Box width='100%' px='10%' component='header'>
-      <Box className={styles.headerContent} component='nav'>
+    <Box width='100%' px={{ xs: '5%', sm: '10%' }} component='header'>
+      <Box className={styles.headerContent} component='nav' sx={{gridTemplateColumns: {xs:'1fr 2fr 1fr',lg:'5fr 5fr 2fr;'}}}>
         {lg ? (
-          <Box className={styles.iconsConteiner}>
+          <Box className={styles.iconsConteiner} sx={{mr:'auto',ml:'0px'}}>
             <IconButton component={Link} href='/'>
               <Image src={burgerIcon} alt='burger icon'></Image>
             </IconButton>
-            <Image src={searchIcon} alt='search icon'></Image>
+            <IconButton component={Link} href='/'>
+              <Image src={searchIcon} alt='search icon'></Image>
+            </IconButton>
           </Box>
         ) : null}
 
@@ -105,6 +107,7 @@ export const Header = ({ category }) => {
           component={Link}
           noLinkStyle
           href='/'
+          sx={{justifyContent: {xs:'center',lg:'start'},pr: {xs:'0',lg:'20px'}}}
         >
           <Image src={logoFlower} alt='logo flower'></Image>
           <Image src={logoText} alt='logo flower'></Image>

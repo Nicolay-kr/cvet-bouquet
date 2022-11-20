@@ -9,10 +9,8 @@ import { NextSanityIMG } from '../CustopNextComponents/NextSanityIMG';
 import ArcheSecondConteiner from '../ArcheImageConteiners/ArcheSecondConteiner';
 
 export default function IntroBlock({ mainImage, secondImage, textBlock }) {
-  console.log('secondImage', secondImage);
-  console.log('mainImage', mainImage);
   return (
-    <Box width='100%' px='10%'>
+    <Box component='section' width='100%' px='10%'>
       <Box mb={10} className={styles.content}>
         {textBlock}
         

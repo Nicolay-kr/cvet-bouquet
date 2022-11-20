@@ -23,7 +23,7 @@ export default function TitleWithSubtitle({ title, subtitle }) {
           ml: 'auto',
           mt: 'max(10px,0.5vw)',
           position: 'relative',
-          right: '-20%',
+          right:{ xs:'-10%',sm:'-20%'},
         }}
       >
         {subtitle}

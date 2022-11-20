@@ -6,3 +6,11 @@
   row-gap: calc(4vw/2);
   margin-top: 60px;
 }
+
+@media (max-width: 600px) {
+
+  .imagesConteiner {
+    margin-top: 20px;
+  }
+  
+}
