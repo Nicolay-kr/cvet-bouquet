@@ -17,7 +17,7 @@ export default function CaruselBlock({
   isSpec = false,
   title,
   subtitle,
-  categoryslug=null,
+  categoryslug = null,
 }) {
   const caruselRef = useRef(null);
 
@@ -30,7 +30,13 @@ export default function CaruselBlock({
 
   return (
     <>
-      <Box sx={{ width: '100%', pl: isSpec ? '10%' : 0, mt: '200px' }}>
+      <Box
+        sx={{
+          width: '100%',
+          pl: isSpec ? '10%' : 0,
+          mt: { xs: '100px', lg: '200px' },
+        }}
+      >
         <TitleWithSubtitle
           title={title}
           subtitle={subtitle}
@@ -52,7 +58,11 @@ export default function CaruselBlock({
           </IconButton>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
-          {isSpec ? <Box sx={{mr:'30px'}}><ArcheMainConteiner src={introImg1} /></Box> : null}
+          {isSpec ? (
+            <Box sx={{ mr: '30px' }}>
+              <ArcheMainConteiner src={introImg1} />
+            </Box>
+          ) : null}
           <Carusel
             bouquets={bouquets}
             caruselRef={caruselRef}

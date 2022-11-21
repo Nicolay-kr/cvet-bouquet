@@ -7,18 +7,16 @@ import { useEffect, useState } from 'react';
 export default function ArcheMainConteiner({ src }) {
   return (
     <Box
-      style={{
+      sx={{
         position: 'absolute',
-        right: '-2%',
-        top: '-1%',
-        width: '25.5vw',
-        height:'28vw',
+        right: '0',
+        top: '0',
+        width: { xs: '42vw', lg: '25.5vw' },
+        height: { xs: '53vw', lg: '28vw' },
         zIndex: '1',
-        borderRadius:'0 0 400px 400px',
+        borderRadius: '0 0 400px 400px',
         overflow: 'hidden',
-        borderTop: '5px solid #F8F2EA',
-        borderRight: '4px solid #F8F2EA',
-        background:` no-repeat url(${src})`,
+        background: ` no-repeat url(${src})`,
         backgroundOrigin: 'border-box',
         backgroundSize: 'cover',
         flexShrink: 0,

@@ -73,7 +73,7 @@ export const Header = ({ category }) => {
     <ul className={styles.navigation}>
       <li>
         <a onClick={() => router.push('/catalog')}>Каталог</a>
-        <DropList list={bouquetsCategory} prevSlug={'/catalog'} />
+        <DropList list={bouckeList.bouquetsCategories} prevSlug={'/catalog'} />
       </li>
       <li>
         <a onClick={() => router.push('/delivery')}>Доставка и оплата</a>
@@ -89,7 +89,7 @@ export const Header = ({ category }) => {
   );
 
   return (
-    <Box width='100%' px={{ xs: '5%', sm: '10%' }} component='header'>
+    <Box width='100%' px={{ xs: '5%', lg: '10%' }} component='header'>
       <Box className={styles.headerContent} component='nav' sx={{gridTemplateColumns: {xs:'1fr 2fr 1fr',lg:'5fr 5fr 2fr;'}}}>
         {lg ? (
           <Box className={styles.iconsConteiner} sx={{mr:'auto',ml:'0px'}}>

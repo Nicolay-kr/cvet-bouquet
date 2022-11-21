@@ -7,10 +7,10 @@ import { useEffect, useState } from 'react';
 export default function ArcheMainConteiner({ src }) {
   return (
     <Box
-      style={{
+      sx={{
         position: 'relative',
-        width: '25.5vw',
-        height:'37vw',
+        width: {xs:'55vw',lg:'25.5vw'},
+        height:{xs:'70vw',lg:'37vw'},
         zIndex: '2',
         borderRadius:'400px 400px 0 0',
         overflow: 'hidden',

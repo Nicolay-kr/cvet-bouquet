@@ -97,7 +97,6 @@ const theme = createTheme({
       },
       '@media (max-width:600px)': {
         fontSize: 18,
-        textAlign: 'end',
       },
     },
     h3: {
@@ -250,7 +249,7 @@ const theme = createTheme({
         // Name of the slot
         root: {
           // Some CSS
-          textTransform: 'capitalize',
+          textTransform: 'none',
         },
       },
       variants: [

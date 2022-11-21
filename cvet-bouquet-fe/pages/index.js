@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from '../styles/MainPage.module.css';
 import { useState, useEffect } from 'react';
 import IntroBlock from '../src/components/IntroBlock/IntroBlock';
 import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
@@ -8,14 +7,13 @@ import CaruselBlock from '../src/components/CaruselBlock/CaruselBlock';
 import { sanityClient } from '../sanity';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-// import BouquetsContext, {
-//   useAppContext,
-// } from '../src/components/context/BouquetsContext';
 import Link from '../node_modules/next/link';
 import { useRouter } from '../node_modules/next/router';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function Home({ instagramPosts, category, pageData }) {
   const router = useRouter();
+  const lg = useMediaQuery('(min-width:1200px)');
   // console.log(pageData[0].mainImage)
   // console.log(category)
   const [mappedBouquets, setMappedBouquets] = useState(category);
@@ -29,8 +27,6 @@ export default function Home({ instagramPosts, category, pageData }) {
   const popular = mappedBouquets[7];
   console.log(pageData.mainImage);
 
-  // const textBlock = (
-    
   // );
 
   return (
@@ -38,50 +34,88 @@ export default function Home({ instagramPosts, category, pageData }) {
       <IntroBlock
         mainImage={pageData[0].mainImage}
         secondImage={pageData[0].secondImage}
-        textBlock={<Box className={styles.textBox}>
-        <Box pt='100px' className={styles.textBoxTitle}>
-          <Typography
-            sx={{ fontSize: { md: '60px', xl: 'max(82px,4.3vw)' } }}
-            variant='h2'
-            component='h1'
-          >
-            Флористика
-          </Typography>
-          <Typography
-            sx={{ fontSize: { md: '140px', xl: 'max(140px,7.3vw)' } }}
-            variant='h1'
-            component='h1'
-            className={styles.specialFont}
-          >
-            с утонченным
-          </Typography>
-          <Typography
+        textBlock={
+          <Box
             sx={{
-              fontSize: {
-                md: '60px',
-                xl: 'max(82px,4.3vw)',
-              },
+              display: 'flex',
+              flexDirection: 'column',
+              height:'100%',
+              order: { xs: '2', lg: '0' },
             }}
-            variant='h2'
-            component='h1'
           >
-            вкусом
-          </Typography>
-        </Box>
-        <Typography my='auto' variant='h4' component='p'>
-          Выбирайте лучшее из того, что можно позволить. Создавайте сказку, не
-          дожидаясь завтра!
-        </Typography>
-        <Box className={styles.buttonBox}>
-          <Button
-            sx={{ height: '60px', width: '100%', bgcolor: 'primary.main' }}
-            variant='contained'
-            // component={Link}
-            // href='/catalog'
-            onClick={() => router.push('/catalog')}
-          >Выбрать букет</Button>
-        </Box>
-      </Box>}
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                pt: { xs: '30px', lg: '100px' },
+              }}
+            >
+
+              <Typography
+                sx={{
+                  fontSize: { xs: '36px', md: '40px', xl: 'max(82px,4.3vw)' },
+                  textAlign: { xs: 'end', md: 'start' },
+                }}
+                variant='h2'
+                component='h1'
+              >
+                Флористика
+              </Typography>
+
+              <Typography
+                sx={{
+                  fontSize: { xs: '64px', md: '72px', xl: 'max(140px,7.3vw)' },
+                  textAlign: 'center',
+                }}
+                variant='h1'
+                component='h1'
+              >
+                с утонченным
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: '36px',
+                    md: '40px',
+                    xl: 'max(82px,4.3vw)',
+                  },
+                  textAlign: 'end',
+                }}
+                variant='h2'
+                component='h1'
+              >
+                вкусом
+              </Typography>
+            </Box>
+            {lg ? (
+              <Typography my='auto' variant='h4' component='p' sx={{mt:'auto'}}>
+                Выбирайте лучшее из того, что можно позволить. Создавайте
+                сказку, не дожидаясь завтра!
+              </Typography>
+            ) : null}
+
+            <Box
+              sx={{
+                width: { xs: '100%', md: '50%' },
+              }}
+            >
+              <Button
+                sx={{
+                  height: '60px',
+                  width: '100%',
+                  bgcolor: 'primary.main',
+                  mt: { xs: '30px' },
+                }}
+                variant='contained'
+                // component={Link}
+                // href='/catalog'
+                onClick={() => router.push('/catalog')}
+              >
+                Выбрать букет
+              </Button>
+            </Box>
+          </Box>
+        }
       ></IntroBlock>
       <CaruselBlock
         bouquets={mappedBouquets}

@@ -32,7 +32,7 @@ export default function Footer({data}) {
         pb={10}
         bgcolor='secondary.main'
         component='footer'
-        sx={{pt:'100px'}}
+        sx={{pt:{ xs: '40px', lg: '100px' }, px:{ xs: '10%', lg: '10%' }} }
       >
         <Box className={styles.content}>
           <Box className={styles.links}>
