@@ -7,47 +7,22 @@ import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import Typography from '@mui/material/Typography';
 import BlockContent from '@sanity/block-content-to-react';
-import { useDevicePixelRatio } from 'use-device-pixel-ratio';
-import { getDevicePixelRatio } from '../node_modules/use-device-pixel-ratio/dist/index';
 
 export default function AboutUs({ instagramPosts, pageData }) {
-  const [mappedPageData, setMappedPageData] = useState(pageData);
-  const dpr = useDevicePixelRatio();
-  // console.log('dpr',dpr);
-  console.log('Device pixel ratio is ', getDevicePixelRatio());
-
-  // useEffect(() => {
-  //   if (pageData?.length) {
-  //     const imgBuilder = imageUrlBuilder({
-  //       projectId: '444cz5oj',
-  //       dataset: 'production',
-  //     });
-
-  //     setMappedPageData(
-  //       pageData.map((p) => {
-  //         return {
-  //           ...p,
-  //           mainImage: imgBuilder.image(p.mainImage).width(720).height(900),
-  //           secondImage: imgBuilder.image(p.mainImage).width(720).height(900),
-  //         };
-  //       })
-  //     );
-  //   } else {
-  //     setMappedPageData([]);
-  //   }
-  // }, [pageData]);
 
   return (
     <>
       <IntroBlock
         mainImage={pageData[0].mainImage}
         secondImage={pageData[0].secondImage}
+        isScondFlower={true}
         textBlock={
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               mt: 'max(40px,2.1vw)',
+              mb:{xs:'40px',lg:'0'}
             }}
           >
             <Typography
@@ -55,9 +30,9 @@ export default function AboutUs({ instagramPosts, pageData }) {
               component='h1'
               color='initial'
               sx={{
-                fontSize: { md: '40px', lg: '65px', xxl: '3.4vw' },
+                fontSize: { xs: '40px', lg: '65px', xxl: '3.4vw' },
                 position: 'relative',
-                left: '-10%',
+                left: { xs: '0%', lg: '-10%' },
               }}
             >
               {pageData[0].title.ru}
@@ -66,9 +41,9 @@ export default function AboutUs({ instagramPosts, pageData }) {
               sx={{
                 '& p': {
                   fontFamily: 'Raleway, serif',
-                  fontSize: { md: '16px', xl: '20px', xxl: '1vw' },
+                  fontSize: { xs: '16px', xl: '20px', xxl: '1vw' },
                   '@media (-webkit-min-device-pixel-ratio: 1.25)': {
-                    fontSize: { md: '16px', xxl: '1vw' },
+                    fontSize: { xs: '16px', xxl: '1vw' },
                   },
                 },
                 my: 'auto',
@@ -80,17 +55,19 @@ export default function AboutUs({ instagramPosts, pageData }) {
               sx={{
                 '& span': {
                   fontFamily: 'Zeferino One, serif',
-                  fontSize: { md: '36px', xl: '50px', xxl: '2.6vw' },
+                  fontSize: { xs: '36px', xl: '50px', xxl: '2.6vw' },
                   lineHeight:'1',
                 },
                 '& p': {
                   m: '0',
                 },
+                width:{xs:'100%',sm:'60%',lg:'100%'},
+                mx:{xs:'0',sm:'auto',lg:'0'}
               }}
             >
               <Box
                 component='p'
-                sx={{ textAlign: 'left', position: 'relative', left: '-10%' }}
+                sx={{ textAlign: 'left', position: 'relative', left: { xs: '0%', lg: '-10%' }, }}
               >
                 <span className={style.decorText}>Ваши</span> самые необычные и
                 оригинальные <span>замыслы</span>
@@ -105,7 +82,7 @@ export default function AboutUs({ instagramPosts, pageData }) {
           </Box>
         }
       ></IntroBlock>
-      <Box component='section' sx={{ my: 'max(100px,5vw)', px: '10%' }}>
+      <Box component='section' sx={{ my: 'max(100px,5vw)', px: {xs:'5%', lg:'10%'} }}>
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </>
