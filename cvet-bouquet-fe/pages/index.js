@@ -53,7 +53,7 @@ export default function Home({ instagramPosts, category, pageData }) {
 
               <Typography
                 sx={{
-                  fontSize: { xs: '36px', md: '40px', xl: 'max(82px,4.3vw)' },
+                  fontSize: { xs: '36px', sm: '60px', xl: 'max(82px,4.3vw)' },
                   textAlign: { xs: 'end', md: 'start' },
                 }}
                 variant='h2'
@@ -64,7 +64,7 @@ export default function Home({ instagramPosts, category, pageData }) {
 
               <Typography
                 sx={{
-                  fontSize: { xs: '64px', md: '72px', xl: 'max(140px,7.3vw)' },
+                  fontSize: { xs: '64px', sm: '100px', xl: 'max(140px,7.3vw)' },
                   textAlign: 'center',
                 }}
                 variant='h1'
@@ -76,7 +76,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                 sx={{
                   fontSize: {
                     xs: '36px',
-                    md: '40px',
+                    sm: '60px',
                     xl: 'max(82px,4.3vw)',
                   },
                   textAlign: 'end',
@@ -97,6 +97,7 @@ export default function Home({ instagramPosts, category, pageData }) {
             <Box
               sx={{
                 width: { xs: '100%', md: '50%' },
+                mx:{xs: '0', md: 'auto',lg:'0' }
               }}
             >
               <Button

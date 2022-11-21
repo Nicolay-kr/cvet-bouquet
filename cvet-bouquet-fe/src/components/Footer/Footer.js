@@ -539,8 +539,8 @@ export default function Footer({data}) {
               </>
             )}
           </Box>
-          <Box className={styles.info}>
-            <Box className={styles.infoContent}>
+          <Box className={styles.info} sx={{ display: 'grid',gridTemplateRows: {xs:'auto',lg:'auto auto'}}}>
+            <Box className={styles.infoContent} sx={{ display: 'grid', rowGap: '24px', gridTemplateRows: {xs:'auto',lg:'auto auto'}}}>
               <Typography variant='subtitle1' component='p' color='white'>
                 ИП Новицкая Н.В. УНП 193193419 Свидетельство о госрегистрации
                 выдано Минским горисполкомом 17.01.2019г.
