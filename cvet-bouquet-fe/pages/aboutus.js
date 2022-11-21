@@ -7,9 +7,9 @@ import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import Typography from '@mui/material/Typography';
 import BlockContent from '@sanity/block-content-to-react';
+import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
 
 export default function AboutUs({ instagramPosts, pageData }) {
-
   return (
     <>
       <IntroBlock
@@ -22,52 +22,36 @@ export default function AboutUs({ instagramPosts, pageData }) {
               display: 'flex',
               flexDirection: 'column',
               mt: 'max(40px,2.1vw)',
-              mb:{xs:'40px',lg:'0'}
+              mb: { xs: '40px', lg: '0' },
             }}
           >
-            <Typography
-              variant='h1'
-              component='h1'
-              color='initial'
-              sx={{
-                fontSize: { xs: '40px', lg: '65px', xxl: '3.4vw' },
-                position: 'relative',
-                left: { xs: '0%', lg: '-10%' },
-              }}
-            >
-              {pageData[0].title.ru}
-            </Typography>
-            <Box
-              sx={{
-                '& p': {
-                  fontFamily: 'Raleway, serif',
-                  fontSize: { xs: '16px', xl: '20px', xxl: '1vw' },
-                  '@media (-webkit-min-device-pixel-ratio: 1.25)': {
-                    fontSize: { xs: '16px', xxl: '1vw' },
-                  },
-                },
-                my: 'auto',
-              }}
-              component={BlockContent}
+            
+            <TitleWithTextBlock
+              title={pageData[0].title.ru}
               blocks={pageData[0].text.ru}
-            ></Box>
+            ></TitleWithTextBlock>
+
             <Box
               sx={{
                 '& span': {
                   fontFamily: 'Zeferino One, serif',
                   fontSize: { xs: '36px', xl: '50px', xxl: '2.6vw' },
-                  lineHeight:'1',
+                  lineHeight: '1',
                 },
                 '& p': {
                   m: '0',
                 },
-                width:{xs:'100%',sm:'60%',lg:'100%'},
-                mx:{xs:'0',sm:'auto',lg:'0'}
+                width: { xs: '100%', sm: '60%', lg: '100%' },
+                mx: { xs: '0', sm: 'auto', lg: '0' },
               }}
             >
               <Box
                 component='p'
-                sx={{ textAlign: 'left', position: 'relative', left: { xs: '0%', lg: '-10%' }, }}
+                sx={{
+                  textAlign: 'left',
+                  position: 'relative',
+                  left: { xs: '0%', lg: '-10%' },
+                }}
               >
                 <span className={style.decorText}>Ваши</span> самые необычные и
                 оригинальные <span>замыслы</span>
@@ -82,7 +66,10 @@ export default function AboutUs({ instagramPosts, pageData }) {
           </Box>
         }
       ></IntroBlock>
-      <Box component='section' sx={{ my: 'max(100px,5vw)', px: {xs:'5%', lg:'10%'} }}>
+      <Box
+        component='section'
+        sx={{ my: 'max(100px,5vw)', px: { xs: '5%', lg: '10%' } }}
+      >
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </>
