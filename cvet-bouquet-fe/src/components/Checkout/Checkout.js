@@ -6,7 +6,7 @@ import Radio from '@mui/material/Radio';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Image from 'next/future/image';
-import metroIcon from '../../assets/icons/metro.svg';
+import metroIcon from '../../../public/assets/icons/metro.svg';
 import CheckoutsButtons from '../CheckoutsButtons/CheckoutsButtons';
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';

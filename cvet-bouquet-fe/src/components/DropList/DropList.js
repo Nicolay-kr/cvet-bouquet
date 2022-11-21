@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import navArrow from '../../assets/icons/navArrow.svg';
+import navArrow from '../../../public/assets/icons/navArrow.svg';
 import { IconButton } from '../../../node_modules/@mui/material/index';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
-import logoFlower from '../../assets/images/logo_flower.svg';
+import logoFlower from '../../../public/assets/images/logo_flower.svg';
 
 export default function DropList({ list, prevSlug }) {
   const [anchorEl, setAnchorEl] = React.useState(null);

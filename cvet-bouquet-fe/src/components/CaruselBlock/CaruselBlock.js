@@ -4,13 +4,13 @@ import styles from './CaruselBlock.module.css';
 import Box from '@mui/material/Box';
 
 import Image from 'next/future/image';
-import leftArrow from '../../assets/icons/leftArrow.svg';
-import rightArrow from '../../assets/icons/rightArrow.svg';
+import leftArrow from '../../../public/assets/icons/leftArrow.svg';
+import rightArrow from '../../../public/assets/icons/rightArrow.svg';
 import IconButton from '@mui/material/IconButton';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import Carusel from '../carusels/Carusel';
 import ArcheMainConteiner from '../ArcheImageConteiners/ArcheMainConteiner';
-import introImg1 from '../../assets/images/intro_img1.png';
+import introImg1 from '../../../public/assets/images/intro_img1.png';
 
 export default function CaruselBlock({
   bouquets,

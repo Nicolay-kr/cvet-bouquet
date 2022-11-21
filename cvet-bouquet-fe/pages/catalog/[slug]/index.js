@@ -7,8 +7,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import CounterButtons from '../../../src/components/CounterButtons/CounterButtons';
-import butttonHeart from '../../../src/assets/icons/buttonHeart.svg';
-import butttonHeartFill from '../../../src/assets/icons/buttonHeartFill.svg';
+import butttonHeart from '../../../public/assets/icons/buttonHeart.svg';
+import butttonHeartFill from '../../../public/assets/icons/buttonHeartFill.svg';
 import Image from 'next/future/image';
 import AccordionCustom from '../../../src/components/AccordionCustom/AccordionCustom';
 import AddToCartButton from '../../../src/components/AddToCartButton/AddToCartButton';
@@ -19,45 +19,14 @@ import BouquetCard from '../../../src/components/BouquetCard/BouquetCard';
 import Grid from '@mui/material/Unstable_Grid2';
 
 export const CategoryBouquets = ({ category, instagramPosts }) => {
-  const [mappedBouquets, setMappedBouquets] = React.useState([]);
 
-  useEffect(() => {
-    if (category?.length) {
-      const imgBuilder = imageUrlBuilder({
-        projectId: '444cz5oj',
-        dataset: 'production',
-      });
-
-      setMappedBouquets(
-        category.map((p) => {
-          return {
-            ...p,
-            bouqets: p.bouqets.map((bouqet) => {
-              return {
-                ...bouqet,
-                images: bouqet.images.map((image) =>
-                  imgBuilder.image(image).width(720).height(900)
-                ),
-              };
-            }),
-            mainImage: imgBuilder.image(p.mainImage).width(720).height(900),
-          };
-        })
-      );
-    } else {
-      setMappedBouquets([]);
-    }
-  }, [category]);
-
-  // const orderedList = mappedBouquets?.sort((a, b) => a.order - b.order);
-  console.log(mappedBouquets[0]?.bouqets)
 
   return (
     <Box sx={{ width: '100%', px: '10%', my: 3 }}>
       <Box sx={{ width: '100%', mx: 'auto' }} className={styles.cardsContainer}>
         <Grid container rowSpacing={10} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {mappedBouquets.length ? (
-            mappedBouquets[0]?.bouqets?.map(
+          {category.length ? (
+            category[0]?.bouqets?.map(
               ({ _id, title, description, images, price, slug }, index) => (
                 <Grid xs={12} sm={6} md={4} xl={3} key={_id}>
                   <BouquetCard
@@ -65,7 +34,7 @@ export const CategoryBouquets = ({ category, instagramPosts }) => {
                     title={title.ru}
                     imagePath={images[0]}
                     slug={slug}
-                    categorySlug={mappedBouquets[0].slug.current}
+                    categorySlug={category[0].slug.current}
                     price={price}
                   ></BouquetCard>
                 </Grid>

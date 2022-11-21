@@ -4,7 +4,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import navArrow from '../../assets/icons/navArrow.svg';
+import navArrow from '../../../public/assets/icons/navArrow.svg';
 import Image from 'next/future/image';
 
 export default function AccordionCustom({ fieldList }) {
