@@ -12,6 +12,7 @@
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.5",
     "@mui/x-date-pickers": "^5.0.6",
+    "@pbe/react-yandex-maps": "^1.2.2",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^3.4.1",
     "@sanity/image-url": "^1.0.1",

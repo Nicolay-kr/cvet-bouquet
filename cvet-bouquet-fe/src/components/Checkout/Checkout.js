@@ -17,6 +17,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import styles from './Checkout.module.css';
 import ruLocale from "date-fns/locale/ru";
 import enLocale from "date-fns/locale/en-US";
+import ShopsList from '../ShopsList';
 
 export default function Checkout() {
   const shopsList = [
@@ -226,40 +227,7 @@ export default function Checkout() {
                 control={<Radio checked={delivery === shop.adress} />}
                 onChange={handleChangeDeliveryAdress}
                 label={
-                  <>
-                    <Typography
-                      sx={{
-                        alignSelf: 'left',
-                        display: 'flex',
-                        alignItems: 'center',
-                        marginBottom: '0px',
-                        opacity: delivery === shop.adress ? '1' : '0.5',
-                        fontSize: { lg: '16px', xl: '20px' },
-                      }}
-                      gutterBottom
-                      variant='h6'
-                      component='p'
-                    >
-                      {shop.adress}
-                      <Image
-                        style={{ margin: '0 10px' }}
-                        src={metroIcon}
-                        alt='metro icon'
-                      ></Image>
-                      {shop.metro}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        alignSelf: 'left',
-                        opacity: delivery === shop.adress ? '1' : '0.5',
-                      }}
-                      gutterBottom
-                      variant='body2'
-                      component='span'
-                    >
-                      {shop.time}
-                    </Typography>
-                  </>
+                  <ShopsList shop={shop} delivery={delivery}></ShopsList>
                 }
               />
             ))}

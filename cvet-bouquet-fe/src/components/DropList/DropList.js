@@ -56,7 +56,8 @@ export default function DropList({ list, prevSlug }) {
         }}
       >
         {list?.map((item) => {
-          if (item.title === 'Премиум флористика') {
+          // if (item.title === 'Премиум флористика') {
+          if (false) {
             return (
               <MenuItem
                 key={`${item.slug.current}-list`}

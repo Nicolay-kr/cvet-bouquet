@@ -272,6 +272,7 @@ const theme = createTheme({
         root: {
           // Some CSS
           background: '#746449',
+          height:'60px',
         },
       },
      

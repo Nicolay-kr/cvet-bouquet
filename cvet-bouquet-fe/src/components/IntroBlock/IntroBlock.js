@@ -24,7 +24,7 @@ export default function IntroBlock({
     <Box
       component='section'
       width='100%'
-      sx={{ px: { xs: '5%', lg: '10%', position: 'relative' } }}
+      sx={{ px: { xs: '5%', lg: '10%'},position:'relative' }}
     >
       {lg && isScondFlower ? (
         <Image

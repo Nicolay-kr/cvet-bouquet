@@ -73,7 +73,7 @@ export const Header = ({ category }) => {
     <ul className={styles.navigation}>
       <li>
         <a onClick={() => router.push('/catalog')}>Каталог</a>
-        <DropList list={bouckeList.bouquetsCategories} prevSlug={'/catalog'} />
+        <DropList list={bouquetsCategory} prevSlug={'/catalog'} />
       </li>
       <li>
         <a onClick={() => router.push('/delivery')}>Доставка и оплата</a>
