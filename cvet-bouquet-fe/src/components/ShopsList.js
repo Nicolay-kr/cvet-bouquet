@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 
 export default function ShopsList({shop,currentKey, delivery=false}) {
   return (
-    <Box key={currentKey}>
+    <Box key={`${currentKey}-shop`}>
       <Typography
         sx={{
           alignSelf: 'left',

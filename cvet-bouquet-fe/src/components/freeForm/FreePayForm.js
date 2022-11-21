@@ -174,9 +174,11 @@ export default function FreePayForm({ isContactsForm = false }) {
               />
               <TextField
                 multiline
+                style={{height:'100%',}}
                 sx={{
                   mt: 'max(24px, 1.2vw)',
                   '& div': { height: '100%' },
+                  '& textarea': { height: '100% !important' },
                 }}
                 rows={10}
                 id='customer-comment'
