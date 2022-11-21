@@ -3,10 +3,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import styles from './InstagramBlock.module.css';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
 // import InstagramEmbed from 'react-instagram-embed';
 // import Instagram from '../Instagram/Instagram';
 
 export default function InstagramBlock({ instagramPosts }) {
+  const md = useMediaQuery('(min-width:900px)');
+  const postsNumber = md? 6:4
   return (
     <>
       <TitleWithSubtitle
@@ -33,7 +36,7 @@ export default function InstagramBlock({ instagramPosts }) {
       </Box>
       <div className={styles.imagesConteiner}>
         {instagramPosts.data.map((item, index) => {
-          if (index <= 5) {
+          if (index <= postsNumber-1) {
             return (
               <img
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}

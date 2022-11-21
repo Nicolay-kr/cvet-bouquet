@@ -1,15 +1,18 @@
 .imagesConteiner {
   display: grid;
-  grid-template-columns: repeat(3, 25vw);
-  grid-template-rows: 25vw 25vw;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: space-between;
-  row-gap: calc(4vw/2);
+  column-gap: max(30px,1.5vw);
+  row-gap: max(30px,1.5vw);
   margin-top: 60px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
 
   .imagesConteiner {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 16px;
+    row-gap: 16px;
     margin-top: 20px;
   }
   
