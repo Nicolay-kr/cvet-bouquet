@@ -5,7 +5,7 @@ import styles from './Header.module.css';
 import Link from '../CustopNextComponents/Link';
 import Box from '@mui/material/Box';
 import logoFlower from '../../../public/assets/images/logo_flower.svg';
-import logoText from '../../../public/assets/images/logo_text.svg';
+import logo from '../../../public/assets/images/logo.svg';
 import Image from 'next/future/image';
 import searchIcon from '../../../public/assets/icons/search.svg';
 import heartIcon from '../../../public/assets/icons/heart.svg';
@@ -73,7 +73,7 @@ export const Header = ({ category }) => {
     <ul className={styles.navigation}>
       <li>
         <a onClick={() => router.push('/catalog')}>Каталог</a>
-        <DropList list={bouckeList.bouquetsCategories} prevSlug={'/catalog'} />
+        <DropList list={bouquetsCategory} prevSlug={'/catalog'} />
       </li>
       <li>
         <a onClick={() => router.push('/delivery')}>Доставка и оплата</a>
@@ -109,8 +109,7 @@ export const Header = ({ category }) => {
           href='/'
           sx={{justifyContent: {xs:'center',lg:'start'},pr: {xs:'0',lg:'20px'}}}
         >
-          <Image src={logoFlower} alt='logo flower'></Image>
-          <Image src={logoText} alt='logo flower'></Image>
+          <Image src={logo} alt='logo '></Image>
         </Box>
         {lg ? null : navList}
 
