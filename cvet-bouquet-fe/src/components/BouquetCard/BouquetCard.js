@@ -114,7 +114,8 @@ export default function BouquetCard({
               sx={{
                 position: 'relative',
                 width: '100%',
-                height: '360px',
+                // height: '360px',
+                aspectRatio: '3/4',
               }}
             >
               {imagePath ? (
@@ -138,7 +139,7 @@ export default function BouquetCard({
             <CardContent
               sx={{ display: 'flex', flexDirection: 'column', flexGrow: '1' }}
             >
-              <Typography gutterBottom variant='h5' component='p'>
+              <Typography gutterBottom variant='h5' component='p' >
                 {title}
               </Typography>
               <Box
@@ -151,12 +152,12 @@ export default function BouquetCard({
                   gutterBottom
                   variant='h5'
                   component='p'
-                  sx={{ fontWeight: 700, mt: 'auto' }}
+                  sx={{ fontWeight: 700, mt: 'auto',}}
                 >
                   {price} <sup style={{ fontSize: '12px' }}>BYN</sup>
                 </Typography>
-                <Typography gutterBottom variant='h5' component='p'>
-                  с доставкой
+                <Typography gutterBottom variant='h5' component='p' sx={{fontSize:{xs:'10px',lg:'18px'},textAlign:'end',width:'50%' }}>
+                  бесплатная доставка
                 </Typography>
               </Box>
             </CardContent>

@@ -46,7 +46,7 @@ export default function AddToCartButton({ bouquet,variant='outlined' }) {
         color='primary'
         sx={{
           width: '100%',
-          height: '60px',
+          height: {xs:'36px', lg: '60px'},
           borderWidth: '1.5px',
           '&:hover': { backgroundColor: 'primary.main', color: '#fff' },
         }}
