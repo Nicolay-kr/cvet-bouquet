@@ -29,48 +29,43 @@ export default function CaruselBlock({
   };
 
   return (
-    <>
+    <Box
+      sx={{
+        width: '100%',
+        pl: isSpec ? '10%' : 0,
+        mt: { xs: '60px', lg: '100px' },
+      }}
+    >
+      <TitleWithSubtitle title={title} subtitle={subtitle}></TitleWithSubtitle>
       <Box
-        sx={{
-          width: '100%',
-          pl: isSpec ? '10%' : 0,
-          mt: { xs: '100px', lg: '200px' },
-        }}
+        sx={{ display: 'flex', justifyContent: 'space-between', mb: '40px' }}
       >
-        <TitleWithSubtitle
-          title={title}
-          subtitle={subtitle}
-        ></TitleWithSubtitle>
-        <Box
-          sx={{ display: 'flex', justifyContent: 'space-between', mb: '40px' }}
+        <IconButton
+          onClick={handleLeftArrowClick}
+          sx={{ marginLeft: isSpec ? 0 : '10vw' }}
         >
-          <IconButton
-            onClick={handleLeftArrowClick}
-            sx={{ marginLeft: isSpec ? 0 : '10vw' }}
-          >
-            <Image src={leftArrow} alt='leftArrow icon'></Image>
-          </IconButton>
-          <IconButton
-            sx={{ marginRight: '10vw' }}
-            onClick={handleRightArrowClick}
-          >
-            <Image src={rightArrow} alt='rightArrow icon'></Image>
-          </IconButton>
-        </Box>
-        <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
-          {isSpec ? (
-            <Box sx={{ mr: '30px' }}>
-              <ArcheMainConteiner src={introImg1} />
-            </Box>
-          ) : null}
-          <Carusel
-            bouquets={bouquets}
-            caruselRef={caruselRef}
-            isSpec={isSpec}
-            categoryslug={categoryslug}
-          />
-        </Box>
+          <Image src={leftArrow} alt='leftArrow icon'></Image>
+        </IconButton>
+        <IconButton
+          sx={{ marginRight: '10vw' }}
+          onClick={handleRightArrowClick}
+        >
+          <Image src={rightArrow} alt='rightArrow icon'></Image>
+        </IconButton>
       </Box>
-    </>
+      <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
+        {isSpec ? (
+          <Box sx={{ mr: '30px' }}>
+            <ArcheMainConteiner src={introImg1} />
+          </Box>
+        ) : null}
+        <Carusel
+          bouquets={bouquets}
+          caruselRef={caruselRef}
+          isSpec={isSpec}
+          categoryslug={categoryslug}
+        />
+      </Box>
+    </Box>
   );
 }

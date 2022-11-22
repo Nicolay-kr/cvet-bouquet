@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import Link from '../node_modules/next/link';
 import { useRouter } from '../node_modules/next/router';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import BlockContentBox from '../src/components/blockcontentBox/BlockContentBox';
 
 export default function Home({ instagramPosts, category, pageData }) {
   const router = useRouter();
@@ -25,106 +26,118 @@ export default function Home({ instagramPosts, category, pageData }) {
   //   bouquetsContext.setbouquetsCategories(mappedBouquets);
   // }, []);
   const popular = mappedBouquets[7];
-  console.log(pageData.mainImage);
+  console.log(pageData[0]);
 
   // );
 
   return (
     <>
-      <IntroBlock
-        mainImage={pageData[0].mainImage}
-        secondImage={pageData[0].secondImage}
-        reverse={lg?false:true}
-        textBlock={
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              height:'100%',
-              order: { xs: '2', lg: '0' },
-            }}
-          >
+      {pageData[0].firstBlock.published ? (
+        <IntroBlock
+          mainImage={pageData[0].firstBlock.mainImage}
+          secondImage={pageData[0].firstBlock.secondImage}
+          reverse={lg ? false : true}
+          textBlock={
             <Box
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                pt: { xs: '30px', lg: '100px' },
+                height: '100%',
               }}
             >
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  pt: { xs: '30px', lg: '100px' },
+                  // width: { xs: '100%', md: '50%' },
+                  
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: { xs: '36px', sm: '60px', xl: 'max(82px,4.3vw)' },
+                    textAlign: { xs: 'end', md: 'start' },
+                  }}
+                  variant='h2'
+                  component='h1'
+                >
+                  Флористика
+                </Typography>
 
-              <Typography
-                sx={{
-                  fontSize: { xs: '36px', sm: '60px', xl: 'max(82px,4.3vw)' },
-                  textAlign: { xs: 'end', md: 'start' },
-                }}
-                variant='h2'
-                component='h1'
-              >
-                Флористика
-              </Typography>
+                <Typography
+                  sx={{
+                    fontSize: {
+                      xs: '64px',
+                      sm: '100px',
+                      xl: 'max(140px,7.3vw)',
+                    },
+                    textAlign: 'center',
+                  }}
+                  variant='h1'
+                  component='h1'
+                >
+                  с утонченным
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: {
+                      xs: '36px',
+                      sm: '60px',
+                      xl: 'max(82px,4.3vw)',
+                    },
+                    textAlign: 'end',
+                  }}
+                  variant='h2'
+                  component='h1'
+                >
+                  вкусом
+                </Typography>
+              </Box>
 
-              <Typography
+              {lg ? (
+                <Box sx={{ my: 'auto' }}>
+                  <BlockContentBox
+                    fs={32}
+                    blocks={pageData[0].firstBlock.text.ru}
+                  ></BlockContentBox>
+                </Box>
+              ) : null}
+
+              <Box
                 sx={{
-                  fontSize: { xs: '64px', sm: '100px', xl: 'max(140px,7.3vw)' },
-                  textAlign: 'center',
+                  width: { xs: '100%', md: '50%' },
+                  mx: { xs: '0', md: 'auto', lg: '0' },
                 }}
-                variant='h1'
-                component='h1'
               >
-                с утонченным
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: {
-                    xs: '36px',
-                    sm: '60px',
-                    xl: 'max(82px,4.3vw)',
-                  },
-                  textAlign: 'end',
-                }}
-                variant='h2'
-                component='h1'
-              >
-                вкусом
-              </Typography>
+                <Button
+                  sx={{
+                    height: '60px',
+                    width: '100%',
+                    bgcolor: 'primary.main',
+                    mt: { xs: '30px' },
+                  }}
+                  variant='contained'
+                  // component={Link}
+                  // href='/catalog'
+                  onClick={() => router.push('/catalog')}
+                >
+                  Выбрать букет
+                </Button>
+              </Box>
+              
             </Box>
-            {lg ? (
-              <Typography my='auto' variant='h4' component='p' sx={{mt:'auto'}}>
-                Выбирайте лучшее из того, что можно позволить. Создавайте
-                сказку, не дожидаясь завтра!
-              </Typography>
-            ) : null}
+          }
+        ></IntroBlock>
+      ) : null}
 
-            <Box
-              sx={{
-                width: { xs: '100%', md: '50%' },
-                mx:{xs: '0', md: 'auto',lg:'0' }
-              }}
-            >
-              <Button
-                sx={{
-                  height: '60px',
-                  width: '100%',
-                  bgcolor: 'primary.main',
-                  mt: { xs: '30px' },
-                }}
-                variant='contained'
-                // component={Link}
-                // href='/catalog'
-                onClick={() => router.push('/catalog')}
-              >
-                Выбрать букет
-              </Button>
-            </Box>
-          </Box>
-        }
-      ></IntroBlock>
       <CaruselBlock
         bouquets={mappedBouquets}
         title={'Выберите '}
         subtitle={'категорию'}
         isSpec={true}
       ></CaruselBlock>
+
       {popular?.bouqets ? (
         <CaruselBlock
           bouquets={popular?.bouqets}
@@ -132,6 +145,54 @@ export default function Home({ instagramPosts, category, pageData }) {
           subtitle={'букеты'}
           categoryslug={popular.slug.current}
         ></CaruselBlock>
+      ) : null}
+
+      {pageData[0].secondBlock.published ? (
+        <Box sx={{ mt: { xs: '60px', lg: '100px' } }}>
+          <IntroBlock
+            mainImage={pageData[0].secondBlock.mainImage}
+            secondImage={pageData[0].secondBlock.secondImage}
+            isDrop={true}
+            reverse={lg ? false : true}
+            textBlock={
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: '100%',
+                  width: '100%',
+                  // order: { xs: '2', lg: '0' },
+                }}
+              >
+                <Box sx={{ my: 'auto',mt:{xs:'40px',lg:'auto'} }}>
+                  <BlockContentBox
+                    fs={32}
+                    blocks={pageData[0].secondBlock.text.ru}
+                  ></BlockContentBox>
+                </Box>
+                <Box
+                  sx={{
+                    width: { xs: '100%', md: '50%' },
+                    mx: { xs: '0', md: 'auto', lg: '0' },
+                  }}
+                >
+                  <Button
+                    sx={{
+                      height: '60px',
+                      width: '100%',
+                      bgcolor: 'primary.main',
+                      mt: { xs: '30px' },
+                    }}
+                    variant='contained'
+                    onClick={() => router.push('/catalog')}
+                  >
+                    Выбрать букет
+                  </Button>
+                </Box>
+              </Box>
+            }
+          ></IntroBlock>
+        </Box>
       ) : null}
 
       <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
@@ -161,10 +222,8 @@ export const getServerSideProps = async (pageContext) => {
   {
     _id,
     title,
-    text,
-    mainImage,
-    secondImage,
-
+    firstBlock,
+    secondBlock,
   }`;
 
   const resultCategory = await sanityClient.fetch(queryCategory);

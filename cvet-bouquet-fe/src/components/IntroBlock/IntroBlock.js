@@ -59,7 +59,7 @@ export default function IntroBlock({
       >
         <Box
           sx={{
-            display: 'flex',
+            // display: 'flex',
             order: reverse ? 2 : 1,
           }}
         >

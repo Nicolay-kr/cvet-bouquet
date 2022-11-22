@@ -15,7 +15,7 @@ export default function ArcheMainConteiner({ src,isDrop=false }) {
         width: isDrop?{ xs: '40vw', lg: '20vw' } :{ xs: '42vw', lg: '25.5vw' },
         height: isDrop?{ xs: '40vw', lg: '20vw' }:{ xs: '53vw', lg: '28vw' },
         zIndex: '1',
-        borderRadius: isDrop?{xs:'80px 0 80px 0',lg:'100px 0 100px 0'}:{xs:'0 0 400px 400px'},
+        borderRadius: isDrop?{xs:'15vw 0 15vw 0',lg:'100px 0 100px 0'}:{xs:'0 0 400px 400px'},
         overflow: 'hidden',
         background: ` no-repeat url(${src})`,
         backgroundOrigin: 'border-box',
