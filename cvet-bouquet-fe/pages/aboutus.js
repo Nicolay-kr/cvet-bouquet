@@ -1,12 +1,9 @@
 import React from 'react';
 import style from '../styles/pages/AboutUs.module.css';
-import { useState, useEffect } from 'react';
 import IntroBlock from '../src/components/IntroBlock/IntroBlock';
 import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
-import Typography from '@mui/material/Typography';
-import BlockContent from '@sanity/block-content-to-react';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
 
 export default function AboutUs({ instagramPosts, pageData }) {
@@ -16,6 +13,7 @@ export default function AboutUs({ instagramPosts, pageData }) {
         mainImage={pageData[0].mainImage}
         secondImage={pageData[0].secondImage}
         isScondFlower={true}
+        isScondFlowerMobile={true}
         textBlock={
           <Box
             sx={{
@@ -25,7 +23,7 @@ export default function AboutUs({ instagramPosts, pageData }) {
               mb: { xs: '40px', lg: '0' },
             }}
           >
-            
+
             <TitleWithTextBlock
               title={pageData[0].title.ru}
               blocks={pageData[0].text.ru}

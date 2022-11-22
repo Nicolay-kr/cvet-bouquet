@@ -17,6 +17,9 @@ export default function IntroBlock({
   textBlock,
   isMainFlower = false,
   isScondFlower = false,
+  isScondFlowerMobile = false,
+  reverse = false,
+  isDrop=false
 }) {
   const lg = useMediaQuery('(min-width:1200px)');
 
@@ -24,7 +27,7 @@ export default function IntroBlock({
     <Box
       component='section'
       width='100%'
-      sx={{ px: { xs: '5%', lg: '10%'},position:'relative' }}
+      sx={{ px: { xs: '5%', lg: '10%' }, position: 'relative' }}
     >
       {lg && isScondFlower ? (
         <Image
@@ -46,13 +49,31 @@ export default function IntroBlock({
           position: 'relative',
           display: 'grid',
           columnGap: 'max(30px, 1.5vw)',
-          gridTemplateColumns: { sx: '1fr', lg: '5fr 7fr' },
+          gridTemplateColumns: {
+            xs: '1fr',
+            lg: reverse ? '7fr 5fr' : '5fr 7fr',
+          },
           height: '100%',
+          order: reverse ? 2 : 1,
         }}
       >
-        {textBlock}
-        <Box sx={{ pl: { xs: '0', lg: '60px' }, position: 'relative' }}>
-          {!lg ? (
+        <Box
+          sx={{
+            display: 'flex',
+            order: reverse ? 2 : 1,
+          }}
+        >
+          {textBlock}
+        </Box>
+        <Box
+          sx={{
+            ml: { xs: '0', lg: reverse ? '0px' : '60px' },
+            mr: { xs: '0', lg: reverse ? '60px' : '0px' },
+            position: 'relative',
+            order: reverse ? 1 : 2,
+          }}
+        >
+          {!lg && isScondFlowerMobile ? (
             <Image
               style={{
                 position: 'absolute',
@@ -80,6 +101,7 @@ export default function IntroBlock({
             }}
           >
             <ArcheSecondConteiner
+              isDrop={isDrop}
               src={urlFor(secondImage).width(500).url()}
             ></ArcheSecondConteiner>
           </Box>

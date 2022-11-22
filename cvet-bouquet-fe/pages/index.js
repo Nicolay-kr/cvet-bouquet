@@ -34,6 +34,7 @@ export default function Home({ instagramPosts, category, pageData }) {
       <IntroBlock
         mainImage={pageData[0].mainImage}
         secondImage={pageData[0].secondImage}
+        reverse={lg?false:true}
         textBlock={
           <Box
             sx={{

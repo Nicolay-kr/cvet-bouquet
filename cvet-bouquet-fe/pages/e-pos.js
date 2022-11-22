@@ -10,10 +10,11 @@ import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTe
 
 export default function EposPage({ pageData }) {
   return (
-    <Box    sx={{
-      px: { xs: '5%', lg: '10%' },
-
-    }}>
+    <Box
+      sx={{
+        px: { xs: '5%', lg: '10%' },
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
@@ -31,11 +32,15 @@ export default function EposPage({ pageData }) {
         <Box
           sx={{
             mt: 'max(40px,2.1vw)',
-            '& p':{fontWeight:'700'}
+            '& p': { fontWeight: '700' },
           }}
         >
-          <Typography variant='h5' component='p'>Ссылка для оплаты:</Typography>
-          <Typography variant='h5' component='p'>{pageData[0].link}</Typography>
+          <Typography variant='h5' component='p'>
+            Ссылка для оплаты:
+          </Typography>
+          <Typography variant='h5' component='p'>
+            {pageData[0].link}
+          </Typography>
         </Box>
 
         <Box
@@ -43,9 +48,10 @@ export default function EposPage({ pageData }) {
             mt: 'max(40px,2.1vw)',
           }}
         >
-          <Typography variant='h5' sx={{'& span':{fontWeight:'700'}}}>
+          <Typography variant='h5' sx={{ '& span': { fontWeight: '700' } }}>
             или в дереве ЕРИП выберите услугу <br />
-            "E-POS - оплата товаров и услуг" и введите код <span>{pageData[0].code}</span>
+            "E-POS - оплата товаров и услуг" и введите код{' '}
+            <span>{pageData[0].code}</span>
           </Typography>
         </Box>
       </Box>
