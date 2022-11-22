@@ -39,15 +39,16 @@ export const CategoryBouquets = ({ category, instagramPosts }) => {
                 ({ _id, title, description, images, price, slug }, index) => (
                   // <Grid xs={12} sm={6} md={4} xl={3} key={_id}>
                   // <Box xs={12} sm={6} md={4} xl={3} key={_id}>
+                  <Box key={_id}>
                   <BouquetCard
                     id={_id}
                     title={title.ru}
                     imagePath={images[0]}
                     slug={slug}
-                    categorySlug={`/catalog/${category[0].slug.current}`}
+                    categorySlug={`catalog/${category[0].slug.current}`}
                     price={price}
                   ></BouquetCard>
-                  // </Box>
+                  </Box>
                 )
               )
             ) : (

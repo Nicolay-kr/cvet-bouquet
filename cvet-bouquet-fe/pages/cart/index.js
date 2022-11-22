@@ -20,10 +20,11 @@ import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
 import Checkout from '../../src/components/Checkout/Checkout';
 import Link from '../../src/components/CustopNextComponents/Link';
 import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
+import { urlFor } from '../../sanity';
 
 const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
   const bouquetsContext = useAppContext();
-  // console.log(id)
+  console.log(image)
 
   const removeFromCart = () => {
     bouquetsContext.removeFromCart(id);
@@ -46,12 +47,12 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
               '& img': { objectFit: 'cover' },
             }}
           >
-            <Link href={`/cart/${slug.current}`}>
+            <Link href={`cart/${slug.current}`}>
               <Image
                 layout='fill'
                 width={100}
                 height={125}
-                src={image}
+                src={urlFor(image).width(500).url()}
                 alt='bouquet'
               ></Image>
             </Link>

@@ -14,7 +14,7 @@ export default function AddToCartButton({ bouquet,variant='outlined' }) {
     bouckeList.addToCart({
       id,
       title,
-      imagePath: imagePath?.toString(),
+      imagePath: imagePath,
       price,
       slug,
       quantity,
