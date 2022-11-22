@@ -1,19 +1,24 @@
 import React from 'react';
-import styles from '../styles/Catalog.module.css';
-import BouquetCard from '../src/components/BouquetCard/BouquetCard';
+import styles from '../../styles/Catalog.module.css';
+// import BouquetCard from '../../../src/components/BouquetCard/BouquetCard';
+import BouquetCard from '../../src/components/BouquetCard/BouquetCard';
 import Box from '@mui/material/Box';
-import { useAppContext } from '../src/components/context/BouquetsContext';
-import { Typography } from '../node_modules/@mui/material/index';
+import { useAppContext } from '../../src/components/context/BouquetsContext';
+import Typography from '@mui/material/Typography';
+import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 
 export default function Favorites() {
   const [checked, setChecked] = React.useState(false);
   const bouquetsContext = useAppContext();
   const bouquets = bouquetsContext.favoriteBouquets;
-  console.log(bouquets);
-  // console.log(bouquets[0].imagePath)
+  const breadCrumbsList = [
+    { title: 'Главаная', href: '/' },
+    { title: 'Избранное', href: null },
+  ];
 
   return (
     <>
+      <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box sx={{ width: '100%', px: '10%', my: 3 }}>
         <Box
           sx={{ width: '100%', mx: 'auto', my: '60px' }}
@@ -40,6 +45,8 @@ export default function Favorites() {
                     title={title}
                     price={price}
                     // description={description.ru}
+                    categorySlug={'favorites/'}
+                    categoryName={'Избранное'}
                     imagePath={imagePath}
                     slug={slug}
                   ></BouquetCard>
@@ -47,7 +54,12 @@ export default function Favorites() {
               )
             ) : (
               <>
-                <Typography variant='h4' component='h2' mt={4} sx={{gridColumn:'1/4'}}>
+                <Typography
+                  variant='h4'
+                  component='h2'
+                  mt={4}
+                  sx={{ gridColumn: '1/4' }}
+                >
                   Здесь хранятся понравившиеся вам букеты
                 </Typography>
                 <Box sx={{ height: '50vh', width: '100%' }}></Box>

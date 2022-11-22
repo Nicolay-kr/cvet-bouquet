@@ -4,49 +4,62 @@ import Box from '@mui/material/Box';
 import InstagramBlock from '../../../src/components/InstagramBlock/InstagramBlock';
 import { sanityClient } from '../../../sanity';
 import BouquetCard from '../../../src/components/BouquetCard/BouquetCard';
+import BreadCrumbs from '../../../src/components/breadcrubs/BreadCrumbs';
 
 export const CategoryBouquets = ({ category, instagramPosts }) => {
+  const breadCrumbsList = [
+    { title: 'Главаная', href: '/' },
+    { title: 'Каталог', href: '/catalog' },
+    { title: category[0].title, href: null },
+  ];
   return (
-    <Box sx={{ width: '100%', px: '10%', my: 3 }}>
-      <Box sx={{ width: '100%', mx: 'auto' }} className={styles.cardsContainer}>
-        {/* <Grid container rowSpacing={10} columnSpacing={{ xs: 1, sm: 2, md: 3 }}> */}
+    <>
+      <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
+      <Box sx={{ width: '100%', px: '10%', my: 3 }}>
         <Box
-       sx={{
-        display: 'grid',
-        gridTemplateColumns: {
-          xs: '1fr',
-          sm: '1fr 1fr',
-          lg: '1fr 1fr 1fr',
-          xl: '1fr 1fr 1fr 1fr',
-        },
-        columnGap: 'max(30px, 1.5vw)',
-        rowGap: 'max(30px, 1.5vw)',
-      }}>
-          {category.length ? (
-            category[0]?.bouqets?.map(
-              ({ _id, title, description, images, price, slug }, index) => (
-                // <Grid xs={12} sm={6} md={4} xl={3} key={_id}>
-                // <Box xs={12} sm={6} md={4} xl={3} key={_id}>
+          sx={{ width: '100%', mx: 'auto' }}
+          className={styles.cardsContainer}
+        >
+          {/* <Grid container rowSpacing={10} columnSpacing={{ xs: 1, sm: 2, md: 3 }}> */}
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: {
+                xs: '1fr',
+                sm: '1fr 1fr',
+                lg: '1fr 1fr 1fr',
+                xl: '1fr 1fr 1fr 1fr',
+              },
+              columnGap: 'max(30px, 1.5vw)',
+              rowGap: 'max(30px, 1.5vw)',
+            }}
+          >
+            {category.length ? (
+              category[0]?.bouqets?.map(
+                ({ _id, title, description, images, price, slug }, index) => (
+                  // <Grid xs={12} sm={6} md={4} xl={3} key={_id}>
+                  // <Box xs={12} sm={6} md={4} xl={3} key={_id}>
                   <BouquetCard
                     id={_id}
                     title={title.ru}
                     imagePath={images[0]}
                     slug={slug}
-                    categorySlug={category[0].slug.current}
+                    categorySlug={`/catalog/${category[0].slug.current}`}
                     price={price}
                   ></BouquetCard>
-                // </Box>
+                  // </Box>
+                )
               )
-            )
-          ) : (
-            <>No Bouqets Yet</>
-          )}
+            ) : (
+              <>No Bouqets Yet</>
+            )}
+          </Box>
+        </Box>
+        <Box sx={{ my: 'max(100px,5vw)' }}>
+          <InstagramBlock instagramPosts={instagramPosts} />
         </Box>
       </Box>
-      <Box sx={{ my: 'max(100px,5vw)' }}>
-        <InstagramBlock instagramPosts={instagramPosts} />
-      </Box>
-    </Box>
+    </>
   );
 };
 

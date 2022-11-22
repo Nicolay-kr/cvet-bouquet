@@ -16,6 +16,7 @@ import { Link, TextField } from '../../../node_modules/@mui/material/index';
 export default function FreePayForm({ isContactsForm = false }) {
   const lg = useMediaQuery('(min-width:1200px)');
 
+
   const defaultState = {
     name: '',
     phone: '',
@@ -116,7 +117,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                 sx={{ mt: 'max(24px, 1.2vw)' }}
               />
 
-              {!isContactsForm ? null : (
+              {isContactsForm ? null : (
                 <TextField
                   id='customer-summa'
                   label='Сумма BYN'

@@ -5,10 +5,17 @@ import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
+import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 
 export default function AboutUs({ instagramPosts, pageData }) {
+  const breadCrumbsList = [
+    { title: 'Главаная', href:'/' },
+    { title: `${pageData[0].title.ru}`,href:null },
+  ];
+  
   return (
     <>
+    <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <IntroBlock
         mainImage={pageData[0].mainImage}
         secondImage={pageData[0].secondImage}

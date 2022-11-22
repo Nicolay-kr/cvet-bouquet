@@ -12,11 +12,17 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Image from 'next/future/image';
 import bigFlower from '../public/assets/images/bigFlower.svg';
 import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';
+import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 
 export default function DeliveryPage({ pageData, instagramPosts }) {
   const lg = useMediaQuery('(min-width:1200px)');
+  const breadCrumbsList = [
+    { title: 'Главаная', href: '/' },
+    { title: pageData[0].title.ru, href: null },
+  ];
   return (
     <>
+      <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <DoubleBlock>
         <Box
           sx={{

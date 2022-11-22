@@ -29,6 +29,7 @@ export default function BouquetCard({
   price,
   slug,
   categorySlug = null,
+  categoryName=null,
 }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
@@ -41,6 +42,7 @@ export default function BouquetCard({
     price,
     slug,
     categorySlug,
+    categoryName,
   };
   const addToFavoritList = (e) => {
     e.stopPropagation();
@@ -106,7 +108,7 @@ export default function BouquetCard({
             }}
             component={Link}
             noLinkStyle
-            href={`/catalog/${categorySlug ? categorySlug + '/' : ''}${
+            href={`/${categorySlug ? categorySlug + '/' : ''}${
               slug?.current
             }`}
           >

@@ -8,7 +8,7 @@ import { sanityClient } from '../sanity';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Link from '../node_modules/next/link';
-import { useRouter } from '../node_modules/next/router';
+import { useRouter } from 'next/router';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import BlockContentBox from '../src/components/blockcontentBox/BlockContentBox';
 

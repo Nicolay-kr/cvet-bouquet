@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/Cart.module.css';
+import styles from '../../styles/Cart.module.css';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,8 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useAppContext } from '../src/components/context/BouquetsContext';
-import cros from '../public/assets/icons/cros.svg';
+import { useAppContext } from '../../src/components/context/BouquetsContext';
+import cros from '../../public/assets/icons/cros.svg';
 // import cros from '../src/assets';
 import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
@@ -16,11 +16,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import CounterButtons from '../src/components/CounterButtons/CounterButtons';
-import Checkout from '../src/components/Checkout/Checkout';
-import Link from '../src/components/CustopNextComponents/Link';
+import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
+import Checkout from '../../src/components/Checkout/Checkout';
+import Link from '../../src/components/CustopNextComponents/Link';
+import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 
-const CartRow = ({ id, title, price, image, quantity,slug,categorySlug }) => {
+const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
   const bouquetsContext = useAppContext();
   // console.log(id)
 
@@ -28,66 +29,68 @@ const CartRow = ({ id, title, price, image, quantity,slug,categorySlug }) => {
     bouquetsContext.removeFromCart(id);
   };
   return (
-    <TableRow
-      key={id}
-      sx={{
-        '&:last-child td, &:last-child th': { border: 0 },
-        transition: '0.3s',
-      }}
-    >
-      <TableCell component='th' scope='row'>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '30px',
-            '& img': { objectFit: 'cover' },
-          }}
-        >
-          <Link href={`/catalog/${categorySlug}/${slug.current}`}>
-            <Image
-              layout='fill'
-              width={100}
-              height={125}
-              src={image}
-              alt='bouquet'
-            ></Image>
-          </Link>
+    <>
+      <TableRow
+        key={id}
+        sx={{
+          '&:last-child td, &:last-child th': { border: 0 },
+          transition: '0.3s',
+        }}
+      >
+        <TableCell component='th' scope='row'>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '30px',
+              '& img': { objectFit: 'cover' },
+            }}
+          >
+            <Link href={`/cart/${slug.current}`}>
+              <Image
+                layout='fill'
+                width={100}
+                height={125}
+                src={image}
+                alt='bouquet'
+              ></Image>
+            </Link>
 
-          <Typography variant='body1'>{title}</Typography>
-        </Box>
-      </TableCell>
+            <Typography variant='body1'>{title}</Typography>
+          </Box>
+        </TableCell>
 
-      <TableCell align='right' sx={{ width: 'max(200px,7.5vw)' }}>
-        <span className={styles.price}>
-          <Typography variant='h4'>{price}</Typography>
-          <sup>BYN</sup>
-        </span>
-      </TableCell>
+        <TableCell align='right' sx={{ width: 'max(200px,7.5vw)' }}>
+          <span className={styles.price}>
+            <Typography variant='h4'>{price}</Typography>
+            <sup>BYN</sup>
+          </span>
+        </TableCell>
 
-      <TableCell variant='h4' align='center'>
-        {/* <Typography variant='h4'>{price}</Typography> */}
-        <CounterButtons id={id} value={quantity} />
-      </TableCell>
+        <TableCell variant='h4' align='center'>
+          {/* <Typography variant='h4'>{price}</Typography> */}
+          <CounterButtons id={id} value={quantity} />
+        </TableCell>
 
-      <TableCell align='center' sx={{ width: 'max(200px,7.5vw)' }}>
-        <span className={styles.price}>
-          <Typography variant='h4'>{price * quantity}</Typography>
-          <sup>BYN</sup>
-        </span>
-      </TableCell>
+        <TableCell align='center' sx={{ width: 'max(200px,7.5vw)' }}>
+          <span className={styles.price}>
+            <Typography variant='h4'>{price * quantity}</Typography>
+            <sup>BYN</sup>
+          </span>
+        </TableCell>
 
-      <TableCell align='center'>
-        <IconButton
-          component='div'
-          // className={styles.cardHeart}
-          href='#'
-          onClick={removeFromCart}
-        >
-          <Image src={cros} alt='heart icon'></Image>
-        </IconButton>
-      </TableCell>
-    </TableRow>
+        <TableCell align='center'>
+          <IconButton
+            component='div'
+            // className={styles.cardHeart}
+            href='#'
+            onClick={removeFromCart}
+          >
+            <Image src={cros} alt='heart icon'></Image>
+          </IconButton>
+        </TableCell>
+      </TableRow>
+    </>
   );
 };
 
@@ -99,6 +102,11 @@ export default function Cart() {
     setIsCheckout(true);
   };
 
+  const breadCrumbsList = [
+    { title: 'Главаная', href: '/' },
+    { title: 'Корзина', href: null },
+  ];
+
   return (
     <Box
       sx={{
@@ -107,34 +115,39 @@ export default function Cart() {
       }}
     >
       <Box className={styles.conteiner}>
-        <TableContainer sx={{ width: '100%', my: 6 }} component='div'>
-          <Table sx={{ minWidth: 650 }} aria-label='simple table'>
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ width: '40%' }}></TableCell>
-                <TableCell align='center'>Цена</TableCell>
-                <TableCell align='center'>Количество</TableCell>
-                <TableCell align='center'>Сумма</TableCell>
-                <TableCell align='center'></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {bouquets.map((bouquet) => (
-                <CartRow
-                  key={bouquet.id}
-                  id={bouquet.id}
-                  title={bouquet.title}
-                  price={bouquet.price}
-                  image={bouquet.imagePath}
-                  quantity={bouquet.quantity}
-                  slug={bouquet.slug}
-                  categorySlug={bouquet.categorySlug}
-                  
-                ></CartRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <Box>
+          <Box sx={{ '& div': { px: '0',pb:'0' } }}>
+            <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
+          </Box>
+          <TableContainer sx={{ width: '100%', mb: '24px' }} component='div'>
+            <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ width: '40%' }}></TableCell>
+                  <TableCell align='center'>Цена</TableCell>
+                  <TableCell align='center'>Количество</TableCell>
+                  <TableCell align='center'>Сумма</TableCell>
+                  <TableCell align='center'></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {bouquets.map((bouquet) => (
+                  <CartRow
+                    key={bouquet.id}
+                    id={bouquet.id}
+                    title={bouquet.title}
+                    price={bouquet.price}
+                    image={bouquet.imagePath}
+                    quantity={bouquet.quantity}
+                    slug={bouquet.slug}
+                    categorySlug={bouquet.categorySlug}
+                  ></CartRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+
         <Paper
           sx={{
             ml: { sm: '10%', xl: '20%' },

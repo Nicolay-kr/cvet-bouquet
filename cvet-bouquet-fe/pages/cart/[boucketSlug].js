@@ -1,21 +1,21 @@
 import React from 'react';
 import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
-import styles from '../../../styles/BouquetPage.module.css';
+import styles from '../../styles//BouquetPage.module.css';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import CounterButtons from '../../../src/components/CounterButtons/CounterButtons';
-import butttonHeart from '../../../public/assets/icons/buttonHeart.svg';
-import butttonHeartFill from '../../../public/assets/icons/buttonHeartFill.svg';
+import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
+import butttonHeart from '../../public/assets/icons/buttonHeart.svg';
+import butttonHeartFill from '../../public/assets/icons/buttonHeartFill.svg';
 import Image from 'next/future/image';
-import AccordionCustom from '../../../src/components/AccordionCustom/AccordionCustom';
-import AddToCartButton from '../../../src/components/AddToCartButton/AddToCartButton';
-import { useAppContext } from '../../../src/components/context/BouquetsContext';
-import InstagramBlock from '../../../src/components/InstagramBlock/InstagramBlock';
-import BreadCrumbs from '../../../src/components/breadcrubs/BreadCrumbs';
+import AccordionCustom from '../../src/components/AccordionCustom/AccordionCustom';
+import AddToCartButton from '../../src/components/AddToCartButton/AddToCartButton';
+import { useAppContext } from '../../src/components/context/BouquetsContext';
+import InstagramBlock from '../../src/components/InstagramBlock/InstagramBlock';
+import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 import { useRouter } from 'next/router';
-import { sanityClient } from '../../../sanity';
+import { sanityClient } from '../../sanity';
 
 export const Bouquet = ({
   id,
@@ -25,9 +25,9 @@ export const Bouquet = ({
   price,
   slug,
   instagramPosts,
-  category,
+  categorySlug,
 }) => {
-  console.log(category);
+  console.log(categorySlug);
   const [imageUrl, setImageUrl] = useState('');
   const [quantity, setQuantity] = useState(1);
   const bouckeList = useAppContext();
@@ -45,6 +45,7 @@ export const Bouquet = ({
     quantity: quantity,
     slug,
   };
+
   const handlePlus = () => {
     setQuantity((state) => state + 1);
   };
@@ -59,6 +60,10 @@ export const Bouquet = ({
   };
 
   useEffect(() => {
+    const imgBuilder = imageUrlBuilder({
+      projectId: '444cz5oj',
+      dataset: 'production',
+    });
 
     setImageUrl(imgBuilder.image(image));
   }, [image]);
@@ -84,12 +89,10 @@ export const Bouquet = ({
   ];
   const breadCrumbsList = [
     { title: 'Главаная', href: '/' },
-    { title: 'Каталог', href: '/catalog' },
-    { title: category[0].title, href: `/catalog/${category[0].slug.current}` },
+    { title: 'Корзина', href: '/cart' },
     { title: title, href: null },
   ];
   const router = useRouter();
-  console.log(router.query)
 
   return (
     <>
@@ -205,13 +208,15 @@ export const Bouquet = ({
 
 export const getServerSideProps = async (pageContext) => {
   const boucketSlug = pageContext.query.boucketSlug;
-  const categorySlug = pageContext.query.slug;
+  // const categorySlug = pageContext.query.slug;
 
   if (!boucketSlug) {
     return {
       notFound: true,
     };
   }
+
+
 
   const query =`*[ _type == "bouquet" && slug.current == "${boucketSlug}" ]{
     _id,
@@ -222,22 +227,16 @@ export const getServerSideProps = async (pageContext) => {
     description,
   }`
 
-  const queryCategory = `*[ _type == "category" && slug.current == "${categorySlug}"]
-  {
-    _id,
-    slug,
-    title,
-  }`;
 
-  const resultCategory = await sanityClient.fetch(queryCategory);
   const result = await sanityClient.fetch(query);
   const bouquet = result[0];
+
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
   const data = await fetch(instagramUrl);
   const instagramPosts = await data.json();
 
-  if (!result) {
+  if (!bouquet) {
     return {
       notFound: true,
     };
@@ -251,7 +250,6 @@ export const getServerSideProps = async (pageContext) => {
         slug: bouquet.slug,
         id: bouquet._id,
         instagramPosts: instagramPosts ? instagramPosts : [],
-        category:resultCategory,
       },
     };
   }

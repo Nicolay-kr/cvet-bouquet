@@ -35,7 +35,7 @@
   white-space: nowrap
 }
 
-.navigation a {
+.navigation a, .navigation p  {
   margin-right: 5px;
   font-size: max(20px, 1.05vw);
   cursor: pointer;

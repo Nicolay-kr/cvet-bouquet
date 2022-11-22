@@ -6,7 +6,8 @@ export default {
     {
       name: 'title',
       title: 'Заголовок',
-      type: 'string',
+      type: 'localeString',
+      // validation: Rule => Rule.required().error('Поле должно быть заполнено'),
     },
     {
       name: 'subtitle',
