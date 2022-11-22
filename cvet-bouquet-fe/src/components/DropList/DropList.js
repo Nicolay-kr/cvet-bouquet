@@ -6,9 +6,10 @@ import { IconButton } from '../../../node_modules/@mui/material/index';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import logoFlower from '../../../public/assets/images/logo_flower.svg';
+import Box from '@mui/material/Box';
 
-export default function DropList({ list, prevSlug }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+export default function DropList({ list, prevSlug, title }) {
+  const [anchorEl, setAnchorEl] = React.useState();
   const router = useRouter();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -21,10 +22,11 @@ export default function DropList({ list, prevSlug }) {
     router.push(slug);
     setAnchorEl(null);
   };
-  // console.log(list)
 
   return (
     <>
+      <Box sx={{display:'flex', alignItems: 'center'}}  onClick={handleClick}>
+      <Box sx={{m:'0'}} component='p'>{title}</Box>
       <IconButton
         sx={{
           mt: 1.6,
@@ -37,10 +39,13 @@ export default function DropList({ list, prevSlug }) {
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
+       
       >
         <Image src={navArrow} alt='belcard icon'></Image>
       </IconButton>
+
+      </Box>
+      
       <Menu
         sx={{ '&>div+div': { bgcolor: '#FFFBF6' } }}
         id='basic-menu'

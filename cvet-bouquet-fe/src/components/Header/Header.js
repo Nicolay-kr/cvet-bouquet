@@ -40,10 +40,6 @@ export const Header = ({ category }) => {
       slug: { _type: 'slug', current: 'cvetochnye-pisma' },
     },
     {
-      title: 'Цветочные письма',
-      slug: { _type: 'slug', current: 'cvetochnye-pisma' },
-    },
-    {
       title: 'Букет невесты',
       slug: { _type: 'slug', current: 'buket-nevesty' },
     },
@@ -72,12 +68,17 @@ export const Header = ({ category }) => {
   const navList = (
     <ul className={styles.navigation}>
       <li>
-        <a onClick={() => router.push('/catalog')}>Каталог</a>
-        <DropList list={bouquetsCategory} prevSlug={'/catalog'} />
+        {/* <a onClick={() => router.push('/catalog')}>Каталог</a> */}
+
+        <DropList
+          list={bouquetsCategory}
+          prevSlug={'/catalog'}
+          title='Каталог'
+        />
       </li>
       <li>
-        <a onClick={() => router.push('/delivery')}>Доставка и оплата</a>
-        <DropList list={pages} prevSlug={null} />
+        {/* <a onClick={() => router.push('/delivery')}>Доставка и оплата</a> */}
+        <DropList list={pages} prevSlug={null} title='Доставка и оплата' />
       </li>
       <li>
         <a onClick={() => router.push('/contacts')}>Контакты</a>
@@ -90,9 +91,13 @@ export const Header = ({ category }) => {
 
   return (
     <Box width='100%' px={{ xs: '5%', lg: '10%' }} component='header'>
-      <Box className={styles.headerContent} component='nav' sx={{gridTemplateColumns: {xs:'1fr 2fr 1fr',lg:'5fr 5fr 2fr;'}}}>
+      <Box
+        className={styles.headerContent}
+        component='nav'
+        sx={{ gridTemplateColumns: { xs: '1fr 2fr 1fr', lg: '5fr 5fr 2fr;' } }}
+      >
         {lg ? (
-          <Box className={styles.iconsConteiner} sx={{mr:'auto',ml:'0px'}}>
+          <Box className={styles.iconsConteiner} sx={{ mr: 'auto', ml: '0px' }}>
             <IconButton component={Link} href='/'>
               <Image src={burgerIcon} alt='burger icon'></Image>
             </IconButton>
@@ -107,7 +112,10 @@ export const Header = ({ category }) => {
           component={Link}
           noLinkStyle
           href='/'
-          sx={{justifyContent: {xs:'center',lg:'start'},pr: {xs:'0',lg:'20px'}}}
+          sx={{
+            justifyContent: { xs: 'center', lg: 'start' },
+            pr: { xs: '0', lg: '20px' },
+          }}
         >
           <Image src={logo} alt='logo '></Image>
         </Box>
