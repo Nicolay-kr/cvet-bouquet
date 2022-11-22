@@ -10,76 +10,45 @@ import SimpleBouquetCard from '../../src/components/SimpleBouquetCard/SimpleBouq
 export default function Home({ category, instagramPosts }) {
   const [mappedBouquets, setMappedBouquets] = React.useState(category);
 
-  // useEffect(() => {
-  //   if (category?.length) {
-  //     const imgBuilder = imageUrlBuilder({
-  //       projectId: '444cz5oj',
-  //       dataset: 'production',
-  //     });
 
-  //     setMappedBouquets(
-  //       category.map((p) => {
-  //         return {
-  //           ...p,
-  //           bouqets: p.bouqets.map(bouqet=>{
-  //             return {
-  //               ...bouqet,
-  //               images: bouqet.images.map(image=>imgBuilder.image(image).width(720).height(900)),
-
-  //             }
-  //           }
-  //           ),
-  //           mainImage: imgBuilder.image(p.mainImage).width(720).height(900),
-  //         };
-  //       })
-  //     );
-  //   } else {
-  //     setMappedBouquets([]);
-  //   }
-  // }, [category]);
-
-  const orderedList = mappedBouquets?.sort((a,b)=>(a.order-b.order))
+  const orderedList = mappedBouquets?.sort((a, b) => a.order - b.order);
 
   return (
     <Box sx={{ width: '100%', px: '10%', my: '40px' }}>
       <Box sx={{ width: '100%', mx: 'auto' }} className={styles.cardsContainer}>
-        <Grid container rowSpacing={10} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: '1fr 1fr',
+              lg: '1fr 1fr 1fr',
+              xl: '1fr 1fr 1fr 1fr',
+            },
+            columnGap: 'max(30px, 1.5vw)',
+            rowGap: 'max(30px, 1.5vw)',
+          }}
+        >
           {mappedBouquets.length ? (
             orderedList.map(
               ({ _id, title, description, mainImage, price, slug }, index) => (
-                <Grid xs={12} sm={6} md={4} xl={3} key={_id}>
-                  <SimpleBouquetCard
-                    id={_id}
-                    title={title}
-                    imagePath={mainImage}
-                    slug={slug}
-                    price={null}
-                  ></SimpleBouquetCard>
-                </Grid>
+                <SimpleBouquetCard
+                  id={_id}
+                  title={title}
+                  imagePath={mainImage}
+                  slug={slug}
+                  price={null}
+                ></SimpleBouquetCard>
               )
             )
           ) : (
-            <>No Posts Yet</>
+            <>Букеты не доступны</>
           )}
-        </Grid>
-      </Box>
-      {/* <div className={styles.feed}>
-          {mappedBouquets.length ? (
-            mappedBouquets.map(({ title, description, mainImage }, index) => (
-              <BouquetCard
-                title={title.ru}
-                // description={description.ru}
-                imagePath={mainImage}
-              ></BouquetCard>
-            ))
-          ) : (
-            <>No Posts Yet</>
-          )}
-        </div> */}
-        <Box sx={{my:'max(100px,5vw)'}}>
-        <InstagramBlock instagramPosts={instagramPosts} />
-
         </Box>
+      </Box>
+      <Box sx={{ my: 'max(100px,5vw)' }}>
+        <InstagramBlock instagramPosts={instagramPosts} />
+      </Box>
     </Box>
   );
 }

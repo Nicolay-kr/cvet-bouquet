@@ -82,7 +82,7 @@ export default function BouquetCard({
         <Card
           sx={{
             width: '100%',
-            maxWidth: '345px',
+            // maxWidth: '345px',
             height: '100%',
             bgcolor: 'fon.main',
             boxShadow: isHovered ? '0px 0px 15px 7px #00000012' : null,
