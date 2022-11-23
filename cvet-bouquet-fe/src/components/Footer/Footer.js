@@ -12,10 +12,10 @@ import mastercard from '../../../public/assets/icons/mastercard.svg';
 import belcard from '../../../public/assets/icons/belcard.svg';
 import telegram from '../../../public/assets/icons/telegram.svg';
 import viber from '../../../public/assets/icons/viber.svg';
+import whatsapp from '../../../public/assets/icons/whatsapp.svg';
 import letter from '../../../public/assets/icons/letter.svg';
 import phone from '../../../public/assets/icons/phone.svg';
 import insta_mini from '../../../public/assets/icons/insta_mini.svg';
-import whatsapp from '../../../public/assets/icons/whatsapp.svg';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 

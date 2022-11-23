@@ -26,7 +26,6 @@ export default function Home({ instagramPosts, category, pageData }) {
   //   bouquetsContext.setbouquetsCategories(mappedBouquets);
   // }, []);
   const popular = mappedBouquets[7];
-  console.log(pageData[0]);
 
   // );
 

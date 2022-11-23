@@ -27,7 +27,7 @@ export const Bouquet = ({
   instagramPosts,
   category,
 }) => {
-  console.log(category);
+  // console.log(category);
   const [imageUrl, setImageUrl] = useState('');
   const [quantity, setQuantity] = useState(1);
   const bouckeList = useAppContext();
@@ -89,7 +89,7 @@ export const Bouquet = ({
     { title: title, href: null },
   ];
   const router = useRouter();
-  console.log(router.query)
+  // console.log(router.query)
 
   return (
     <>

@@ -24,7 +24,7 @@ import { urlFor } from '../../sanity';
 
 const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
   const bouquetsContext = useAppContext();
-  console.log(image)
+  // console.log(image)
 
   const removeFromCart = () => {
     bouquetsContext.removeFromCart(id);

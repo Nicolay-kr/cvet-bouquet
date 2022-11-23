@@ -34,7 +34,6 @@ export default function BouquetCard({
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
   const bouckeList = useAppContext();
-  console.log(imagePath);
   const bouquet = {
     id,
     title,

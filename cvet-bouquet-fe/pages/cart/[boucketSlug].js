@@ -27,7 +27,7 @@ export const Bouquet = ({
   instagramPosts,
   categorySlug,
 }) => {
-  console.log(categorySlug);
+  // console.log(categorySlug);
   const [imageUrl, setImageUrl] = useState('');
   const [quantity, setQuantity] = useState(1);
   const bouckeList = useAppContext();

@@ -20,6 +20,7 @@ import Badge from '@mui/material/Badge';
 // import Select from '@mui/material/Select';
 import DropList from '../DropList/DropList';
 import { useAppContext } from '../context/BouquetsContext';
+import BurgerMenu from '../burgerMenu/BurgerMenu';
 
 export const Header = ({ category }) => {
   const router = useRouter();
@@ -98,9 +99,7 @@ export const Header = ({ category }) => {
       >
         {lg ? (
           <Box className={styles.iconsConteiner} sx={{ mr: 'auto', ml: '0px' }}>
-            <IconButton component={Link} href='/'>
-              <Image src={burgerIcon} alt='burger icon'></Image>
-            </IconButton>
+            <BurgerMenu></BurgerMenu>
             <IconButton component={Link} href='/'>
               <Image src={searchIcon} alt='search icon'></Image>
             </IconButton>
@@ -123,9 +122,10 @@ export const Header = ({ category }) => {
 
         <Box className={styles.iconsConteiner}>
           {lg ? null : (
-            <IconButton component={Link} href='/'>
-              <Image src={searchIcon} alt='search icon'></Image>
-            </IconButton>
+            // <IconButton component={Link} href='/'>
+            //   <Image src={searchIcon} alt='search icon'></Image>
+            // </IconButton>
+            <BurgerMenu></BurgerMenu>
           )}
           <IconButton component={Link} href='/favorites'>
             <Badge
