@@ -28,12 +28,12 @@ export default function Favorites() {
             sx={{
               display: 'grid',
               gridTemplateColumns: {
-                xs: '1fr',
+                xs: '1fr 1fr',
                 sm: '1fr 1fr',
                 lg: '1fr 1fr 1fr',
                 xl: '1fr 1fr 1fr 1fr',
               },
-              columnGap: 'max(30px, 1.5vw)',
+              columnGap: {xs:'4px',lg:'max(30px, 1.5vw)'},
               rowGap: 'max(30px, 1.5vw)',
             }}
           >
