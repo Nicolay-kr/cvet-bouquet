@@ -176,8 +176,7 @@ export default function BurgerMenu() {
           <Box
             sx={{
               width: '100%',
-              mt: '40px',
-              mb: '10px',
+              mt: 'auto',
               display: 'flex',
               justifyContent: 'center',
             }}
