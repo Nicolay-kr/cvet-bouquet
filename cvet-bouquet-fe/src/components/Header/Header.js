@@ -28,6 +28,7 @@ export const Header = ({ category }) => {
   const lg = useMediaQuery('(max-width:1200px)');
   const xl = useMediaQuery('(max-width:1536px)');
   const bouckeList = useAppContext();
+  console.log('lg',lg)
 
   const pages = [
     { title: 'Свободный платеж', slug: { current: '/freepay' } },

@@ -10,7 +10,7 @@ import BlockContentBox from '../blockcontentBox/BlockContentBox';
 import Box from '@mui/material/Box';
 import { useRouter } from 'next/router';
 
-export default function BurgerAccordion({ title, links, parentSlug }) {
+export default function BurgerAccordion({ title, links, parentSlug,onClose }) {
   const [expanded, setExpanded] = React.useState();
   const router = useRouter();
 
@@ -44,7 +44,7 @@ export default function BurgerAccordion({ title, links, parentSlug }) {
               fontWeight: '300',
             }}
             component='p'
-            onClick={() => router.push(parentSlug+link.slug.current)}
+            onClick={() => {router.push(parentSlug+link.slug.current),onClose()}}
           >
             {link.title}
           </Box>

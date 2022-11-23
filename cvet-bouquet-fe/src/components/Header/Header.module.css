@@ -71,7 +71,7 @@
 
   .iconsConteiner {
     margin-left: 0;
-    column-gap: 5px;
+    column-gap: 0;
   }
 
   .iconsConteiner a {

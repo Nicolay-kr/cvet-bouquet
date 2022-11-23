@@ -20,7 +20,6 @@ export const CategoryBouquets = ({ category, instagramPosts }) => {
           sx={{ width: '100%', mx: 'auto' }}
           className={styles.cardsContainer}
         >
-          {/* <Grid container rowSpacing={10} columnSpacing={{ xs: 1, sm: 2, md: 3 }}> */}
           <Box
             sx={{
               display: 'grid',
@@ -37,8 +36,6 @@ export const CategoryBouquets = ({ category, instagramPosts }) => {
             {category.length ? (
               category[0]?.bouqets?.map(
                 ({ _id, title, description, images, price, slug }, index) => (
-                  // <Grid xs={12} sm={6} md={4} xl={3} key={_id}>
-                  // <Box xs={12} sm={6} md={4} xl={3} key={_id}>
                   <Box key={_id}>
                   <BouquetCard
                     id={_id}

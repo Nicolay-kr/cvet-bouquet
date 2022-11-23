@@ -152,12 +152,19 @@ export default function BurgerMenu() {
               <ListItem key={item.title} disablePadding>
                 <ListItemButton>
                   {item.hasMenu ? (
-                    <BurgerAccordion title={item.title} links={item.links} parentSlug={item.parentSlug} />
+                    <BurgerAccordion
+                      title={item.title}
+                      links={item.links}
+                      parentSlug={item.parentSlug}
+                      onClose={(e) => toggleDrawer(e, false)}
+                    />
                   ) : (
                     <Box
                       sx={{ color: 'white', my: '0', fontSize: '24px' }}
                       component='p'
-                      onClick={() => router.push(item.href)}
+                      onClick={(e) => {
+                        router.push(item.href), toggleDrawer(e, false);
+                      }}
                     >
                       {item.title}
                     </Box>
@@ -168,12 +175,11 @@ export default function BurgerMenu() {
           </List>
           <Box
             sx={{
-              width: '50%',
-              mx: 'auto',
+              width: '100%',
               mt: '40px',
               mb: '10px',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
+              display: 'flex',
+              justifyContent: 'center',
             }}
           >
             <IconButton onClick={() => router.push('/')}>
