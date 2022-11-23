@@ -32,33 +32,47 @@ export default function CaruselBlock({
     <Box
       sx={{
         width: '100%',
-        pl: isSpec ? '10%' : 0,
-        mt: { xs: '60px', lg: '100px' },
+        pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
+        mt: { xs: '60px',sm: '100px', lg: '100px' },
       }}
     >
       <TitleWithSubtitle title={title} subtitle={subtitle}></TitleWithSubtitle>
       <Box
-        sx={{ display: 'flex', justifyContent: 'space-between', mb: '40px' }}
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          mb: { xs: '0', lg: '40px' },
+        }}
       >
         <IconButton
           onClick={handleLeftArrowClick}
-          sx={{ marginLeft: isSpec ? 0 : '10vw' }}
+          sx={{ marginLeft: isSpec ? 0 : { xs: '5vw', lg: '10vw' } }}
         >
-          <Image src={leftArrow} alt='leftArrow icon'></Image>
+          <Box
+            component={Image}
+            sx={{ width: { xs: '32px', sm: '60px', lg: '95px' } }}
+            src={leftArrow}
+            alt='leftArrow icon'
+          ></Box>
         </IconButton>
         <IconButton
-          sx={{ marginRight: '10vw' }}
+          sx={{ marginRight: { xs: '5vw', lg: '10vw' } }}
           onClick={handleRightArrowClick}
         >
-          <Image src={rightArrow} alt='rightArrow icon'></Image>
+          <Box
+            component={Image}
+            sx={{ width: { xs: '32px', sm: '60px', lg: '95px' } }}
+            src={rightArrow}
+            alt='rightArrow icon'
+          ></Box>
         </IconButton>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
-        {isSpec ? (
+        {/* {isSpec ? (
           <Box sx={{ mr: '30px' }}>
             <ArcheMainConteiner src={introImg1} />
           </Box>
-        ) : null}
+        ) : null} */}
         <Carusel
           bouquets={bouquets}
           caruselRef={caruselRef}

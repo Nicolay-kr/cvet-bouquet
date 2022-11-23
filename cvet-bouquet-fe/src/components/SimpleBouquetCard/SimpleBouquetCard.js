@@ -101,10 +101,13 @@ export default function SimpleBouquetCard({
               sx={{
                 position: 'relative',
                 width: '100%',
-                height: '360px',
+                // height: '360px',
+                aspectRatio: '3/4',
               }}
             >
-              <Image
+              <Box
+                component={Image}
+                sx={{ objectFit: 'cover' }}
                 layout='fill'
                 fill={true}
                 sizes='(max-width: 768px) 100vw,
@@ -112,7 +115,7 @@ export default function SimpleBouquetCard({
               33vw'
                 src={urlFor(imagePath).width(500).url()}
                 alt='Bouquet image'
-              />
+              ></Box>
               {/* <NextSanityIMG image={imagePath}></NextSanityIMG> */}
             </Box>
 

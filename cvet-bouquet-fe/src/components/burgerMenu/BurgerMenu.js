@@ -94,16 +94,23 @@ export default function BurgerMenu() {
       <IconButton
         sx={{
           mt: 1.6,
-          transformOrigin: 'center',
-          transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)',
-          transition: '0.1s',
+          px: { xs: '4px', sm: '8px' },
+          width: {},
         }}
         component='span'
         role='presentation'
         onClick={(e) => toggleDrawer(e, true)}
         onKeyDown={(e) => toggleDrawer(e, true)}
       >
-        <Image src={burgerIcon} alt='belcard icon'></Image>
+        <Box
+          component={Image}
+          sx={{
+            width: { xs: '20px', sm: '24px'},
+            height: { xs: '20px', sm: '24px'},
+          }}
+          src={burgerIcon}
+          alt='belcard icon'
+        ></Box>
       </IconButton>
       <SwipeableDrawer
         anchor='left'
@@ -133,11 +140,12 @@ export default function BurgerMenu() {
             role='presentation'
             onClick={(e) => toggleDrawer(e, false)}
           >
-            <Image
-              style={{ width: '24px', height: '24px' }}
+            <Box
+              component={Image}
+              sx={{ width: '24px', height: '24px' }}
               src={whitecros}
               alt='cros icon'
-            ></Image>
+            ></Box>
           </IconButton>
 
           <List

@@ -28,7 +28,7 @@ export const Header = ({ category }) => {
   const lg = useMediaQuery('(max-width:1200px)');
   const xl = useMediaQuery('(max-width:1536px)');
   const bouckeList = useAppContext();
-  console.log('lg',lg)
+  console.log('lg', lg);
 
   const pages = [
     { title: 'Свободный платеж', slug: { current: '/freepay' } },
@@ -96,12 +96,19 @@ export const Header = ({ category }) => {
       <Box
         className={styles.headerContent}
         component='nav'
-        sx={{ gridTemplateColumns: { xs: '1fr 2fr 1fr', lg: '5fr 5fr 2fr;' } }}
+        sx={{
+          gridTemplateColumns: { xs: '1fr 3fr 1fr', lg: '5fr 5fr 2fr;' },
+          columnGap: { xs: '10px', lg: '20px' },
+        }}
       >
         {lg ? (
           <Box className={styles.iconsConteiner} sx={{ mr: 'auto', ml: '0px' }}>
             <BurgerMenu></BurgerMenu>
-            <IconButton component={Link} href='/'>
+            <IconButton
+              component={Link}
+              href='/'
+              sx={{ px: { xs: '4px', sm: '8px' } }}
+            >
               <Image src={searchIcon} alt='search icon'></Image>
             </IconButton>
           </Box>
@@ -121,12 +128,14 @@ export const Header = ({ category }) => {
         </Box>
         {lg ? null : navList}
 
-        <Box className={styles.iconsConteiner}>
+        <Box
+          className={styles.iconsConteiner}
+          sx={{ '& a': { px: { xs: '4px', sm: '8px' } } }}
+        >
           {lg ? null : (
-            // <IconButton component={Link} href='/'>
-            //   <Image src={searchIcon} alt='search icon'></Image>
-            // </IconButton>
-            <BurgerMenu></BurgerMenu>
+            <IconButton component={Link} href='/'>
+              <Image src={searchIcon} alt='search icon'></Image>
+            </IconButton>
           )}
           <IconButton component={Link} href='/favorites'>
             <Badge

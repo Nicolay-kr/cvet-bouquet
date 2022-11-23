@@ -29,7 +29,7 @@ export default function BouquetCard({
   price,
   slug,
   categorySlug = null,
-  categoryName=null,
+  categoryName = null,
 }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
@@ -61,7 +61,7 @@ export default function BouquetCard({
   return (
     <div className={styles.cardConteiner}>
       <IconButton
-        sx={{ zIndex: '2' }}
+        sx={{ zIndex: '2', p: { xs: '6px', sm: '10px' } }}
         onMouseOver={() => {
           setIsHovered(true);
         }}
@@ -70,14 +70,19 @@ export default function BouquetCard({
         href='#'
         onClick={addToFavoritList}
       >
-        <Image
+        <Box
+          component={Image}
+          sx={{
+            width: { xs: '16px', sm: '30px', lg: '24px' },
+            height: { xs: '16px', sm: '30px', lg: '24px' },
+          }}
           src={
             bouckeList.favoriteBouquets.find((item) => item.id === id)
               ? heartIconFill
               : heartIcon
           }
           alt='heart icon'
-        ></Image>
+        ></Box>
       </IconButton>
       <Zoom in={checked}>
         <Card
@@ -107,9 +112,7 @@ export default function BouquetCard({
             }}
             component={Link}
             noLinkStyle
-            href={`/${categorySlug ? categorySlug + '/' : ''}${
-              slug?.current
-            }`}
+            href={`/${categorySlug ? categorySlug + '/' : ''}${slug?.current}`}
           >
             <Box
               sx={{
@@ -122,15 +125,16 @@ export default function BouquetCard({
               {imagePath ? (
                 // <CssVarsProvider>
                 //   <AspectRatio ratio='3/4'>
-                <Image
+                <Box
+                  sx={{ objectFit: 'cover' }}
+                  component={Image}
                   layout='fill'
                   fill={true}
-                  sizes='(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw'
+                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw,
+                  33vw'
                   src={urlFor(imagePath).width(500).url()}
                   alt='Bouquet image'
-                />
+                ></Box>
               ) : // <NextSanityIMG image={imagePath}></NextSanityIMG>
               //</Box> </AspectRatio>
               // </CssVarsProvider>
@@ -140,7 +144,7 @@ export default function BouquetCard({
             <CardContent
               sx={{ display: 'flex', flexDirection: 'column', flexGrow: '1' }}
             >
-              <Typography gutterBottom variant='h5' component='p' >
+              <Typography gutterBottom variant='h5' component='p'>
                 {title}
               </Typography>
               <Box
@@ -153,11 +157,20 @@ export default function BouquetCard({
                   gutterBottom
                   variant='h5'
                   component='p'
-                  sx={{ fontWeight: 700, mt: 'auto',}}
+                  sx={{ fontWeight: 700, mt: 'auto' }}
                 >
                   {price} <sup style={{ fontSize: '12px' }}>BYN</sup>
                 </Typography>
-                <Typography gutterBottom variant='h5' component='p' sx={{fontSize:{xs:'10px',lg:'18px'},textAlign:'end',width:'50%' }}>
+                <Typography
+                  gutterBottom
+                  variant='h5'
+                  component='p'
+                  sx={{
+                    fontSize: { xs: '10px', lg: '18px' },
+                    textAlign: 'end',
+                    width: '50%',
+                  }}
+                >
                   бесплатная доставка
                 </Typography>
               </Box>
