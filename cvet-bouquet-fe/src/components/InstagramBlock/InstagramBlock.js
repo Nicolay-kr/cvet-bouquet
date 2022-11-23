@@ -27,7 +27,7 @@ export default function InstagramBlock({ instagramPosts }) {
             xl: '3.3vw',
           },
           m:'0',
-
+          color:'#000000',
           textAlign: 'end',
           mt: 'max(20px,1vw)',
         }}

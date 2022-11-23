@@ -43,7 +43,7 @@ export default function EposPage({ pageData }) {
               '& p': { fontWeight: '700' },
             }}
           >
-            <Typography variant='h5' component='p'>
+            <Typography variant='h5' component='p' >
               Ссылка для оплаты:
             </Typography>
             <Typography variant='h5' component='p'>

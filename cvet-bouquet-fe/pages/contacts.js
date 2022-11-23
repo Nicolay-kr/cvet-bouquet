@@ -62,7 +62,7 @@ export default function AboutUs({ instagramPosts, pageData }) {
             <Typography
               variant='h4'
               componet='p'
-              color='initial'
+              color='#000000'
               sx={{ fontWeight: '700', mb: '20px' }}
             >
               Позвоните нам
@@ -91,7 +91,7 @@ export default function AboutUs({ instagramPosts, pageData }) {
             <Typography
               variant='h4'
               componet='p'
-              color='initial'
+              color='#000000'
               sx={{ fontWeight: '700', mb: '20px' }}
             >
               Приходите к нам в гости
@@ -111,7 +111,7 @@ export default function AboutUs({ instagramPosts, pageData }) {
             <Typography
               variant='h4'
               componet='p'
-              color='initial'
+              color='#000000'
               sx={{ fontWeight: '700', mb: '20px' }}
             >
               Попишитесь на наш инстаграм
@@ -141,7 +141,7 @@ export default function AboutUs({ instagramPosts, pageData }) {
           <Typography
             variant='h4'
             componet='p'
-            color='initial'
+            color='#000000'
             sx={{ fontWeight: '700', mb: '20px' }}
           >
             Реквизиты

@@ -11,7 +11,7 @@ export default function TitleWithTextBlocks({ title, blocks }) {
       <Typography
         variant='h1'
         component='h1'
-        color='initial'
+        color='#000000'
         sx={{
           fontSize: { xs: '40px', lg: '65px', xxl: '3.4vw' },
           position: 'relative',

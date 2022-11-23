@@ -57,6 +57,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                   sx={{
                     fontSize: { xs: '36px', sm: '60px', xl: 'max(82px,4.3vw)' },
                     textAlign: { xs: 'end', md: 'start' },
+                    color:'#000000'
                   }}
                   variant='h2'
                   component='h1'
@@ -70,6 +71,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                       xs: '64px',
                       sm: '100px',
                       xl: 'max(140px,7.3vw)',
+                      color:'#000000'
                     },
                     textAlign: 'center',
                   }}
@@ -84,6 +86,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                       xs: '36px',
                       sm: '60px',
                       xl: 'max(82px,4.3vw)',
+                      color:'#000000',
                     },
                     textAlign: 'end',
                   }}
@@ -115,6 +118,8 @@ export default function Home({ instagramPosts, category, pageData }) {
                     width: '100%',
                     bgcolor: 'primary.main',
                     mt: { xs: '30px' },
+                    fontSize: { xs: '18px', md: '24px' },
+                    fontWeight: { xs: '600' },
                   }}
                   variant='contained'
                   // component={Link}
@@ -181,6 +186,8 @@ export default function Home({ instagramPosts, category, pageData }) {
                       width: '100%',
                       bgcolor: 'primary.main',
                       mt: { xs: '30px' },
+                      fontSize: { xs: '18px', md: '24px' },
+                      fontWeight: { xs: '600' },
                     }}
                     variant='contained'
                     onClick={() => router.push('/catalog')}

@@ -59,8 +59,8 @@ export default function IntroBlock({
       >
         <Box
           sx={{
-            // display: 'flex',
             order: reverse ? 2 : 1,
+            color:'#000000',
           }}
         >
           {textBlock}

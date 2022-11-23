@@ -12,7 +12,7 @@ export default function TitleWithSubtitle({ title, subtitle }) {
         margin: '0 auto',
       }}
     >
-      <Typography variant='h1' component='h2' sx={{ mr: 'auto' }}>
+      <Typography variant='h1' component='h2' sx={{ mr: 'auto',color:'#000000' }}>
         {title}
       </Typography>
 
@@ -24,6 +24,7 @@ export default function TitleWithSubtitle({ title, subtitle }) {
           mt: 'max(10px,0.5vw)',
           position: 'relative',
           right:{ xs:'-10%',sm:'-20%'},
+          color:'#000000'
         }}
       >
         {subtitle}

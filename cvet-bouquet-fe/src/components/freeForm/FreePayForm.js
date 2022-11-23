@@ -83,7 +83,7 @@ export default function FreePayForm({ isContactsForm = false }) {
           <Typography
             variant='h4'
             componet='p'
-            color='initial'
+            color='#000000'
             sx={{ fontWeight: '700', mb: 'max(36px,1.9vw)' }}
           >
             {isContactsForm
@@ -145,7 +145,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                   <Typography
                     variant='body1'
                     componet='p'
-                    color='initial'
+                    color='#000000'
                     sx={{
                       fontWeight: '700',
                       mb: 'max(36px,1.9vw',
