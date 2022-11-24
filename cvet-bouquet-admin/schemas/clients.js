@@ -59,7 +59,6 @@ export default {
       email: 'email',
     },
     prepare: ({ name, phone, email }) => {
-      // console.log(category)
       return {
         title: `${name} `,
         // subtitle: `Категория: ${category.title}`,

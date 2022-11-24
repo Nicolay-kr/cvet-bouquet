@@ -34,7 +34,6 @@ export default function SimpleBouquetCard({
     e.nativeEvent.stopImmediatePropagation();
     bouckeList.addOrRemoveToFavorite(bouquet);
   };
-  // console.log(bouquet)
 
   useEffect(() => {
     setChecked(true);

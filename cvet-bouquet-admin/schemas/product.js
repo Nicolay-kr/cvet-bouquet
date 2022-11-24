@@ -88,7 +88,6 @@ export default {
       category: 'categories'
     },
     prepare: ({ title, category }) => {
-      // console.log(category[0]._ref)
       return {
         title: `${title}`,
         // subtitle: `Категория: ${category[0]._ref}`,

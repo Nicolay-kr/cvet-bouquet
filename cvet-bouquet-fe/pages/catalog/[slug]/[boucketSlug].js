@@ -83,8 +83,6 @@ export const Bouquet = ({
   ];
   const router = useRouter();
 
-  console.log(images);
-
   const handleImageClick = (e, image) => {
     setActiveImg(image);
   };

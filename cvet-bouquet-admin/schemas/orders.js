@@ -75,7 +75,6 @@ export default {
       bouquet:'bouquet',
     },
     prepare: ({ name, phone, email, bouquet }) => {
-      // console.log(category)
       return {
         title: `${name}. ${bouquet} `,
         // subtitle: `Категория: ${category.title}`,

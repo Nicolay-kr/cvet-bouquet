@@ -15,8 +15,6 @@ import BlockContentBox from '../src/components/blockcontentBox/BlockContentBox';
 export default function Home({ instagramPosts, category, pageData }) {
   const router = useRouter();
   const lg = useMediaQuery('(min-width:1200px)');
-  // console.log(pageData[0].mainImage)
-  // console.log(category)
   const [mappedBouquets, setMappedBouquets] = useState(category);
   // const [pageData, setMpageData] = useState(category);
   // const bouquetsContext = useAppContext();

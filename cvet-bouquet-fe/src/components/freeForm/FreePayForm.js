@@ -55,7 +55,6 @@ export default function FreePayForm({ isContactsForm = false }) {
   const handleCommentChange = (e) => {
     setForm((state) => ({ ...state, comment: e.target.value }));
   };
-  // console.log(formState);
 
   return (
     <Box

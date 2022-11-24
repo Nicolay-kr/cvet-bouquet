@@ -139,7 +139,6 @@ export default {
       category: 'category'
     },
     prepare: ({ title, category, price, images }) => {
-      // console.log(category)
       return {
         title: `${title} `,
         // subtitle: `Категория: ${category.title}`,
