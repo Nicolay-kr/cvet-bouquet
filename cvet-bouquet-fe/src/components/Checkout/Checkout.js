@@ -77,7 +77,7 @@ export default function Checkout() {
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={localeMap.ru}>
       <Box
         sx={{
-          width: '60%',
+          width: {xs:'100%',lg:'60%'},
           my: 'max(80px,4.2vw)',
           display: 'grid',
           rowGap: 'max(50px,2.6vw)',
@@ -100,7 +100,7 @@ export default function Checkout() {
             <Box
               sx={{
                 display: 'grid',
-                gridTemplateColumns: '3fr 3fr',
+                gridTemplateColumns: {xs:'1fr',lg:'3fr 3fr'},
                 gridTemplateRows: 'auto',
                 columnGap: 'max(30px,1.5vw)',
                 rowGap: 'max(20px,1vw)',
@@ -124,7 +124,7 @@ export default function Checkout() {
             <Box
               sx={{
                 display: 'grid',
-                gridTemplateColumns: '3fr 3fr',
+                gridTemplateColumns: {xs:'1fr',lg:'3fr 3fr'},
                 gridTemplateRows: 'auto',
                 columnGap: 'max(30px,1.5vw)',
                 rowGap: 'max(20px,1vw)',
@@ -171,7 +171,7 @@ export default function Checkout() {
               />
               {/* <TextField type="date" inputFormat='DD/MM/YYYY' id='customer-date' value={dateValue}  /> */}
               <TextField id='customer-time' label='Выберите время' />
-              <TextField id='customer-street' label='Улица' />
+              <TextField  id='customer-street' label='Улица' />
               <Box
                 sx={{
                   display: 'grid',
@@ -211,7 +211,7 @@ export default function Checkout() {
                       gridTemplateRows: 'auto',
                     }}
                   >
-                    <TextField id='customer-flat' label='Квартира' />
+                    <TextField sx={{gridColumn: {xs:'1/3',lg:'1'}}} id='customer-flat' label='Квартира' />
                   </Box>
                 </>
               ) : null}
@@ -250,7 +250,7 @@ export default function Checkout() {
             columnGap: 'max(30px,3.1vw)',
           }}
         >
-          <Button sx={{ mt: 'max(10px,0.05vw)' }} variant='contained'>
+          <Button sx={{ mt: 'max(10px,0.05vw)', gridColumn: {xs:'1/3', lg:'1'}}} variant='contained'>
             Оформить заказ
           </Button>
         </Box>

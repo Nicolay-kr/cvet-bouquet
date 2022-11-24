@@ -7,7 +7,6 @@ import CaruselBlock from '../src/components/CaruselBlock/CaruselBlock';
 import { sanityClient } from '../sanity';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Link from '../node_modules/next/link';
 import { useRouter } from 'next/router';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import BlockContentBox from '../src/components/blockcontentBox/BlockContentBox';
@@ -16,6 +15,7 @@ export default function Home({ instagramPosts, category, pageData }) {
   const router = useRouter();
   const lg = useMediaQuery('(min-width:1200px)');
   const [mappedBouquets, setMappedBouquets] = useState(category);
+
   // const [pageData, setMpageData] = useState(category);
   // const bouquetsContext = useAppContext();
   // bouquetsContext.setbouquetsCategories(mappedBouquets);
@@ -23,9 +23,8 @@ export default function Home({ instagramPosts, category, pageData }) {
   // useEffect(() => {
   //   bouquetsContext.setbouquetsCategories(mappedBouquets);
   // }, []);
-  const popular = mappedBouquets[7];
 
-  // );
+  const popular = mappedBouquets[7];
 
   return (
     <>

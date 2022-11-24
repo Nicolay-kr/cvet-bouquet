@@ -1,5 +1,4 @@
 import React from 'react';
-import imageUrlBuilder from '@sanity/image-url';
 import { useState, useEffect } from 'react';
 import styles from '../../styles//BouquetPage.module.css';
 import Typography from '@mui/material/Typography';
@@ -80,6 +79,7 @@ export const Bouquet = ({
     { title: 'Корзина', href: '/cart' },
     { title: title, href: null },
   ];
+  
   const router = useRouter();
   
   const handleImageClick = (e, image) => {
