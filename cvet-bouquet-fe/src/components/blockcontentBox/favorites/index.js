@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from '../../styles/Catalog.module.css';
 // import BouquetCard from '../../../src/components/BouquetCard/BouquetCard';
-import BouquetCard from '../../src/components/BouquetCard/BouquetCard';
+import BouquetCard from '../../BouquetCard/BouquetCard';
 import Box from '@mui/material/Box';
-import { useAppContext } from '../../src/components/context/BouquetsContext';
+import { useAppContext } from '../../context/BouquetsContext';
 import Typography from '@mui/material/Typography';
-import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
+import BreadCrumbs from '../../breadcrubs/BreadCrumbs';
 
 export default function Favorites() {
   const [checked, setChecked] = React.useState(false);
@@ -19,7 +19,7 @@ export default function Favorites() {
   return (
     <>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
-      <Box sx={{ width: '100%', px: '10%', my: 3 }}>
+      <Box sx={{ width: '100%', px: {xs:'5%',lg:'10%'}, my: 3 }}>
         <Box
           sx={{ width: '100%', mx: 'auto', my: '60px' }}
           className={styles.cardsContainer}

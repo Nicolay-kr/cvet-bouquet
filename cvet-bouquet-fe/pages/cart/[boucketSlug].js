@@ -97,51 +97,76 @@ export const Bouquet = ({
   return (
     <>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
-      <div className={styles.conteiner}>
-        <div className={styles.content}>
-          <div className={styles.mainImage}>
-            {imageUrl && (
-              <Image
-                fill={true}
-                style={{ objectFit: 'cover' }}
-                src={imageUrl.toString()}
-                alt='main bouquet image'
-              ></Image>
-            )}
-          </div>
-          <div className={styles.secondaryImagesConteiner}>
-            <div className={styles.secondaryImage}>
-              {imageUrl && (
-                <Image
-                  fill={true}
-                  src={imageUrl.toString()}
-                  style={{ objectFit: 'cover' }}
-                  alt='bouquet image'
-                ></Image>
-              )}
-            </div>
-            <div className={styles.secondaryImage}>
-              {imageUrl && (
-                <Image
-                  fill={true}
-                  src={imageUrl.toString()}
-                  style={{ objectFit: 'cover' }}
-                  alt='bouquet image'
-                ></Image>
-              )}
-            </div>
-            <div className={styles.secondaryImage}>
+      {/* <Box> */}
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {xs:'1fr',lg:'7fr 5fr'},
+            padding: '0 10% 0 10%',
+            marginTop: 'max(30px,2.1vw)',
+            marginBottom: 'max(30px,2.1vw)',
+            columnGap: 'max(30px,1.5vw)',
+            rownGap: 'max(30px,1.5vw)',
+          }}
+        >
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: '5fr 2fr',
+              columnGap: 'max(30px,1.5vw)',
+            }}
+          >
+            <div className={styles.mainImage}>
               {imageUrl && (
                 <Image
                   fill={true}
                   style={{ objectFit: 'cover' }}
-                  src={imageUrl.toString()}
-                  alt='bouquet image'
+                  src={imageUrl.toString()} 
+                  alt='main bouquet image'
                 ></Image>
               )}
             </div>
-          </div>
-          <div className={styles.infoConteiner}>
+            <Box
+              // className={styles.secondaryImagesConteiner}
+              sx={{
+                display: 'grid',
+                rowGap: 'max(30px,1.5vw)',
+              }}
+            >
+              <div className={styles.secondaryImage}>
+                {imageUrl && (
+                  <Image
+                    fill={true}
+                    src={imageUrl.toString()}
+                    style={{ objectFit: 'cover' }}
+                    alt='bouquet image'
+                  ></Image>
+                )}
+              </div>
+              <div className={styles.secondaryImage}>
+                {imageUrl && (
+                  <Image
+                    fill={true}
+                    src={imageUrl.toString()}
+                    style={{ objectFit: 'cover' }}
+                    alt='bouquet image'
+                  ></Image>
+                )}
+              </div>
+              <div className={styles.secondaryImage}>
+                {imageUrl && (
+                  <Image
+                    fill={true}
+                    style={{ objectFit: 'cover' }}
+                    src={imageUrl.toString()}
+                    alt='bouquet image'
+                  ></Image>
+                )}
+              </div>
+            </Box>
+          </Box>
+
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography variant='h3' component='h1' color='initial'>
               {title}
             </Typography>
@@ -196,12 +221,12 @@ export const Bouquet = ({
               <AccordionCustom fieldList={serviceList}></AccordionCustom>
             </div>
             {/* <BlockContent blocks={description} /> */}
-          </div>
-        </div>
+          </Box>
+        </Box>
         <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
           <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
         </Box>
-      </div>
+      {/* </Box> */}
     </>
   );
 };
@@ -216,21 +241,17 @@ export const getServerSideProps = async (pageContext) => {
     };
   }
 
-
-
-  const query =`*[ _type == "bouquet" && slug.current == "${boucketSlug}" ]{
+  const query = `*[ _type == "bouquet" && slug.current == "${boucketSlug}" ]{
     _id,
     title,
     slug,
     images,
     price,
     description,
-  }`
-
+  }`;
 
   const result = await sanityClient.fetch(query);
   const bouquet = result[0];
-
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
   const data = await fetch(instagramUrl);

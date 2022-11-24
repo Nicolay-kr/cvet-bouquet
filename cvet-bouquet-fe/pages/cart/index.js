@@ -115,9 +115,17 @@ export default function Cart() {
         pb: 10,
       }}
     >
-      <Box className={styles.conteiner}>
+      <Box
+        className={styles.conteiner}
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: {sx:'1fr',md:'8fr 3fr'},
+          columnGap: 'max(30px,1.5vw)',
+          rawGap: 'max(30px,1.5vw)',
+        }}
+      >
         <Box>
-          <Box sx={{ '& div': { px: '0',pb:'0' } }}>
+          <Box sx={{ '& div': { px: '0', pb: '0' } }}>
             <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
           </Box>
           <TableContainer sx={{ width: '100%', mb: '24px' }} component='div'>

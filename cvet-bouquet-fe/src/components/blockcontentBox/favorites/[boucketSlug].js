@@ -5,17 +5,17 @@ import styles from '../../styles//BouquetPage.module.css';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
+import CounterButtons from '../../CounterButtons/CounterButtons';
 import butttonHeart from '../../public/assets/icons/buttonHeart.svg';
 import butttonHeartFill from '../../public/assets/icons/buttonHeartFill.svg';
 import Image from 'next/future/image';
-import AccordionCustom from '../../src/components/AccordionCustom/AccordionCustom';
-import AddToCartButton from '../../src/components/AddToCartButton/AddToCartButton';
-import { useAppContext } from '../../src/components/context/BouquetsContext';
-import InstagramBlock from '../../src/components/InstagramBlock/InstagramBlock';
-import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
+import AccordionCustom from '../../AccordionCustom/AccordionCustom';
+import AddToCartButton from '../../AddToCartButton/AddToCartButton';
+import { useAppContext } from '../../context/BouquetsContext';
+import InstagramBlock from '../../InstagramBlock/InstagramBlock';
+import BreadCrumbs from '../../breadcrubs/BreadCrumbs';
 import { useRouter } from 'next/router';
-import { sanityClient } from '../../sanity';
+import { sanityClient } from '../../../../sanity';
 
 export const Bouquet = ({
   id,

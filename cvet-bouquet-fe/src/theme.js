@@ -111,6 +111,9 @@ const theme = createTheme({
       '@media (-webkit-min-device-pixel-ratio: 1.25)':{
         fontSize: customFontsSize.h3.regular/1.25,
       },
+      '@media (mфч-width:600px)': {
+        fontSize: '18px',
+      },
     },
     h4: {
       fontSize: customFontsSize.h4.regular,

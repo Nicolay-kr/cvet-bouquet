@@ -1,8 +1,8 @@
-.conteiner{
+/* .conteiner{
   display:grid;
   grid-template-columns: 8fr 3fr;
   column-gap: max(30px,1.5vw);
-}
+} */
 .summConteiner{
   display: flex;
   flex-direction: column;
