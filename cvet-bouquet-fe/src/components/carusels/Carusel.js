@@ -33,7 +33,7 @@ const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug }) => {
             id={bouquet._id}
             title={bouquet.title.ru}
             price={bouquet.price}
-            categorySlug={categoryslug}
+            categorySlug={`catalog/${categoryslug}`}
             // description={description.ru}
             imagePath={bouquet.images[0]}
             slug={bouquet.slug}

@@ -15,58 +15,45 @@ import { useAppContext } from '../../src/components/context/BouquetsContext';
 import InstagramBlock from '../../src/components/InstagramBlock/InstagramBlock';
 import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 import { useRouter } from 'next/router';
-import { sanityClient } from '../../sanity';
+import { sanityClient, urlFor } from '../../sanity';
+import { TransitionGroup,CSSTransition } from 'react-transition-group';
 
 export const Bouquet = ({
   id,
   title,
   description,
-  image,
+  images,
   price,
   slug,
   instagramPosts,
-  categorySlug,
-}) => {
-  // console.log(categorySlug);
-  const [imageUrl, setImageUrl] = useState('');
+  category,
+  }) => {
   const [quantity, setQuantity] = useState(1);
   const bouckeList = useAppContext();
-  const imgBuilder = imageUrlBuilder({
-    projectId: '444cz5oj',
-    dataset: 'production',
-  });
-  const imagePath = imgBuilder.image(image).width(720).height(900);
+  const [activeImg, setActiveImg] = useState(images[0]);
   const bouquet = {
     id,
     title,
     description,
-    imagePath,
+    imagePath: images[0],
     price,
     quantity: quantity,
     slug,
   };
-
+  const [animation] = useState(true);
   const handlePlus = () => {
     setQuantity((state) => state + 1);
   };
   const handleMinus = () => {
     setQuantity((state) => (state > 1 ? state - 1 : 1));
   };
-
+  
   const addToFavoritList = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
     bouckeList.addOrRemoveToFavorite(bouquet);
   };
-
-  useEffect(() => {
-    const imgBuilder = imageUrlBuilder({
-      projectId: '444cz5oj',
-      dataset: 'production',
-    });
-
-    setImageUrl(imgBuilder.image(image));
-  }, [image]);
+  
   const serviceList = [
     {
       title: 'Описание',
@@ -87,193 +74,304 @@ export const Bouquet = ({
          прикрепить фирменную открытку с Вашим текстом и  т.д.)`,
     },
   ];
+  
   const breadCrumbsList = [
     { title: 'Главаная', href: '/' },
     { title: 'Корзина', href: '/cart' },
     { title: title, href: null },
   ];
   const router = useRouter();
-
+  
+  console.log(images);
+  
+  const handleImageClick = (e, image) => {
+    setActiveImg(image);
+  };
+  
   return (
     <>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
-      {/* <Box> */}
+  
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', lg: '7fr 5fr' },
+          px: { xs: '5%', lg: '10%' },
+          marginBottom: 'max(30px,2.1vw)',
+          columnGap: 'max(30px,1.5vw)',
+          rownGap: 'max(30px,1.5vw)',
+        }}
+      >
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: {xs:'1fr',lg:'7fr 5fr'},
-            padding: '0 10% 0 10%',
-            marginTop: 'max(30px,2.1vw)',
-            marginBottom: 'max(30px,2.1vw)',
+            gridTemplateColumns: '5fr 2fr',
             columnGap: 'max(30px,1.5vw)',
-            rownGap: 'max(30px,1.5vw)',
           }}
         >
           <Box
             sx={{
-              display: 'grid',
-              gridTemplateColumns: '5fr 2fr',
-              columnGap: 'max(30px,1.5vw)',
+              position: 'relative',
+              width: '100%',
+              objectFit: 'cover',
             }}
           >
-            <div className={styles.mainImage}>
-              {imageUrl && (
-                <Image
-                  fill={true}
-                  style={{ objectFit: 'cover' }}
-                  src={imageUrl.toString()} 
-                  alt='main bouquet image'
-                ></Image>
-              )}
-            </div>
-            <Box
-              // className={styles.secondaryImagesConteiner}
-              sx={{
-                display: 'grid',
-                rowGap: 'max(30px,1.5vw)',
-              }}
-            >
-              <div className={styles.secondaryImage}>
-                {imageUrl && (
-                  <Image
-                    fill={true}
-                    src={imageUrl.toString()}
-                    style={{ objectFit: 'cover' }}
-                    alt='bouquet image'
-                  ></Image>
-                )}
-              </div>
-              <div className={styles.secondaryImage}>
-                {imageUrl && (
-                  <Image
-                    fill={true}
-                    src={imageUrl.toString()}
-                    style={{ objectFit: 'cover' }}
-                    alt='bouquet image'
-                  ></Image>
-                )}
-              </div>
-              <div className={styles.secondaryImage}>
-                {imageUrl && (
+            {/* {activeImg && ( */}
+              <TransitionGroup>
+                <CSSTransition
+                  key={activeImg._key}
+                  in={activeImg}
+                  appear={true}
+                  timeout={1000}
+                  classNames='fade'
+                >
                   <Image
                     fill={true}
                     style={{ objectFit: 'cover' }}
-                    src={imageUrl.toString()}
-                    alt='bouquet image'
+                    src={urlFor(activeImg).width(500).url()}
+                    alt='main bouquet image'
                   ></Image>
-                )}
-              </div>
-            </Box>
+                </CSSTransition>
+              </TransitionGroup>
+            {/* )} */}
           </Box>
-
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography variant='h3' component='h1' color='initial'>
+          <Box
+            sx={{
+              display: 'grid',
+              rowGap: 'max(30px,1.5vw)',
+            }}
+          >
+            {images.map((image) => (
+              <Box
+                onClick={(e) => handleImageClick(e, image)}
+                sx={{
+                  position: 'relative',
+                  width: '100%',
+                  height: { xs: '24vw', lg: 'min(240px,12.5vw)' },
+                  objectFit: 'cover',
+                  cursor: 'pointer',
+                }}
+              >
+                {image && (
+                  <Image
+                    fill={true}
+                    src={urlFor(image).width(500).url()}
+                    style={{ objectFit: 'cover' }}
+                    alt='bouquet image'
+                  ></Image>
+                )}
+              </Box>
+            ))}
+          </Box>
+        </Box>
+  
+        <Box
+          sx={{
+            display: { xs: 'none', lg: 'flex' },
+            flexDirection: 'column',
+            mt: '20px',
+          }}
+        >
+          <Typography variant='h3' component='h1' color='initial'>
+            {title}
+          </Typography>
+          <Typography
+            sx={{ fontWeight: 700, mt: 7.5 }}
+            variant='h3'
+            component='p'
+            color='initial'
+          >
+            {price}
+            <sup>BYN</sup>
+          </Typography>
+          <Typography
+            sx={{ mt: 4, opacity: '0.5' }}
+            variant='body1'
+            component='p'
+            color='initial'
+          >
+            Бесплатная доставка в пределах МКАД
+          </Typography>
+          <div className={styles.buttonsConteiner}>
+            <CounterButtons
+              id={id}
+              value={quantity}
+              isFlexSize={true}
+              customHandlers={{ plus: handlePlus, minus: handleMinus }}
+            ></CounterButtons>
+            <div className={styles.buttons}>
+              <AddToCartButton
+                bouquet={bouquet}
+                variant='contained'
+              ></AddToCartButton>
+              <Button
+                sx={{ ml: 2.5 }}
+                variant='contained'
+                color='primary'
+                onClick={addToFavoritList}
+              >
+                <Image
+                  className={styles.iconImage}
+                  src={
+                    bouckeList.favoriteBouquets.find((item) => item.id === id)
+                      ? butttonHeartFill
+                      : butttonHeart
+                  }
+                  alt='heart icon'
+                />
+              </Button>
+            </div>
+          </div>
+          <div className={styles.description}>
+            <AccordionCustom fieldList={serviceList}></AccordionCustom>
+          </div>
+        </Box>
+  
+        <Box
+          sx={{
+            display: { xs: 'flex', lg: 'none' },
+            flexDirection: 'column',
+            mt: '20px',
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography
+              variant='h3'
+              component='h1'
+              sx={{ fontSize: '18px !important' }}
+            >
               {title}
             </Typography>
+  
             <Typography
-              sx={{ fontWeight: 700, mt: 7.5 }}
+              sx={{ fontWeight: 700, fontSize: '18px', ml: 'auto' }}
               variant='h3'
               component='p'
               color='initial'
             >
               {price}
-              <sup>BYN</sup>
+              <Box sx={{ fontSize: '10px' }} component='sup'>
+                BYN
+              </Box>
             </Typography>
-            <Typography
-              sx={{ mt: 4, opacity: '0.5' }}
-              variant='body1'
-              component='p'
-              color='initial'
-            >
-              Бесплатная доставка в пределах МКАД
-            </Typography>
-            <div className={styles.buttonsConteiner}>
+          </Box>
+  
+          <Box sx={{ display: 'flex', alignItems: 'center', mt: '20px' }}>
+            <Box sx={{ width: '100px', height: '40px' }}>
               <CounterButtons
                 id={id}
                 value={quantity}
                 isFlexSize={true}
                 customHandlers={{ plus: handlePlus, minus: handleMinus }}
               ></CounterButtons>
-              <div className={styles.buttons}>
-                <AddToCartButton
-                  bouquet={bouquet}
-                  variant='contained'
-                ></AddToCartButton>
-                <Button
-                  sx={{ ml: 2.5 }}
-                  variant='contained'
-                  color='primary'
-                  onClick={addToFavoritList}
-                >
-                  <Image
-                    className={styles.iconImage}
-                    src={
-                      bouckeList.favoriteBouquets.find((item) => item.id === id)
-                        ? butttonHeartFill
-                        : butttonHeart
-                    }
-                    alt='heart icon'
-                  />
-                </Button>
-              </div>
-            </div>
-            <div className={styles.description}>
-              <AccordionCustom fieldList={serviceList}></AccordionCustom>
-            </div>
-            {/* <BlockContent blocks={description} /> */}
+            </Box>
+  
+            <Typography
+              sx={{
+                ml: 'auto',
+                opacity: '0.5',
+                textAlign: 'end',
+                width: '50%',
+              }}
+              variant='body1'
+              component='p'
+              color='initial'
+            >
+              Бесплатная доставка в пределах МКАД
+            </Typography>
+          </Box>
+  
+          <Box sx={{ display: 'flex', mt: '20px', height: '48px' }}>
+            <AddToCartButton
+              autoHeight={true}
+              bouquet={bouquet}
+              variant='contained'
+            ></AddToCartButton>
+            <Button
+              sx={{ ml: 2.5 }}
+              variant='contained'
+              color='primary'
+              onClick={addToFavoritList}
+            >
+              <Image
+                className={styles.iconImage}
+                src={
+                  bouckeList.favoriteBouquets.find((item) => item.id === id)
+                    ? butttonHeartFill
+                    : butttonHeart
+                }
+                alt='heart icon'
+              />
+            </Button>
+          </Box>
+  
+          <Box sx={{ mt: '40px' }}>
+            <AccordionCustom fieldList={serviceList}></AccordionCustom>
           </Box>
         </Box>
-        <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
-          <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
-        </Box>
-      {/* </Box> */}
+      </Box>
+  
+      <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
+        <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
+      </Box>
     </>
   );
-};
+  };
+  
 
-export const getServerSideProps = async (pageContext) => {
-  const boucketSlug = pageContext.query.boucketSlug;
-  // const categorySlug = pageContext.query.slug;
-
-  if (!boucketSlug) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const query = `*[ _type == "bouquet" && slug.current == "${boucketSlug}" ]{
-    _id,
-    title,
-    slug,
-    images,
-    price,
-    description,
-  }`;
-
-  const result = await sanityClient.fetch(query);
-  const bouquet = result[0];
-
-  const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const data = await fetch(instagramUrl);
-  const instagramPosts = await data.json();
-
-  if (!bouquet) {
-    return {
-      notFound: true,
-    };
-  } else {
-    return {
-      props: {
-        description: bouquet.description.ru,
-        title: bouquet.title.ru,
-        image: bouquet.images[0],
-        price: bouquet.price,
-        slug: bouquet.slug,
-        id: bouquet._id,
-        instagramPosts: instagramPosts ? instagramPosts : [],
-      },
-    };
-  }
-};
+  export const getServerSideProps = async (pageContext) => {
+    const boucketSlug = pageContext.query.boucketSlug;
+    const categorySlug = pageContext.query.slug;
+  
+    if (!boucketSlug) {
+      return {
+        notFound: true,
+      };
+    }
+  
+    const query = `*[ _type == "bouquet" && slug.current == "${boucketSlug}" ]{
+      _id,
+      title,
+      slug,
+      images,
+      price,
+      description,
+    }`;
+  
+    const queryCategory = `*[ _type == "category" && slug.current == "${categorySlug}"]
+    {
+      _id,
+      slug,
+      title,
+    }`;
+  
+    const resultCategory = await sanityClient.fetch(queryCategory);
+    const result = await sanityClient.fetch(query);
+    const bouquet = result[0];
+  
+    const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
+    const data = await fetch(instagramUrl);
+    const instagramPosts = await data.json();
+  
+    if (!result) {
+      return {
+        notFound: true,
+      };
+    } else {
+      return {
+        props: {
+          description: bouquet.description.ru,
+          title: bouquet.title.ru,
+          images: bouquet.images,
+          price: bouquet.price,
+          slug: bouquet.slug,
+          id: bouquet._id,
+          instagramPosts: instagramPosts ? instagramPosts : [],
+          category: resultCategory,
+        },
+      };
+    }
+  };
+  
 
 export default Bouquet;
