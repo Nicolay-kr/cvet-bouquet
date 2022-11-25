@@ -101,6 +101,9 @@ export default function Cart() {
   const handleToCheckout = () => {
     setIsCheckout(true);
   };
+  const removeFromCart = (e,id) => {
+    bouquetsContext.removeFromCart(id);
+  };
 
   const breadCrumbsList = [
     { title: 'Главаная', href: '/' },
@@ -126,9 +129,6 @@ export default function Cart() {
           }}
         >
           <Box>
-            <Box sx={{ '& div': { px: '0', pb: '0' } }}>
-              <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
-            </Box>
             <TableContainer sx={{ width: '100%', mb: '24px' }} component='div'>
               <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                 <TableHead>
@@ -264,18 +264,9 @@ export default function Cart() {
             )}
           </Paper>
         </Box>
-        {/* {bouquets.map((bouquet) => (
-                  <CartRow
-                    key={bouquet.id}
-                    id={bouquet.id}
-                    title={bouquet.title}
-                    price={bouquet.price}
-                    image={bouquet.imagePath}
-                    quantity={bouquet.quantity}
-                    slug={bouquet.slug}
-                    categorySlug={bouquet.categorySlug}
-                  ></CartRow>
-                ))} */}
+
+      {/* mobile version */}
+
 
         <Box sx={{ display: { xs: 'block', md: 'none' } }}>
           <Typography sx={{ fontWeight: 700 }} variant='h4'>
@@ -288,6 +279,7 @@ export default function Cart() {
           >
             {bouquets.reduce((akk, item) => akk + item.quantity, 0)} товаров
           </Typography>
+
           {bouquets.map((bouquet) => (
             <>
               <Divider />
@@ -322,18 +314,16 @@ export default function Cart() {
                       />
                     </Box>
                     <Box className={styles.price} sx={{ mx: 'auto' }}>
-                      <Typography variant='h4' sx={{ fontWeight: '700' }}>
+                      <Typography variant='h4' sx={{ fontWeight: '700', color:'#000000' }}>
                         {bouquet.price * bouquet.quantity}
                       </Typography>
-                      <Box sx={{ fontWeight: '700' }} component='sup'>
+                      <Box sx={{ fontWeight: '700',color:'#000000' }} component='sup'>
                         BYN
                       </Box>
                     </Box>
                     <IconButton
                       component='div'
-                      // className={styles.cardHeart}
-                      href='#'
-                      onClick={bouquet.removeFromCart}
+                      onClick={(e)=>removeFromCart(e,bouquet.id)}
                       // sx={{mr:'20px'}}
                     >
                       <Image src={cros} alt='heart icon'></Image>
@@ -344,6 +334,7 @@ export default function Cart() {
               <Divider />
             </>
           ))}
+
           <Box
             sx={{
               py: '14px',
