@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from '../../styles/Catalog.module.css';
 // import BouquetCard from '../../../src/components/BouquetCard/BouquetCard';
-import BouquetCard from '../../BouquetCard/BouquetCard';
+import BouquetCard from '../../src/components/BouquetCard/BouquetCard';
 import Box from '@mui/material/Box';
-import { useAppContext } from '../../context/BouquetsContext';
+import { useAppContext } from '../../src/components/context/BouquetsContext';
 import Typography from '@mui/material/Typography';
-import BreadCrumbs from '../../breadcrubs/BreadCrumbs';
+import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 
 export default function Favorites() {
   const [checked, setChecked] = React.useState(false);
