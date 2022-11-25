@@ -170,14 +170,14 @@ export const Bouquet = ({
             mt: '20px',
           }}
         >
-          <Typography variant='h3' component='h1' color='initial'>
+          <Typography variant='h3' component='h1' color='#000000'>
             {title}
           </Typography>
           <Typography
             sx={{ fontWeight: 700, mt: 7.5 }}
             variant='h3'
             component='p'
-            color='initial'
+            color='#000000'
           >
             {price}
             <sup>BYN</sup>
@@ -186,7 +186,7 @@ export const Bouquet = ({
             sx={{ mt: 4, opacity: '0.5' }}
             variant='body1'
             component='p'
-            color='initial'
+            color='#000000'
           >
             Бесплатная доставка в пределах МКАД
           </Typography>
@@ -245,7 +245,7 @@ export const Bouquet = ({
               sx={{ fontWeight: 700, fontSize: '18px', ml: 'auto' }}
               variant='h3'
               component='p'
-              color='initial'
+              color='#000000'
             >
               {price}
               <Box sx={{ fontSize: '10px' }} component='sup'>
@@ -273,7 +273,7 @@ export const Bouquet = ({
               }}
               variant='body1'
               component='p'
-              color='initial'
+              color='#000000'
             >
               Бесплатная доставка в пределах МКАД
             </Typography>

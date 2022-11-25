@@ -94,7 +94,7 @@ export default function Checkout() {
 
         {checkoutOptions.selfReceive ? (
           <Box width='100%'>
-            <Typography variant='h3' color='initial'>
+            <Typography variant='h3' color='#000000'>
               Ваши данные
             </Typography>
             <Box
@@ -118,7 +118,7 @@ export default function Checkout() {
           </Box>
         ) : (
           <Box width='100%'>
-            <Typography variant='h3' color='initial'>
+            <Typography variant='h3' color='#000000'>
               Данные получателя
             </Typography>
             <Box
@@ -186,7 +186,7 @@ export default function Checkout() {
                     onChange={handleChangeIsPrivareHouse}
                     // inputProps={{ 'aria-label': 'controlled' }}
                   />
-                  <Typography variant='body1' color='initial'>
+                  <Typography variant='body1' color='#000000'>
                     Частный дом
                   </Typography>
                 </Box>

@@ -28,7 +28,7 @@ export default function CounterButtons({
   return (
     <ButtonGroup
       sx={{
-        border: '1px solid',
+        border: '1px solid #000000',
         opacity: '0.7',
         height: isFlexSize ? '100%' : 'max(40px,2.1vw)',
         width: '100%',
