@@ -15,7 +15,7 @@ import { useAppContext } from '../context/BouquetsContext';
 import InstagramBlock from '../InstagramBlock/InstagramBlock';
 import BreadCrumbs from '../breadcrubs/BreadCrumbs';
 import { useRouter } from 'next/router';
-import { sanityClient, urlFor } from '../../../sanity';
+import { urlFor } from '../../../sanity';
 import { TransitionGroup,CSSTransition } from 'react-transition-group';
 
 export const Bouquet = ({bouquet,breadCrumbsList,instagramPosts}) => {
@@ -25,6 +25,7 @@ export const Bouquet = ({bouquet,breadCrumbsList,instagramPosts}) => {
   bouquet = {
     ...bouquet,
     imagePath: bouquet.images[0],
+    quantity:bouquet.quantity?bouquet.quantity:1,
   };
 
   const [animation] = useState(true);
@@ -124,6 +125,7 @@ export const Bouquet = ({bouquet,breadCrumbsList,instagramPosts}) => {
           >
             {bouquet.images.map((image) => (
               <Box
+                key={image._key}
                 onClick={(e) => handleImageClick(e, image)}
                 sx={{
                   position: 'relative',

@@ -281,9 +281,10 @@ export default function Cart() {
           </Typography>
 
           {bouquets.map((bouquet) => (
-            <>
+            <Box key={bouquet.id}>
               <Divider />
               <Box
+                
                 sx={{
                   py: '14px',
                   display: 'grid',
@@ -332,7 +333,7 @@ export default function Cart() {
                 </Box>
               </Box>
               <Divider />
-            </>
+            </Box>
           ))}
 
           <Box
