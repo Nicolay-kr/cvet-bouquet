@@ -19,9 +19,9 @@ export default function Favorites() {
   return (
     <>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
-      <Box sx={{ width: '100%', px: {xs:'5%',lg:'10%'}, my: 3 }}>
+      <Box sx={{ width: '100%', px: {xs:'5%',lg:'10%',}}}>
         <Box
-          sx={{ width: '100%', mx: 'auto', my: '60px' }}
+          sx={{ width: '100%', mx: 'auto', mb: {xs:'40px',lg:'60px'} }}
           className={styles.cardsContainer}
         >
           <Box
