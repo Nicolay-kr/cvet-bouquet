@@ -2,11 +2,12 @@ import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import navArrow from '../../../public/assets/icons/navArrow.svg';
-import { IconButton } from '../../../node_modules/@mui/material/index';
+import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import logoFlower from '../../../public/assets/images/logo_flower.svg';
 import Box from '@mui/material/Box';
+import WordWithArrow from '../WordWithArrow';
 
 export default function DropList({ list, prevSlug, title }) {
   const [anchorEl, setAnchorEl] = React.useState();
@@ -25,27 +26,12 @@ export default function DropList({ list, prevSlug, title }) {
 
   return (
     <>
-      <Box sx={{display:'flex', alignItems: 'center'}}  onClick={handleClick}>
-      <Box sx={{m:'0'}} component='p'>{title}</Box>
-      <IconButton
-        sx={{
-          mt: 1.6,
-          transformOrigin: 'center',
-          transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-          transition: '0.1s',
-        }}
-        component='span'
-        id='basic-button'
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup='true'
-        aria-expanded={open ? 'true' : undefined}
-       
-      >
-        <Image src={navArrow} alt='belcard icon'></Image>
-      </IconButton>
-
-      </Box>
-      
+      <WordWithArrow
+        title={title}
+        withClick={handleClick}
+        useOutsideState={true}
+        state={open}
+      ></WordWithArrow>
       <Menu
         sx={{ '&>div+div': { bgcolor: '#FFFBF6' } }}
         id='basic-menu'
@@ -67,7 +53,12 @@ export default function DropList({ list, prevSlug, title }) {
               <MenuItem
                 key={`${item.slug.current}-list`}
                 sx={{ bgcolor: '#FFFBF6', position: 'relative' }}
-                onClick={(e) => handleClickListItem(e, `${prevSlug? prevSlug:''}/${item.slug.current}`)}
+                onClick={(e) =>
+                  handleClickListItem(
+                    e,
+                    `${prevSlug ? prevSlug : ''}/${item.slug.current}`
+                  )
+                }
               >
                 <span style={{ zIndex: '3' }}>{item.title}</span>
                 <Image
@@ -87,7 +78,12 @@ export default function DropList({ list, prevSlug, title }) {
               <MenuItem
                 key={`${item.slug.current}-list`}
                 sx={{ bgcolor: '#FFFBF6' }}
-                onClick={(e) => handleClickListItem(e, `${prevSlug? prevSlug:''}/${item.slug.current}`)}
+                onClick={(e) =>
+                  handleClickListItem(
+                    e,
+                    `${prevSlug ? prevSlug : ''}/${item.slug.current}`
+                  )
+                }
               >
                 {item.title}
               </MenuItem>

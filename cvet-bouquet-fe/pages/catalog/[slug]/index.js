@@ -1,10 +1,7 @@
 import React from 'react';
-import styles from '../../../styles/BouquetPage.module.css';
-import Box from '@mui/material/Box';
-import InstagramBlock from '../../../src/components/InstagramBlock/InstagramBlock';
 import { sanityClient } from '../../../sanity';
-import BouquetCard from '../../../src/components/BouquetCard/BouquetCard';
-import BreadCrumbs from '../../../src/components/breadcrubs/BreadCrumbs';
+import BouquetListPage from '../../../src/components/BouquetListPage';
+// import { useState } from 'react';
 
 export const CategoryBouquets = ({ category, instagramPosts }) => {
   const breadCrumbsList = [
@@ -12,52 +9,14 @@ export const CategoryBouquets = ({ category, instagramPosts }) => {
     { title: 'Каталог', href: '/catalog' },
     { title: category[0].title, href: null },
   ];
+  console.log(category)
+
   return (
-    <>
-      <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
-      <Box sx={{ width: '100%', px: {xs:'5%',lg:'10%'}, my: 3 }}>
-        <Box
-          sx={{ width: '100%', mx: 'auto' }}
-          className={styles.cardsContainer}
-        >
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: {
-                xs: '1fr 1fr',
-                sm: '1fr 1fr',
-                lg: '1fr 1fr 1fr',
-                xl: '1fr 1fr 1fr 1fr',
-              },
-              columnGap: {xs:'4px',lg:'max(30px, 1.5vw)'},
-              rowGap: 'max(30px, 1.5vw)',
-            }}
-          >
-            {category.length ? (
-              category[0]?.bouqets?.map(
-                ({ _id, title, description, images, price, slug }, index) => (
-                  <Box key={_id}>
-                  <BouquetCard
-                    id={_id}
-                    title={title.ru}
-                    imagePath={images[0]}
-                    slug={slug}
-                    categorySlug={`catalog/${category[0].slug.current}`}
-                    price={price}
-                  ></BouquetCard>
-                  </Box>
-                )
-              )
-            ) : (
-              <>No Bouqets Yet</>
-            )}
-          </Box>
-        </Box>
-        <Box sx={{ my: 'max(100px,5vw)' }}>
-          <InstagramBlock instagramPosts={instagramPosts} />
-        </Box>
-      </Box>
-    </>
+    <BouquetListPage
+      breadCrumbsList={breadCrumbsList}
+      instagramPosts={instagramPosts}
+      category={category}
+    ></BouquetListPage>
   );
 };
 
@@ -69,6 +28,7 @@ export const getServerSideProps = async (pageContext) => {
     slug,
     title,
     mainImage,
+    data,
     bouqets[]->{
       _id,
       title,
