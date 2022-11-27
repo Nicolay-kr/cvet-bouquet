@@ -21,8 +21,9 @@ import Badge from '@mui/material/Badge';
 import DropList from '../DropList/DropList';
 import { useAppContext } from '../context/BouquetsContext';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
+import SearchModal from '../SearchModal';
 
-export const Header = ({ category }) => {
+export const Header = ({ category,bouquets }) => {
   const router = useRouter();
   const sm = useMediaQuery('(max-width:600px)');
   const lg = useMediaQuery('(max-width:1200px)');
@@ -34,6 +35,8 @@ export const Header = ({ category }) => {
     { title: 'E-pos оплата', slug: { current: '/e-pos' } },
     { title: 'Доставка и самовывоз', slug: { current: '/delivery' } },
   ];
+
+  // console.log('bouquets',bouquets)
 
   const bouquetsCategory = [
     {
@@ -103,13 +106,7 @@ export const Header = ({ category }) => {
         {lg ? (
           <Box className={styles.iconsConteiner} sx={{ mr: 'auto', ml: '0px' }}>
             <BurgerMenu></BurgerMenu>
-            <IconButton
-              component={Link}
-              href='/'
-              sx={{ px: { xs: '4px', sm: '8px' } }}
-            >
-              <Image src={searchIcon} alt='search icon'></Image>
-            </IconButton>
+            <SearchModal bouquets={bouquets}></SearchModal>
           </Box>
         ) : null}
 
@@ -132,9 +129,7 @@ export const Header = ({ category }) => {
           sx={{ '& a': { px: { xs: '4px', sm: '8px' } } }}
         >
           {lg ? null : (
-            <IconButton component={Link} href='/'>
-              <Image src={searchIcon} alt='search icon'></Image>
-            </IconButton>
+            <SearchModal bouquets={bouquets} ></SearchModal>
           )}
           <IconButton component={Link} href='/favorites'>
             <Badge

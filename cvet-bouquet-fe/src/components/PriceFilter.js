@@ -30,7 +30,7 @@ export default function PriceFilter({ value, changeFunc }) {
           label={
             <Box sx={{ display: 'flex' }}>
               <Typography
-                sx={{ fontSize: { xs: '14px', lg: '24px' }, ml: 'auto' }}
+                sx={{ fontSize: { xs: '14px', lg: '20px' }, ml: 'auto' }}
                 variant='h4'
                 component='p'
                 color='#000000'
@@ -41,7 +41,7 @@ export default function PriceFilter({ value, changeFunc }) {
                 </Box>
               </Typography>
               <Typography
-                sx={{ fontSize: { xs: '14px', lg: '24px' }, ml: 'auto' }}
+                sx={{ fontSize: { xs: '14px', lg: '20px' }, ml: 'auto' }}
                 variant='h4'
                 component='p'
                 color='#000000'
@@ -61,7 +61,7 @@ export default function PriceFilter({ value, changeFunc }) {
           label={
             <Box sx={{ display: 'flex' }}>
               <Typography
-                sx={{ fontSize: { xs: '14px', lg: '24px' }, ml: 'auto' }}
+                sx={{ fontSize: { xs: '14px', lg: '20px' }, ml: 'auto' }}
                 component='p'
                 color='#000000'
               >
@@ -71,7 +71,7 @@ export default function PriceFilter({ value, changeFunc }) {
                 </Box>
               </Typography>
               <Typography
-                sx={{ fontSize: { xs: '14px', lg: '24px' }, ml: 'auto' }}
+                sx={{ fontSize: { xs: '14px', lg: '20px' }, ml: 'auto' }}
                 component='p'
                 color='#000000'
               >
@@ -89,7 +89,7 @@ export default function PriceFilter({ value, changeFunc }) {
           control={<Radio />}
           label={
             <Typography
-              sx={{ fontSize: { xs: '14px', lg: '24px' } }}
+              sx={{ fontSize: { xs: '14px', lg: '20px' } }}
               component='p'
             >
               Премиум
@@ -101,7 +101,7 @@ export default function PriceFilter({ value, changeFunc }) {
           control={<Radio />}
           label={
             <Typography
-              sx={{ fontSize: { xs: '14px', lg: '24px' } }}
+              sx={{ fontSize: { xs: '14px', lg: '20px' } }}
               component='p'
             >
               Все

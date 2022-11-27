@@ -3,15 +3,10 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import ArcheMainConteiner from '../ArcheImageConteiners/ArcheMainConteiner';
-import { urlFor } from '../../../sanity';
-import { NextSanityIMG } from '../CustopNextComponents/NextSanityIMG';
-import ArcheSecondConteiner from '../ArcheImageConteiners/ArcheSecondConteiner';
-import bigFlower from '../../../public/assets/images/bigFlower.svg';
-import Image from 'next/future/image';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Paper from '@mui/material/Paper';
-import { Link, TextField } from '../../../node_modules/@mui/material/index';
+import { Link } from '../../../node_modules/@mui/material/index';
+import TextField from '@mui/material/TextField';
 
 export default function FreePayForm({ isContactsForm = false }) {
   const lg = useMediaQuery('(min-width:1200px)');
