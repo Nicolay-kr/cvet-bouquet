@@ -1,14 +1,27 @@
 import React from 'react';
-// import styles from '../../../styles/BouquetPage.module.css';
 import Box from '@mui/material/Box';
 import InstagramBlock from './InstagramBlock/InstagramBlock';
 import BouquetCard from './BouquetCard/BouquetCard';
 import BreadCrumbs from './breadcrubs/BreadCrumbs';
 import BouquetSort from './BouquetSort/BouquetSort';
+import PriceFilter from './PriceFilter';
 
 const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
   const defaultBouquetsList = category.length && category[0]?.bouqets
   const [bouquetsList, setBouquetsList] = React.useState(defaultBouquetsList);
+  const [value, setValue] = React.useState('Все');
+
+  const handleChangePrice = (value) => {
+    setValue(value);
+    const arrValue = value.split(',');
+    if(value==='Все'){
+      setBouquetsList([...defaultBouquetsList])
+    }else{
+      const sortedBouquetsList = defaultBouquetsList.filter((bouquet)=>(arrValue[0]<=+bouquet.price && +bouquet.price <=+ arrValue[1]))
+      setBouquetsList([...sortedBouquetsList])
+    }
+
+  };
 
   const [sorting, setSorting] = React.useState({
     price: { type: 'none', func: handlePriceSort },
@@ -57,12 +70,13 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
     setActiveSorting('popularity')
   }
 
-  console.log(bouquetsList);
+  console.log(value);
 
   return (
     <>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <BouquetSort activeSorting={activeSorting} sorting={{ price: handlePriceSort,novelty:handleNoveltySort,popularity:handlePopularitySort }} />
+      <PriceFilter value={value} changeFunc={handleChangePrice}></PriceFilter>
       <Box sx={{ width: '100%', px: { xs: '5%', lg: '10%' }, my: 3 }}>
         <Box
           sx={{ width: '100%', mx: 'auto' }}
