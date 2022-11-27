@@ -199,7 +199,7 @@ export default function BurgerMenu() {
               <Image src={whatsapp} alt='whatsapp icon'></Image>
             </IconButton>
           </Box>
-          <Box sx={{ mt: 'auto', mr: 'auto' }}>
+          <Box sx={{ mt: '40px', mr: 'auto' }}>
             <Typography variant='body1' color='white'>
               пр.Победителей, 27 (Славянский квартал)
             </Typography>

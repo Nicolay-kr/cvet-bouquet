@@ -142,33 +142,42 @@ export default function BouquetCard({
             </Box>
 
             <CardContent
-              sx={{ display: 'flex', flexDirection: 'column', flexGrow: '1' }}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                flexGrow: '1',
+                px: '0px',
+              }}
             >
               <Typography gutterBottom variant='h5' component='p'>
                 {title}
               </Typography>
               <Box
-                mt='auto'
-                width='100%'
-                display='inline-flex'
-                justifyContent='space-between'
+                sx={{
+                  mt: 'auto',
+                  width: '100%',
+                  display: 'inline-flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
               >
                 <Typography
                   gutterBottom
-                  variant='h5'
+                  variant='h3'
                   component='p'
-                  sx={{ fontWeight: 700, mt: 'auto' }}
+                  sx={{ fontWeight: 700, display: 'flex',mb:'0' }}
                 >
-                  {price} <sup style={{ fontSize: '12px' }}>BYN</sup>
+                  {price}{' '}
+                  <sup style={{ fontSize: '10px', paddingTop: '4px' }}>BYN</sup>
                 </Typography>
                 <Typography
                   gutterBottom
                   variant='h5'
                   component='p'
                   sx={{
-                    fontSize: { xs: '10px', lg: '18px' },
+                    fontSize: { xs: '10px', lg: '16px' },
                     textAlign: 'end',
-                    width: '50%',
+                    width: '40%',
                   }}
                 >
                   бесплатная доставка
