@@ -25,7 +25,7 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
   bouquet = {
     ...bouquet,
     imagePath: bouquet.images[0],
-    quantity: bouquet.quantity ? bouquet.quantity : 1,
+    quantity: quantity,
   };
 
   const [animation] = useState(true);
