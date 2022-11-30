@@ -27,7 +27,7 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         <BouquetsProvider>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. For MUI*/}
-          {/* <CssBaseline /> */}
+          <CssBaseline />
           <Layout category = {pageProps.category} bouquets={pageProps.bouquets}>
             <Component {...pageProps} />
           </Layout>
