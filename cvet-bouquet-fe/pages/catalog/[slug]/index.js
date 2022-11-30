@@ -9,7 +9,6 @@ export const CategoryBouquets = ({ category, instagramPosts }) => {
     { title: 'Каталог', href: '/catalog' },
     { title: category[0].title, href: null },
   ];
-  console.log(category)
 
   return (
     <BouquetListPage

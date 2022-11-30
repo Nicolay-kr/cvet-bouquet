@@ -53,7 +53,7 @@ export default function SearchModal({ bouquets }) {
     setSearchValue(e.target.value);
     setSortedList([...sotedList]);
   };
-  console.log(sortedList);
+  // console.log(sortedList);
 
   return (
     <div>

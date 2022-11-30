@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import InstagramBlock from './InstagramBlock/InstagramBlock';
 import BouquetCard from './BouquetCard/BouquetCard';
@@ -28,6 +28,10 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
     novelty: { type: 'none', func: handleNoveltySort },
     popularity: { type: 'none', func: handlePopularitySort },
   });
+
+    useEffect(() => {
+      setBouquetsList([...defaultBouquetsList])
+  }, [defaultBouquetsList]);
 
   const [activeSorting, setActiveSorting] = React.useState('popularity');
 
@@ -70,7 +74,7 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
     setActiveSorting('popularity')
   }
 
-  console.log(value);
+  // console.log(value);
 
   return (
     <>
