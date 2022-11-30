@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/server": "^11.10.0",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.5",
     "@mui/x-date-pickers": "^5.0.6",
