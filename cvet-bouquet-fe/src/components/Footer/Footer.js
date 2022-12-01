@@ -21,9 +21,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function Footer({data}) {
   const router = useRouter();
-  const sm = useMediaQuery('(max-width:600px)');
   const lg = useMediaQuery('(max-width:1200px)');
-  const xl = useMediaQuery('(max-width:1536px)');
   return (
     <>
       <Box

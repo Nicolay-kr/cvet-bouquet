@@ -1,11 +1,8 @@
 import React from 'react';
-import style from '../styles/pages/AboutUs.module.css';
-import { useState, useEffect } from 'react';
 import IntroBlock from '../src/components/IntroBlock/IntroBlock';
 import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
-import Typography from '@mui/material/Typography';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
 import DoubleBlock from '../src/components/doubleBlock/DoubleBlock';
 import useMediaQuery from '@mui/material/useMediaQuery';

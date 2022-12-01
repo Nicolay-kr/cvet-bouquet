@@ -12,10 +12,7 @@ import Box from '@mui/material/Box';
 SwiperCore.use([Mousewheel, FreeMode]);
 
 const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug }) => {
-  // let gap = Math.round((20 / +window?.screen?.width) * 5000);
   const sm = useMediaQuery('(max-width:600px)');
-  const lg = useMediaQuery('(max-width:1200px)');
-  const xl = useMediaQuery('(max-width:1536px)');
 
   const listItem = bouquets?.map((bouquet) => {
     return (

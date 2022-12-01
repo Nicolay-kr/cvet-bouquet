@@ -13,11 +13,8 @@ import instaIcon from '../../../public/assets/icons/insta.svg';
 import bagIcon from '../../../public/assets/icons/bag.svg';
 import burgerIcon from '../../../public/assets/icons/burger.svg';
 import IconButton from '@mui/material/IconButton';
-// import useMediaQuery from '@mui/material/useMediaQuery';
 import Badge from '@mui/material/Badge';
 
-// import MenuItem from '@mui/material/MenuItem';
-// import Select from '@mui/material/Select';
 import DropList from '../DropList/DropList';
 import { useAppContext } from '../context/BouquetsContext';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
@@ -25,9 +22,6 @@ import SearchModal from '../SearchModal';
 
 export const Header = ({ category, bouquets }) => {
   const router = useRouter();
-  // const sm = useMediaQuery('(max-width:600px)');
-  // const lg = useMediaQuery('(max-width:1200px)');
-  // const xl = useMediaQuery('(max-width:1536px)');
   const bouckeList = useAppContext();
 
   const pages = [
