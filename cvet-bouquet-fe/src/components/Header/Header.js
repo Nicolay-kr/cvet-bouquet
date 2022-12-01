@@ -13,7 +13,7 @@ import instaIcon from '../../../public/assets/icons/insta.svg';
 import bagIcon from '../../../public/assets/icons/bag.svg';
 import burgerIcon from '../../../public/assets/icons/burger.svg';
 import IconButton from '@mui/material/IconButton';
-import useMediaQuery from '@mui/material/useMediaQuery';
+// import useMediaQuery from '@mui/material/useMediaQuery';
 import Badge from '@mui/material/Badge';
 
 // import MenuItem from '@mui/material/MenuItem';
@@ -23,11 +23,11 @@ import { useAppContext } from '../context/BouquetsContext';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
 import SearchModal from '../SearchModal';
 
-export const Header = ({ category,bouquets }) => {
+export const Header = ({ category, bouquets }) => {
   const router = useRouter();
-  const sm = useMediaQuery('(max-width:600px)');
-  const lg = useMediaQuery('(max-width:1200px)');
-  const xl = useMediaQuery('(max-width:1536px)');
+  // const sm = useMediaQuery('(max-width:600px)');
+  // const lg = useMediaQuery('(max-width:1200px)');
+  // const xl = useMediaQuery('(max-width:1536px)');
   const bouckeList = useAppContext();
 
   const pages = [
@@ -103,12 +103,20 @@ export const Header = ({ category,bouquets }) => {
           columnGap: { xs: '10px', lg: '20px' },
         }}
       >
-        {lg ? (
+        {/* {lg ? (
           <Box className={styles.iconsConteiner} sx={{ mr: 'auto', ml: '0px' }}>
             <BurgerMenu></BurgerMenu>
             <SearchModal bouquets={bouquets}></SearchModal>
           </Box>
-        ) : null}
+        ) : null} */}
+
+        <Box
+          className={styles.iconsConteiner}
+          sx={{ display: { xs: 'flex', lg: 'none' }, mr: 'auto', ml: '0px' }}
+        >
+          <BurgerMenu></BurgerMenu>
+          <SearchModal bouquets={bouquets}></SearchModal>
+        </Box>
 
         <Box
           className={styles.logoConteiner}
@@ -122,15 +130,16 @@ export const Header = ({ category,bouquets }) => {
         >
           <Image src={logo} alt='logo '></Image>
         </Box>
-        {lg ? null : navList}
+        <Box sx={{ display: { xs: 'none', lg: 'block' } }}>{navList}</Box>
 
         <Box
           className={styles.iconsConteiner}
           sx={{ '& a': { px: { xs: '4px', sm: '8px' } } }}
         >
-          {lg ? null : (
-            <SearchModal bouquets={bouquets} ></SearchModal>
-          )}
+          {/* {lg ? null : <SearchModal bouquets={bouquets}></SearchModal>} */}
+          <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
+            <SearchModal bouquets={bouquets}></SearchModal>
+          </Box>
           <IconButton component={Link} href='/favorites'>
             <Badge
               color='primary'

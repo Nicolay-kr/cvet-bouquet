@@ -19,8 +19,8 @@ export default function AboutUs({ instagramPosts, pageData }) {
       <IntroBlock
         mainImage={pageData[0].mainImage}
         secondImage={pageData[0].secondImage}
-        isScondFlower={true}
-        isScondFlowerMobile={true}
+        isSecondFlower={true}
+        isSecondFlowerMobile={true}
         textBlock={
           <Box
             sx={{
