@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './CaruselBlock.module.css';
 
 import Box from '@mui/material/Box';
@@ -10,33 +10,63 @@ import IconButton from '@mui/material/IconButton';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import Carusel from '../carusels/Carusel';
 import ArcheMainConteiner from '../ArcheImageConteiners/ArcheMainConteiner';
-import introImg1 from '../../../public/assets/images/intro_img1.png';
+import Typography from '@mui/material/Typography';
 import { urlFor } from '../../../sanity';
+import { Swiper } from 'swiper/react';
+import { SwiperSlide } from 'swiper/react';
+import { EffectFade, Controller } from 'swiper';
+import Link from '../CustopNextComponents/Link';
 
-export default function CaruselBlock({
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/controller';
+
+export default function CaruselBlockWithArch({
   bouquets,
   isSpec = false,
   title,
   subtitle,
   categoryslug = null,
 }) {
-  const caruselRef = useRef(null);
+  const [controlledSwiper, setControlledSwiper] = useState(null);
+  const caruselWithArchRef = useRef(null);
 
   const handleRightArrowClick = () => {
-    caruselRef.current.swiper.slideNext();
+    caruselWithArchRef.current.swiper.slideNext();
   };
   const handleLeftArrowClick = () => {
-    caruselRef.current.swiper.slidePrev();
+    caruselWithArchRef.current.swiper.slidePrev();
   };
-  const currentImg = bouquets[0].main
-  // console.log(bouquets)
+
+  const listItems = bouquets.map((item, index) => (
+    <SwiperSlide key={index}>
+      <Box component={Link} href={`/catalog/${item.slug?.current}`}>
+      <ArcheMainConteiner isSwiper={true} src={urlFor(item.mainImage).width(500).url()} />
+      <Typography
+        sx={{
+          display:'block',
+          backgroundColor:'fon.main',
+          textAlign: 'center',
+          position: 'absolute',
+          width: '100%',
+          mt:'16px',
+        }}
+        variant='h5'
+        component='p'
+      >
+        {item.title}
+      </Typography>
+      </Box>
+    </SwiperSlide>
+  ));
 
   return (
     <Box
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
-        mt: { xs: '60px',sm: '100px', lg: '100px' },
+        mt: { xs: '60px', sm: '100px', lg: '100px' },
       }}
     >
       <TitleWithSubtitle title={title} subtitle={subtitle}></TitleWithSubtitle>
@@ -71,18 +101,27 @@ export default function CaruselBlock({
         </IconButton>
       </Box>
 
-
       <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
-        {isSpec && currentImg? (
-          <Box sx={{ mr: '30px' }}>
-            <ArcheMainConteiner src={urlFor(currentImg).width(500).url()} />
-          </Box>
-        ) : null}
-
-
+        <Box sx={{ width: { xs: '45vw', lg: '25.5vw' }, mr: {xs:'10px',lg:'20px'} }}>
+          <Swiper
+            modules={[EffectFade, Controller]}
+            effect={'fade'}
+            slidesPerView={1}
+            loopedSlides={5}
+            grabCursor={true}
+            loop={true}
+            spaceBetween={10}
+            onSwiper={setControlledSwiper}
+            enabled={false}
+            
+          >
+            {listItems}
+          </Swiper>
+        </Box>
         <Carusel
-          bouquets={[...bouquets]}
-          caruselRef={caruselRef}
+          controlledSwiper={controlledSwiper}
+          bouquets={bouquets}
+          caruselRef={caruselWithArchRef}
           isSpec={isSpec}
           categoryslug={categoryslug}
         />

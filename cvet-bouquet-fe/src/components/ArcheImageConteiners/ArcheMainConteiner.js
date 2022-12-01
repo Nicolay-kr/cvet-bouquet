@@ -2,12 +2,12 @@ import * as React from 'react';
 
 import Box from '@mui/material/Box';
 
-export default function ArcheMainConteiner({ src }) {
+export default function ArcheMainConteiner({ src,isSwiper=false }) {
   return (
     <Box
       sx={{
         position: 'relative',
-        width: {xs:'55vw',lg:'25.5vw'},
+        width: {xs:isSwiper?'45vw':'55vw',lg:'25.5vw'},
         height:{xs:'70vw',lg:'37vw'},
         zIndex: '2',
         borderRadius:'400px 400px 0 0',
@@ -20,16 +20,6 @@ export default function ArcheMainConteiner({ src }) {
         flexShrink: 0,
       }}
     >
-      {/* <Image
-        style={{
-          width: '100%',
-          objectFit: 'cover',
-          objectPosition: 'top',
-          height: '100%',
-        }}
-        src={src}
-        alt='image'
-      ></Image> */}
     </Box>
   );
 }

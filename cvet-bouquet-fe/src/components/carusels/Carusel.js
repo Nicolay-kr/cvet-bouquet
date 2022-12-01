@@ -8,15 +8,24 @@ import BouquetCard from '../BouquetCard/BouquetCard';
 import SimpleBouquetCard from '../SimpleBouquetCard/SimpleBouquetCard';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
+import { Controller } from 'swiper';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/controller';
 
 SwiperCore.use([Mousewheel, FreeMode]);
 
-const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug }) => {
+const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug, controlledSwiper=null }) => {
   const sm = useMediaQuery('(max-width:600px)');
 
-  const listItem = bouquets?.map((bouquet) => {
+  const listItems = bouquets?.map((bouquet) => {
     return (
       <SwiperSlide className={style.bouquetBox} key={bouquet._id}>
+        {/* <Box sx={{width:{xs:'120px',lg:'auto'}}}> */}
         {isSpec ? (
           <SimpleBouquetCard
             id={bouquet._id}
@@ -39,6 +48,7 @@ const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug }) => {
             ></BouquetCard>
           </Box>
         )}
+        {/* </Box> */}
       </SwiperSlide>
     );
   });
@@ -47,16 +57,15 @@ const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug }) => {
     <Swiper
       ref={caruselRef}
       // slidesPerView={breakpoints.m ? (breakpoints.xs ? "2" : "3") : "5"}
-      slidesPerView={sm ? 2 : 'auto'}
+      slidesPerView={sm ? 1.3 : 'auto'}
       loopedSlides={4}
       grabCursor={true}
       loop={true}
-      // mousewheel={breakpoints.md ? false : true}
-      // direction={breakpoints.md? "horizontal" : "vertical"}
-      // freeMode={breakpoints.s ? true : false}
       spaceBetween={10}
+      modules={[Controller]}
+      controller={{ control:controlledSwiper }}
     >
-      {listItem}
+      {listItems}
     </Swiper>
   );
 };

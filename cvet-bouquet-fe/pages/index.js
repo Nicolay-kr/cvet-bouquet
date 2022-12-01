@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import BlockContentBox from '../src/components/blockcontentBox/BlockContentBox';
+import CaruselBlockWithArch from '../src/components/CaruselBlockWithArch/CaruselBlockWithArch';
 
 export default function Home({ instagramPosts, category, pageData }) {
   const router = useRouter();
@@ -25,6 +26,7 @@ export default function Home({ instagramPosts, category, pageData }) {
   // }, []);
 
   const popular = mappedBouquets[7];
+  console.log(mappedBouquets)
 
   return (
     <>
@@ -132,12 +134,12 @@ export default function Home({ instagramPosts, category, pageData }) {
         ></IntroBlock>
       ) : null}
 
-      <CaruselBlock
+      <CaruselBlockWithArch
         bouquets={mappedBouquets}
         title={'Выберите '}
         subtitle={'категорию'}
         isSpec={true}
-      ></CaruselBlock>
+      ></CaruselBlockWithArch>
 
       {popular?.bouqets ? (
         <CaruselBlock
