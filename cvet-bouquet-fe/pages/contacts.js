@@ -12,7 +12,6 @@ import FreePayForm from '../src/components/freeForm/FreePayForm';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 
 export default function AboutUs({ instagramPosts, pageData }) {
-  
   const shopsList = [
     {
       adress: 'г. Минск, пр. Победителей, 27, Славянский квартал',
@@ -103,7 +102,9 @@ export default function AboutUs({ instagramPosts, pageData }) {
             </Typography>
 
             {shopsList.map((shop, index) => (
-              <ShopsList currentKey={index} shop={shop}></ShopsList>
+              <Box key={shop.adress}>
+                <ShopsList currentKey={index} shop={shop}></ShopsList>
+              </Box>
             ))}
           </Box>
 

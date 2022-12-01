@@ -7,9 +7,9 @@ import { useAppContext } from '../context/BouquetsContext';
 export default function Layout({ children,category, bouquets }) {
   return (
     <>
-      <Header category={category} bouquets={bouquets} />
+      <Header/>
       <main>{children}</main>
-      <Footer category={category}/>
+      <Footer/>
     </>
   );
 }

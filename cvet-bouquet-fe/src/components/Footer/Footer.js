@@ -19,7 +19,7 @@ import insta_mini from '../../../public/assets/icons/insta_mini.svg';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-export default function Footer({data}) {
+export default function Footer() {
   const router = useRouter();
   const lg = useMediaQuery('(max-width:1200px)');
   return (

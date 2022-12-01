@@ -19,15 +19,20 @@ import DropList from '../DropList/DropList';
 import { useAppContext } from '../context/BouquetsContext';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
 import SearchModal from '../SearchModal';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { sanityClient } from '../../../sanity';
+import { useCallback } from 'react';
 
-export const Header = ({ category, bouquets }) => {
+export const Header = () => {
   const router = useRouter();
   const bouckeList = useAppContext();
+  const [category, setClientCategory] = useState([]);
 
   const pages = [
-    { title: 'Свободный платеж', slug: { current: '/freepay' } },
-    { title: 'E-pos оплата', slug: { current: '/e-pos' } },
-    { title: 'Доставка и самовывоз', slug: { current: '/delivery' } },
+    { title: 'Свободный платеж', slug: { current: 'freepay' } },
+    { title: 'E-pos оплата', slug: { current: 'e-pos' } },
+    { title: 'Доставка и самовывоз', slug: { current: 'delivery' } },
   ];
 
   // console.log('bouquets',bouquets)
@@ -62,17 +67,46 @@ export const Header = ({ category, bouquets }) => {
       slug: { _type: 'slug', current: 'v-korzine' },
     },
   ];
+  // console.log(category)
+
+  const fetchCategories = useCallback(async () => {
+    sanityClient
+			.fetch(
+				`*[ _type == "categoryList"]
+        {
+          _id,
+          categories[]->{
+            _id,
+            slug,
+            title,
+            mainImage,
+            published,
+            bouqets[]->{
+              _id,
+              title,
+              slug,
+              images,
+              price,
+              description,
+            }
+          },
+        }`
+			)
+			.then((data) => setClientCategory(data[0].categories))
+      
+			.catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const navList = (
     <ul className={styles.navigation}>
       <li>
         {/* <a onClick={() => router.push('/catalog')}>Каталог</a> */}
 
-        <DropList
-          list={bouquetsCategory}
-          prevSlug={'/catalog'}
-          title='Каталог'
-        />
+        <DropList list={category.filter(category=>category.published ===true)} prevSlug={'/catalog'} title='Каталог' />
       </li>
       <li>
         {/* <a onClick={() => router.push('/delivery')}>Доставка и оплата</a> */}
@@ -109,7 +143,7 @@ export const Header = ({ category, bouquets }) => {
           sx={{ display: { xs: 'flex', lg: 'none' }, mr: 'auto', ml: '0px' }}
         >
           <BurgerMenu></BurgerMenu>
-          <SearchModal bouquets={bouquets}></SearchModal>
+          <SearchModal></SearchModal>
         </Box>
 
         <Box
@@ -132,7 +166,7 @@ export const Header = ({ category, bouquets }) => {
         >
           {/* {lg ? null : <SearchModal bouquets={bouquets}></SearchModal>} */}
           <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
-            <SearchModal bouquets={bouquets}></SearchModal>
+            <SearchModal></SearchModal>
           </Box>
           <IconButton component={Link} href='/favorites'>
             <Badge

@@ -11,21 +11,42 @@ import Fade from '@mui/material/Fade';
 import whitecros from '../../public/assets/icons/whitecros.svg';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { urlFor } from '../../sanity';
-
+import { sanityClient, urlFor } from '../../sanity';
+import { useCallback, useEffect, useState } from 'react';
 
 // export default function SearchModal({bouquets}) {
-export default function SearchModal({ bouquets }) {
+export default function SearchModal({}) {
   const [open, setOpen] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState('');
   const [sortedList, setSortedList] = React.useState([]);
+  const [bouquets, setBouquets] = useState([]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     setSortedList([]);
-    setSearchValue('')
+    setSearchValue('');
   };
+  const fetchCategories = useCallback(async () => {
+    sanityClient
+      .fetch(
+        `*[ _type == "bouquet"]
+        {
+          _id,
+          title,
+          slug,
+          images,
+          price,
+          description,
+        }`
+      )
+      .then((data) => setBouquets(data))
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const search = (str, searchArr) => {
     const arr = [];
@@ -92,11 +113,12 @@ export default function SearchModal({ bouquets }) {
                 }}
               >
                 <TextField
+                  autoFocus={true}
                   id='search'
                   value={searchValue}
                   onChange={handleSearchChange}
                   sx={{
-                    width: {xs:'200px',lg:'300px'},
+                    width: { xs: '200px', lg: '300px' },
                     borderRadius: '8px 0 0 8px',
                     '&>div': { height: '100%', borderRadius: '4px 0 0 4px' },
                   }}
@@ -147,38 +169,49 @@ export default function SearchModal({ bouquets }) {
                 <Box
                   sx={{
                     display: 'grid',
-                    gridTemplateColumns: {xs:'1fr 1fr',lg:'1fr 1fr 1fr'},
-                    columnGap:{xs:'20px',lg:'30px'},
-                    rowGap:{xs:'20px',lg:'30px'},
+                    gridTemplateColumns: { xs: '1fr 1fr', lg: '1fr 1fr 1fr' },
+                    columnGap: { xs: '20px', lg: '30px' },
+                    rowGap: { xs: '20px', lg: '30px' },
                     width: '100%',
                   }}
                 >
-                  {sortedList.map((bouquet,index) => (
+                  {sortedList.map((bouquet, index) => (
                     <Box
                       key={`${bouquet.id}-${index}`}
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        flexDirection: {xs:'column',lg:'row'},
+                        flexDirection: { xs: 'column', lg: 'row' },
                         gap: '20px',
                         '& img': { objectFit: 'cover' },
                       }}
                     >
                       {/* <Link href={`cart/${slug.current}`}> */}
                       <Image
-                          layout='fill'
-                          width={100}
-                          height={125}
-                          src={urlFor(bouquet?.images[0])?.width(500).url()}
-                          alt='bouquet'
-                        ></Image>
+                        layout='fill'
+                        width={100}
+                        height={125}
+                        src={urlFor(bouquet?.images[0])?.width(500).url()}
+                        alt='bouquet'
+                      ></Image>
                       {/* </Link> */}
-
-                      <Typography variant='body1'>
-                        {bouquet?.title?.ru}
-                      </Typography>
+                      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                        <Typography variant='body1'>
+                          {bouquet?.title?.ru}
+                        </Typography>
+                        <Typography
+                          gutterBottom
+                          variant='h4'
+                          component='p'
+                          sx={{ fontWeight: 700, display: 'flex', mb: '0' }}
+                        >
+                          {bouquet?.price}{' '}
+                          <sup style={{ fontSize: '10px', paddingTop: '4px' }}>
+                            BYN
+                          </sup>
+                        </Typography>
+                      </Box>
                     </Box>
-                    
                   ))}
                 </Box>
               </Box>
