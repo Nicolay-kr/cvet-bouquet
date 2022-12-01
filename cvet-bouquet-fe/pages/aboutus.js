@@ -26,7 +26,7 @@ export default function AboutUs({ instagramPosts, pageData }) {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              mt: 'max(40px,2.1vw)',
+              mt: {xs:'0',lg:'max(40px,2.1vw)'},
               mb: { xs: '40px', lg: '0' },
             }}
           >

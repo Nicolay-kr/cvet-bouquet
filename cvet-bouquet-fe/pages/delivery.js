@@ -70,7 +70,7 @@ export default function DeliveryPage({ pageData, instagramPosts }) {
         </Box>
       </DoubleBlock>
       <IntroBlock
-        reverse={true}
+        desctopReverse={true}
         mainImage={pageData[0].mainImage}
         secondImage={pageData[0].secondImage}
         isDrop={true}

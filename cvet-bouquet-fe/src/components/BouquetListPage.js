@@ -37,7 +37,7 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
 
   function handlePriceSort() {
     const sortedBouquetsList = bouquetsList.sort((a, b) => a.price - b.price);
-    const sortedBouquetsListDesc = [...sortedBouquetsList].reverse();
+    const sortedBouquetsListDesc = [...sortedBouquetsList].desctopReverse();
     if (sorting.price.type === 'none' || sorting.price.type === 'desc') {
       setBouquetsList([...sortedBouquetsList]);
       setSorting(state=>({...state, price: { func: handlePriceSort, type: 'asc' }}));
@@ -50,7 +50,7 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
 
   function handleNoveltySort() {
     const sortedBouquetsList = bouquetsList.sort((a, b) => a.price - b.price);
-    const sortedBouquetsListDesc = [...sortedBouquetsList].reverse();
+    const sortedBouquetsListDesc = [...sortedBouquetsList].desctopReverse();
     if (sorting.novelty.type === 'none' || sorting.novelty.type === 'desc') {
       setBouquetsList([...sortedBouquetsList]);
       setSorting(state=>({...state, novelty: { func: handleNoveltySort, type: 'asc' }}));
@@ -63,7 +63,7 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
 
   function handlePopularitySort() {
     const sortedBouquetsList = defaultBouquetsList;
-    const sortedBouquetsListDesc = [...sortedBouquetsList].reverse();
+    const sortedBouquetsListDesc = [...sortedBouquetsList].desctopReverse();
     if (sorting.popularity.type === 'none' || sorting.popularity.type === 'desc') {
       setBouquetsList([...sortedBouquetsList]);
       setSorting(state=>({...state, popularity: { func: handlePopularitySort, type: 'asc' }}));

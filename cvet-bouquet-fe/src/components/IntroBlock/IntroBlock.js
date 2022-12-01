@@ -9,7 +9,6 @@ import { NextSanityIMG } from '../CustopNextComponents/NextSanityIMG';
 import ArcheSecondConteiner from '../ArcheImageConteiners/ArcheSecondConteiner';
 import bigFlower from '../../../public/assets/images/bigFlower.svg';
 import Image from 'next/future/image';
-// import useMediaQuery from '@mui/material/useMediaQuery';
 import MobileBlock from '../MobileBlock';
 import DesktopBlock from '../DesktopBlock';
 
@@ -20,10 +19,10 @@ export default function IntroBlock({
   isMainFlower = false,
   isSecondFlower = false,
   isSecondFlowerMobile = false,
-  reverse = false,
+  desctopReverse = false,
+  mobileReverse = false,
   isDrop = false,
 }) {
-  // const lg = useMediaQuery('(min-width:1200px)');
 
   return (
     <Box
@@ -55,42 +54,28 @@ export default function IntroBlock({
           columnGap: 'max(30px, 1.5vw)',
           gridTemplateColumns: {
             xs: '1fr',
-            lg: reverse ? '7fr 5fr' : '5fr 7fr',
+            lg: desctopReverse ? '7fr 5fr' : '5fr 7fr',
           },
           height: '100%',
-          order: reverse ? 2 : 1,
         }}
       >
         <Box
           sx={{
-            order: reverse ? 2 : 1,
+            order: {xs: mobileReverse ? 2 : 1, lg:1},
             color: '#000000',
+            
           }}
         >
           {textBlock}
         </Box>
         <Box
           sx={{
-            ml: { xs: '0', lg: reverse ? '0px' : '60px' },
-            mr: { xs: '0', lg: reverse ? '60px' : '0px' },
+            ml: { xs: '0', lg: desctopReverse ? '0px' : '60px' },
+            mr: { xs: '0', lg: desctopReverse ? '60px' : '0px' },
             position: 'relative',
-            order: reverse ? 1 : 2,
+            order: {xs: mobileReverse ? 1 : 2, lg:2},
           }}
         >
-          {/* {!lg && isSecondFlowerMobile ? (
-            <Image
-              style={{
-                position: 'absolute',
-                right: '-5%',
-                top: '-15%',
-                width: '80vw',
-                height: '80vw',
-              }}
-              src={bigFlower}
-              alt='flower'
-            ></Image>
-          ) : null} */}
-
           {isSecondFlowerMobile ? (
             <MobileBlock>
               <Image

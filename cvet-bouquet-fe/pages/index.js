@@ -32,7 +32,7 @@ export default function Home({ instagramPosts, category, pageData }) {
         <IntroBlock
           mainImage={pageData[0].firstBlock.mainImage}
           secondImage={pageData[0].firstBlock.secondImage}
-          reverse={lg ? false : true}
+          mobileReverse={true}
           textBlock={
             <Box
               sx={{
@@ -154,7 +154,7 @@ export default function Home({ instagramPosts, category, pageData }) {
             mainImage={pageData[0].secondBlock.mainImage}
             secondImage={pageData[0].secondBlock.secondImage}
             isDrop={true}
-            reverse={lg ? false : true}
+            mobileReverse={true}
             textBlock={
               <Box
                 sx={{
@@ -162,7 +162,6 @@ export default function Home({ instagramPosts, category, pageData }) {
                   flexDirection: 'column',
                   height: '100%',
                   width: '100%',
-                  // order: { xs: '2', lg: '0' },
                 }}
               >
                 <Box sx={{ my: 'auto',mt:{xs:'40px',lg:'auto'} }}>
