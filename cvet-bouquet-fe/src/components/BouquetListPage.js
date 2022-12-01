@@ -17,6 +17,7 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
     if(value==='Все'){
       setBouquetsList([...defaultBouquetsList])
     }else{
+      console.log(value)
       const sortedBouquetsList = defaultBouquetsList.filter((bouquet)=>(arrValue[0]<=+bouquet.price && +bouquet.price <=+ arrValue[1]))
       setBouquetsList([...sortedBouquetsList])
     }
@@ -102,7 +103,7 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
             {category.length ? (
               bouquetsList?.map(
                 ({ _id, title, description, images, price, slug }, index) => (
-                  <Box key={_id}>
+                  <Box key={`${_id}-${index}`}>
                     <BouquetCard
                       id={_id}
                       title={title.ru}
