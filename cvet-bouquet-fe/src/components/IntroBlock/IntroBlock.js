@@ -23,7 +23,6 @@ export default function IntroBlock({
   mobileReverse = false,
   isDrop = false,
 }) {
-
   return (
     <Box
       component='section'
@@ -46,6 +45,21 @@ export default function IntroBlock({
         </DesktopBlock>
       ) : null}
 
+      {isMainFlower ? (
+          <Box
+            component={Image}
+            sx={{
+              position: 'absolute',
+              top: {xs:'-10vw',lg:'-2vw'},
+              left: {xs:'-8vw',lg:'36vw'},
+              width: {xs:'80vw',lg:'47vw'},
+              height: {xs:'80vw',lg:'47vw'},
+            }}
+            src={bigFlower}
+            alt='flower'
+          ></Box>
+      ) : null}
+
       <Box
         sx={{
           mt: '0',
@@ -61,9 +75,8 @@ export default function IntroBlock({
       >
         <Box
           sx={{
-            order: {xs: mobileReverse ? 2 : 1, lg:1},
+            order: { xs: mobileReverse ? 2 : 1, lg: 1 },
             color: '#000000',
-            
           }}
         >
           {textBlock}
@@ -73,7 +86,7 @@ export default function IntroBlock({
             ml: { xs: '0', lg: desctopReverse ? '0px' : '60px' },
             mr: { xs: '0', lg: desctopReverse ? '60px' : '0px' },
             position: 'relative',
-            order: {xs: mobileReverse ? 1 : 2, lg:2},
+            order: { xs: mobileReverse ? 1 : 2, lg: 2 },
           }}
         >
           {isSecondFlowerMobile ? (

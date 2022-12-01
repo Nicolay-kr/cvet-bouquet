@@ -155,6 +155,7 @@ export default function Home({ instagramPosts, category, pageData }) {
             secondImage={pageData[0].secondBlock.secondImage}
             isDrop={true}
             mobileReverse={true}
+            isMainFlower={true}
             textBlock={
               <Box
                 sx={{
