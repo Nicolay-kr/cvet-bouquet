@@ -4,11 +4,13 @@ import Typography from '@mui/material/Typography';
 import styles from './InstagramBlock.module.css';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useRouter } from 'next/router';
 // import InstagramEmbed from 'react-instagram-embed';
 // import Instagram from '../Instagram/Instagram';
 
 export default function InstagramBlock({ instagramPosts }) {
   const md = useMediaQuery('(min-width:900px)');
+  const router = useRouter();
   const postsNumber = md? 6:4
   return (
     <>
@@ -18,6 +20,7 @@ export default function InstagramBlock({ instagramPosts }) {
       ></TitleWithSubtitle>
       <Box
         component='p'
+        onClick={() => router.push('https://www.instagram.com/cvetbuket.by/')}
         sx={{
           fontFamily: 'Zeferino One, serif',
           fontSize: {
@@ -30,6 +33,7 @@ export default function InstagramBlock({ instagramPosts }) {
           color:'#000000',
           textAlign: 'end',
           mt: 'max(20px,1vw)',
+          cursor:'pointer',
         }}
       >
         @cvetbuket.by

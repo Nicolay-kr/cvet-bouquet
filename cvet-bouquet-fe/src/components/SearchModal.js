@@ -193,6 +193,7 @@ export default function SearchModal({}) {
                         height={125}
                         src={urlFor(bouquet?.images[0])?.width(500).url()}
                         alt='bouquet'
+                        style={{cursor:'pointer'}}
                       ></Image>
                       {/* </Link> */}
                       <Box sx={{ display: 'flex', flexDirection: 'column' }}>

@@ -55,6 +55,9 @@ a {
   padding: 20px 0 !important;
   height: auto !important;
 }
+.swiper-wrapper{
+  padding-bottom: 20px;
+}
 
 /* enter */
 .fade-enter {

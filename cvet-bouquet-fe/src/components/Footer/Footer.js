@@ -193,7 +193,7 @@ export default function Footer() {
                       flex
                       variant='subtitle1'
                       component='li'
-                      onClick={() => router.push('/catalog')}
+                      onClick={() => router.push('https://www.instagram.com/cvetbuket.by/')}
                     >
                       <Typography
                     
