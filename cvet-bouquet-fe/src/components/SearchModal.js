@@ -153,8 +153,9 @@ export default function SearchModal({ bouquets }) {
                     width: '100%',
                   }}
                 >
-                  {sortedList.map((bouquet) => (
+                  {sortedList.map((bouquet,index) => (
                     <Box
+                      key={`${bouquet.id}-${index}`}
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
