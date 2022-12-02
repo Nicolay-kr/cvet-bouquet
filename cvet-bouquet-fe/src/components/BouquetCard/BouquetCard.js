@@ -11,7 +11,7 @@ import heartIconFill from '../../../public/assets/icons/heartFill.svg';
 import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
 import { useAppContext } from '../context/BouquetsContext';
-import Zoom from '@mui/material/Zoom';
+import Fade from '@mui/material/Fade';
 import { useEffect } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import { urlFor } from '../../../sanity';
@@ -84,7 +84,7 @@ export default function BouquetCard({
           alt='heart icon'
         ></Box>
       </IconButton>
-      <Zoom in={checked}>
+      <Fade  timeout={1000} in={checked}>
         <Card
           sx={{
             width: '100%',
@@ -191,7 +191,7 @@ export default function BouquetCard({
             ></AddToCartButton>
           </CardActions>
         </Card>
-      </Zoom>
+      </Fade>
     </div>
   );
 }

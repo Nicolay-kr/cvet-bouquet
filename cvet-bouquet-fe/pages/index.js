@@ -200,7 +200,7 @@ export default function Home({ instagramPosts, category, pageData }) {
         </Box>
       ) : null}
 
-      <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
+      <Box sx={{ my: 'max(100px,5vw)', px: {xs:'5%',lg:'10%'} }}>
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </>
