@@ -108,18 +108,19 @@ export default function CaruselBlockWithArch({
       <Box
         sx={{ display: 'flex', alignItems: 'baseline', position: 'relative' }}
       >
-        <Image
-          style={{
+        <Box
+          component={Image}
+          sx={{
             position: 'absolute',
             top: '-12vw',
             left: '-12vw',
-            width: {xs:'70vww',lg:'50vw'},
-            height: {xs:'70vww',lg:'50vw'},
+            width: { xs: '70vw', lg: '50vw' },
+            height: { xs: '70vw', lg: '50vw' },
             pointerEvents: 'none',
           }}
           src={bigFlower}
           alt='flower'
-        ></Image>
+        ></Box>
         <Box
           sx={{
             width: { xs: '45vw', lg: '25.5vw' },
