@@ -16,6 +16,7 @@ import { Swiper } from 'swiper/react';
 import { SwiperSlide } from 'swiper/react';
 import { EffectFade, Controller } from 'swiper';
 import Link from '../CustopNextComponents/Link';
+import bigFlower from '../../../public/assets/images/bigFlower.svg';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -42,21 +43,24 @@ export default function CaruselBlockWithArch({
   const listItems = bouquets.map((item, index) => (
     <SwiperSlide key={index}>
       <Box component={Link} href={`/catalog/${item.slug?.current}`}>
-      <ArcheMainConteiner isSwiper={true} src={urlFor(item.mainImage).width(500).url()} />
-      <Typography
-        sx={{
-          display:'block',
-          backgroundColor:'fon.main',
-          textAlign: 'center',
-          position: 'absolute',
-          width: '100%',
-          mt:'16px',
-        }}
-        variant='h5'
-        component='p'
-      >
-        {item.title}
-      </Typography>
+        <ArcheMainConteiner
+          isSwiper={true}
+          src={urlFor(item.mainImage).width(500).url()}
+        />
+        <Typography
+          sx={{
+            display: 'block',
+            backgroundColor: 'fon.main',
+            textAlign: 'center',
+            position: 'absolute',
+            width: '100%',
+            mt: '16px',
+          }}
+          variant='h5'
+          component='p'
+        >
+          {item.title}
+        </Typography>
       </Box>
     </SwiperSlide>
   ));
@@ -101,8 +105,27 @@ export default function CaruselBlockWithArch({
         </IconButton>
       </Box>
 
-      <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
-        <Box sx={{ width: { xs: '45vw', lg: '25.5vw' }, mr: {xs:'10px',lg:'20px'} }}>
+      <Box
+        sx={{ display: 'flex', alignItems: 'baseline', position: 'relative' }}
+      >
+        <Image
+          style={{
+            position: 'absolute',
+            top: '-12vw',
+            left: '-12vw',
+            width: {xs:'70vww',lg:'50vw'},
+            height: {xs:'70vww',lg:'50vw'},
+            pointerEvents: 'none',
+          }}
+          src={bigFlower}
+          alt='flower'
+        ></Image>
+        <Box
+          sx={{
+            width: { xs: '45vw', lg: '25.5vw' },
+            mr: { xs: '10px', lg: '20px' },
+          }}
+        >
           <Swiper
             modules={[EffectFade, Controller]}
             effect={'fade'}
@@ -113,7 +136,6 @@ export default function CaruselBlockWithArch({
             spaceBetween={10}
             onSwiper={setControlledSwiper}
             enabled={false}
-            
           >
             {listItems}
           </Swiper>
