@@ -10,7 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import Carusel from '../carusels/Carusel';
 import ArcheMainConteiner from '../ArcheImageConteiners/ArcheMainConteiner';
-import introImg1 from '../../../public/assets/images/intro_img1.png';
 import { urlFor } from '../../../sanity';
 
 export default function CaruselBlock({
@@ -20,6 +19,7 @@ export default function CaruselBlock({
   subtitle,
   categoryslug = null,
 }) {
+
   const caruselRef = useRef(null);
 
   const handleRightArrowClick = () => {
@@ -28,8 +28,7 @@ export default function CaruselBlock({
   const handleLeftArrowClick = () => {
     caruselRef.current.swiper.slidePrev();
   };
-  const currentImg = bouquets[0].main
-  // console.log(bouquets)
+
 
   return (
     <Box
@@ -73,13 +72,6 @@ export default function CaruselBlock({
 
 
       <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
-        {isSpec && currentImg? (
-          <Box sx={{ mr: '30px' }}>
-            <ArcheMainConteiner src={urlFor(currentImg).width(400).url()} />
-          </Box>
-        ) : null}
-
-
         <Carusel
           bouquets={[...bouquets]}
           caruselRef={caruselRef}

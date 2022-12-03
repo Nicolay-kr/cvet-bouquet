@@ -26,12 +26,14 @@ import 'swiper/css/controller';
 export default function CaruselBlockWithArch({
   bouquets,
   isSpec = false,
-  title,
-  subtitle,
+  title = null,
+  subtitle = null,
   categoryslug = null,
+  isPremium = null,
 }) {
   const [controlledSwiper, setControlledSwiper] = useState(null);
   const caruselWithArchRef = useRef(null);
+  console.log(bouquets);
 
   const handleRightArrowClick = () => {
     caruselWithArchRef.current.swiper.slideNext();
@@ -40,30 +42,37 @@ export default function CaruselBlockWithArch({
     caruselWithArchRef.current.swiper.slidePrev();
   };
 
-  const listItems = bouquets.map((item, index) => (
-    <SwiperSlide key={index}>
-      <Box component={Link} href={`/catalog/${item.slug?.current}`}>
-        <ArcheMainConteiner
-          isSwiper={true}
-          src={urlFor(item.mainImage).width(400).url()}
-        />
-        <Typography
-          sx={{
-            display: 'block',
-            backgroundColor: 'fon.main',
-            textAlign: 'center',
-            position: 'absolute',
-            width: '100%',
-            mt: '16px',
-          }}
-          variant='h5'
-          component='p'
-        >
-          {item.title}
-        </Typography>
-      </Box>
-    </SwiperSlide>
-  ));
+  const listItems =
+    bouquets &&
+    bouquets.map((item, index) => (
+      <SwiperSlide key={index}>
+        <Box component={Link} href={`/catalog/${item.slug?.current}`}>
+          <ArcheMainConteiner
+            isSwiper={true}
+            src={
+              isPremium
+                ? urlFor(item.images[0]).width(400).url()
+                : urlFor(item.mainImage).width(400).url()
+            }
+          />
+          <Typography
+            sx={{
+              display: 'block',
+              backgroundColor: 'fon.main',
+              textAlign: 'center',
+              position: 'absolute',
+              width: '100%',
+              mt: '16px',
+              textDecoration:'none'
+            }}
+            variant='h5'
+            component='p'
+          >
+            {item.title.ru ? item.title.ru : item.title}
+          </Typography>
+        </Box>
+      </SwiperSlide>
+    ));
 
   return (
     <Box
@@ -73,49 +82,58 @@ export default function CaruselBlockWithArch({
         mt: { xs: '60px', sm: '100px', lg: '100px' },
       }}
     >
-      <TitleWithSubtitle title={title} subtitle={subtitle}></TitleWithSubtitle>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          mb: { xs: '0', lg: '40px' },
-        }}
-      >
-        <IconButton
-          onClick={handleLeftArrowClick}
-          sx={{ marginLeft: isSpec ? 0 : { xs: '5vw', lg: '10vw' } }}
+      {title || subtitle ? (
+        <TitleWithSubtitle
+          title={title}
+          subtitle={subtitle}
+        ></TitleWithSubtitle>
+      ) : null}
+
+      {isPremium ? null : (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            mb: { xs: '0', lg: '40px' },
+          }}
         >
-          <Box
-            component={Image}
-            sx={{ width: { xs: '32px', sm: '60px', lg: '95px' } }}
-            src={leftArrow}
-            alt='leftArrow icon'
-          ></Box>
-        </IconButton>
-        <IconButton
-          sx={{ marginRight: { xs: '5vw', lg: '10vw' } }}
-          onClick={handleRightArrowClick}
-        >
-          <Box
-            component={Image}
-            sx={{ width: { xs: '32px', sm: '60px', lg: '95px' } }}
-            src={rightArrow}
-            alt='rightArrow icon'
-          ></Box>
-        </IconButton>
-      </Box>
+          <IconButton
+            onClick={handleLeftArrowClick}
+            sx={{ marginLeft: isSpec ? 0 : { xs: '5vw', lg: '10vw' } }}
+          >
+            <Box
+              component={Image}
+              sx={{ width: { xs: '32px', sm: '60px', lg: '95px' } }}
+              src={leftArrow}
+              alt='leftArrow icon'
+            ></Box>
+          </IconButton>
+          <IconButton
+            sx={{ marginRight: { xs: '5vw', lg: '10vw' } }}
+            onClick={handleRightArrowClick}
+          >
+            <Box
+              component={Image}
+              sx={{ width: { xs: '32px', sm: '60px', lg: '95px' } }}
+              src={rightArrow}
+              alt='rightArrow icon'
+            ></Box>
+          </IconButton>
+        </Box>
+      )}
 
       <Box
         sx={{ display: 'flex', alignItems: 'baseline', position: 'relative' }}
       >
         <Box
           component={Image}
+          // placeholder="blur"
           sx={{
             position: 'absolute',
-            top: '-12vw',
-            left: '-12vw',
-            width: { xs: '70vw', lg: '50vw' },
-            height: { xs: '70vw', lg: '50vw' },
+            top: isPremium? '-4vw': '-12vw',
+            left: isPremium? '-7vw': '12vw',
+            width: { xs: '70vw', lg: isPremium? '40vw': '50vw' },
+            height: { xs: '70vw', lg: isPremium? '40vw': '50vw' },
             pointerEvents: 'none',
           }}
           src={bigFlower}
@@ -147,6 +165,7 @@ export default function CaruselBlockWithArch({
           caruselRef={caruselWithArchRef}
           isSpec={isSpec}
           categoryslug={categoryslug}
+          isPremium={isPremium}
         />
       </Box>
     </Box>

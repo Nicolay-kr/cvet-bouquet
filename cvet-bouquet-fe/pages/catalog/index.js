@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from '../../styles/Catalog.module.css';
-import imageUrlBuilder from '@sanity/image-url';
-import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box';
 import InstagramBlock from '../../src/components/InstagramBlock/InstagramBlock';
 import { sanityClient } from '../../sanity';

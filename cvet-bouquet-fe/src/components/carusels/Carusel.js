@@ -19,7 +19,7 @@ import 'swiper/css/controller';
 
 SwiperCore.use([Mousewheel, FreeMode]);
 
-const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug, controlledSwiper=null }) => {
+const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug, controlledSwiper=null,isPremium=false }) => {
   const sm = useMediaQuery('(max-width:600px)');
 
   const listItems = bouquets?.map((bouquet) => {
@@ -32,7 +32,7 @@ const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug, controlledSwiper=
             title={bouquet.title.ru ? bouquet.title.ru : bouquet.title}
             price={bouquet.price}
             // description={description.ru}
-            imagePath={bouquet.mainImage}
+            imagePath={isPremium?bouquet.images[0]:bouquet.mainImage}
             slug={bouquet.slug}
           ></SimpleBouquetCard>
         ) : (
