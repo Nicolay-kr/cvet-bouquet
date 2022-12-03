@@ -42,13 +42,17 @@ export default function Home({ category, instagramPosts }) {
                   { _id, title, description, mainImage, price, slug },
                   index
                 ) => (
-                  <SimpleBouquetCard
+                  <Box key={_id}>
+                        <SimpleBouquetCard
                     id={_id}
                     title={title}
                     imagePath={mainImage}
                     slug={slug}
                     price={null}
                   ></SimpleBouquetCard>
+
+                  </Box>
+              
                 )
               )
             ) : (
