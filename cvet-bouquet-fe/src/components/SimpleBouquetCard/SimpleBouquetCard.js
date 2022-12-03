@@ -3,19 +3,15 @@ import styles from './SimpleBouquetCard.module.css';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import CardActions from '@mui/material/CardActions';
 import Box from '@mui/material/Box';
 import Link from '../CustopNextComponents/Link';
-import heartIcon from '../../../public/assets/icons/heart.svg';
-import heartIconFill from '../../../public/assets/icons/heartFill.svg';
-import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
 import { useAppContext } from '../context/BouquetsContext';
-import Zoom from '@mui/material/Zoom';
+import Fade from '@mui/material/Fade';
 import { useEffect } from 'react';
-import AddToCartButton from '../AddToCartButton/AddToCartButton';
+
 import { urlFor } from '../../../sanity';
-import { NextSanityIMG } from '../CustopNextComponents/NextSanityIMG';
+
 
 export default function SimpleBouquetCard({
   id,
@@ -65,7 +61,7 @@ export default function SimpleBouquetCard({
           alt='heart icon'
         ></Image>
       </IconButton> */}
-      <Zoom in={checked}>
+      <Fade in={checked}>
         <Card
           sx={{
             width: '100%',
@@ -146,7 +142,7 @@ export default function SimpleBouquetCard({
             </CardContent>
           </Box>
         </Card>
-      </Zoom>
+      </Fade>
     </div>
   );
 }

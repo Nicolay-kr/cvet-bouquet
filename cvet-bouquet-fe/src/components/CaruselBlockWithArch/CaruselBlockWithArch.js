@@ -55,21 +55,42 @@ export default function CaruselBlockWithArch({
                 : urlFor(item.mainImage).width(400).url()
             }
           />
-          <Typography
+          <Box
             sx={{
-              display: 'block',
-              backgroundColor: 'fon.main',
-              textAlign: 'center',
+              mt:{xs:'10px', lg:'16px'},
+              display: 'flex',
+              width:'100%',
+              justifyContent: 'space-between',
+              alignItems:'flex-start',
               position: 'absolute',
-              width: '100%',
-              mt: '16px',
-              textDecoration:'none'
+              backgroundColor: 'fon.main',
             }}
-            variant='h5'
-            component='p'
           >
-            {item.title.ru ? item.title.ru : item.title}
-          </Typography>
+            <Typography
+              sx={{
+                display: 'block',
+                width: '100%',
+                // mt: '16px',
+                textAlign:isPremium?'left':'center',
+                textDecoration: 'none',
+                fontWeight:'700'
+              }}
+              variant='h5'
+              component='p'
+            >
+              {item.title.ru ? item.title.ru : item.title}
+            </Typography>
+          {isPremium?(   <Typography
+              gutterBottom
+              variant='h3'
+              component='p'
+              sx={{ fontWeight: 700, display: 'flex', mb: '0' }}
+            >
+              {item.price}{' '}
+              <sup style={{ fontSize: '10px', paddingTop: '4px' }}>BYN</sup>
+            </Typography>):null}
+         
+          </Box>
         </Box>
       </SwiperSlide>
     ));
@@ -127,13 +148,12 @@ export default function CaruselBlockWithArch({
       >
         <Box
           component={Image}
-          // placeholder="blur"
           sx={{
             position: 'absolute',
-            top: isPremium? '-4vw': '-12vw',
-            left: isPremium? {xs:'-12vw',lg:'-7vw'}: '-12vw',
-            width: { xs: '70vw', lg: isPremium? '40vw': '50vw' },
-            height: { xs: '70vw', lg: isPremium? '40vw': '50vw' },
+            top: isPremium ? '-4vw' : '-12vw',
+            left: isPremium ? { xs: '-12vw', lg: '-7vw' } : '-12vw',
+            width: { xs: '70vw', lg: isPremium ? '40vw' : '50vw' },
+            height: { xs: '70vw', lg: isPremium ? '40vw' : '50vw' },
             pointerEvents: 'none',
           }}
           src={bigFlower}
@@ -143,6 +163,7 @@ export default function CaruselBlockWithArch({
           sx={{
             width: { xs: '45vw', lg: '25.5vw' },
             mr: { xs: '10px', lg: '20px' },
+            '&>div':{pb:'40px'}
           }}
         >
           <Swiper
