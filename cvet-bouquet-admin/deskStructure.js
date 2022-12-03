@@ -93,9 +93,20 @@ export default () =>
                 .child(
                   S.document()
                     .id('eposPage')
-                    .title('Доставка и оплата')
+                    .title('E-POS оплата')
                     .schemaType('eposPage')
                     .documentId('eposPage')
+                ),
+                S.listItem()
+                .icon(RiPagesLine)
+                .id('privacyPage')
+                .title('Политика конфиденциальности')
+                .child(
+                  S.document()
+                    .id('privacyPage')
+                    .title('Политика конфиденциальности')
+                    .schemaType('privacyPage')
+                    .documentId('privacyPage')
                 ),
             ])
         ),
@@ -114,7 +125,7 @@ export default () =>
       // We also need to remove the new singletons from the main list
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          !['mainPage', 'aboutusPage', 'generalInfo','contactsPage','deliveryPage','bonuscardPage','corporateclientsPage','eposPage','categoryList','category'].includes(listItem.getId())
+          !['mainPage', 'aboutusPage', 'generalInfo','contactsPage','deliveryPage','bonuscardPage','corporateclientsPage','eposPage','privacyPage','categoryList','category'].includes(listItem.getId())
       ),
       S.listItem()
         .icon(AiFillSetting)

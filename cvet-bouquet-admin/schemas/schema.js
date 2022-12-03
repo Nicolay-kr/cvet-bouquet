@@ -20,6 +20,7 @@ import deliveryPage from './pages/deliveryPage'
 import bonuscardPage from './pages/bonuscardPage'
 import corporateclientsPage from './pages/corporateclientsPage'
 import eposPage from './pages/eposPage'
+import privacyPage from './pages/privacyPage'
 import generalInfo from './generalInfo'
 
 
@@ -47,6 +48,7 @@ export default createSchema({
     deliveryPage,
     bonuscardPage,
     eposPage,
+    privacyPage,
     generalInfo,
     corporateclientsPage,
     // product,

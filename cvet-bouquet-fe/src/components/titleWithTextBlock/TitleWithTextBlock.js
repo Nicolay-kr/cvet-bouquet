@@ -15,7 +15,7 @@ export default function TitleWithTextBlocks({ title, blocks }) {
         sx={{
           fontSize: { xs: '40px', lg: '65px', xxl: '3.4vw' },
           position: 'relative',
-          left: { xs: '0%', lg: '-10%' },
+          left: { xs: '0%', lg: '-3%' },
         }}
       >
         {title}
