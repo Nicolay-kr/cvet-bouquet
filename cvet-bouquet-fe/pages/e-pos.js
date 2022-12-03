@@ -1,13 +1,8 @@
 import React from 'react';
-import style from '../styles/pages/AboutUs.module.css';
-import { useState, useEffect } from 'react';
-import IntroBlock from '../src/components/IntroBlock/IntroBlock';
-import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import Typography from '@mui/material/Typography';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
-import { Title } from '../node_modules/@mui/icons-material/index';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 
 export default function EposPage({ pageData }) {

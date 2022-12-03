@@ -36,37 +36,6 @@ export const Header = () => {
   ];
 
   // console.log('bouquets',bouquets)
-
-  const bouquetsCategory = [
-    {
-      title: 'Цветочные письма',
-      slug: { _type: 'slug', current: 'cvetochnye-pisma' },
-    },
-    {
-      title: 'Букет невесты',
-      slug: { _type: 'slug', current: 'buket-nevesty' },
-    },
-    {
-      title: 'Монобукет',
-      slug: { _type: 'slug', current: 'monobukety' },
-    },
-    {
-      title: 'Авторские букеты',
-      slug: { _type: 'slug', current: 'avtorskie-bukety' },
-    },
-    {
-      title: 'Премиум флористика',
-      slug: { _type: 'slug', current: 'premium-floristika' },
-    },
-    {
-      title: 'В коробке',
-      slug: { _type: 'slug', current: 'v-korobke' },
-    },
-    {
-      title: 'В корзине',
-      slug: { _type: 'slug', current: 'v-korzine' },
-    },
-  ];
   // console.log(category)
 
   const fetchCategories = useCallback(async () => {
@@ -158,7 +127,7 @@ export const Header = () => {
         >
           <Image src={logo} alt='logo '></Image>
         </Box>
-        <Box sx={{ display: { xs: 'none', lg: 'block' } }}>{navList}</Box>
+        <Box sx={{ display: { xs: 'none', lg: 'block',alignSelf: 'center' } }}>{navList}</Box>
 
         <Box
           className={styles.iconsConteiner}

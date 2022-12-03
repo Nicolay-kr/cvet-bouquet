@@ -52,7 +52,7 @@ a {
 }
 
 .swiper{
-  /* padding: max(40px,2.1vw) 0 !important; */
+  padding: max(20px) 0 !important;
   height: auto !important;
 }
 .swiper-wrapper{
