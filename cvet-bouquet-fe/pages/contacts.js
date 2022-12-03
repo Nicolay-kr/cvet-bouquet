@@ -51,7 +51,18 @@ export default function AboutUs({ instagramPosts, pageData }) {
         <Box sx={{ width: '100%', height: { xs: '100vw', lg: 'auto' } }}>
           <YMaps>
             <Map defaultState={defaultState} width='100%' height='100%'>
-              <Placemark geometry={[]} />
+              <Placemark
+                geometry={[53.911747, 27.540074]}
+                options={{
+                  iconColor: '#746449',
+                }}
+              />
+              <Placemark
+                geometry={[53.928699, 27.631585]}
+                options={{
+                  iconColor: '#746449',
+                }}
+              />
             </Map>
           </YMaps>
         </Box>
