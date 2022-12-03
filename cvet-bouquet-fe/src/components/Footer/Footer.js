@@ -325,7 +325,7 @@ export default function Footer() {
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('/catalog')}
+                      onClick={() => router.push('/corporateclients')}
                     >
                       Корпоративные клиенты
                     </Typography>

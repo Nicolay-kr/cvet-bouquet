@@ -1,7 +1,5 @@
 import React from 'react';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import BlockContent from '@sanity/block-content-to-react';
 import BlockContentBox from '../blockcontentBox/BlockContentBox';
 
 
