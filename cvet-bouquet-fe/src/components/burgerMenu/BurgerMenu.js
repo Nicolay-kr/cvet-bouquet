@@ -87,6 +87,8 @@ export default function BurgerMenu() {
     },
     { title: 'Контакты', href: '/contacts' },
     { title: 'О нас', href: '/aboutus' },
+    { title: 'Бонусная программа', href: '/bonuscard' },
+    { title: 'Корпоративным клиентам', href: '/corporateclients' },
   ];
 
   return (
