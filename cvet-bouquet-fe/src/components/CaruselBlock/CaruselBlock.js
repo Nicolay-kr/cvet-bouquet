@@ -35,7 +35,7 @@ export default function CaruselBlock({
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
-        mt: { xs: '60px',sm: '100px', lg: '100px' },
+        mt: { xs: '0',sm: '100px', lg: '100px' },
       }}
     >
       <TitleWithSubtitle title={title} subtitle={subtitle}></TitleWithSubtitle>
