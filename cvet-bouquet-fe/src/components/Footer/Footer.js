@@ -308,7 +308,7 @@ export default function Footer() {
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('/aboutus')}
+                      onClick={() => router.push('/delivery')}
                     >
                       Доставка и самовывоз
                     </Typography>
