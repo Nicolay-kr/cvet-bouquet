@@ -16,7 +16,6 @@ export default function CorporateClientsPage({ instagramPosts, pageData }) {
 
   return (
     <>
-      <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <IntroBlock
         mainImage={pageData[0].mainImage}
         secondImage={pageData[0].secondImage}
@@ -27,14 +26,19 @@ export default function CorporateClientsPage({ instagramPosts, pageData }) {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              mt: { xs: '0', lg: 'max(40px,2.1vw)' },
+             
               mb: { xs: '40px', lg: '0' },
             }}
           >
+            <BreadCrumbs isInIntro={true} breadCrumbsList={breadCrumbsList}></BreadCrumbs>
+            <Box sx={{ mt: { xs: '0', lg: 'max(40px,2.1vw)' },}}>
             <TitleWithTextBlock
               title={pageData[0].title.ru}
               blocks={pageData[0].text.ru}
             ></TitleWithTextBlock>
+
+            </Box>
+  
 
             <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
               <Typography

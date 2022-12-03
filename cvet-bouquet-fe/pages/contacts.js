@@ -43,7 +43,7 @@ export default function AboutUs({ instagramPosts, pageData }) {
           display: 'grid',
           columnGap: 'max(30px,1.5vw)',
           rowGap: 'max(30px,1.5vw)',
-          my: 'max(40px,1.7vw)',
+          mb: 'max(40px,1.7vw)',
           mx: { xs: '5%', lg: '10%' },
           gridTemplateColumns: { xs: '1fr', lg: '6fr 5fr' },
         }}

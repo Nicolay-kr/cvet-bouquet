@@ -15,7 +15,6 @@ export default function AboutUs({ instagramPosts, pageData }) {
 
   return (
     <>
-      <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <IntroBlock
         mainImage={pageData[0].mainImage}
         secondImage={pageData[0].secondImage}
@@ -26,14 +25,20 @@ export default function AboutUs({ instagramPosts, pageData }) {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              mt: { xs: '0', lg: 'max(40px,2.1vw)' },
+              // mt: { xs: '0', lg: 'max(40px,2.1vw)' },
               mb: { xs: '40px', lg: '0' },
             }}
           >
-            <TitleWithTextBlock
-              title={pageData[0].title.ru}
-              blocks={pageData[0].text.ru}
-            ></TitleWithTextBlock>
+            <BreadCrumbs
+              isInIntro={true}
+              breadCrumbsList={breadCrumbsList}
+            ></BreadCrumbs>
+            <Box sx={{ mt: { xs: '0', lg: 'max(40px,2.1vw)' } }}>
+              <TitleWithTextBlock
+                title={pageData[0].title.ru}
+                blocks={pageData[0].text.ru}
+              ></TitleWithTextBlock>
+            </Box>
 
             <TextsQuote></TextsQuote>
           </Box>
