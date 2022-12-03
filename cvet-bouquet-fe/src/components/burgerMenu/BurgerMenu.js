@@ -152,7 +152,7 @@ export default function BurgerMenu() {
 
           <List
             sx={{
-              mt: '40px',
+              my: '20px',
               '& li+li': {
                 mt: '20px',
               },

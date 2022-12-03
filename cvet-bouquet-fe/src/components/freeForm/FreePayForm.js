@@ -198,7 +198,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                 sx={{ fontWeight: '700', mb: 'max(36px,1.9vw)' }}
               >
                 Отправляя заявку, вы принимаете{' '}
-                <Link style={{ color: '#8C7B5F' }}>
+                <Link style={{ color: '#8C7B5F' }} href='/privacy'>
                   соглашение об обработке персональных данных, политику
                   конфиденциальности и договор оферты
                 </Link>

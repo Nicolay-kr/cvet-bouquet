@@ -76,7 +76,7 @@ export default function CorporateClientsPage({ instagramPosts, pageData }) {
           Наши преимущества
         </Typography>
 
-        <Box sx={{ mt: { xs: '20px', lg: '20px' } }}>
+        <Box sx={{ mt: { xs: '20px', lg: '20px' },px: { xs: '5%', lg: '10%' } }}>
           <AccordionCustom fieldList={pageData[0].advantages}></AccordionCustom>
         </Box>
       </Box>
