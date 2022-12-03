@@ -19,6 +19,7 @@ export default function SimpleBouquetCard({
   imagePath,
   price,
   slug,
+  isPremium=false,
 }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
@@ -90,7 +91,7 @@ export default function SimpleBouquetCard({
             }}
             component={Link}
             noLinkStyle
-            href={`/catalog/${slug?.current}`}
+            href={`/catalog/${isPremium? `premium-floristika/${slug?.current}`:slug?.current}`}
           >
             <Box
               sx={{

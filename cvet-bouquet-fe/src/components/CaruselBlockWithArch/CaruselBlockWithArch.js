@@ -50,7 +50,7 @@ export default function CaruselBlockWithArch({
         <Box
           component={Link}
           sx={{ textDecoration: 'none' }}
-          href={`/catalog/${item.slug?.current}`}
+          href={`/catalog/${isPremium? `premium-floristika/${item.slug?.current}`:item.slug?.current}`}
         >
           <ArcheMainConteiner
             isSwiper={true}

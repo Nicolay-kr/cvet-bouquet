@@ -34,16 +34,17 @@ const Carusel = ({
       <SwiperSlide className={style.bouquetBox} key={bouquet._id}>
         {isSpec ? (
           // <Box sx={{ width: { xs: '120px', lg: '20vw' } }}>
-            <SimpleBouquetCard
-              id={bouquet._id}
-              title={bouquet.title.ru ? bouquet.title.ru : bouquet.title}
-              price={bouquet.price}
-              // description={description.ru}
-              imagePath={isPremium ? bouquet.images[0] : bouquet.mainImage}
-              slug={bouquet.slug}
-            ></SimpleBouquetCard>
-          // </Box>
+          <SimpleBouquetCard
+            isPremium={isPremium}
+            id={bouquet._id}
+            title={bouquet.title.ru ? bouquet.title.ru : bouquet.title}
+            price={bouquet.price}
+            // description={description.ru}
+            imagePath={isPremium ? bouquet.images[0] : bouquet.mainImage}
+            slug={bouquet.slug}
+          ></SimpleBouquetCard>
         ) : (
+          // </Box>
           <Box
             sx={{ height: '100%', mr: { xs: '10px', lg: 'max(20px,1.2vw)' } }}
           >

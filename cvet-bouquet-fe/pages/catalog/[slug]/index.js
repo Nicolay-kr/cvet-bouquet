@@ -15,7 +15,7 @@ export const CategoryBouquets = ({ category, instagramPosts }) => {
     { title: 'Каталог', href: '/catalog' },
     { title: category[0].title, href: null },
   ];
-
+  
   const isPremium = category[0].slug.current === 'premium-floristika';
   console.log(category[0]);
 
