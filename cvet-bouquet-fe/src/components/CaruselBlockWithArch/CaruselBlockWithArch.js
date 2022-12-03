@@ -22,6 +22,7 @@ import bigFlower from '../../../public/assets/images/bigFlower.svg';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/controller';
+import TextsQuote from '../TextsQuote';
 
 export default function CaruselBlockWithArch({
   bouquets,
@@ -46,7 +47,11 @@ export default function CaruselBlockWithArch({
     bouquets &&
     bouquets.map((item, index) => (
       <SwiperSlide key={index}>
-        <Box component={Link} href={`/catalog/${item.slug?.current}`}>
+        <Box
+          component={Link}
+          sx={{ textDecoration: 'none' }}
+          href={`/catalog/${item.slug?.current}`}
+        >
           <ArcheMainConteiner
             isSwiper={true}
             src={
@@ -57,39 +62,42 @@ export default function CaruselBlockWithArch({
           />
           <Box
             sx={{
-              mt:{xs:'10px', lg:'16px'},
+              pt: { xs: '16px' },
               display: 'flex',
-              width:'100%',
-              justifyContent: 'space-between',
-              alignItems:'flex-start',
-              position: 'absolute',
+              flexDirection: { xs: 'column', md: 'row' },
+              width: '100%',
+              justifyContent: { md: 'space-between' },
+              alignItems: 'start',
+              position: 'relative',
+              minHeight: '94px',
               backgroundColor: 'fon.main',
             }}
           >
             <Typography
               sx={{
                 display: 'block',
-                width: '100%',
+                width: isPremium ? '70%' : '100%',
                 // mt: '16px',
-                textAlign:isPremium?'left':'center',
+                textAlign: isPremium ? 'left' : 'center',
                 textDecoration: 'none',
-                fontWeight:'700'
+                fontWeight: '700',
               }}
               variant='h5'
               component='p'
             >
               {item.title.ru ? item.title.ru : item.title}
             </Typography>
-          {isPremium?(   <Typography
-              gutterBottom
-              variant='h3'
-              component='p'
-              sx={{ fontWeight: 700, display: 'flex', mb: '0' }}
-            >
-              {item.price}{' '}
-              <sup style={{ fontSize: '10px', paddingTop: '4px' }}>BYN</sup>
-            </Typography>):null}
-         
+            {isPremium ? (
+              <Typography
+                gutterBottom
+                variant='h3'
+                component='p'
+                sx={{ fontWeight: 700, display: 'flex', mb: '0' }}
+              >
+                {item.price}{' '}
+                <sup style={{ fontSize: '10px', paddingTop: '4px' }}>BYN</sup>
+              </Typography>
+            ) : null}
           </Box>
         </Box>
       </SwiperSlide>
@@ -100,7 +108,7 @@ export default function CaruselBlockWithArch({
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
-        mt: { xs: '60px', sm: '100px', lg: '100px' },
+        mt: { xs: '0px', lg: '60px' },
       }}
     >
       {title || subtitle ? (
@@ -143,9 +151,7 @@ export default function CaruselBlockWithArch({
         </Box>
       )}
 
-      <Box
-        sx={{ display: 'flex', alignItems: 'baseline', position: 'relative' }}
-      >
+      <Box sx={{ display: 'flex', alignItems: 'end', position: 'relative' }}>
         <Box
           component={Image}
           sx={{
@@ -161,9 +167,11 @@ export default function CaruselBlockWithArch({
         ></Box>
         <Box
           sx={{
+            position: 'relative',
+            // top: { xs: '6vw', lg: '2vw' },
             width: { xs: '45vw', lg: '25.5vw' },
             mr: { xs: '10px', lg: '20px' },
-            '&>div':{pb:'40px'}
+            // '&>div': { pb: '40px' },
           }}
         >
           <Swiper
@@ -180,14 +188,31 @@ export default function CaruselBlockWithArch({
             {listItems}
           </Swiper>
         </Box>
-        <Carusel
-          controlledSwiper={controlledSwiper}
-          bouquets={bouquets}
-          caruselRef={caruselWithArchRef}
-          isSpec={isSpec}
-          categoryslug={categoryslug}
-          isPremium={isPremium}
-        />
+        <Box sx={{ overflow: 'hidden' }}>
+          {isPremium ? (
+            <Box
+              sx={{
+                display: { xs: 'none', lg: 'block' },
+                width: '60%',
+                pl: '5%',
+                ml: 'auto',
+                mr: '10vw',
+                mb: '40px',
+              }}
+            >
+              <TextsQuote></TextsQuote>
+            </Box>
+          ) : null}
+
+          <Carusel
+            controlledSwiper={controlledSwiper}
+            bouquets={bouquets}
+            caruselRef={caruselWithArchRef}
+            isSpec={isSpec}
+            categoryslug={categoryslug}
+            isPremium={isPremium}
+          />
+        </Box>
       </Box>
     </Box>
   );

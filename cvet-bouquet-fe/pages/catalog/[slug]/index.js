@@ -6,6 +6,7 @@ import CaruselBlockWithArch from '../../../src/components/CaruselBlockWithArch/C
 import InstagramBlock from '../../../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import TextsQuote from '../../../src/components/TextsQuote';
 // import { useState } from 'react';
 
 export const CategoryBouquets = ({ category, instagramPosts }) => {
@@ -21,32 +22,35 @@ export const CategoryBouquets = ({ category, instagramPosts }) => {
   return isPremium ? (
     <>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
+      <Box
+        sx={{ display: { xs: 'block', lg: 'none' }, width: '100%', px: '5%' }}
+      >
+        <TextsQuote></TextsQuote>
+      </Box>
       <CaruselBlockWithArch
         bouquets={category[0].bouqets}
         isPremium={isPremium}
         isSpec={true}
       ></CaruselBlockWithArch>
-      <Box sx={{ px: { xs: '5%', lg: '10%' } }}>
-      <Typography variant='h4'>
-        Почаще напоминайте о своих чувствах просто и без повода.
-      </Typography>
-      <Typography
-        variant='h5'
-        sx={{
-          fontFamily: 'Zeferino One, serif',
-          fontSize: { xs: '36px', xl: '50px', xxl: '2.6vw' },
-          lineHeight: '1',
-          textAlign: 'left',
-          position: 'relative',
-          left: { xs: '0%', lg: '-3%' },
-          mt:{ xs: '10px', lg: '20px' },
-        }}
-      >
-        Вместе с Цвет-Букет!{' '}
-      </Typography>
-
+      <Box sx={{ px: { xs: '5%', lg: '10%' },mt: { xs: '20px'},textAlign: {xs:'center',md:'left'}, }}>
+        <Typography variant='h4'>
+          Почаще напоминайте о своих чувствах просто и без повода.
+        </Typography>
+        <Typography
+          variant='h5'
+          sx={{
+            fontFamily: 'Zeferino One, serif',
+            fontSize: { xs: '36px', xl: '50px', xxl: '2.6vw' },
+            lineHeight: '1',
+            textAlign: {xs:'center',md:'left'},
+            position: 'relative',
+            left: { xs: '0%', lg: '-3%' },
+            mt: { xs: '10px', lg: '20px' },
+          }}
+        >
+          Вместе с Цвет-Букет!{' '}
+        </Typography>
       </Box>
-
 
       <Box sx={{ my: 'max(100px,5vw)', px: { xs: '5%', lg: '10%' } }}>
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>

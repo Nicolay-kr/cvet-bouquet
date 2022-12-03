@@ -115,7 +115,7 @@ export default function SimpleBouquetCard({
             </Box>
 
             <CardContent
-              sx={{ display: 'flex', flexDirection: 'column', flexGrow: '1' }}
+              sx={{ display: 'flex', flexDirection: 'column', flexGrow: '1',minHeight:'70px'}}
             >
               <Typography
                 sx={{ textAlign: 'center' }}

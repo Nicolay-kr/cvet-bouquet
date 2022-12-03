@@ -19,24 +19,34 @@ import 'swiper/css/controller';
 
 SwiperCore.use([Mousewheel, FreeMode]);
 
-const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug, controlledSwiper=null,isPremium=false }) => {
+const Carusel = ({
+  bouquets,
+  caruselRef,
+  isSpec,
+  categoryslug,
+  controlledSwiper = null,
+  isPremium = false,
+}) => {
   const sm = useMediaQuery('(max-width:600px)');
 
   const listItems = bouquets?.map((bouquet) => {
     return (
       <SwiperSlide className={style.bouquetBox} key={bouquet._id}>
-        {/* <Box sx={{width:{xs:'120px',lg:'auto'}}}> */}
         {isSpec ? (
-          <SimpleBouquetCard
-            id={bouquet._id}
-            title={bouquet.title.ru ? bouquet.title.ru : bouquet.title}
-            price={bouquet.price}
-            // description={description.ru}
-            imagePath={isPremium?bouquet.images[0]:bouquet.mainImage}
-            slug={bouquet.slug}
-          ></SimpleBouquetCard>
+          // <Box sx={{ width: { xs: '120px', lg: '20vw' } }}>
+            <SimpleBouquetCard
+              id={bouquet._id}
+              title={bouquet.title.ru ? bouquet.title.ru : bouquet.title}
+              price={bouquet.price}
+              // description={description.ru}
+              imagePath={isPremium ? bouquet.images[0] : bouquet.mainImage}
+              slug={bouquet.slug}
+            ></SimpleBouquetCard>
+          // </Box>
         ) : (
-          <Box sx={{height:'100%',mr:{xs:'10px',lg:'max(20px,1.2vw)'}}}>
+          <Box
+            sx={{ height: '100%', mr: { xs: '10px', lg: 'max(20px,1.2vw)' } }}
+          >
             <BouquetCard
               id={bouquet._id}
               title={bouquet.title.ru}
@@ -48,7 +58,6 @@ const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug, controlledSwiper=
             ></BouquetCard>
           </Box>
         )}
-        {/* </Box> */}
       </SwiperSlide>
     );
   });
@@ -57,13 +66,13 @@ const Carusel = ({ bouquets, caruselRef, isSpec, categoryslug, controlledSwiper=
     <Swiper
       ref={caruselRef}
       // slidesPerView={breakpoints.m ? (breakpoints.xs ? "2" : "3") : "5"}
-      slidesPerView={isSpec?(sm ? 1.3 : 'auto'): (sm? 2 : 'auto')}
+      slidesPerView={isSpec ? (sm ? 1.3 : 'auto') : sm ? 2 : 'auto'}
       loopedSlides={4}
       grabCursor={true}
       loop={true}
       spaceBetween={10}
       modules={[Controller]}
-      controller={{ control:controlledSwiper }}
+      controller={{ control: controlledSwiper }}
     >
       {listItems}
     </Swiper>
