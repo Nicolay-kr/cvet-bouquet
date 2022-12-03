@@ -45,7 +45,7 @@ export default function CaruselBlockWithArch({
       <Box component={Link} href={`/catalog/${item.slug?.current}`}>
         <ArcheMainConteiner
           isSwiper={true}
-          src={urlFor(item.mainImage).width(500).url()}
+          src={urlFor(item.mainImage).width(400).url()}
         />
         <Typography
           sx={{

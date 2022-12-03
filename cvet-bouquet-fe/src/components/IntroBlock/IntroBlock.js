@@ -107,7 +107,7 @@ export default function IntroBlock({
 
           <Box sx={{ mt: { xs: '40px', lg: '60px' } }}>
             <ArcheMainConteiner
-              src={urlFor(mainImage).width(500).url()}
+              src={urlFor(mainImage).width(400).url()}
             ></ArcheMainConteiner>
           </Box>
           <Box
@@ -120,7 +120,7 @@ export default function IntroBlock({
           >
             <ArcheSecondConteiner
               isDrop={isDrop}
-              src={urlFor(secondImage).width(500).url()}
+              src={urlFor(secondImage).width(400).url()}
             ></ArcheSecondConteiner>
           </Box>
         </Box>

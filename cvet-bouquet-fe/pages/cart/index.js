@@ -51,7 +51,7 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
                 layout='fill'
                 width={100}
                 height={125}
-                src={urlFor(image).width(500).url()}
+                src={urlFor(image).width(400).url()}
                 alt='bouquet'
               ></Image>
             </Link>
@@ -297,7 +297,7 @@ export default function Cart() {
                     layout='fill'
                     width={100}
                     height={125}
-                    src={urlFor(bouquet.imagePath).width(500).url()}
+                    src={urlFor(bouquet.imagePath).width(400).url()}
                     alt='bouquet'
                   ></Image>
                 </Link>

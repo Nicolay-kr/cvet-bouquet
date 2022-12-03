@@ -75,7 +75,7 @@ export default function CaruselBlock({
       <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
         {isSpec && currentImg? (
           <Box sx={{ mr: '30px' }}>
-            <ArcheMainConteiner src={urlFor(currentImg).width(500).url()} />
+            <ArcheMainConteiner src={urlFor(currentImg).width(400).url()} />
           </Box>
         ) : null}
 
