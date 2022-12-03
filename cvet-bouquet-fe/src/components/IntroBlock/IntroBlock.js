@@ -68,7 +68,7 @@ export default function IntroBlock({
           columnGap: 'max(30px, 1.5vw)',
           gridTemplateColumns: {
             xs: '1fr',
-            lg: desctopReverse ? '7fr 5fr' : '5fr 7fr',
+            lg: '5fr 7fr',
           },
           height: '100%',
         }}

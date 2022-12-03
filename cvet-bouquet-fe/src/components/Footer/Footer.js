@@ -30,7 +30,7 @@ export default function Footer() {
         pb={10}
         bgcolor='secondary.main'
         component='footer'
-        sx={{pt:{ xs: '40px', lg: '100px' }, px:{ xs: '10%', lg: '10%' }} }
+        sx={{pt:{ xs: '40px', lg: '100px' }, px:{ xs: '5%', lg: '10%' }} }
       >
         <Box className={styles.content}>
           <Box className={styles.links}>
@@ -100,7 +100,6 @@ export default function Footer() {
                     variant='subtitle1'
                     component='li'
                     color='white'
-                    onClick={() => router.push('/catalog')}
                   >
                     Пн-Вс 09:00-21:00
                   </Typography>
@@ -108,7 +107,6 @@ export default function Footer() {
                     variant='subtitle1'
                     component='li'
                     color='white'
-                    onClick={() => router.push('/delivery')}
                   >
                     пр.Победителей, 27 пом. 344
                   </Typography>
@@ -121,9 +119,7 @@ export default function Footer() {
                     пр. Независимости, 104
                   </Typography>
                 </Typography>
-                {/* </Box> */}
 
-                {/* <Box className={styles.lastColumn}> */}
                   <Typography
                     variant='subtitle1'
                     component='ul'
@@ -152,7 +148,6 @@ export default function Footer() {
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('https://www.instagram.com/cvetbuket.by/')}
                     >
                       <Image src={insta_mini} alt='insta icon'></Image>
                       <Typography
@@ -160,6 +155,7 @@ export default function Footer() {
                         variant='subtitle1'
                         component='p'
                         color='white'
+                        onClick={() => router.push('https://www.instagram.com/cvetbuket.by/')}
                       >
                         @cvetbuket.by
                       </Typography>
@@ -193,7 +189,6 @@ export default function Footer() {
                       flex
                       variant='subtitle1'
                       component='li'
-                      onClick={() => router.push('https://www.instagram.com/cvetbuket.by/')}
                     >
                       <Typography
                     
@@ -289,7 +284,7 @@ export default function Footer() {
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('/catalog')}
+                      onClick={() => router.push('/freepay')}
                     >
                       Свободный платеж
                     </Typography>
@@ -297,7 +292,7 @@ export default function Footer() {
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('/delivery')}
+                      onClick={() => router.push('/e-pos')}
                     >
                       E-POS оплата
                     </Typography>
@@ -305,7 +300,7 @@ export default function Footer() {
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('/contacts')}
+                      onClick={() => router.push('/delivery')}
                     >
                       Возврат денежных средств на карту
                     </Typography>
@@ -460,7 +455,7 @@ export default function Footer() {
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('/delivery')}
+                      onClick={() => router.push('https://www.instagram.com/cvetbuket.by/')}
                     >
                       <Image src={insta_mini} alt='insta icon'></Image>
                       <Typography
@@ -501,7 +496,6 @@ export default function Footer() {
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('/catalog')}
                     >
                       Пн-Вс 09:00-21:00
                     </Typography>
@@ -509,7 +503,6 @@ export default function Footer() {
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('/delivery')}
                     >
                       пр.Победителей, 27 пом. 344
                     </Typography>
@@ -517,7 +510,6 @@ export default function Footer() {
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('/contacts')}
                     >
                       пр. Независимости, 104
                     </Typography>
@@ -552,15 +544,9 @@ export default function Footer() {
           {lg ? (
             <>
               <Box columnGap={1.5} className={styles.iconsConteiner}>
-                <IconButton component={Link} href='/'>
                   <Image src={visa} alt='visa icon'></Image>
-                </IconButton>
-                <IconButton component={Link} href='/'>
                   <Image src={mastercard} alt='mastercard icon'></Image>
-                </IconButton>
-                <IconButton component={Link} href='/'>
                   <Image src={belcard} alt='belcard icon'></Image>
-                </IconButton>
               </Box>
               <Box className={styles.info}>
                 <Box className={styles.infoContent}>
