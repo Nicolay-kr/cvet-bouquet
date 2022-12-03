@@ -131,7 +131,7 @@ export default function CaruselBlockWithArch({
           sx={{
             position: 'absolute',
             top: isPremium? '-4vw': '-12vw',
-            left: isPremium? '-7vw': '12vw',
+            left: isPremium? {xs:'-12vw',lg:'-7vw'}: '-12vw',
             width: { xs: '70vw', lg: isPremium? '40vw': '50vw' },
             height: { xs: '70vw', lg: isPremium? '40vw': '50vw' },
             pointerEvents: 'none',
