@@ -6,17 +6,20 @@ export default {
     {
       name: 'title',
       title: 'Заголовок',
-      type: 'string',
+      type: 'localeString',
     },
+
     {
-      name: 'subtitle',
-      title: 'Подзаголовок',
-      type: 'string',
+      name: 'text1',
+      title: 'Блок Система скидок',
+      type: 'localeBlockContent',
+    },
+
+    {
+      name: 'text2',
+      title: 'Блок Важно',
+      type: 'localeBlockContent',
     },
   ],
-  // preview: {
-  //   select: {
-  //     title: 'title',
-  //   },
-  // },
+
 };

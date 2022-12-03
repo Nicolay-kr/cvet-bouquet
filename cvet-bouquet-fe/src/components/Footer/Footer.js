@@ -327,38 +327,23 @@ export default function Footer() {
                       color='white'
                       onClick={() => router.push('/catalog')}
                     >
-                      Каталог
+                      Корпоративные клиенты
                     </Typography>
                     <Typography
                       variant='subtitle1'
                       component='li'
                       color='white'
-                      onClick={() => router.push('/delivery')}
+                      onClick={() => router.push('/bonuscard')}
                     >
-                      Доставка и оплата
-                    </Typography>
-                    <Typography
-                      variant='subtitle1'
-                      component='li'
-                      color='white'
-                      onClick={() => router.push('/contacts')}
-                    >
-                      Контакты
+                      Бонусная программа
                     </Typography>
                   </Typography>
 
                   <Box columnGap={1.5} className={styles.iconsConteiner}>
-                    <IconButton component={Link} href='/'>
                       <Image src={visa} alt='visa icon'></Image>
-                    </IconButton>
-                    <IconButton component={Link} href='/'>
                       <Image src={mastercard} alt='mastercard icon'></Image>
-                    </IconButton>
-                    <IconButton component={Link} href='/'>
                       <Image src={belcard} alt='belcard icon'></Image>
-                    </IconButton>
                   </Box>
-                  {/* </Box> */}
                 </Box>
                 <Box
                   className={styles.logoConteiner}

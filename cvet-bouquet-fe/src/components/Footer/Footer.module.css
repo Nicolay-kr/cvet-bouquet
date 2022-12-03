@@ -27,7 +27,7 @@
 
 .links {
   display: grid;
-  grid-template-columns: 4fr 4fr 2fr 2fr;
+  grid-template-columns: 4fr 3fr 2fr 2fr;
   column-gap: max(30px,1.5vw);;
   list-style: none;
 }
