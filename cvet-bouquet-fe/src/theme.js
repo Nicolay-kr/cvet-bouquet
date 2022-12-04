@@ -282,6 +282,17 @@ const theme = createTheme({
       },
      
     },
+    MuiFormHelperText :{
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          fontSize:'12px',
+          textTransform:'none'
+        },
+      },
+
+    }
   },
   
 });

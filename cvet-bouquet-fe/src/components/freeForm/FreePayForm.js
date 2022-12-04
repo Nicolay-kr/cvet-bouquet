@@ -7,52 +7,91 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Paper from '@mui/material/Paper';
 import { Link } from '../../../node_modules/@mui/material/index';
 import TextField from '@mui/material/TextField';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+// import MobilePhone from '../Form/MobilePhone';
+import SuccsessModal from '../SuccsessModal';
+// import { setLocale } from 'yup';
 
 export default function FreePayForm({ isContactsForm = false }) {
+  const [isOpenSuccessModal,setIsOpenSuccessModal] = React.useState(false)
   const lg = useMediaQuery('(min-width:1200px)');
 
-
   const defaultState = {
-    name: '',
-    phone: '',
-    summa: '',
-    email: '',
-    comment: '',
+    customerName: '',
+    customerPhone: '',
+    customerSumma: '',
+    customerEmail: '',
+    customerComment: '',
   };
 
-  const defaultStateWithContacts = {
-    name: '',
-    phone: '',
-    email: '',
-    comment: '',
+  const defaultStateForContacts = {
+    customerName: '',
+    customerPhone: '',
+    customerEmail: '',
+    customerComment: '',
   };
 
-  const defaultValue = isContactsForm ? defaultStateWithContacts : defaultState;
+  const defaultValue = isContactsForm ? defaultStateForContacts : defaultState;
 
-  const [formState, setForm] = React.useState({ defaultValue });
+  yup.setLocale({
+    mixed: {
+      default: 'Não é válido',
+    },
+    number: {
+      typeError: 'Это поле должно быть в числовом формате',
+    },
+  });
 
-  const handleNameChange = (e) => {
-    setForm((state) => ({ ...state, name: e.target.value }));
+  const defaultSchema = yup
+    .object({
+      customerName: yup.string().required('Это поле должно быть заполнено'),
+      customerPhone: yup.string().required('Это поле должно быть заполнено'),
+      customerSumma: yup.number().required('Это поле должно быть заполнено').typeError('Это поле должно быть в числовом формате. Пример: 2000'),
+      customerEmail: yup.string().email('E-mail введен не корректно').required('Это поле должно быть заполнено'),
+    })
+    .required();
+
+  const contactSchema = yup
+    .object({
+      customerName: yup.string().required('Это поле должно быть заполнено'),
+      customerPhone: yup.string().required('Это поле должно быть заполнено'),
+      customerEmail: yup.string().required('Это поле должно быть заполнено'),
+    })
+    .required();
+
+  const schema = isContactsForm ? contactSchema : defaultSchema;
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValues: defaultValue,
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    setIsOpenSuccessModal(true)
+    console.log(data)
   };
 
-  const handlePhoneChange = (e) => {
-    setForm((state) => ({ ...state, phone: e.target.value }));
-  };
+  const onClose = () =>{
+    setIsOpenSuccessModal(false)
+  }
+  console.log(isOpenSuccessModal)
 
-  const handleSummaChange = (e) => {
-    setForm((state) => ({ ...state, summa: e.target.value }));
-  };
-
-  const handleEmailChange = (e) => {
-    setForm((state) => ({ ...state, email: e.target.value }));
-  };
-
-  const handleCommentChange = (e) => {
-    setForm((state) => ({ ...state, comment: e.target.value }));
-  };
+  // console.log(watch('example')); // watch input value by passing the name of it
 
   return (
+    <>
+    <SuccsessModal onClose={onClose} open={isOpenSuccessModal} isContactsForm={isContactsForm}></SuccsessModal>
     <Box
+      component={'form'}
+      onSubmit={handleSubmit(onSubmit)}
       sx={{
         width: '100%',
         my: { xs: '40px', lg: '60px' },
@@ -99,24 +138,49 @@ export default function FreePayForm({ isContactsForm = false }) {
                 flexDirection: 'column',
               }}
             >
-              <TextField
-                id='customer-name'
-                label='Вашe имя'
-                onChange={handleNameChange}
+              <Controller
+                name='customerName'
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    label='Вашe имя'
+                    id='customerName'
+                    error={errors.customerName?.message.length > 0}
+                    helperText={errors.customerName?.message}
+
+                    {...field}
+                  />
+                )}
               />
-              <TextField
-                id='customer-phone'
-                label='Ваш номер телефона'
-                onChange={handlePhoneChange}
-                sx={{ mt: 'max(24px, 1.2vw)' }}
+              <Controller
+                name='customerPhone'
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    id='customerPhone'
+                    label='Ваш номер телефона.'
+                    sx={{ mt: 'max(24px, 1.2vw)' }}
+                    error={errors.customerPhone?.message.length > 0}
+                    helperText={errors.customerPhone?.message}
+                    {...field}
+                  />
+                )}
               />
 
               {isContactsForm ? null : (
-                <TextField
-                  id='customer-summa'
-                  label='Сумма BYN'
-                  onChange={handleSummaChange}
-                  sx={{ mt: 'max(24px, 1.2vw)' }}
+                <Controller
+                  name='customerSumma'
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      id='customerSumma'
+                      label='Сумма BYN'
+                      sx={{ mt: 'max(24px, 1.2vw)' }}
+                      error={errors.customerSumma?.message.length > 0}
+                      helperText={errors.customerSumma?.message}
+                      {...field}
+                    />
+                  )}
                 />
               )}
 
@@ -130,6 +194,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                   }}
                 >
                   <Button
+                    type='submit'
                     variant='contained'
                     color='primary'
                     sx={{ height: '60px', marginTop: 'auto' }}
@@ -147,7 +212,10 @@ export default function FreePayForm({ isContactsForm = false }) {
                     }}
                   >
                     Отправляя заявку, вы принимаете{' '}
-                    <Link style={{ color: '#8C7B5F', cursor: 'pointer' }} href='/privacy'>
+                    <Link
+                      style={{ color: '#8C7B5F', cursor: 'pointer' }}
+                      href='/privacy'
+                    >
                       соглашение об обработке персональных данных, политику
                       конфиденциальности и договор оферты
                     </Link>
@@ -162,23 +230,39 @@ export default function FreePayForm({ isContactsForm = false }) {
                 height: '100%',
               }}
             >
-              <TextField
-                id='customer-email'
-                label='Ваш e-mail'
-                onChange={handleEmailChange}
+              <Controller
+                name='customerEmail'
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    id='customerEmail'
+                    label='Ваш e-mail'
+                    {...field}
+                    error={errors.customerEmail?.message.length > 0}
+                    helperText={errors.customerEmail?.message}
+                  />
+                )}
               />
-              <TextField
-                multiline
-                style={{height:'100%',}}
-                sx={{
-                  mt: 'max(24px, 1.2vw)',
-                  '& div': { height: '100%' },
-                  '& textarea': { height: '100% !important' },
-                }}
-                rows={10}
-                id='customer-comment'
-                label={isContactsForm ? 'Ваш вопрос' : 'Комментарии к заказу'}
-                onChange={handleCommentChange}
+              <Controller
+                name='customerComment'
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    multiline
+                    style={{ height: '100%' }}
+                    sx={{
+                      mt: 'max(24px, 1.2vw)',
+                      '& div': { height: '100%' },
+                      '& textarea': { height: '100% !important' },
+                    }}
+                    rows={10}
+                    id='customerComment'
+                    label={
+                      isContactsForm ? 'Ваш вопрос' : 'Комментарии к заказу'
+                    }
+                    {...field}
+                  />
+                )}
               />
             </Box>
           </Box>
@@ -204,9 +288,11 @@ export default function FreePayForm({ isContactsForm = false }) {
                 </Link>
               </Typography>
               <Button
+                type='submit'
                 variant='contained'
                 color='primary'
                 sx={{ height: '60px', marginTop: 'auto' }}
+                vslue='Отправить'
               >
                 Отправить
               </Button>
@@ -215,5 +301,7 @@ export default function FreePayForm({ isContactsForm = false }) {
         </Box>
       </Paper>
     </Box>
+    </>
+  
   );
 }

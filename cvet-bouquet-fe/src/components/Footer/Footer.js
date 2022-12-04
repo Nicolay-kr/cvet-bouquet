@@ -337,14 +337,6 @@ export default function Footer() {
                     >
                       Бонусная программа
                     </Typography>
-                    <Typography
-                      variant='subtitle1'
-                      component='li'
-                      color='white'
-                      onClick={() => router.push('/404')}
-                    >
-                      404
-                    </Typography>
                   </Typography>
 
                   <Box columnGap={1.5} className={styles.iconsConteiner}>
