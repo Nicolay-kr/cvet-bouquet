@@ -32,6 +32,7 @@ export default function CounterButtons({
         opacity: '0.7',
         height: isFlexSize ? '100%' : 'max(40px,2.1vw)',
         width: '100%',
+        maxWidth: '250px',
       }}
       aria-label='Disabled elevation buttons'
     >

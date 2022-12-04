@@ -101,7 +101,7 @@ export default function Cart() {
   const handleToCheckout = () => {
     setIsCheckout(true);
   };
-  const removeFromCart = (e,id) => {
+  const removeFromCart = (e, id) => {
     bouquetsContext.removeFromCart(id);
   };
 
@@ -109,6 +109,11 @@ export default function Cart() {
     { title: 'Главаная', href: '/' },
     { title: 'Корзина', href: null },
   ];
+
+  const price = bouquets.reduce(
+    (akk, item) => akk + item.price * item.quantity,
+    0
+  );
 
   return (
     <>
@@ -231,10 +236,7 @@ export default function Cart() {
                     fontWeight: 700,
                   }}
                 >
-                  {bouquets.reduce(
-                    (akk, item) => akk + item.price * item.quantity,
-                    0
-                  )}
+                  {price}
                 </Typography>
                 <sup>BYN</sup>
               </Typography>
@@ -265,8 +267,7 @@ export default function Cart() {
           </Paper>
         </Box>
 
-      {/* mobile version */}
-
+        {/* mobile version */}
 
         <Box sx={{ display: { xs: 'block', md: 'none' } }}>
           <Typography sx={{ fontWeight: 700 }} variant='h4'>
@@ -284,7 +285,6 @@ export default function Cart() {
             <Box key={bouquet.id}>
               <Divider />
               <Box
-                
                 sx={{
                   py: '14px',
                   display: 'grid',
@@ -315,16 +315,22 @@ export default function Cart() {
                       />
                     </Box>
                     <Box className={styles.price} sx={{ mx: 'auto' }}>
-                      <Typography variant='h4' sx={{ fontWeight: '700', color:'#000000' }}>
+                      <Typography
+                        variant='h4'
+                        sx={{ fontWeight: '700', color: '#000000' }}
+                      >
                         {bouquet.price * bouquet.quantity}
                       </Typography>
-                      <Box sx={{ fontWeight: '700',color:'#000000' }} component='sup'>
+                      <Box
+                        sx={{ fontWeight: '700', color: '#000000' }}
+                        component='sup'
+                      >
                         BYN
                       </Box>
                     </Box>
                     <IconButton
                       component='div'
-                      onClick={(e)=>removeFromCart(e,bouquet.id)}
+                      onClick={(e) => removeFromCart(e, bouquet.id)}
                       // sx={{mr:'20px'}}
                     >
                       <Image src={cros} alt='heart icon'></Image>
@@ -357,14 +363,17 @@ export default function Cart() {
               >
                 Доставка
               </Typography>
-              <Typography component='div' className={styles.price} sx={{justifyContent: 'start'}}>
+              <Typography
+                component='div'
+                className={styles.price}
+                sx={{ justifyContent: 'start' }}
+              >
                 <Typography variant='h4'>0</Typography>
                 <Box component='sup' sx={{ fontWeight: '700' }}>
                   BYN
                 </Box>
               </Typography>
             </Box>
-            
 
             <Typography
               sx={{
@@ -380,7 +389,10 @@ export default function Cart() {
               Ввести промокод
             </Typography>
 
-            <Box className={styles.deliveryPrice} sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+            <Box
+              className={styles.deliveryPrice}
+              sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}
+            >
               <Typography
                 // sx={{ color: 'primary.main', mt: 2, textDecoration: 'underline', cursor:'pointer' }}
                 variant='h5'
@@ -400,7 +412,7 @@ export default function Cart() {
                   variant='h4'
                   sx={{
                     fontWeight: 700,
-                    justifyContent: 'start'
+                    justifyContent: 'start',
                   }}
                 >
                   {bouquets.reduce(
@@ -427,17 +439,14 @@ export default function Cart() {
                 Вернуться в католог
               </Typography>
             ) : (
-              <Button
-                variant='contained'
-                onClick={handleToCheckout}
-              >
+              <Button variant='contained' onClick={handleToCheckout}>
                 К оформлению
               </Button>
             )}
           </Box>
         </Box>
 
-        {isCheckout ? <Checkout></Checkout> : null}
+        {isCheckout ? <Checkout price={price}></Checkout> : null}
       </Box>
     </>
   );

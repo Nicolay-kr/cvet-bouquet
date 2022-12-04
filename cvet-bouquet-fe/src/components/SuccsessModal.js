@@ -13,18 +13,22 @@ import Button from '@mui/material/Button';
 // export default function SearchModal({bouquets}) {
 
 const style = {
-  display:'flex',
-  flexDirection:'column',
+  display: 'flex',
+  flexDirection: 'column',
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: {xs:'90%',lg:'35%'},
+  width: { xs: '90%', lg: '35%' },
   bgcolor: 'fon.main',
   boxShadow: 24,
   p: '40px',
 };
-export default function SuccsessModal({ open = false, onClose,isContactsForm }) {
+export default function SuccsessModal({
+  open = false,
+  onClose,
+  isContactsForm = false,
+}) {
   const handleClose = () => {
     onClose(false);
   };
@@ -43,48 +47,54 @@ export default function SuccsessModal({ open = false, onClose,isContactsForm }) 
         }}
       >
         <Fade in={open}>
-     
-        <Paper sx={style}>
-          <IconButton
-            sx={{
-              ml: 'auto',
-            }}
-            component='p'
-            role='presentation'
-            onClick={handleClose}
-          >
-            <Box
-              component={Image}
-              sx={{ width: '24px', height: '24px' }}
-              src={cros}
-              alt='cros icon'
-            ></Box>
-          </IconButton>
+          <Paper sx={style}>
+            <IconButton
+              sx={{
+                ml: 'auto',
+              }}
+              component='p'
+              role='presentation'
+              onClick={handleClose}
+            >
+              <Box
+                component={Image}
+                sx={{ width: '24px', height: '24px' }}
+                src={cros}
+                alt='cros icon'
+              ></Box>
+            </IconButton>
 
-          <Typography
-            id='modal-modal-title'
-            variant='h3'
-            component='h2'
-            // sx={{ mt: '20px' }}
-          >
-            {isContactsForm? 'Ваше соощение отправленно': 'Платёж совершён успешно'}
-            
-          </Typography>
-          <Typography
-            id='modal-modal-description'
-            variant='h5'
-            component='p'
-            sx={{ mt: '20px' }}
-          >
-            {isContactsForm? 'Мы свяжемся с Вами в ближайшее время': 'Спасибо что воспользовались услугами нашей компании'}
-            
-          </Typography>
+            <Typography
+              id='modal-modal-title'
+              variant='h3'
+              component='h2'
+              // sx={{ mt: '20px' }}
+            >
+              {isContactsForm
+                ? 'Ваше соощение отправленно'
+                : 'Платёж совершён успешно'}
+            </Typography>
+            <Typography
+              id='modal-modal-description'
+              variant='h5'
+              component='p'
+              sx={{ mt: '20px' }}
+            >
+              {isContactsForm
+                ? 'Мы свяжемся с Вами в ближайшее время'
+                : 'Спасибо что воспользовались услугами нашей компании'}
+            </Typography>
 
-          <Button onClick={handleClose} variant='contained' color='primary' sx={{mt:'40px',width:{xs:'100%',lg:'200px'}}}>
-            Оk
-          </Button>
-        </Paper>
-           </Fade>
+            <Button
+              onClick={handleClose}
+              variant='contained'
+              color='primary'
+              sx={{ mt: '40px', width: { xs: '100%', lg: '200px' } }}
+            >
+              Оk
+            </Button>
+          </Paper>
+        </Fade>
       </Modal>
     </div>
   );

@@ -292,7 +292,6 @@ export default function FreePayForm({ isContactsForm = false }) {
                 variant='contained'
                 color='primary'
                 sx={{ height: '60px', marginTop: 'auto' }}
-                vslue='Отправить'
               >
                 Отправить
               </Button>

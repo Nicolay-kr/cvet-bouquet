@@ -15,7 +15,6 @@ import Fade from '@mui/material/Fade';
 import { useEffect } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import { urlFor } from '../../../sanity';
-import { NextSanityIMG } from '../CustopNextComponents/NextSanityIMG';
 
 // import AspectRatio from '@mui/joy/AspectRatio';
 // import { CssVarsProvider } from '@mui/joy/styles';
