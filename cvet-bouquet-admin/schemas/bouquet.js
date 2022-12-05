@@ -1,23 +1,34 @@
-import { BsFlower1 } from 'react-icons/bs'
-
+import { BsFlower1 } from 'react-icons/bs';
 
 export default {
   name: 'bouquet',
   title: 'Список всех букетов',
   type: 'document',
   icon: BsFlower1,
+  initialValue: () => ({
+    publishedAt: new Date().toISOString(),
+    // delivery: [
+    //   {
+    //     _type: 'deliveryGeneral',
+    //     delivery: {
+    //       _ref: '0d17fade-a7e4-4454-95bd-040d7028e93e',
+    //       _type: 'reference',
+    //     },
+    //   },
+    // ],
+  }),
   fields: [
     {
       title: 'Отображать на сайте',
       name: 'published',
       type: 'boolean',
-      initialValue: true
+      initialValue: true,
     },
     {
       name: 'title',
       title: 'Название',
       type: 'localeString',
-      validation: Rule => Rule.required().error('Поле должно быть заполнено'),
+      validation: (Rule) => Rule.required().error('Поле должно быть заполнено'),
     },
     // {
     //   name: 'category',
@@ -29,17 +40,20 @@ export default {
       name: 'slug',
       title: 'Ссылка',
       type: 'slug',
-      description:'Поле для url адреса',
+      description: 'Поле для url адреса',
       initialValue: 'This string',
-      validation: Rule => Rule.required().error('Поле должно быть заполнено, пожалуйста нажмите кнопку Generate'),
+      validation: (Rule) =>
+        Rule.required().error(
+          'Поле должно быть заполнено, пожалуйста нажмите кнопку Generate'
+        ),
       options: {
         // source: 'title.ru',
         maxLength: 96,
-        source: async (doc,options) => {
-          if(doc.categories){
-            return `${options.parent.title.ru}`
-          }else{
-            return `${doc.title.ru}`
+        source: async (doc, options) => {
+          if (doc.categories) {
+            return `${options.parent.title.ru}`;
+          } else {
+            return `${doc.title.ru}`;
           }
         },
         // isUnique:true,
@@ -49,7 +63,8 @@ export default {
       name: 'price',
       title: 'Стоимость',
       type: 'number',
-      validation: Rule => Rule.required().error('Стоимость должна быть указана')
+      validation: (Rule) =>
+        Rule.required().error('Стоимость должна быть указана'),
     },
     // {
     //   name: 'mainImage',
@@ -75,6 +90,23 @@ export default {
       title: 'Описание',
       type: 'localeBlockContent',
     },
+    {
+      name: 'care',
+      title: 'Уход за букетом',
+      type: 'localeBlockContent',
+    },
+    {
+      name: 'delivery',
+      title: 'Доставка',
+      type: 'reference',
+      to: { type: 'deliveryGeneral' },
+    },
+    {
+      name: 'publishedAt',
+      title: 'Создан',
+      type: 'datetime',
+      readOnly: true,
+    },
     // {
     //   name: 'delivery',
     //   title: 'Доставка',
@@ -85,7 +117,6 @@ export default {
     //   title: 'Уход за букетом',
     //   type: 'localeBlockContent',
     // },
-
 
     // {
     //   title: 'Tags',
@@ -101,9 +132,9 @@ export default {
     //   },
     // },
     {
-      name: "order",
-      title: "Order",
-      type: "number",
+      name: 'order',
+      title: 'Order',
+      type: 'number',
       hidden: true,
     },
   ],
@@ -136,7 +167,7 @@ export default {
       title: 'title.ru',
       price: 'price',
       images: 'images',
-      category: 'category'
+      category: 'category',
     },
     prepare: ({ title, category, price, images }) => {
       return {

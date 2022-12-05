@@ -22,6 +22,7 @@ import corporateclientsPage from './pages/corporateclientsPage'
 import eposPage from './pages/eposPage'
 import privacyPage from './pages/privacyPage'
 import generalInfo from './generalInfo'
+import deliveryGeneral from './deliveryGeneral'
 
 
 import localeString from './locale/String'
@@ -47,6 +48,7 @@ export default createSchema({
     contactsPage,
     deliveryPage,
     bonuscardPage,
+    deliveryGeneral,
     eposPage,
     privacyPage,
     generalInfo,

@@ -1,10 +1,10 @@
-import { AiFillSetting } from 'react-icons/ai'
+import { AiFillSetting } from 'react-icons/ai';
 
 export default {
   name: 'generalInfo',
   title: 'Общая информация',
   type: 'document',
-  icon:AiFillSetting,
+  icon: AiFillSetting,
   fields: [
     {
       name: 'phone',
@@ -51,7 +51,7 @@ export default {
       title: 'Whatsapp',
       type: 'string',
     },
-   
+
     // {
     //   name: 'parents',
     //   title: 'Parent categories',

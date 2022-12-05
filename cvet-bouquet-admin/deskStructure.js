@@ -125,7 +125,7 @@ export default () =>
       // We also need to remove the new singletons from the main list
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          !['mainPage', 'aboutusPage', 'generalInfo','contactsPage','deliveryPage','bonuscardPage','corporateclientsPage','eposPage','privacyPage','categoryList','category'].includes(listItem.getId())
+          !['mainPage', 'aboutusPage', 'generalInfo','contactsPage','deliveryPage','bonuscardPage','corporateclientsPage','eposPage','privacyPage','deliveryGeneral','categoryList','category'].includes(listItem.getId())
       ),
       S.listItem()
         .icon(AiFillSetting)
