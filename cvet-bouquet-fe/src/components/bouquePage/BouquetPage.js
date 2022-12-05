@@ -17,16 +17,24 @@ import BreadCrumbs from '../breadcrubs/BreadCrumbs';
 import { useRouter } from 'next/router';
 import { urlFor } from '../../../sanity';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { useEffect } from 'react';
 
 export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
   const [quantity, setQuantity] = useState(1);
   const bouckeList = useAppContext();
-  const [activeImg, setActiveImg] = useState(bouquet.images[0]);
+  const baseImage = bouquet.images[0];
+
+  const [activeImg, setActiveImg] = useState(baseImage);
   bouquet = {
     ...bouquet,
     imagePath: bouquet.images[0],
     quantity: quantity,
   };
+  useEffect(()=>{
+    setActiveImg(baseImage)
+  },[baseImage])
+
+  console.log()
 
   const [animation] = useState(true);
   const handlePlus = () => {

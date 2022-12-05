@@ -29,12 +29,7 @@ export const Bouquet = ({
       { title: 'Каталог', href: '/catalog' },
       { title: title, href: null },
     ];
-  
-
   }
- 
-
-
 
 
   return (
