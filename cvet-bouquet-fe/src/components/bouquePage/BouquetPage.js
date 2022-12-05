@@ -34,8 +34,6 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
     setActiveImg(baseImage)
   },[baseImage])
 
-  console.log()
-
   const [animation] = useState(true);
   const handlePlus = () => {
     setQuantity((state) => state + 1);

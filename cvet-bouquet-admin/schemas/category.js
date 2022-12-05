@@ -57,13 +57,13 @@ export default {
             {type: 'bouquet'},
           ]
         },
-        {
-          type: 'bouquet',
-          title:'Добавить новый',
-          options: {
-            hotspot: true,
-          },
-        },
+        // {
+        //   type: 'bouquet',
+        //   title:'Добавить новый',
+        //   options: {
+        //     hotspot: true,
+        //   },
+        // },
       ],
     },
 
