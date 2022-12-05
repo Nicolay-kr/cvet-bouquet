@@ -13,6 +13,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { sanityClient, urlFor } from '../../sanity';
 import { useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from './CustopNextComponents/Link';
 
 // export default function SearchModal({bouquets}) {
 export default function SearchModal({}) {
@@ -20,6 +22,7 @@ export default function SearchModal({}) {
   const [searchValue, setSearchValue] = React.useState('');
   const [sortedList, setSortedList] = React.useState([]);
   const [bouquets, setBouquets] = useState([]);
+  const router = useRouter();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -184,10 +187,12 @@ export default function SearchModal({}) {
                         flexDirection: { xs: 'column', lg: 'row' },
                         gap: '20px',
                         '& img': { objectFit: 'cover' },
-                      }}
+                      }}ha
                     >
-                      {/* <Link href={`cart/${slug.current}`}> */}
+                      <Box onClick={handleClose}>
                       <Image
+                      onClick={() => router.replace(`/catalog/allbouquets/${bouquet.slug.current}`)}
+                        
                         layout='fill'
                         width={100}
                         height={125}
@@ -195,7 +200,7 @@ export default function SearchModal({}) {
                         alt='bouquet'
                         style={{cursor:'pointer'}}
                       ></Image>
-                      {/* </Link> */}
+                      </Box>
                       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                         <Typography variant='body1'>
                           {bouquet?.title?.ru}

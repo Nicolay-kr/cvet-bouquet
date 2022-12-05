@@ -64,7 +64,7 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
 
   function handlePopularitySort() {
     const sortedBouquetsList = defaultBouquetsList;
-    const sortedBouquetsListDesc = [...sortedBouquetsList].desctopReverse();
+    const sortedBouquetsListDesc = [...sortedBouquetsList].reverse();
     if (sorting.popularity.type === 'none' || sorting.popularity.type === 'desc') {
       setBouquetsList([...sortedBouquetsList]);
       setSorting(state=>({...state, popularity: { func: handlePopularitySort, type: 'asc' }}));

@@ -13,12 +13,29 @@ export const Bouquet = ({
   category,
 }) => {
 
-  const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
-    { title: 'Каталог', href: '/catalog' },
-    { title: category[0].title, href: `/catalog/${category[0].slug.current}` },
-    { title: title, href: null },
-  ];
+  let breadCrumbsList = []
+
+  if(category && category[0]?.title){
+    breadCrumbsList= [
+      { title: 'Главаная', href: '/' },
+      { title: 'Каталог', href: '/catalog' },
+      { title: category[0].title, href: `/catalog/${category[0].slug.current}` },
+      { title: title, href: null },
+    ];
+
+  }else{
+    breadCrumbsList = [
+      { title: 'Главаная', href: '/' },
+      { title: 'Каталог', href: '/catalog' },
+      { title: title, href: null },
+    ];
+  
+
+  }
+ 
+
+
+
 
   return (
     <BouquetPage
@@ -41,6 +58,7 @@ export const Bouquet = ({
 export const getServerSideProps = async (pageContext) => {
   const boucketSlug = pageContext.query.boucketSlug;
   const categorySlug = pageContext.query.slug;
+  console.log(categorySlug)
 
   if (!boucketSlug) {
     return {
