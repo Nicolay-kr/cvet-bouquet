@@ -88,19 +88,16 @@ export default {
     {
       name: 'description',
       title: 'Описание',
-      validation: (Rule) => Rule.required().error('Поле должно быть заполнено'),
       type: 'localeBlockContent',
     },
     {
       name: 'care',
       title: 'Уход за букетом',
-      validation: (Rule) => Rule.required().error('Поле должно быть заполнено'),
       type: 'localeBlockContent',
     },
     {
       name: 'delivery',
       title: 'Доставка',
-      validation: (Rule) => Rule.required().error('Поле должно быть заполнено'),
       type: 'reference',
       to: { type: 'deliveryGeneral' },
     },
