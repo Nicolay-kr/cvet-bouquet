@@ -10,9 +10,9 @@ import TextField from '@mui/material/TextField';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-// import MobilePhone from '../Form/MobilePhone';
 import SuccsessModal from '../SuccsessModal';
-// import { setLocale } from 'yup';
+import uniqid from 'uniqid';
+import { sanityClient } from '../../../sanity';
 
 export default function FreePayForm({ isContactsForm = false }) {
   const [isOpenSuccessModal,setIsOpenSuccessModal] = React.useState(false)
@@ -36,9 +36,6 @@ export default function FreePayForm({ isContactsForm = false }) {
   const defaultValue = isContactsForm ? defaultStateForContacts : defaultState;
 
   yup.setLocale({
-    mixed: {
-      default: 'Não é válido',
-    },
     number: {
       typeError: 'Это поле должно быть в числовом формате',
     },
@@ -74,9 +71,25 @@ export default function FreePayForm({ isContactsForm = false }) {
     resolver: yupResolver(schema),
   });
 
+  const addClient= (data) =>{
+    const doc = {
+      _id: uniqid(),
+      _type: 'clients',
+      name: data.customerName,
+      phone: data.customerPhone,
+      email: data.customerEmail,
+    }
+    
+    sanityClient.createIfNotExists(doc).then((res) => {
+      console.log('Client was created (or was already present)')
+    })
+    .catch((error)=>console.log(error))
+  }
+
   const onSubmit = (data) => {
     setIsOpenSuccessModal(true)
     console.log(data)
+    addClient(data)
   };
 
   const onClose = () =>{

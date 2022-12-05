@@ -31,6 +31,7 @@
     "react-phone-input-2": "^2.15.1",
     "react-transition-group": "^4.4.5",
     "swiper": "^8.4.4",
+    "uniqid": "^5.4.0",
     "use-device-pixel-ratio": "^1.1.0",
     "yup": "^0.32.11"
   },
