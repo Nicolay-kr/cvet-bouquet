@@ -75,9 +75,9 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h1.adaptiv,
       },
-      '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-        fontSize: customFontsSize.h1.regular/1.25,
-      },
+      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
+      //   fontSize: customFontsSize.h1.regular/1.25,
+      // },
       '@media (max-width:600px)': {
         fontSize: '60px',
       },
@@ -92,9 +92,9 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h2.adaptiv,
       },
-      '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-        fontSize: customFontsSize.h2.regular/1.25,
-      },
+      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
+      //   fontSize: customFontsSize.h2.regular/1.25,
+      // },
       '@media (max-width:600px)': {
         fontSize: 18,
       },
@@ -108,9 +108,9 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h3.adaptiv,
       },
-      '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-        fontSize: customFontsSize.h3.regular/1.25,
-      },
+      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
+      //   fontSize: customFontsSize.h3.regular/1.25,
+      // },
       '@media (mфч-width:600px)': {
         fontSize: '18px',
       },
@@ -127,9 +127,9 @@ const theme = createTheme({
       '@media (max-width:600px)': {
         fontSize: '18px',
       },
-      '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-        fontSize: customFontsSize.h4.regular/1.25,
-      },
+      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
+      //   fontSize: customFontsSize.h4.regular/1.25,
+      // },
     },
 
     h5: {
@@ -144,9 +144,9 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h5.adaptiv,
       },
-      '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-        fontSize: customFontsSize.h5.regular/1.25,
-      },
+      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
+      //   fontSize: customFontsSize.h5.regular/1.25,
+      // },
       '@media (max-width:600px)': {
         fontSize: '14px',
       },
@@ -163,9 +163,9 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h6.adaptiv,
       },
-      '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-        fontSize: customFontsSize.h6.regular/1.25,
-      },
+      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
+      //   fontSize: customFontsSize.h6.regular/1.25,
+      // },
     },
     body1: {
       fontSize: customFontsSize.body1.regular,
@@ -182,9 +182,9 @@ const theme = createTheme({
       '@media (max-width:480px)': {
         fontSize: customFontsSize.body1.regular * customFontsSize.widthMobile,
       },
-      '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-        fontSize: customFontsSize.body1.regular/1.25,
-      },
+      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
+      //   fontSize: customFontsSize.body1.regular/1.25,
+      // },
     },
     body2: {
       fontSize: customFontsSize.body2.regular,
@@ -196,9 +196,9 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.body2.adaptiv,
       },
-      '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-        fontSize: customFontsSize.body2.regular/1.25,
-      },
+      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
+      //   fontSize: customFontsSize.body2.regular/1.25,
+      // },
     },
     subtitle1: {
       fontSize: customFontsSize.subtitle1.regular,
