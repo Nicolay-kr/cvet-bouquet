@@ -2,7 +2,7 @@ import S from '@sanity/desk-tool/structure-builder';
 import { IconContext } from 'react-icons/lib';
 import { RiPagesLine } from 'react-icons/ri';
 import { AiFillSetting } from 'react-icons/ai';
-import { GiFlowers } from 'react-icons/gi'
+import { GiFlowers } from 'react-icons/gi';
 
 export default () =>
   S.list()
@@ -42,7 +42,7 @@ export default () =>
                     .schemaType('aboutusPage')
                     .documentId('aboutusPage')
                 ),
-                S.listItem()
+              S.listItem()
                 .icon(RiPagesLine)
                 .id('contactsPage')
                 .title('Контакты')
@@ -53,7 +53,7 @@ export default () =>
                     .schemaType('contactsPage')
                     .documentId('contactsPage')
                 ),
-                S.listItem()
+              S.listItem()
                 .icon(RiPagesLine)
                 .id('deliveryPage')
                 .title('Доставка и оплата')
@@ -64,7 +64,7 @@ export default () =>
                     .schemaType('deliveryPage')
                     .documentId('deliveryPage')
                 ),
-                S.listItem()
+              S.listItem()
                 .icon(RiPagesLine)
                 .id('bonuscardPage')
                 .title('Бонусная карта')
@@ -75,7 +75,7 @@ export default () =>
                     .schemaType('bonuscardPage')
                     .documentId('bonuscardPage')
                 ),
-                S.listItem()
+              S.listItem()
                 .icon(RiPagesLine)
                 .id('corporateclientsPage')
                 .title('Корпоративным клиентам')
@@ -86,7 +86,7 @@ export default () =>
                     .schemaType('corporateclientsPage')
                     .documentId('corporateclientsPage')
                 ),
-                S.listItem()
+              S.listItem()
                 .icon(RiPagesLine)
                 .id('eposPage')
                 .title('E-POS оплата')
@@ -97,7 +97,7 @@ export default () =>
                     .schemaType('eposPage')
                     .documentId('eposPage')
                 ),
-                S.listItem()
+              S.listItem()
                 .icon(RiPagesLine)
                 .id('privacyPage')
                 .title('Политика конфиденциальности')
@@ -110,7 +110,7 @@ export default () =>
                 ),
             ])
         ),
-        S.listItem()
+      S.listItem()
         .icon(GiFlowers)
         .id('categoryList')
         .title('Категории букетов')
@@ -125,7 +125,21 @@ export default () =>
       // We also need to remove the new singletons from the main list
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          !['mainPage', 'aboutusPage', 'generalInfo','contactsPage','deliveryPage','bonuscardPage','corporateclientsPage','eposPage','privacyPage','deliveryGeneral','categoryList','category'].includes(listItem.getId())
+          ![
+            'mainPage',
+            'aboutusPage',
+            'generalInfo',
+            'contactsPage',
+            'deliveryPage',
+            'bonuscardPage',
+            'corporateclientsPage',
+            'eposPage',
+            'privacyPage',
+            'shops',
+            'deliveryGeneral',
+            'categoryList',
+            'category',
+          ].includes(listItem.getId())
       ),
       S.listItem()
         .icon(AiFillSetting)

@@ -128,7 +128,7 @@ export default function FreePayForm({ isContactsForm = false }) {
         >
           <Typography
             variant='h4'
-            componet='p'
+            component='p'
             color='#000000'
             sx={{ fontWeight: '700', mb: 'max(36px,1.9vw)' }}
           >
@@ -216,7 +216,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                   </Button>
                   <Typography
                     variant='body1'
-                    componet='p'
+                    component='p'
                     color='#000000'
                     sx={{
                       fontWeight: '700',
@@ -290,7 +290,7 @@ export default function FreePayForm({ isContactsForm = false }) {
             >
               <Typography
                 variant='body1'
-                componet='p'
+                component='p'
                 color='#000000'
                 sx={{ fontWeight: '700', mb: 'max(36px,1.9vw)' }}
               >

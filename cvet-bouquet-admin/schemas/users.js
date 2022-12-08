@@ -1,11 +1,17 @@
 import { BsFillPeopleFill } from 'react-icons/bs'
 
 export default {
-  name: 'clients',
-  title: 'Клиенты',
+  name: 'users',
+  title: 'Пользователи',
   type: 'document',
   icon:BsFillPeopleFill,
   fields: [
+    {
+      title: 'Активный',
+      name: 'active',
+      type: 'boolean',
+      initialValue: true,
+    },
     {
       name: 'name',
       title: 'Имя',
@@ -20,17 +26,6 @@ export default {
       name: 'email',
       title: 'Email',
       type: 'string',
-    },
-    {
-      name: 'registratiom',
-      title: 'Зарегистрирован',
-      type: 'datetime',
-      options: {
-        dateFormat: 'DD-MM-YYYY',
-        timeFormat: 'HH:mm',
-        timeStep: 15,
-        calendarTodayLabel: 'Today'
-      }
     },
 
 

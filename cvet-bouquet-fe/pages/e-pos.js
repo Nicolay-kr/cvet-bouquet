@@ -41,7 +41,7 @@ export default function EposPage({ pageData }) {
             <Typography variant='h5' component='p' >
               Ссылка для оплаты:
             </Typography>
-            <Typography variant='h5' component='p'>
+            <Typography variant='h5' component='a' href={pageData[0].link} target='_blank'>
               {pageData[0].link}
             </Typography>
           </Box>

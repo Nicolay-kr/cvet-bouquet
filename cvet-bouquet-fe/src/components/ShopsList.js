@@ -5,9 +5,9 @@ import metroIcon from '../../public/assets/icons/metro.svg';
 import Box from '@mui/material/Box';
 
 
-export default function ShopsList({shop,currentKey, delivery=false}) {
+export default function ShopsList({shop, delivery=false}) {
   return (
-    <Box key={`${currentKey}-shop`}>
+    <Box >
       <Typography
         sx={{
           alignSelf: 'left',
@@ -15,18 +15,20 @@ export default function ShopsList({shop,currentKey, delivery=false}) {
           alignItems: 'center',
           marginBottom: '0px',
           opacity: !delivery || delivery === shop.adress ? '1' : '0.5',
-          fontSize: { lg: '16px', xl: '20px' },
+          // fontSize: { lg: '16px', xl: '20px' },
         }}
         gutterBottom
-        variant='h6'
-        component='p'
+        variant='h5'
+        component='span'
       >
         {shop.adress}
+        <span>
         <Image
           style={{ margin: '0 10px' }}
           src={metroIcon}
           alt='metro icon'
         ></Image>
+        </span>
         {shop.metro}
       </Typography>
       <Typography

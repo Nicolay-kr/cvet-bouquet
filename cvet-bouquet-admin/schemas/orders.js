@@ -16,6 +16,11 @@ export default {
       title: 'Телефон',
       type: 'string',
     },
+     {
+      name: 'status',
+      title: 'Статус',
+      type: 'string',
+    },
     {
       name: 'email',
       title: 'Email',

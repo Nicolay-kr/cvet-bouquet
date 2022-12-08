@@ -10,8 +10,9 @@ import categoryList from './categoryList'
 import product from './product'
 import bouquet from './bouquet'
 import vendor from './vendor'
-import clients from './clients'
+import users from './users'
 import orders from './orders'
+import shops from './shops'
 import productVariant from './productVariant'
 import mainPage from './pages/mainPage'
 import aboutusPage from './pages/aboutusPage'
@@ -41,7 +42,7 @@ export default createSchema({
     category,
     categoryList,
     bouquet,
-    clients,
+    users,
     orders,
     mainPage,
     aboutusPage,
@@ -53,6 +54,7 @@ export default createSchema({
     privacyPage,
     generalInfo,
     corporateclientsPage,
+    shops,
     // product,
     // vendor,
     // When added to this list, object types can be used as

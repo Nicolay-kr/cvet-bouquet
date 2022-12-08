@@ -17,14 +17,18 @@ export default {
       type: 'string',
     },
     {
-      name: 'adress',
-      title: 'Aдресс',
-      type: 'string',
-    },
-    {
-      name: 'worktime',
-      title: 'Режим работы',
-      type: 'string',
+      name: 'shopsList',
+      title: 'Магазины',
+      type: 'array',
+      of: [
+        {
+          type: 'shops',
+          title:'Добавить новый магазин',
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
     },
     {
       name: 'requisites',
