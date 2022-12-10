@@ -36,6 +36,16 @@ export default {
       type: 'string',
     },
     {
+      name: 'deliveryPrice',
+      title: 'Стоимость доставки (BYN)',
+      type: 'number',
+    },
+    {
+      name: 'deliveryMin',
+      title: 'Минимальная соимость букета при бесплатной доставке (BYN).',
+      type: 'number',
+    },
+    {
       name: 'instagram',
       title: 'Instagram',
       type: 'string',
@@ -55,37 +65,5 @@ export default {
       title: 'Whatsapp',
       type: 'string',
     },
-
-    // {
-    //   name: 'parents',
-    //   title: 'Parent categories',
-    //   type: 'array',
-    //   of: [
-    //     {
-    //       type: 'reference',
-    //       to: [{type: 'category'}],
-    //     },
-    //   ],
-    // },
   ],
-  // preview: {
-  //   select: {
-  //     title: 'title',
-  //     media: 'mainImage',
-  //   },
-  // },
-  // preview: {
-  //   select: {
-  //     name: 'name',
-  //     phone: 'phone',
-  //     email: 'email',
-  //   },
-  //   prepare: ({ name, phone, email }) => {
-  //     return {
-  //       title: `${name} `,
-  //       // subtitle: `Категория: ${category.title}`,
-  //       subtitle: `${phone}, ${email}`,
-  //     };
-  //   },
-  // },
 };

@@ -144,12 +144,9 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h5.adaptiv,
       },
-      '@media (max-width:1440px)': {
+      '@media (max-width:1536px)': {
         fontSize: '15px',
       },
-      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-      //   fontSize: customFontsSize.h5.regular/1.25,
-      // },
       '@media (max-width:600px)': {
         fontSize: '16px',
       },
