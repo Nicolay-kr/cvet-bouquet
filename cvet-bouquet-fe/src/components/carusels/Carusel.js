@@ -56,6 +56,8 @@ const Carusel = ({
               // description={description.ru}
               imagePath={bouquet.images[0]}
               slug={bouquet.slug}
+              deliveryPrice={bouquet.delivery.deliveryPrice}
+              deliveryMin={bouquet.delivery.deliveryPrice}
             ></BouquetCard>
           </Box>
         )}

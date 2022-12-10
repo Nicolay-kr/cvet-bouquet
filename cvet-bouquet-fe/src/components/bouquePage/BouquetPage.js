@@ -34,6 +34,8 @@ export const BouquetPage = ({
     ...bouquet,
     imagePath: bouquet.images[0],
     quantity: quantity,
+    deliveryPrice:generalInfo.deliveryPrice,
+    deliveryMin:generalInfo.deliveryMin,
   };
   useEffect(() => {
     setActiveImg(baseImage);

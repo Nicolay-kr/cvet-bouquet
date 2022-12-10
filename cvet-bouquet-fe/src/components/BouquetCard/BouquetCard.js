@@ -15,6 +15,7 @@ import Fade from '@mui/material/Fade';
 import { useEffect } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import { urlFor } from '../../../sanity';
+import size from '../../utils/size';
 
 // import AspectRatio from '@mui/joy/AspectRatio';
 // import { CssVarsProvider } from '@mui/joy/styles';
@@ -29,6 +30,8 @@ export default function BouquetCard({
   slug,
   categorySlug = null,
   categoryName = null,
+  deliveryPrice,
+  deliveryMin,
 }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
@@ -41,6 +44,8 @@ export default function BouquetCard({
     slug,
     categorySlug,
     categoryName,
+    deliveryPrice,
+    deliveryMin,
   };
   const addToFavoritList = (e) => {
     e.stopPropagation();
@@ -83,7 +88,7 @@ export default function BouquetCard({
           alt='heart icon'
         ></Box>
       </IconButton>
-      <Fade  timeout={1000} in={checked}>
+      <Fade timeout={1000} in={checked}>
         <Card
           sx={{
             width: '100%',
@@ -164,10 +169,15 @@ export default function BouquetCard({
                   gutterBottom
                   variant='h3'
                   component='p'
-                  sx={{ fontWeight: 700, display: 'flex',mb:'0' }}
+                  sx={{ fontWeight: 700, display: 'flex', mb: '0' }}
                 >
-                  {price}{' '}
-                  <sup style={{ fontSize: '10px', paddingTop: '4px' }}>BYN</sup>
+                  {price}
+                  <Box
+                    component='sup'
+                    style={{ fontSize: '0.5em', paddingTop: '4px' }}
+                  >
+                    BYN
+                  </Box>
                 </Typography>
                 <Typography
                   gutterBottom
@@ -179,7 +189,19 @@ export default function BouquetCard({
                     width: '40%',
                   }}
                 >
-                  бесплатная доставка
+                  {bouquet.price >= deliveryMin ? (
+                    'бесплатная доставка'
+                  ) : (
+                    <span>
+                      Доставка {deliveryPrice}
+                      <Box
+                        sx={{ fontSize: '0.5em', pt: size(4) }}
+                        component='sup'
+                      >
+                        BYN
+                      </Box>
+                    </span>
+                  )}
                 </Typography>
               </Box>
             </CardContent>

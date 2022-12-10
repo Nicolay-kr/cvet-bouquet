@@ -39,17 +39,19 @@ export default function Favorites() {
           >
             {bouquets.length ? (
               bouquets.map(
-                ({ id, title, description, imagePath, price, slug }, index) => (
+                ({ id, title, deliveryPrice, deliveryMin, imagePath, price, slug }, index) => (
                   <Box key={id}>
                   <BouquetCard
-                    id={id}
-                    title={title}
-                    price={price}
-                    // description={description.ru}
-                    categorySlug={'favorites'}
-                    categoryName={'Избранное'}
-                    imagePath={imagePath}
-                    slug={slug}
+                      id={id}
+                      title={title}
+                      price={price}
+                      // description={description.ru}
+                      categorySlug={'favorites'}
+                      categoryName={'Избранное'}
+                      imagePath={imagePath}
+                      slug={slug}
+                      deliveryPrice={deliveryPrice}
+                      deliveryMin={deliveryMin}
                   ></BouquetCard>
                   </Box>
                 )

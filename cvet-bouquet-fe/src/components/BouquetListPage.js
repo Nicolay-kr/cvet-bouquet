@@ -6,7 +6,7 @@ import BreadCrumbs from './breadcrubs/BreadCrumbs';
 import BouquetSort from './BouquetSort/BouquetSort';
 import PriceFilter from './PriceFilter';
 
-const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
+const BouquetListPage = ({ category, instagramPosts, breadCrumbsList, generalInfo }) => {
   const defaultBouquetsList = category.length && category[0]?.bouqets
   const [bouquetsList, setBouquetsList] = React.useState(defaultBouquetsList);
   const [value, setValue] = React.useState('Все');
@@ -75,8 +75,6 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
     setActiveSorting('popularity')
   }
 
-  // console.log(value);
-
   return (
     <>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
@@ -111,6 +109,10 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList }) => {
                       slug={slug}
                       categorySlug={`catalog/${category[0].slug.current}`}
                       price={price}
+                      deliveryPrice={generalInfo.deliveryPrice}
+                      deliveryMin={generalInfo.deliveryMin}
+
+                      
                     ></BouquetCard>
                   </Box>
                 )

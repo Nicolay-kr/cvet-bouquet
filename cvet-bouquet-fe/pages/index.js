@@ -221,6 +221,7 @@ export const getServerSideProps = async (pageContext) => {
       images,
       price,
       description,
+      "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
     },
   }`;
   const query = `*[ _type == "mainPage"]
@@ -231,19 +232,10 @@ export const getServerSideProps = async (pageContext) => {
     secondBlock,
   }`;
 
-  const bouquetsQuery = `*[ _type == "bouquet"]
-  {
-    _id,
-    title,
-    slug,
-    images,
-    price,
-    description,
-  }`;
+
 
   const resultCategory = await sanityClient.fetch(queryCategory);
   const pageData = await sanityClient.fetch(query);
-  const bouquets = await sanityClient.fetch(bouquetsQuery);
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
   const data = await fetch(instagramUrl);
@@ -261,7 +253,6 @@ export const getServerSideProps = async (pageContext) => {
         instagramPosts,
         category: resultCategory,
         pageData: pageData,
-        bouquets: bouquets,
       },
     };
   }

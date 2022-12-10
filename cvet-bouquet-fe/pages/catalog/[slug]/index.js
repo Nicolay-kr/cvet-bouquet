@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import TextsQuote from '../../../src/components/TextsQuote';
 // import { useState } from 'react';
 
-export const CategoryBouquets = ({ category, instagramPosts }) => {
+export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
   const breadCrumbsList = [
     { title: 'Главаная', href: '/' },
     { title: 'Каталог', href: '/catalog' },
@@ -61,6 +61,7 @@ export const CategoryBouquets = ({ category, instagramPosts }) => {
       breadCrumbsList={breadCrumbsList}
       instagramPosts={instagramPosts}
       category={category}
+      generalInfo={generalInfo}
     ></BouquetListPage>
   );
 };
@@ -86,7 +87,16 @@ export const getServerSideProps = async (pageContext) => {
     },
   }`;
 
+  const generalInfoQuery = `*[ _type == "generalInfo"]
+  {
+    _id,
+    deliveryPrice,
+    deliveryMin,
+  }`;
+
+
   const resultCategory = await sanityClient.fetch(queryCategory);
+  const generalInfo = await sanityClient.fetch(generalInfoQuery);
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
   const data = await fetch(instagramUrl);
@@ -103,6 +113,7 @@ export const getServerSideProps = async (pageContext) => {
       props: {
         instagramPosts,
         category: resultCategory,
+        generalInfo:generalInfo[0]
       },
     };
   }
