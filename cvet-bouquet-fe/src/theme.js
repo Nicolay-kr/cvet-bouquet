@@ -186,7 +186,7 @@ const theme = createTheme({
         fontSize: customFontsSize.body1.adaptiv,
       },
       '@media (max-width:1536px)': {
-        fontSize: '14px',
+        fontSize: '12px',
       },
       '@media (max-width:600px)': {
         fontSize: '10px',
@@ -205,8 +205,11 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.body2.adaptiv,
       },
-      '@media (max-width:1px)': {
+      '@media (max-width:1536px)': {
         fontSize: '12px',
+      },
+      '@media (max-width:600px)': {
+        fontSize: '10px',
       },
       // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
       //   fontSize: customFontsSize.body2.regular/1.25,

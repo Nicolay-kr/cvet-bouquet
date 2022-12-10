@@ -5,7 +5,9 @@ import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
-import TextsQuote from '../src/components/TextsQuote';
+import FreePayForm from '../src/components/freeForm/FreePayForm';
+import size from '../src/utils/size';
+
 
 export default function AboutUs({ instagramPosts, pageData }) {
   const breadCrumbsList = [
@@ -39,14 +41,15 @@ export default function AboutUs({ instagramPosts, pageData }) {
                 blocks={pageData[0].text.ru}
               ></TitleWithTextBlock>
             </Box>
-
-            <TextsQuote></TextsQuote>
           </Box>
         }
       ></IntroBlock>
+      <Box sx={{ px: { xs: '5%', lg: '10%' }, mt:size(100) }}>
+        <FreePayForm isContactsForm={true}></FreePayForm>
+      </Box>
       <Box
         component='section'
-        sx={{ my: 'max(100px,5vw)', px: { xs: '5%', lg: '10%' } }}
+        sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}
       >
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
