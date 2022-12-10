@@ -104,20 +104,23 @@ export default function Cart() {
   const removeFromCart = (e, id) => {
     bouquetsContext.removeFromCart(id);
   };
+  console.log(bouquets)
 
   const breadCrumbsList = [
     { title: 'Главаная', href: '/' },
     { title: 'Корзина', href: null },
   ];
+  
 
   const price = bouquets.reduce(
     (akk, item) => akk + item.price * item.quantity,
     0
   );
+  const delivery = price<bouquets[0]?.deliveryMin?bouquets[0].deliveryPrice:0
+
 
   return (
     <>
-      <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box
         sx={{
           px: { xs: '5%', lg: '10%' },
@@ -134,6 +137,7 @@ export default function Cart() {
           }}
         >
           <Box>
+          <BreadCrumbs breadCrumbsList={breadCrumbsList} isInIntro={true}></BreadCrumbs>
             <TableContainer sx={{ width: '100%', mb: '24px' }} component='div'>
               <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                 <TableHead>
@@ -206,7 +210,7 @@ export default function Cart() {
               </Typography>
               <span className={styles.price}>
                 <Typography variant='h4'>
-                  {/* {bouquets.reduce((akk, item) => akk + item.price, 0)} */}0
+                  {delivery}
                 </Typography>
                 <sup>BYN</sup>
               </span>
@@ -236,7 +240,7 @@ export default function Cart() {
                     fontWeight: 700,
                   }}
                 >
-                  {price}
+                  {price+delivery}
                 </Typography>
                 <sup>BYN</sup>
               </Typography>

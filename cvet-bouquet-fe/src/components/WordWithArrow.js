@@ -3,6 +3,7 @@ import navArrow from '../../public/assets/icons/navArrow.svg';
 import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
 import Box from '@mui/material/Box';
+import { Typography } from '../../node_modules/@mui/material/index';
 
 export default function WordWithArrow({
   title,
@@ -28,16 +29,16 @@ export default function WordWithArrow({
       sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
       onClick={handleClick}
     >
-      <Box
+      <Typography
+        variant='h5'
         sx={{
           m: '0',
-          fontSize: {xs:'14',lg:'20px'},
           color: isActive ? 'primary.main' : '#000000',
         }}
         component='p'
       >
         {title}
-      </Box>
+      </Typography>
       <IconButton
         sx={{
           p: '4px',

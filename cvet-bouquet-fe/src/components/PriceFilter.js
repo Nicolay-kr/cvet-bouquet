@@ -3,7 +3,6 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
@@ -30,25 +29,25 @@ export default function PriceFilter({ value, changeFunc }) {
           label={
             <Box sx={{ display: 'flex' }}>
               <Typography
-                sx={{ fontSize: { xs: '14px', lg: '20px' }, ml: 'auto' }}
-                variant='h4'
+                sx={{ ml: 'auto' }}
+                variant='h5'
                 component='p'
                 color='#000000'
               >
                 100
-                <Box sx={{ fontSize: '10px', pt: '4px' }} component='sup'>
+                <Box sx={{ fontSize: '0.5em', pt: '4px' }} component='sup'>
                   BYN
                 </Box>
               </Typography>
               <Typography
-                sx={{ fontSize: { xs: '14px', lg: '20px' }, ml: 'auto' }}
-                variant='h4'
+                sx={{ ml: 'auto' }}
+                variant='h5'
                 component='p'
                 color='#000000'
               >
                 {' '}
                 - 300
-                <Box sx={{ fontSize: '10px', pt: '4px' }} component='sup'>
+                <Box sx={{ fontSize: '0.5em', pt: '4px' }} component='sup'>
                   BYN
                 </Box>
               </Typography>
@@ -61,23 +60,25 @@ export default function PriceFilter({ value, changeFunc }) {
           label={
             <Box sx={{ display: 'flex' }}>
               <Typography
-                sx={{ fontSize: { xs: '14px', lg: '20px' }, ml: 'auto' }}
+                variant='h5'
+                sx={{ ml: 'auto' }}
                 component='p'
                 color='#000000'
               >
                 300
-                <Box sx={{ fontSize: '10px', pt: '4px' }} component='sup'>
+                <Box sx={{ fontSize: '0.5em', pt: '4px' }} component='sup'>
                   BYN
                 </Box>
               </Typography>
               <Typography
-                sx={{ fontSize: { xs: '14px', lg: '20px' }, ml: 'auto' }}
+                variant='h5'
+                sx={{ ml: 'auto' }}
                 component='p'
                 color='#000000'
               >
                 {' '}
                 - 500
-                <Box sx={{ fontSize: '10px', pt: '4px' }} component='sup'>
+                <Box sx={{ fontSize: '0.5em', pt: '4px' }} component='sup'>
                   BYN
                 </Box>
               </Typography>
@@ -88,10 +89,7 @@ export default function PriceFilter({ value, changeFunc }) {
           value={'501,4000'}
           control={<Radio />}
           label={
-            <Typography
-              sx={{ fontSize: { xs: '14px', lg: '20px' } }}
-              component='p'
-            >
+            <Typography variant='h5' component='p'>
               Премиум
             </Typography>
           }
@@ -101,7 +99,7 @@ export default function PriceFilter({ value, changeFunc }) {
           control={<Radio />}
           label={
             <Typography
-              sx={{ fontSize: { xs: '14px', lg: '20px' } }}
+            variant='h5'
               component='p'
             >
               Все

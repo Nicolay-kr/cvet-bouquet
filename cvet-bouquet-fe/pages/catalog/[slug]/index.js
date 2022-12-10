@@ -17,7 +17,6 @@ export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
   ];
   
   const isPremium = category[0].slug.current === 'premium-floristika';
-  console.log(category[0]);
 
   return isPremium ? (
     <>

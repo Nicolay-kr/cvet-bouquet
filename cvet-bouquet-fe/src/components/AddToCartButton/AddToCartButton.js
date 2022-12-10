@@ -3,8 +3,22 @@ import Button from '@mui/material/Button';
 import { useAppContext } from '../context/BouquetsContext';
 import Snackbar from '@mui/material/Snackbar';
 
-export default function AddToCartButton({ bouquet,variant='outlined',autoHeight=false }) {
-  const { id, title, imagePath, price, slug, quantity,categorySlug } = bouquet;
+export default function AddToCartButton({
+  bouquet,
+  variant = 'outlined',
+  autoHeight = false,
+}) {
+  const {
+    id,
+    title,
+    imagePath,
+    price,
+    slug,
+    quantity,
+    categorySlug,
+    deliveryPrice,
+    deliveryMin,
+  } = bouquet;
   const [isOpenSnack, setIsOpenSnack] = React.useState(false);
   const bouckeList = useAppContext();
   const addToCart = (e) => {
@@ -19,6 +33,8 @@ export default function AddToCartButton({ bouquet,variant='outlined',autoHeight=
       slug,
       quantity,
       categorySlug,
+      deliveryPrice,
+      deliveryMin,
     });
   };
 
@@ -42,11 +58,11 @@ export default function AddToCartButton({ bouquet,variant='outlined',autoHeight=
         />
       </div>
       <Button
-        variant= {variant}
+        variant={variant}
         color='primary'
         sx={{
           width: '100%',
-          height: autoHeight? 'auto':{xs:'36px', lg: '60px'},
+          height: autoHeight ? 'auto' : { xs: '36px', lg: '60px' },
           borderWidth: '1.5px',
           '&:hover': { backgroundColor: 'primary.main', color: '#fff' },
         }}

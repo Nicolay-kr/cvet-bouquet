@@ -77,7 +77,6 @@ export default function SearchModal({}) {
     setSearchValue(e.target.value);
     setSortedList([...sotedList]);
   };
-  // console.log(sortedList);
 
   return (
     <div>

@@ -17,23 +17,15 @@ export default function Home({ instagramPosts, category, pageData }) {
   const lg = useMediaQuery('(min-width:1200px)');
   const [mappedBouquets, setMappedBouquets] = useState(category);
 
-  // const [pageData, setMpageData] = useState(category);
-  // const bouquetsContext = useAppContext();
-  // bouquetsContext.setbouquetsCategories(mappedBouquets);
-
-  // useEffect(() => {
-  //   bouquetsContext.setbouquetsCategories(mappedBouquets);
-  // }, []);
 
   const popular = mappedBouquets[7];
-  console.log(mappedBouquets)
 
   return (
     <>
-      {pageData[0].firstBlock.published ? (
+      {pageData.firstBlock.published ? (
         <IntroBlock
-          mainImage={pageData[0].firstBlock.mainImage}
-          secondImage={pageData[0].firstBlock.secondImage}
+          mainImage={pageData.firstBlock.mainImage}
+          secondImage={pageData.firstBlock.secondImage}
           mobileReverse={true}
           textBlock={
             <Box
@@ -100,7 +92,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                 <Box sx={{ my: 'auto' }}>
                   <BlockContentBox
                     fs={32}
-                    blocks={pageData[0].firstBlock.text.ru}
+                    blocks={pageData.firstBlock.text.ru}
                   ></BlockContentBox>
                 </Box>
               ) : null}
@@ -141,20 +133,20 @@ export default function Home({ instagramPosts, category, pageData }) {
         isSpec={true}
       ></CaruselBlockWithArch>
 
-      {popular?.bouqets ? (
+      {pageData?.popularBouqets? (
         <CaruselBlock
-          bouquets={popular?.bouqets}
+          bouquets={pageData.popularBouqets}
           title={'Популярные'}
           subtitle={'букеты'}
-          categoryslug={popular.slug.current}
+          categoryslug='popular'
         ></CaruselBlock>
       ) : null}
 
-      {pageData[0].secondBlock.published ? (
+      {pageData.secondBlock.published ? (
         <Box sx={{ mt: { xs: '60px', lg: '100px' } }}>
           <IntroBlock
-            mainImage={pageData[0].secondBlock.mainImage}
-            secondImage={pageData[0].secondBlock.secondImage}
+            mainImage={pageData.secondBlock.mainImage}
+            secondImage={pageData.secondBlock.secondImage}
             isDrop={true}
             mobileReverse={true}
             isMainFlower={true}
@@ -170,7 +162,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                 <Box sx={{ my: 'auto',mt:{xs:'40px',lg:'auto'} }}>
                   <BlockContentBox
                     fs={32}
-                    blocks={pageData[0].secondBlock.text.ru}
+                    blocks={pageData.secondBlock.text.ru}
                   ></BlockContentBox>
                 </Box>
                 <Box
@@ -224,12 +216,21 @@ export const getServerSideProps = async (pageContext) => {
       "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
     },
   }`;
-  const query = `*[ _type == "mainPage"]
+  const query = `*[ _type == "mainPage"][0]
   {
     _id,
     title,
     firstBlock,
     secondBlock,
+    popularBouqets[]->{
+      _id,
+      title,
+      slug,
+      images,
+      price,
+      description,
+      "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
+    },
   }`;
 
 

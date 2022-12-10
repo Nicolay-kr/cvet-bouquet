@@ -181,12 +181,11 @@ export default function BouquetCard({
                 </Typography>
                 <Typography
                   gutterBottom
-                  variant='h5'
+                  variant='body1'
                   component='p'
                   sx={{
-                    fontSize: { xs: '10px', lg: '16px' },
                     textAlign: 'end',
-                    width: '40%',
+                    width: '51%',
                   }}
                 >
                   {bouquet.price >= deliveryMin ? (

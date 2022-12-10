@@ -86,7 +86,6 @@ export default function Checkout({price}) {
     customerFlat: '',
     price:price,
   };
-  console.log(checkoutOptions)
 
   const [isPrivareHouse, setIsPrivareHouse] = React.useState(false);
 
@@ -129,7 +128,6 @@ export default function Checkout({price}) {
 
   const onSubmit = (data) => {
     setIsOpenSuccessModal(true);
-    console.log(Object.assign(data, checkoutOptions));
   };
 
   const onClose = () => {

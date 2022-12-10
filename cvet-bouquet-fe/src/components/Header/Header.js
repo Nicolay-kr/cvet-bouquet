@@ -35,9 +35,6 @@ export const Header = () => {
     { title: 'Доставка и самовывоз', slug: { current: 'delivery' } },
   ];
 
-  // console.log('bouquets',bouquets)
-  // console.log(category)
-
   const fetchCategories = useCallback(async () => {
     sanityClient
 			.fetch(

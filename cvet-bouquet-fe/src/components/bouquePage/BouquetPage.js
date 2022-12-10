@@ -27,7 +27,6 @@ export const BouquetPage = ({
   const [quantity, setQuantity] = useState(1);
   const bouckeList = useAppContext();
   const baseImage = bouquet.images[0];
-  console.log(bouquet);
 
   const [activeImg, setActiveImg] = useState(baseImage);
   bouquet = {

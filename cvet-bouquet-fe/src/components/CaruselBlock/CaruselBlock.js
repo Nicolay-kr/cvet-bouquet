@@ -19,7 +19,6 @@ export default function CaruselBlock({
   subtitle,
   categoryslug = null,
 }) {
-console.log(bouquets)
   const caruselRef = useRef(null);
 
   const handleRightArrowClick = () => {

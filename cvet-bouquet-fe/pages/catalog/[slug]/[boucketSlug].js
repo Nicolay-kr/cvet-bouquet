@@ -3,17 +3,15 @@ import { sanityClient } from '../../../sanity';
 import BouquetPage from '../../../src/components/bouquePage/BouquetPage';
 
 export const Bouquet = ({ bouquet, instagramPosts, category,generalInfo }) => {
-  console.log(generalInfo);
-
   let breadCrumbsList = [];
 
-  if (category && category[0]?.title) {
+  if (category && category?.title) {
     breadCrumbsList = [
       { title: 'Главаная', href: '/' },
       { title: 'Каталог', href: '/catalog' },
       {
-        title: category[0].title,
-        href: `/catalog/${category[0].slug.current}`,
+        title: category.title,
+        href: `/catalog/${category.slug.current}`,
       },
       { title: bouquet.title.ru, href: null },
     ];
@@ -38,7 +36,6 @@ export const Bouquet = ({ bouquet, instagramPosts, category,generalInfo }) => {
 export const getServerSideProps = async (pageContext) => {
   const boucketSlug = pageContext.query.boucketSlug;
   const categorySlug = pageContext.query.slug;
-  console.log(categorySlug);
 
   if (!boucketSlug) {
     return {
@@ -65,7 +62,7 @@ export const getServerSideProps = async (pageContext) => {
       title,
     }`;
 
-    const generalInfoQuery = `*[ _type == "generalInfo"]
+    const generalInfoQuery = `*[ _type == "generalInfo"][0]
     {
       _id,
       deliveryPrice,
@@ -90,8 +87,8 @@ export const getServerSideProps = async (pageContext) => {
       props: {
         bouquet: bouquet,
         instagramPosts: instagramPosts ? instagramPosts : [],
-        category: resultCategory,
-        generalInfo:generalInfo[0],
+        category:categorySlug ==='popular'?{title:'Популярные букеты',slug:{current:'popular'}}: resultCategory,
+        generalInfo:generalInfo,
       },
     };
   }

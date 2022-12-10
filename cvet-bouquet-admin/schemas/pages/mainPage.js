@@ -69,6 +69,20 @@ export default {
         },
       ],
     },
+    {
+      name: 'popularBouqets',
+      title: 'Популярные букеты',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          title:'Выбрать из существующих',
+          to: [
+            {type: 'bouquet'},
+          ]
+        },
+      ],
+    },
     // {
     //   name: 'text',
     //   title: 'Текст',

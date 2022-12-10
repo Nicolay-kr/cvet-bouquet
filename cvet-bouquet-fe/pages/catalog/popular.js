@@ -2,38 +2,37 @@ import React from 'react';
 import { sanityClient } from '../../sanity';
 import BouquetListPage from '../../src/components/BouquetListPage';
 
-export const AllBouquetsPage = ({instagramPosts, bouquets,generalInfo}) => {
+export const Popular = ({instagramPosts, bouquets,generalInfo}) => {
   const breadCrumbsList = [
     { title: 'Главаная', href: '/' },
     { title: 'Каталог', href: '/catalog' },
-    { title: 'Все Букеты', href: null },
+    { title: 'Популярные букеты', href: null },
   ];
 
   return (
     <BouquetListPage
       breadCrumbsList={breadCrumbsList}
       instagramPosts={instagramPosts}
-      category={[{bouqets:bouquets,slug:{current:'allbouquets'}}]}
+      category={[{bouqets:bouquets,slug:{current:'popular'}}]}
       generalInfo={generalInfo}
     ></BouquetListPage>
   )
 };
 
 export const getServerSideProps = async (pageContext) => {
-  const pageSlug = pageContext.query.slug;
-  const queryBouquet = `*[ _type == "bouquet"]
+  const query = `*[ _type == "mainPage"][0]
   {
+    popularBouqets[]->{
       _id,
       title,
       slug,
       images,
       price,
       description,
-      care,
-      delivery->,
+      "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
+    },
   }`;
 
-  
   const generalInfoQuery = `*[ _type == "generalInfo"]
   {
     _id,
@@ -41,7 +40,8 @@ export const getServerSideProps = async (pageContext) => {
     deliveryMin,
   }`;
 
-  const resultBouquet = await sanityClient.fetch(queryBouquet);
+
+  const resultBouquet = await sanityClient.fetch(query);
   const generalInfo = await sanityClient.fetch(generalInfoQuery);
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
@@ -58,10 +58,10 @@ export const getServerSideProps = async (pageContext) => {
     return {
       props: {
         instagramPosts,
-        bouquets: resultBouquet,
+        bouquets: resultBouquet.popularBouqets,
         generalInfo: generalInfo[0],
       },
     };
   }
 };
-export default AllBouquetsPage;
+export default Popular;

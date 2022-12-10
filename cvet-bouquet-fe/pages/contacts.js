@@ -17,7 +17,6 @@ export default function Contacts({ instagramPosts, pageData, generalInfo }) {
     center: [53.893009, 27.567444],
     zoom: 12,
   };
-  console.log(generalInfo)
 
   const breadCrumbsList = [
     { title: 'Главаная', href: '/' },

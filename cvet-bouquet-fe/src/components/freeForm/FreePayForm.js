@@ -95,9 +95,6 @@ export default function FreePayForm({ isContactsForm = false }) {
   const onClose = () =>{
     setIsOpenSuccessModal(false)
   }
-  console.log(isOpenSuccessModal)
-
-  // console.log(watch('example')); // watch input value by passing the name of it
 
   return (
     <>

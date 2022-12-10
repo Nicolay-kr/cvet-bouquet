@@ -5,6 +5,7 @@ import BouquetCard from './BouquetCard/BouquetCard';
 import BreadCrumbs from './breadcrubs/BreadCrumbs';
 import BouquetSort from './BouquetSort/BouquetSort';
 import PriceFilter from './PriceFilter';
+import size from '../utils/size';
 
 const BouquetListPage = ({ category, instagramPosts, breadCrumbsList, generalInfo }) => {
   const defaultBouquetsList = category.length && category[0]?.bouqets
@@ -17,7 +18,6 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList, generalInf
     if(value==='Все'){
       setBouquetsList([...defaultBouquetsList])
     }else{
-      console.log(value)
       const sortedBouquetsList = defaultBouquetsList.filter((bouquet)=>(arrValue[0]<=+bouquet.price && +bouquet.price <=+ arrValue[1]))
       setBouquetsList([...sortedBouquetsList])
     }
@@ -90,17 +90,16 @@ const BouquetListPage = ({ category, instagramPosts, breadCrumbsList, generalInf
               display: 'grid',
               gridTemplateColumns: {
                 xs: '1fr 1fr',
-                sm: '1fr 1fr',
-                lg: '1fr 1fr 1fr',
-                xl: '1fr 1fr 1fr 1fr',
+                md: '1fr 1fr 1fr',
+                lg: '1fr 1fr 1fr 1fr',
               },
-              columnGap: { xs: '4px', lg: 'max(30px, 1.5vw)' },
-              rowGap: 'max(30px, 1.5vw)',
+              columnGap: size(10),
+              rowGap: size(140),
             }}
           >
             {category.length ? (
               bouquetsList?.map(
-                ({ _id, title, description, images, price, slug }, index) => (
+                ({ _id, title, images, price, slug }, index) => (
                   <Box key={`${_id}-${index}`}>
                     <BouquetCard
                       id={_id}

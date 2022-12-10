@@ -34,7 +34,6 @@ export default function CaruselBlockWithArch({
 }) {
   const [controlledSwiper, setControlledSwiper] = useState(null);
   const caruselWithArchRef = useRef(null);
-  console.log(bouquets);
 
   const handleRightArrowClick = () => {
     caruselWithArchRef.current.swiper.slideNext();
