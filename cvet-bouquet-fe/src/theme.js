@@ -20,14 +20,14 @@ export const customFontsSize = {
 
 // Create a theme instance.
 const theme = createTheme({
-  spacing: 4,
+  spacing: 1,
   breakpoints: {
     values: {
       xs: 0,
       sm: 600,
       md: 900,
       lg: 1200,
-      xl: 1536,
+      xl: 1537,
       xxl: 1921,
     },
   },
@@ -108,9 +108,9 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h3.adaptiv,
       },
-      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-      //   fontSize: customFontsSize.h3.regular/1.25,
-      // },
+      '@media (max-width:1536px)': {
+        fontSize: '24px',
+      },
       '@media (mфч-width:600px)': {
         fontSize: '18px',
       },
@@ -123,6 +123,9 @@ const theme = createTheme({
       color: '#333333',
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h4.adaptiv,
+      },
+      '@media (max-width:1536px)': {
+        fontSize: '18px',
       },
       '@media (max-width:600px)': {
         fontSize: '18px',
@@ -163,6 +166,9 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h6.adaptiv,
       },
+      '@media (max-width:1536px)': {
+        fontSize: '14px',
+      },
       // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
       //   fontSize: customFontsSize.h6.regular/1.25,
       // },
@@ -196,7 +202,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.body2.adaptiv,
       },
-      '@media (max-width:1440px)': {
+      '@media (max-width:1px)': {
         fontSize: '12px',
       },
       // '@media (-webkit-min-device-pixel-ratio: 1.25)':{

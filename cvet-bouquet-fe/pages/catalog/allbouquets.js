@@ -29,6 +29,8 @@ export const getServerSideProps = async (pageContext) => {
       images,
       price,
       description,
+      care,
+      delivery->,
   }`;
 
   const resultBouquet = await sanityClient.fetch(queryBouquet);

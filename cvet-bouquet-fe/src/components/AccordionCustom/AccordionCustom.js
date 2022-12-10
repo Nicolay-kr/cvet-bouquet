@@ -35,7 +35,7 @@ export default function AccordionCustom({ fieldList }) {
             </AccordionSummary>
             <AccordionDetails>
               {item.desc?._type === 'localeBlockContent' ? (
-                <BlockContentBox blocks={desc}></BlockContentBox>
+                <BlockContentBox blocks={desc} fs={18}></BlockContentBox>
               ) : (
                 <Typography variant="body1">{desc}</Typography>
               )}

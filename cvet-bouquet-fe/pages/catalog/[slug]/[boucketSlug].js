@@ -2,50 +2,35 @@ import React from 'react';
 import { sanityClient } from '../../../sanity';
 import BouquetPage from '../../../src/components/bouquePage/BouquetPage';
 
-export const Bouquet = ({
-  id,
-  title,
-  description,
-  images,
-  price,
-  slug,
-  instagramPosts,
-  category,
-}) => {
+export const Bouquet = ({ bouquet, instagramPosts, category,generalInfo }) => {
+  console.log(generalInfo);
 
-  let breadCrumbsList = []
+  let breadCrumbsList = [];
 
-  if(category && category[0]?.title){
-    breadCrumbsList= [
-      { title: 'Главаная', href: '/' },
-      { title: 'Каталог', href: '/catalog' },
-      { title: category[0].title, href: `/catalog/${category[0].slug.current}` },
-      { title: title, href: null },
-    ];
-
-  }else{
+  if (category && category[0]?.title) {
     breadCrumbsList = [
       { title: 'Главаная', href: '/' },
       { title: 'Каталог', href: '/catalog' },
-      { title: title, href: null },
+      {
+        title: category[0].title,
+        href: `/catalog/${category[0].slug.current}`,
+      },
+      { title: bouquet.title.ru, href: null },
+    ];
+  } else {
+    breadCrumbsList = [
+      { title: 'Главаная', href: '/' },
+      { title: 'Каталог', href: '/catalog' },
+      { title: bouquet.title.ru, href: null },
     ];
   }
 
-
   return (
     <BouquetPage
-      bouquet={{
-        id,
-        title,
-        description,
-        images,
-        price,
-        slug,
-        instagramPosts,
-        category,
-      }}
+      bouquet={{ ...bouquet, title: bouquet.title.ru }}
       breadCrumbsList={breadCrumbsList}
       instagramPosts={instagramPosts}
+      generalInfo={generalInfo}
     ></BouquetPage>
   );
 };
@@ -53,7 +38,7 @@ export const Bouquet = ({
 export const getServerSideProps = async (pageContext) => {
   const boucketSlug = pageContext.query.boucketSlug;
   const categorySlug = pageContext.query.slug;
-  console.log(categorySlug)
+  console.log(categorySlug);
 
   if (!boucketSlug) {
     return {
@@ -68,6 +53,9 @@ export const getServerSideProps = async (pageContext) => {
       images,
       price,
       description,
+      care,
+      delivery->
+     
     }`;
 
   const queryCategory = `*[ _type == "category" && slug.current == "${categorySlug}"]
@@ -77,8 +65,16 @@ export const getServerSideProps = async (pageContext) => {
       title,
     }`;
 
+    const generalInfoQuery = `*[ _type == "generalInfo"]
+    {
+      _id,
+      deliveryPrice,
+      deliveryMin,
+    }`;
+
   const resultCategory = await sanityClient.fetch(queryCategory);
   const result = await sanityClient.fetch(query);
+  const generalInfo = await sanityClient.fetch(generalInfoQuery);
   const bouquet = result[0];
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
@@ -92,14 +88,10 @@ export const getServerSideProps = async (pageContext) => {
   } else {
     return {
       props: {
-        description: bouquet.description.ru,
-        title: bouquet.title.ru,
-        images: bouquet.images,
-        price: bouquet.price,
-        slug: bouquet.slug,
-        id: bouquet._id,
+        bouquet: bouquet,
         instagramPosts: instagramPosts ? instagramPosts : [],
         category: resultCategory,
+        generalInfo:generalInfo[0],
       },
     };
   }

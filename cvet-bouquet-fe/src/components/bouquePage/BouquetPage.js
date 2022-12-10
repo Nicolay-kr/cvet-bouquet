@@ -1,7 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-// import styles from './styles/BouquetPage.module.css';
-import styles from '../../../styles/BouquetPage.module.css';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -18,11 +16,18 @@ import { useRouter } from 'next/router';
 import { urlFor } from '../../../sanity';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { useEffect } from 'react';
+import size from '../../utils/size';
 
-export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
+export const BouquetPage = ({
+  bouquet,
+  breadCrumbsList,
+  instagramPosts,
+  generalInfo,
+}) => {
   const [quantity, setQuantity] = useState(1);
   const bouckeList = useAppContext();
   const baseImage = bouquet.images[0];
+  console.log(bouquet);
 
   const [activeImg, setActiveImg] = useState(baseImage);
   bouquet = {
@@ -30,9 +35,9 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
     imagePath: bouquet.images[0],
     quantity: quantity,
   };
-  useEffect(()=>{
-    setActiveImg(baseImage)
-  },[baseImage])
+  useEffect(() => {
+    setActiveImg(baseImage);
+  }, [baseImage]);
 
   const [animation] = useState(true);
   const handlePlus = () => {
@@ -51,21 +56,15 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
   const serviceList = [
     {
       title: 'Описание',
-      desc: `Мы формируем букет для Вас максимально схожим с фото, сохраняя цветовую гамму и наполнение.  
-      Также можем учесть Ваши особенные пожелания (поменять детали композиции, добавить любимый цветок,
-         прикрепить фирменную открытку с Вашим текстом и  т.д.)`,
+      desc: bouquet.description,
     },
     {
       title: 'Доставка',
-      desc: `Мы формируем букет для Вас максимально схожим с фото, сохраняя цветовую гамму и наполнение.  
-      Также можем учесть Ваши особенные пожелания (поменять детали композиции, добавить любимый цветок,
-         прикрепить фирменную открытку с Вашим текстом и  т.д.)`,
+      desc: bouquet.delivery.delivery,
     },
     {
       title: 'Уход за букетом',
-      desc: `Мы формируем букет для Вас максимально схожим с фото, сохраняя цветовую гамму и наполнение.  
-      Также можем учесть Ваши особенные пожелания (поменять детали композиции, добавить любимый цветок,
-         прикрепить фирменную открытку с Вашим текстом и  т.д.)`,
+      desc: bouquet.care,
     },
   ];
 
@@ -84,16 +83,16 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
           display: 'grid',
           gridTemplateColumns: { xs: '1fr', lg: '7fr 5fr' },
           px: { xs: '5%', lg: '10%' },
-          marginBottom: 'max(30px,2.1vw)',
-          columnGap: 'max(30px,1.5vw)',
-          rownGap: 'max(30px,1.5vw)',
+          mb: size(32),
+          columnGap: { xs: '16px', lg: 'max(30px,1.5vw)' },
+          rownGap: { xs: '16px', lg: 'max(30px,1.5vw)' },
         }}
       >
         <Box
           sx={{
             display: 'grid',
             gridTemplateColumns: '5fr 2fr',
-            columnGap: 'max(30px,1.5vw)',
+            columnGap: { xs: '16px', lg: 'max(30px,1.5vw)' },
           }}
         >
           <Box
@@ -101,6 +100,7 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
               position: 'relative',
               width: '100%',
               objectFit: 'cover',
+              minHeight: { xs: '72vw', lg: '38vw' },
             }}
           >
             {/* {activeImg && ( */}
@@ -125,7 +125,8 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
           <Box
             sx={{
               display: 'grid',
-              rowGap: 'max(30px,1.5vw)',
+              rowGap: { xs: '16px', lg: 'max(30px,1.5vw)' },
+              alignContent: 'space-between',
             }}
           >
             {bouquet.images.map((image) => (
@@ -135,7 +136,7 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
                 sx={{
                   position: 'relative',
                   width: '100%',
-                  height: { xs: '24vw', lg: 'min(240px,12.5vw)' },
+                  height: { xs: '24vw', lg: '12.5vw' },
                   objectFit: 'cover',
                   cursor: 'pointer',
                   outline:
@@ -159,51 +160,68 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
           sx={{
             display: { xs: 'none', lg: 'flex' },
             flexDirection: 'column',
-            mt: '20px',
+            mt: size(20),
           }}
         >
           <Typography variant='h3' component='h1' color='#000000'>
             {bouquet.title}
           </Typography>
           <Typography
-            sx={{ fontWeight: 700, mt: 7.5 }}
+            // sx={{ fontWeight: 700, mt:  {xs:32*0.5,md:32*0.75, xl:32, xxl:'>32'}}}
+            sx={{ fontWeight: 700, mt: size(32) }}
             variant='h3'
             component='p'
             color='#000000'
           >
             {bouquet.price}
-            <Box sx={{ fontSize: '12px',pt:'4px' }} component='sup'>
+            <Box sx={{ fontSize: '12px', pt: 1 }} component='sup'>
               BYN
             </Box>
           </Typography>
           <Typography
-            sx={{ mt: 4, opacity: '0.5' }}
+            sx={{ mt: size(16), opacity: '0.5' }}
             variant='body1'
             component='p'
             color='#000000'
           >
-            Бесплатная доставка в пределах МКАД
+            {bouquet.price >= generalInfo.deliveryMin ? (
+              'Бесплатная доставка в пределах МКАД'
+            ) : (
+              <span>
+                Стоимость доставки {generalInfo.deliveryPrice}
+                <Box sx={{ fontSize: '0.5em', pt: size(4) }} component='sup'>
+                  BYN
+                </Box>
+              </span>
+            )}
           </Typography>
-          <div className={styles.buttonsConteiner}>
+          <Box
+            sx={{
+              display: 'grid',
+              height: 'max(60px,3vw)',
+              gridTemplateColumns: '2fr 3fr',
+              marginTop: { ...size(60), xs: 20 },
+              columnGap: size(30),
+            }}
+          >
             <CounterButtons
               id={bouquet.id}
               value={quantity}
               isFlexSize={true}
               customHandlers={{ plus: handlePlus, minus: handleMinus }}
             ></CounterButtons>
-            <div className={styles.buttons}>
+            <Box display='flex'>
               <AddToCartButton
                 bouquet={bouquet}
                 variant='contained'
               ></AddToCartButton>
               <Button
-                sx={{ ml: 2.5 }}
+                sx={{ ml: size(10) }}
                 variant='contained'
                 color='primary'
                 onClick={addToFavoritList}
               >
                 <Image
-                  className={styles.iconImage}
                   src={
                     bouckeList.favoriteBouquets.find(
                       (item) => item.id === bouquet.id
@@ -214,43 +232,45 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
                   alt='heart icon'
                 />
               </Button>
-            </div>
-          </div>
-          <div className={styles.description}>
+            </Box>
+          </Box>
+          <Box mt='auto'>
             <AccordionCustom fieldList={serviceList}></AccordionCustom>
-          </div>
+          </Box>
         </Box>
 
         <Box
           sx={{
             display: { xs: 'flex', lg: 'none' },
             flexDirection: 'column',
-            mt: '20px',
+            mt: { ...size(20), xs: 20 },
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography
-              variant='h3'
-              component='h1'
-              sx={{ fontSize: '18px !important' }}
-            >
+            <Typography variant='h3' component='h1'>
               {bouquet.title}
             </Typography>
 
             <Typography
-              sx={{ fontWeight: 700, fontSize: '18px', ml: 'auto' }}
+              sx={{ fontWeight: 700, ml: 'auto' }}
               variant='h3'
               component='p'
               color='#000000'
             >
               {bouquet.price}
-              <Box sx={{ fontSize: '12px',pt:'4px' }} component='sup'>
+              <Box sx={{ fontSize: '0.5em', pt: size(4) }} component='sup'>
                 BYN
               </Box>
             </Typography>
           </Box>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', mt: '20px' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              mt: { ...size(20), xs: 20 },
+            }}
+          >
             <Box sx={{ width: '100px', height: '40px' }}>
               <CounterButtons
                 id={bouquet.id}
@@ -271,24 +291,38 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
               component='p'
               color='#000000'
             >
-              Бесплатная доставка в пределах МКАД
+              {bouquet.price >= generalInfo.deliveryMin ? (
+                'Бесплатная доставка в пределах МКАД'
+              ) : (
+                <span>
+                  Стоимость доставки {generalInfo.deliveryPrice}
+                  <Box sx={{ fontSize: '12px', pt: size(4) }} component='sup'>
+                    BYN
+                  </Box>
+                </span>
+              )}
             </Typography>
           </Box>
 
-          <Box sx={{ display: 'flex', mt: '20px', height: '48px' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              mt: { ...size(20), xs: 20 },
+              height: '48px',
+            }}
+          >
             <AddToCartButton
               autoHeight={true}
               bouquet={bouquet}
               variant='contained'
             ></AddToCartButton>
             <Button
-              sx={{ ml: 2.5 }}
+              sx={{ ml: size(10) }}
               variant='contained'
               color='primary'
               onClick={addToFavoritList}
             >
               <Image
-                className={styles.iconImage}
                 src={
                   bouckeList.favoriteBouquets.find(
                     (item) => item.id === bouquet.id
@@ -301,17 +335,17 @@ export const Bouquet = ({ bouquet, breadCrumbsList, instagramPosts }) => {
             </Button>
           </Box>
 
-          <Box sx={{ mt: '40px' }}>
+          <Box sx={{ mt: size(40) }}>
             <AccordionCustom fieldList={serviceList}></AccordionCustom>
           </Box>
         </Box>
       </Box>
 
-      <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
+      <Box sx={{ my: size(100), px: '10%' }}>
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </>
   );
 };
 
-export default Bouquet;
+export default BouquetPage;

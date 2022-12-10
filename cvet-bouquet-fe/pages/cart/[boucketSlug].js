@@ -2,37 +2,19 @@ import React from 'react';
 import { sanityClient } from '../../sanity';
 import BouquetPage from '../../src/components/bouquePage/BouquetPage';
 
-export const Bouquet = ({
-  id,
-  title,
-  description,
-  images,
-  price,
-  slug,
-  instagramPosts,
-  category,
-}) => {
-
+export const Bouquet = ({ bouquet, instagramPosts,generalInfo }) => {
   const breadCrumbsList = [
     { title: 'Главаная', href: '/' },
     { title: 'Корзина', href: '/cart' },
-    { title: title, href: null },
+    { title: bouquet.title.ru, href: null },
   ];
 
   return (
     <BouquetPage
-      bouquet={{
-        id,
-        title,
-        description,
-        images,
-        price,
-        slug,
-        instagramPosts,
-        category,
-      }}
+      bouquet={{ ...bouquet, title: bouquet.title.ru }}
       breadCrumbsList={breadCrumbsList}
       instagramPosts={instagramPosts}
+      generalInfo={generalInfo}
     ></BouquetPage>
   );
 };
@@ -54,6 +36,9 @@ export const getServerSideProps = async (pageContext) => {
       images,
       price,
       description,
+      care,
+      delivery->,
+
     }`;
 
   const queryCategory = `*[ _type == "category" && slug.current == "${categorySlug}"]
@@ -63,8 +48,16 @@ export const getServerSideProps = async (pageContext) => {
       title,
     }`;
 
+    const generalInfoQuery = `*[ _type == "generalInfo"]
+    {
+      _id,
+      deliveryPrice,
+      deliveryMin,
+    }`;
+
   const resultCategory = await sanityClient.fetch(queryCategory);
   const result = await sanityClient.fetch(query);
+  const generalInfo = await sanityClient.fetch(generalInfoQuery);
   const bouquet = result[0];
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
@@ -78,14 +71,10 @@ export const getServerSideProps = async (pageContext) => {
   } else {
     return {
       props: {
-        description: bouquet.description.ru,
-        title: bouquet.title.ru,
-        images: bouquet.images,
-        price: bouquet.price,
-        slug: bouquet.slug,
-        id: bouquet._id,
+        bouquet: bouquet,
         instagramPosts: instagramPosts ? instagramPosts : [],
         category: resultCategory,
+        generalInfo: generalInfo[0],
       },
     };
   }

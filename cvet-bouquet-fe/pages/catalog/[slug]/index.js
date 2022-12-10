@@ -81,6 +81,8 @@ export const getServerSideProps = async (pageContext) => {
       images,
       price,
       description,
+      care,
+      delivery,
     },
   }`;
 
