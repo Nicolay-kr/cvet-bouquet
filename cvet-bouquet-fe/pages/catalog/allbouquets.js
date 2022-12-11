@@ -30,7 +30,9 @@ export const getServerSideProps = async (pageContext) => {
       price,
       description,
       care,
-      delivery->,
+      "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin},
+      publishedAt,
+
   }`;
 
   

@@ -16,6 +16,7 @@ import { useEffect } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import { urlFor } from '../../../sanity';
 import size from '../../utils/size';
+import { useRouter } from 'next/router';
 
 // import AspectRatio from '@mui/joy/AspectRatio';
 // import { CssVarsProvider } from '@mui/joy/styles';
@@ -47,10 +48,24 @@ export default function BouquetCard({
     deliveryPrice,
     deliveryMin,
   };
+  const isInCart = bouckeList.bouquetsInCarts.find((item) => item.id === id)
+    ? true
+    : false;
+  const router = useRouter();
+
   const addToFavoritList = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
     bouckeList.addOrRemoveToFavorite(bouquet);
+  };
+
+  const addToCart = (e) => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    bouckeList.addToCart({
+      ...bouquet,
+      quantity: 1,
+    });
   };
 
   useEffect(() => {
@@ -189,7 +204,11 @@ export default function BouquetCard({
                   }}
                 >
                   {bouquet.price >= deliveryMin ? (
-                    'бесплатная доставка'
+                    <span>
+                      бесплатная
+                      <br />
+                      доставка
+                    </span>
                   ) : (
                     <span>
                       Доставка {deliveryPrice}
@@ -205,10 +224,33 @@ export default function BouquetCard({
               </Box>
             </CardContent>
           </Box>
-          <CardActions sx={{ padding: '0' }}>
+          <CardActions sx={{ padding: '0', flexDirection: 'column' }}>
             <AddToCartButton
+              isInCart={isInCart}
               bouquet={{ ...bouquet, quantity: 1 }}
             ></AddToCartButton>
+            <Box sx={{ height: size(80), width: '100%' }}>
+              {isHovered ? (
+                <Typography
+                  variant='h5'
+                  onClick={(e) => {
+                    addToCart(e);
+                    router.push({
+                      pathname: '/cart',
+                      query: { isCheckout: true },
+                    });
+                  }}
+                  sx={{
+                    py: { ...size(30), xs: 20 },
+                    textDecoration: 'underline',
+                    color: 'primary.main',
+                    textAlign: 'center',
+                  }}
+                >
+                  Быстрый заказ
+                </Typography>
+              ) : null}
+            </Box>
           </CardActions>
         </Card>
       </Fade>

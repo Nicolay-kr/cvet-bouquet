@@ -20,7 +20,9 @@ export default function DropList({ list, prevSlug, title }) {
     setAnchorEl(null);
   };
   const handleClickListItem = (e, slug) => {
-    router.push(slug);
+    router.push({
+      pathname: slug,
+  });
     setAnchorEl(null);
   };
 

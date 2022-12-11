@@ -29,7 +29,8 @@ export const getServerSideProps = async (pageContext) => {
       images,
       price,
       description,
-      "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
+      "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin},
+      publishedAt,
     },
   }`;
 

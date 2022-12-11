@@ -21,9 +21,11 @@ import Checkout from '../../src/components/Checkout/Checkout';
 import Link from '../../src/components/CustopNextComponents/Link';
 import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 import { urlFor } from '../../sanity';
+import { useRouter } from 'next/router';
 
 const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
   const bouquetsContext = useAppContext();
+  
 
   const removeFromCart = () => {
     bouquetsContext.removeFromCart(id);
@@ -97,7 +99,9 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
 export default function Cart() {
   const bouquetsContext = useAppContext();
   const bouquets = bouquetsContext.bouquetsInCarts;
-  const [isCheckout, setIsCheckout] = React.useState(false);
+  const router = useRouter()
+  console.log(router.query.isCheckout);
+  const [isCheckout, setIsCheckout] = React.useState(router.query.isCheckout?router.query.isCheckout:false);
   const handleToCheckout = () => {
     setIsCheckout(true);
   };
