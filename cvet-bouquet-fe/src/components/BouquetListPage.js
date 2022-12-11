@@ -17,9 +17,27 @@ const BouquetListPage = ({
   const defaultBouquetsList = category.length && category[0]?.bouqets;
   const [bouquetsList, setBouquetsList] = React.useState(defaultBouquetsList);
   const router = useRouter();
+
   const [value, setValue] = React.useState(
     router.query.price ? router.query.price : 'all'
   );
+
+  const sortingFunction = {
+    price: handlePriceSort,
+    novelty: handleNoveltySort,
+    popularity: handlePopularitySort,
+  };
+
+  const [sortBy, setSortBy] = React.useState(
+    router.query.sortBy
+      ? {
+          parametr: router.query.sortBy,
+          type: 'acs',
+          func: sortingFunction[router.query.sortBy],
+        }
+      : { parametr: 'popularity', type: 'none', func: handlePopularitySort }
+  );
+
   const handleChangePrice = (value) => {
     setValue(value);
     router.push(
@@ -41,21 +59,20 @@ const BouquetListPage = ({
       arrValue = value.split('-');
     }
     if (value === 'all') {
-      setBouquetsList([...defaultBouquetsList]);
+      console.log();
+      let sortedBouquetsList = handlePriceSort(defaultBouquetsList);
+      sortedBouquetsList = sortBy.func(sortedBouquetsList);
+      setBouquetsList([...sortedBouquetsList]);
     } else {
-      const sortedBouquetsList = defaultBouquetsList.filter(
+      let sortedBouquetsList = defaultBouquetsList.filter(
         (bouquet) =>
           arrValue[0] <= +bouquet.price && +bouquet.price <= +arrValue[1]
       );
+      sortedBouquetsList = sortBy.func(sortedBouquetsList);
+
       setBouquetsList([...sortedBouquetsList]);
     }
   };
-
-  const [sorting, setSorting] = React.useState({
-    price: { type: 'none', func: handlePriceSort },
-    novelty: { type: 'none', func: handleNoveltySort },
-    popularity: { type: 'none', func: handlePopularitySort },
-  });
 
   useEffect(() => {
     setBouquetsList([...defaultBouquetsList]);
@@ -65,79 +82,74 @@ const BouquetListPage = ({
     handleChangePrice(value);
   }, []);
 
-  const [activeSorting, setActiveSorting] = React.useState('popularity');
-
-  function handlePriceSort() {
-    const sortedBouquetsList = bouquetsList.sort((a, b) => a.price - b.price);
+  function handlePriceSort(bouquets) {
+    const sortedBouquetsList = bouquets.sort((a, b) => a.price - b.price);
     const sortedBouquetsListDesc = [...sortedBouquetsList].reverse();
-    if (sorting.price.type === 'none' || sorting.price.type === 'desc') {
-      setBouquetsList([...sortedBouquetsList]);
-      setSorting((state) => ({
-        ...state,
-        price: { func: handlePriceSort, type: 'asc' },
-      }));
-    } else if (sorting.price.type === 'asc') {
-      setBouquetsList([...sortedBouquetsListDesc]);
-      setSorting((state) => ({
-        ...state,
-        price: { func: handlePriceSort, type: 'desc' },
-      }));
+    if (sortBy.parametr === 'price' && sortBy.type === 'desc') {
+      setSortBy({ parametr: 'price', type: 'acs', func: handlePriceSort });
+      return sortedBouquetsList;
+    } else if (sortBy.parametr === 'price' && sortBy.type === 'acs') {
+      setSortBy({ parametr: 'price', type: 'desc', func: handlePriceSort });
+      return sortedBouquetsListDesc;
+    } else {
+      setSortBy({ parametr: 'price', type: 'acs', func: handlePriceSort });
+      return sortedBouquetsList;
     }
-    setActiveSorting('price');
   }
 
-  function handleNoveltySort() {
-    const sortedBouquetsList = bouquetsList.sort(
+  function handleNoveltySort(bouquets) {
+    const sortedBouquetsList = bouquets.sort(
       (a, b) => new Date(a.publishedAt) - new Date(b.publishedAt)
     );
     const sortedBouquetsListDesc = [...sortedBouquetsList].reverse();
-    if (sorting.novelty.type === 'none' || sorting.novelty.type === 'desc') {
-      setBouquetsList([...sortedBouquetsList]);
-      setSorting((state) => ({
-        ...state,
-        novelty: { func: handleNoveltySort, type: 'asc' },
-      }));
-    } else if (sorting.novelty.type === 'asc') {
-      setBouquetsList([...sortedBouquetsListDesc]);
-      setSorting((state) => ({
-        ...state,
-        novelty: { func: handleNoveltySort, type: 'desc' },
-      }));
+    if (sortBy.parametr === 'novelty' && sortBy.type === 'desc') {
+      setSortBy({ parametr: 'novelty', type: 'acs', func: handleNoveltySort });
+      return sortedBouquetsList;
+    } else if (sortBy.parametr === 'novelty' && sortBy.type === 'acs') {
+      setSortBy({ parametr: 'novelty', type: 'desc', func: handleNoveltySort });
+      return sortedBouquetsListDesc;
+    } else {
+      setSortBy({ parametr: 'novelty', type: 'acs', func: handleNoveltySort });
+      return sortedBouquetsList;
     }
-    setActiveSorting('novelty');
   }
 
-  function handlePopularitySort() {
-    const sortedBouquetsList = defaultBouquetsList;
+  function handlePopularitySort(bouquets) {
+    const sortedBouquetsList = [...bouquets];
     const sortedBouquetsListDesc = [...sortedBouquetsList].reverse();
-    if (
-      sorting.popularity.type === 'none' ||
-      sorting.popularity.type === 'desc'
-    ) {
-      setBouquetsList([...sortedBouquetsList]);
-      setSorting((state) => ({
-        ...state,
-        popularity: { func: handlePopularitySort, type: 'asc' },
-      }));
-    } else if (sorting.popularity.type === 'asc') {
-      setBouquetsList([...sortedBouquetsListDesc]);
-      setSorting((state) => ({
-        ...state,
-        popularity: { func: handlePopularitySort, type: 'desc' },
-      }));
+    if (sortBy.parametr === 'popularity' && sortBy.type === 'desc') {
+      setSortBy({
+        parametr: 'popularity',
+        type: 'acs',
+        func: handlePopularitySort,
+      });
+      return sortedBouquetsListDesc;
+    } else if (sortBy.parametr === 'popularity' && sortBy.type === 'acs') {
+      setSortBy({
+        parametr: 'popularity',
+        type: 'desc',
+        func: handlePopularitySort,
+      });
+      return sortedBouquetsListDesc;
+    } else {
+      setSortBy({
+        parametr: 'popularity',
+        type: 'acs',
+        func: handlePopularitySort,
+      });
+      return sortedBouquetsList;
     }
-    setActiveSorting('popularity');
   }
 
   return (
     <>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <BouquetSort
-        activeSorting={activeSorting}
+        activeSorting={sortBy.parametr}
         sorting={{
-          price: handlePriceSort,
-          novelty: handleNoveltySort,
-          popularity: handlePopularitySort,
+          price: ()=>setBouquetsList([...handlePriceSort(bouquetsList)]),
+          novelty: ()=>setBouquetsList([...handleNoveltySort(bouquetsList)]),
+          popularity: ()=>setBouquetsList([...handlePopularitySort(bouquetsList)]),
         }}
       />
       <PriceFilter value={value} changeFunc={handleChangePrice}></PriceFilter>
