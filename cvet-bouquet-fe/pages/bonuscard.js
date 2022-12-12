@@ -14,7 +14,7 @@ import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 export default function BonusCardPage({ pageData, instagramPosts }) {
   const lg = useMediaQuery('(min-width:1200px)');
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: pageData[0].title.ru, href: null },
   ];
   return (

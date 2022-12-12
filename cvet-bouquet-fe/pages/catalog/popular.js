@@ -4,7 +4,7 @@ import BouquetListPage from '../../src/components/BouquetListPage';
 
 export const Popular = ({instagramPosts, bouquets,generalInfo}) => {
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: 'Каталог', href: '/catalog' },
     { title: 'Популярные букеты', href: null },
   ];

@@ -4,7 +4,7 @@ import BouquetPage from '../../src/components/bouquePage/BouquetPage';
 
 export const Bouquet = ({ bouquet, instagramPosts,generalInfo }) => {
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: 'Корзина', href: '/cart' },
     { title: bouquet.title.ru, href: null },
   ];

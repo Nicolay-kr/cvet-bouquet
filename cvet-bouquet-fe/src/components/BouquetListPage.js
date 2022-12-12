@@ -147,9 +147,10 @@ const BouquetListPage = ({
       <BouquetSort
         activeSorting={sortBy.parametr}
         sorting={{
-          price: ()=>setBouquetsList([...handlePriceSort(bouquetsList)]),
-          novelty: ()=>setBouquetsList([...handleNoveltySort(bouquetsList)]),
-          popularity: ()=>setBouquetsList([...handlePopularitySort(bouquetsList)]),
+          price: () => setBouquetsList([...handlePriceSort(bouquetsList)]),
+          novelty: () => setBouquetsList([...handleNoveltySort(bouquetsList)]),
+          popularity: () =>
+            setBouquetsList([...handlePopularitySort(bouquetsList)]),
         }}
       />
       <PriceFilter value={value} changeFunc={handleChangePrice}></PriceFilter>

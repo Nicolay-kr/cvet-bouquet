@@ -10,7 +10,7 @@ import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';
 
 export default function CorporateClientsPage({ instagramPosts, pageData }) {
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: `${pageData[0].title.ru}`, href: null },
   ];
 

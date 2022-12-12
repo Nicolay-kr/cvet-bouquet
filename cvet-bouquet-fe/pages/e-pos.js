@@ -7,7 +7,7 @@ import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 
 export default function EposPage({ pageData }) {
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: pageData[0].title.ru, href: null },
   ];
   return (

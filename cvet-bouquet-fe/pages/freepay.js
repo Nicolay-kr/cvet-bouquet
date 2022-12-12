@@ -5,7 +5,7 @@ import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 
 export default function freepayPage({}) {
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: 'Свободный платеж', href: null },
   ];
   return (

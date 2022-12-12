@@ -7,7 +7,7 @@ export const Bouquet = ({ bouquet, instagramPosts, category,generalInfo }) => {
 
   if (category && category?.title) {
     breadCrumbsList = [
-      { title: 'Главаная', href: '/' },
+      { title: 'Главная', href: '/' },
       { title: 'Каталог', href: '/catalog' },
       {
         title: category.title,
@@ -17,7 +17,7 @@ export const Bouquet = ({ bouquet, instagramPosts, category,generalInfo }) => {
     ];
   } else {
     breadCrumbsList = [
-      { title: 'Главаная', href: '/' },
+      { title: 'Главная', href: '/' },
       { title: 'Каталог', href: '/catalog' },
       { title: bouquet.title.ru, href: null },
     ];

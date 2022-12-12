@@ -9,7 +9,7 @@ import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 export default function Home({ category, instagramPosts }) {
   const [mappedBouquets, setMappedBouquets] = React.useState(category);
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: 'Каталог', href: null },
   ];
 

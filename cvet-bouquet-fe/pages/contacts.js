@@ -19,7 +19,7 @@ export default function Contacts({ instagramPosts, pageData, generalInfo }) {
   };
 
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: pageData[0].title.ru, href: null },
   ];
 

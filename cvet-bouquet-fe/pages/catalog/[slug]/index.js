@@ -11,7 +11,7 @@ import TextsQuote from '../../../src/components/TextsQuote';
 
 export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: 'Каталог', href: '/catalog' },
     { title: category[0].title, href: null },
   ];

@@ -111,7 +111,7 @@ export default function Cart() {
   console.log(bouquets)
 
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: 'Корзина', href: null },
   ];
   

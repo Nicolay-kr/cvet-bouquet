@@ -11,7 +11,7 @@ import size from '../src/utils/size';
 
 export default function AboutUs({ instagramPosts, pageData }) {
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: `${pageData[0].title.ru}`, href: null },
   ];
 

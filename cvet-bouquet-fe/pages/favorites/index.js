@@ -12,7 +12,7 @@ export default function Favorites() {
   const bouquetsContext = useAppContext();
   const bouquets = bouquetsContext.favoriteBouquets;
   const breadCrumbsList = [
-    { title: 'Главаная', href: '/' },
+    { title: 'Главная', href: '/' },
     { title: 'Избранное', href: null },
   ];
 
