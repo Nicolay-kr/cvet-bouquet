@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import BlockContentBox from '../src/components/blockcontentBox/BlockContentBox';
 import CaruselBlockWithArch from '../src/components/CaruselBlockWithArch/CaruselBlockWithArch';
+import size from '../src/utils/size';
 
 export default function Home({ instagramPosts, category, pageData }) {
   const router = useRouter();
@@ -100,7 +101,7 @@ export default function Home({ instagramPosts, category, pageData }) {
               <Box
                 sx={{
                   width: { xs: '100%', md: '50%' },
-                  mx: { xs: '0', md: 'auto', lg: '0' },
+                  mb: 'auto',
                 }}
               >
                 <Button
@@ -108,7 +109,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                     height: '60px',
                     width: '100%',
                     bgcolor: 'primary.main',
-                    mt: { xs: '30px' },
+                    mt: {...size(64)},
                     fontSize: { xs: '18px', md: '24px' },
                     fontWeight: { xs: '600' },
                   }}
@@ -143,7 +144,7 @@ export default function Home({ instagramPosts, category, pageData }) {
       ) : null}
 
       {pageData.secondBlock.published ? (
-        <Box sx={{ mt: { xs: '60px', lg: '100px' } }}>
+        <Box sx={{ mt: size(200)}}>
           <IntroBlock
             mainImage={pageData.secondBlock.mainImage}
             secondImage={pageData.secondBlock.secondImage}
@@ -159,7 +160,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                   width: '100%',
                 }}
               >
-                <Box sx={{ my: 'auto',mt:{xs:'40px',lg:'auto'} }}>
+                <Box sx={{ mt:{xs:'40px',lg:'auto'} }}>
                   <BlockContentBox
                     fs={32}
                     blocks={pageData.secondBlock.text.ru}
@@ -168,7 +169,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                 <Box
                   sx={{
                     width: { xs: '100%', md: '50%' },
-                    mx: { xs: '0', md: 'auto', lg: '0' },
+                    mb: 'auto',
                   }}
                 >
                   <Button
@@ -176,7 +177,8 @@ export default function Home({ instagramPosts, category, pageData }) {
                       height: '60px',
                       width: '100%',
                       bgcolor: 'primary.main',
-                      mt: { xs: '30px' },
+                      mt: {...size(120),xs:32},
+                      
                       fontSize: { xs: '18px', md: '24px' },
                       fontWeight: { xs: '600' },
                     }}
@@ -192,7 +194,7 @@ export default function Home({ instagramPosts, category, pageData }) {
         </Box>
       ) : null}
 
-      <Box sx={{ my: 'max(100px,5vw)', px: {xs:'5%',lg:'10%'} }}>
+      <Box sx={{ my: size(300), px: {xs:'5%',lg:'10%'} }}>
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </>

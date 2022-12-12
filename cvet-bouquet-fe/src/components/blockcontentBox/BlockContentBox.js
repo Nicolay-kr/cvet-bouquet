@@ -1,6 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import BlockContent from '@sanity/block-content-to-react';
+import size from '../../utils/size';
 
 export default function BlockContentBox({ blocks,fs=20 }) {
   return (
@@ -11,7 +12,7 @@ export default function BlockContentBox({ blocks,fs=20 }) {
         '& p': {
           fontFamily: 'Raleway, serif',
           color:'#000000',
-          fontSize: { xs: '16px',lg: '14px', xl: `${fs}px`, xxl: '1.2vw' },
+          fontSize: {...size(fs),xs:16},
         },
         my: 'auto',
         '& li+li': {

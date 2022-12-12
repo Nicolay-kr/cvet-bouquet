@@ -17,6 +17,7 @@ import { SwiperSlide } from 'swiper/react';
 import { EffectFade, Controller } from 'swiper';
 import Link from '../CustopNextComponents/Link';
 import bigFlower from '../../../public/assets/images/bigFlower.svg';
+import size from '../../utils/size';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -48,7 +49,7 @@ export default function CaruselBlockWithArch({
       <SwiperSlide key={index}>
         <Box
           component={Link}
-          sx={{ textDecoration: 'none' }}
+          sx={{ textDecoration: 'none', mt: size(200), }}
           href={`/catalog/${isPremium? `premium-floristika/${item.slug?.current}`:item.slug?.current}`}
         >
           <ArcheMainConteiner

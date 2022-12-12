@@ -9,8 +9,7 @@ import rightArrow from '../../../public/assets/icons/rightArrow.svg';
 import IconButton from '@mui/material/IconButton';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import Carusel from '../carusels/Carusel';
-import ArcheMainConteiner from '../ArcheImageConteiners/ArcheMainConteiner';
-import { urlFor } from '../../../sanity';
+import size from '../../utils/size';
 
 export default function CaruselBlock({
   bouquets,
@@ -34,7 +33,7 @@ export default function CaruselBlock({
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
-        mt: { xs: '0',sm: '100px', lg: '100px' },
+        mt: size(200),
       }}
     >
       <TitleWithSubtitle title={title} subtitle={subtitle}></TitleWithSubtitle>

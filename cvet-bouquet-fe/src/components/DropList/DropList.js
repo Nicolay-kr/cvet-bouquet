@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import logoFlower from '../../../public/assets/images/logo_flower.svg';
 import Box from '@mui/material/Box';
 import WordWithArrow from '../WordWithArrow';
+import size from '../../utils/size';
 
 export default function DropList({ list, prevSlug, title }) {
   const [anchorEl, setAnchorEl] = React.useState();
@@ -79,7 +80,7 @@ export default function DropList({ list, prevSlug, title }) {
             return (
               <MenuItem
                 key={`${item.slug.current}-list`}
-                sx={{ bgcolor: '#FFFBF6' }}
+                sx={{ bgcolor: '#FFFBF6',fontSize:size(20),px:size(40),py:size(20)}}
                 onClick={(e) =>
                   handleClickListItem(
                     e,
