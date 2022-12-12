@@ -82,7 +82,15 @@
   font-weight: 400;
 }
 
+.navigation a {
+  font-weight: 400;
+}
+
 .navigation li:hover {
+  color: rgb(168, 168, 168);
+}
+
+.navigation li a:hover {
   color: rgb(168, 168, 168);
 }
 

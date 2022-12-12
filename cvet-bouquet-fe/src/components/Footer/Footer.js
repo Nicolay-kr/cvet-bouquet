@@ -18,19 +18,21 @@ import phone from '../../../public/assets/icons/phone.svg';
 import insta_mini from '../../../public/assets/icons/insta_mini.svg';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import size from '../../utils/size';
 
-export default function Footer() {
+export default function Footer({ data }) {
   const router = useRouter();
   const lg = useMediaQuery('(max-width:1200px)');
+  console.log(data);
   return (
     <>
       <Box
         width='100%'
         px='10%'
-        pb={10}
+        pb={75}
         bgcolor='secondary.main'
         component='footer'
-        sx={{pt:{ xs: '40px', lg: '100px' }, px:{ xs: '5%', lg: '10%' }} }
+        sx={{ pt: size(100), px: { xs: '5%', lg: '10%' } }}
       >
         <Box className={styles.content}>
           <Box className={styles.links}>
@@ -39,7 +41,6 @@ export default function Footer() {
                 <Box
                   className={styles.logoConteiner}
                   component={Link}
-                  noLinkStyle
                   href='/'
                   sx={{ gridColumnStart: '1', gridColumnEnd: '3' }}
                 >
@@ -48,7 +49,7 @@ export default function Footer() {
                 </Box>
                 {/* <Box className={styles.doubleColumn}> */}
                 <Typography
-                  variant='subtitle1'
+                  variant='h6'
                   component='ul'
                   color='white'
                   fontWeight='700'
@@ -56,7 +57,7 @@ export default function Footer() {
                 >
                   Меню
                   <Typography
-                    variant='subtitle1'
+                    variant='h6'
                     component='li'
                     color='white'
                     onClick={() => router.push('/catalog')}
@@ -64,7 +65,7 @@ export default function Footer() {
                     Каталог
                   </Typography>
                   <Typography
-                    variant='subtitle1'
+                    variant='h6'
                     component='li'
                     color='white'
                     onClick={() => router.push('/delivery')}
@@ -72,7 +73,7 @@ export default function Footer() {
                     Доставка и оплата
                   </Typography>
                   <Typography
-                    variant='subtitle1'
+                    variant='h6'
                     component='li'
                     color='white'
                     onClick={() => router.push('/contacts')}
@@ -80,7 +81,7 @@ export default function Footer() {
                     Контакты
                   </Typography>
                   <Typography
-                    variant='subtitle1'
+                    variant='h6'
                     component='li'
                     color='white'
                     onClick={() => router.push('/aboutus')}
@@ -89,150 +90,142 @@ export default function Footer() {
                   </Typography>
                 </Typography>
                 <Typography
-                  variant='subtitle1'
+                  variant='h6'
                   component='ul'
                   color='white'
                   fontWeight='700'
                   className={styles.navigation}
                 >
                   Режим работы:
+                  {data.shopsList.map((shop) =>
+                    shop.published ? (
+                      <>
+                        <Typography
+                          variant='h6'
+                          component='li'
+                          color='white'
+                          sx={{
+                            '&:hover': {
+                              color: 'white !important',
+                              pointer: 'none !important',
+                            },
+                          }}
+                        >
+                          {shop.time}
+                        </Typography>
+                        <Typography
+                          variant='h6'
+                          component='li'
+                          color='white'
+                          sx={{
+                            '&:hover': {
+                              color: 'white !important',
+                              pointer: 'none !important',
+                            },
+                          }}
+                        >
+                          {shop.adress}
+                        </Typography>
+                      </>
+                    ) : null
+                  )}
+                </Typography>
+
+                <Typography
+                  variant='h6'
+                  component='ul'
+                  color='white'
+                  fontWeight='700'
+                  className={styles.navigation}
+                >
+                  Контакты
                   <Typography
-                    variant='subtitle1'
+                    variant='h6'
                     component='li'
-                    color='white'
+                    onClick={() => router.push('/catalog')}
                   >
-                    Пн-Вс 09:00-21:00
+                    <Typography
+                      variant='h6'
+                      component='a'
+                      color='white'
+                      href={`tel:${data.phone.replace(/-|\s/gi, '')}`}
+                    >
+                      {data.phone}
+                    </Typography>
                   </Typography>
+                 
+                 
+             
                   <Typography
-                    variant='subtitle1'
-                    component='li'
-                    color='white'
-                  >
-                    пр.Победителей, 27 пом. 344
-                  </Typography>
-                  <Typography
-                    variant='subtitle1'
+                    variant='h6'
                     component='li'
                     color='white'
                     onClick={() => router.push('/contacts')}
                   >
-                    пр. Независимости, 104
+                    <Typography
+                      variant='h6'
+                      component='a'
+                      color='white'
+                      href={`email:${data.email}`}
+                    >
+                      {data.email}
+                    </Typography>
+                  </Typography>
+                </Typography>
+                <Typography
+                  variant='h6'
+                  component='ul'
+                  color='white'
+                  fontWeight='700'
+                  className={styles.navigation}
+                >
+                  Подписывайтесь
+                  <Typography variant='h6' component='li'>
+                  <Typography
+                      variant='h6'
+                      color='white'
+                      component='a'
+                      href={`https://www.instagram.com/${data.instagram.slice(
+                        1
+                      )}`}
+                      target='_component'
+                      sx={{
+                        cursor: 'pointer',
+                      }}
+                    >
+                      Инстаграм
+                    </Typography>
+                  </Typography>
+                  <Typography
+                    variant='h6'
+                    component='li'
+                    color='white'
+                    onClick={() => router.push('/delivery')}
+                  >
+                    <Typography variant='h6' component='p' color='white'>
+                      Телеграм канал
+                    </Typography>
                   </Typography>
                 </Typography>
 
-                  <Typography
-                    variant='subtitle1'
-                    component='ul'
-                    color='white'
-                    fontWeight='700'
-                    className={styles.navigation}
-                  >
-                    Контакты
-                    <Typography
-                      flex
-                      variant='subtitle1'
-                      component='li'
-                      onClick={() => router.push('/catalog')}
-                    >
-                      <Image src={phone} alt='phone icon'></Image>
-                      <Typography
-                        ml={4}
-                        variant='subtitle1'
-                        component='p'
-                        color='white'
-                      >
-                        +375 44 556-55-55
-                      </Typography>
-                    </Typography>
-                    <Typography
-                      variant='subtitle1'
-                      component='li'
-                      color='white'
-                    >
-                      <Image src={insta_mini} alt='insta icon'></Image>
-                      <Typography
-                        ml={4}
-                        variant='subtitle1'
-                        component='p'
-                        color='white'
-                        onClick={() => router.push('https://www.instagram.com/cvetbuket.by/')}
-                      >
-                        @cvetbuket.by
-                      </Typography>
-                    </Typography>
-                    <Typography
-                      variant='subtitle1'
-                      component='li'
-                      color='white'
-                      onClick={() => router.push('/contacts')}
-                    >
-                      <Image src={letter} alt='letter icon'></Image>
-                      <Typography
-                        ml={4}
-                        variant='subtitle1'
-                        component='p'
-                        color='white'
-                      >
-                        info@cvetbuket.by
-                      </Typography>
-                    </Typography>
-                  </Typography>
-                  <Typography
-                    variant='subtitle1'
-                    component='ul'
-                    color='white'
-                    fontWeight='700'
-                    className={styles.navigation}
-                  >
-                    Подписывайтесь
-                    <Typography
-                      flex
-                      variant='subtitle1'
-                      component='li'
-                    >
-                      <Typography
-                    
-                        variant='subtitle1'
-                        component='p'
-                        color='white'
-                      >
-                        Инстаграм
-                      </Typography>
-                    </Typography>
-                    <Typography
-                      variant='subtitle1'
-                      component='li'
-                      color='white'
-                      onClick={() => router.push('/delivery')}
-                    >
-                      <Typography
-                        variant='subtitle1'
-                        component='p'
-                        color='white'
-                      >
-                        Телеграм канал
-                      </Typography>
-                    </Typography>
-                  </Typography>
-
-                  <Box columnGap={1.5} className={styles.iconsConteiner}>
-                    <IconButton component={Link} href='/'>
-                      <Image src={telegram} alt='telegram icon'></Image>
-                    </IconButton>
-                    <IconButton component={Link} href='/'>
-                      <Image src={viber} alt='viber icon'></Image>
-                    </IconButton>
-                    <IconButton component={Link} href='/'>
-                      <Image src={whatsapp} alt='whatsapp icon'></Image>
-                    </IconButton>
-                  </Box>
+                <Box columnGap={10} className={styles.iconsConteiner}>
+                  <IconButton component={Link} href='/'>
+                    <Image src={telegram} alt='telegram icon'></Image>
+                  </IconButton>
+                  <IconButton component={Link} href='/'>
+                    <Image src={viber} alt='viber icon'></Image>
+                  </IconButton>
+                  <IconButton component={Link} href='/'>
+                    <Image src={whatsapp} alt='whatsapp icon'></Image>
+                  </IconButton>
+                </Box>
                 {/* </Box> */}
               </>
             ) : (
               <>
                 <Box className={styles.doubleColumn}>
                   <Typography
-                    variant='subtitle1'
+                    variant='h6'
                     component='ul'
                     color='white'
                     fontWeight='700'
@@ -240,7 +233,7 @@ export default function Footer() {
                   >
                     Меню
                     <Typography
-                      variant='subtitle1'
+                      variant='h6'
                       component='li'
                       color='white'
                       onClick={() => router.push('/catalog')}
@@ -248,7 +241,7 @@ export default function Footer() {
                       Каталог
                     </Typography>
                     <Typography
-                      variant='subtitle1'
+                      variant='h6'
                       component='li'
                       color='white'
                       onClick={() => router.push('/delivery')}
@@ -256,7 +249,7 @@ export default function Footer() {
                       Доставка и оплата
                     </Typography>
                     <Typography
-                      variant='subtitle1'
+                      variant='h6'
                       component='li'
                       color='white'
                       onClick={() => router.push('/contacts')}
@@ -264,7 +257,7 @@ export default function Footer() {
                       Контакты
                     </Typography>
                     <Typography
-                      variant='subtitle1'
+                      variant='h6'
                       component='li'
                       color='white'
                       onClick={() => router.push('/aboutus')}
@@ -273,7 +266,7 @@ export default function Footer() {
                     </Typography>
                   </Typography>
                   <Typography
-                    variant='subtitle1'
+                    variant='h6'
                     component='ul'
                     color='white'
                     fontWeight='700'
@@ -281,7 +274,7 @@ export default function Footer() {
                   >
                     Доставка и оплата
                     <Typography
-                      variant='subtitle1'
+                      variant='h6'
                       component='li'
                       color='white'
                       onClick={() => router.push('/freepay')}
@@ -289,7 +282,7 @@ export default function Footer() {
                       Свободный платеж
                     </Typography>
                     <Typography
-                      variant='subtitle1'
+                      variant='h6'
                       component='li'
                       color='white'
                       onClick={() => router.push('/e-pos')}
@@ -297,7 +290,7 @@ export default function Footer() {
                       E-POS оплата
                     </Typography>
                     <Typography
-                      variant='subtitle1'
+                      variant='h6'
                       component='li'
                       color='white'
                       onClick={() => router.push('/delivery')}
@@ -305,7 +298,7 @@ export default function Footer() {
                       Возврат денежных средств на карту
                     </Typography>
                     <Typography
-                      variant='subtitle1'
+                      variant='h6'
                       component='li'
                       color='white'
                       onClick={() => router.push('/delivery')}
@@ -314,7 +307,7 @@ export default function Footer() {
                     </Typography>
                   </Typography>
                   <Typography
-                    variant='subtitle1'
+                    variant='h6'
                     component='ul'
                     color='white'
                     fontWeight='700'
@@ -322,7 +315,7 @@ export default function Footer() {
                   >
                     Полезное
                     <Typography
-                      variant='subtitle1'
+                      variant='h6'
                       component='li'
                       color='white'
                       onClick={() => router.push('/corporateclients')}
@@ -330,7 +323,7 @@ export default function Footer() {
                       Корпоративные клиенты
                     </Typography>
                     <Typography
-                      variant='subtitle1'
+                      variant='h6'
                       component='li'
                       color='white'
                       onClick={() => router.push('/bonuscard')}
@@ -339,167 +332,135 @@ export default function Footer() {
                     </Typography>
                   </Typography>
 
-                  <Box columnGap={1.5} className={styles.iconsConteiner}>
-                      <Image src={visa} alt='visa icon'></Image>
-                      <Image src={mastercard} alt='mastercard icon'></Image>
-                      <Image src={belcard} alt='belcard icon'></Image>
+                  <Box columnGap={12} className={styles.iconsConteiner}>
+                    <Image src={visa} alt='visa icon'></Image>
+                    <Image src={mastercard} alt='mastercard icon'></Image>
+                    <Image src={belcard} alt='belcard icon'></Image>
                   </Box>
                 </Box>
-                <Box
-                  className={styles.logoConteiner}
-                  component={Link}
-                  noLinkStyle
-                  href='/'
-                >
+                <Box className={styles.logoConteiner} component={Link} href='/'>
                   <Image src={logoFlower} alt='logo flower'></Image>
                   <Image src={logoText} alt='logo flower'></Image>
                 </Box>
                 <Typography
-                  variant='subtitle1'
+                  variant='h6'
                   component='ul'
                   color='white'
                   fontWeight='700'
                   className={styles.navigation}
                 >
                   Категории
-                  <Typography
-                    variant='subtitle1'
-                    component='li'
-                    color='white'
-                    onClick={() => router.push('/catalog')}
-                  >
-                    Авторские букеты
-                  </Typography>
-                  <Typography
-                    variant='subtitle1'
-                    component='li'
-                    color='white'
-                    onClick={() => router.push('/delivery')}
-                  >
-                    В коробке
-                  </Typography>
-                  <Typography
-                    variant='subtitle1'
-                    component='li'
-                    color='white'
-                    onClick={() => router.push('/contacts')}
-                  >
-                    Монобукеты
-                  </Typography>
-                  <Typography
-                    variant='subtitle1'
-                    component='li'
-                    color='white'
-                    onClick={() => router.push('/aboutus')}
-                  >
-                    Корзины с цветами
-                  </Typography>
-                  <Typography
-                    variant='subtitle1'
-                    component='li'
-                    color='white'
-                    onClick={() => router.push('/aboutus')}
-                  >
-                    Цветочные письма
-                  </Typography>
-                  <Typography
-                    variant='subtitle1'
-                    component='li'
-                    color='white'
-                    onClick={() => router.push('/aboutus')}
-                  >
-                    Свадебная флористика
-                  </Typography>
+                  {data?.categories?.categories?.map((category) => (
+                    <Typography
+                      variant='h6'
+                      component='li'
+                      color='white'
+                      onClick={() => router.push(`/${category.slug.current}`)}
+                    >
+                      {category.title}
+                    </Typography>
+                  ))}
                 </Typography>
                 <Box className={styles.lastColumn}>
                   <Typography
-                    variant='subtitle1'
+                    variant='h6'
                     component='ul'
                     color='white'
                     fontWeight='700'
                     className={styles.navigation}
                   >
                     Контакты
-                    <Typography
-                      flex
-                      variant='subtitle1'
-                      component='li'
-                      onClick={() => router.push('/catalog')}
-                    >
+                    <Typography variant='h6' component='li'>
                       <Image src={phone} alt='phone icon'></Image>
                       <Typography
-                        ml={4}
-                        variant='subtitle1'
-                        component='p'
+                        variant='h6'
+                        component='a'
                         color='white'
+                        sx={{
+                          ml: '16px',
+                          cursor: 'pointer',
+                        }}
+                        href={`tel:${data?.phone?.replace(/-|\s/gi, '')}`}
                       >
-                        +375 44 556-55-55
+                        {data.phone}
                       </Typography>
                     </Typography>
-                    <Typography
-                      variant='subtitle1'
-                      component='li'
-                      color='white'
-                      onClick={() => router.push('https://www.instagram.com/cvetbuket.by/')}
-                    >
+                    <Typography variant='h6' component='li' color='white'>
                       <Image src={insta_mini} alt='insta icon'></Image>
                       <Typography
-                        ml={4}
-                        variant='subtitle1'
-                        component='p'
+                        variant='h6'
                         color='white'
+                        component='a'
+                        href={`https://www.instagram.com/${data?.instagram?.slice(
+                          1
+                        )}`}
+                        target='_component'
+                        sx={{
+                          ml: '16px',
+                          cursor: 'pointer',
+                        }}
                       >
-                        @cvetbuket.by
+                        {data.instagram}
                       </Typography>
                     </Typography>
-                    <Typography
-                      variant='subtitle1'
-                      component='li'
-                      color='white'
-                      onClick={() => router.push('/contacts')}
-                    >
+                    <Typography variant='h6' component='li' color='white'>
                       <Image src={letter} alt='letter icon'></Image>
                       <Typography
-                        ml={4}
-                        variant='subtitle1'
-                        component='p'
+                        variant='h6'
+                        component='a'
                         color='white'
+                        sx={{
+                          ml: '16px',
+                          cursor: 'pointer',
+                        }}
+                        href={`email:${data.email}`}
                       >
-                        info@cvetbuket.by
+                        {data.email}
                       </Typography>
                     </Typography>
                   </Typography>
                   <Typography
-                    variant='subtitle1'
+                    variant='h6'
                     component='ul'
                     color='white'
                     fontWeight='700'
                     className={styles.navigation}
                   >
                     Режим работы:
-                    <Typography
-                      variant='subtitle1'
-                      component='li'
-                      color='white'
-                    >
-                      Пн-Вс 09:00-21:00
-                    </Typography>
-                    <Typography
-                      variant='subtitle1'
-                      component='li'
-                      color='white'
-                    >
-                      пр.Победителей, 27 пом. 344
-                    </Typography>
-                    <Typography
-                      variant='subtitle1'
-                      component='li'
-                      color='white'
-                    >
-                      пр. Независимости, 104
-                    </Typography>
+                    {data?.shopsList?.map((shop) =>
+                      shop.published ? (
+                        <>
+                          <Typography
+                            variant='h6'
+                            component='li'
+                            color='white'
+                            sx={{
+                              '&:hover': {
+                                color: 'white !important',
+                                pointer: 'none !important',
+                              },
+                            }}
+                          >
+                            {shop.time}
+                          </Typography>
+                          <Typography
+                            variant='h6'
+                            component='li'
+                            color='white'
+                            sx={{
+                              '&:hover': {
+                                color: 'white !important',
+                                pointer: 'none !important',
+                              },
+                            }}
+                          >
+                            {shop.adress}
+                          </Typography>
+                        </>
+                      ) : null
+                    )}
                   </Typography>
-                  <Box columnGap={1.5} className={styles.iconsConteiner}>
+                  <Box columnGap={20} className={styles.iconsConteiner}>
                     <IconButton component={Link} href='/'>
                       <Image src={telegram} alt='telegram icon'></Image>
                     </IconButton>
@@ -514,13 +475,25 @@ export default function Footer() {
               </>
             )}
           </Box>
-          <Box className={styles.info} sx={{ display: 'grid',gridTemplateRows: {xs:'auto',lg:'auto auto'}}}>
-            <Box className={styles.infoContent} sx={{ display: 'grid', rowGap: '24px', gridTemplateRows: {xs:'auto',lg:'auto auto'}}}>
-              <Typography variant='subtitle1' component='p' color='white'>
-                ИП Новицкая Н.В. УНП 193193419 Свидетельство о госрегистрации
-                выдано Минским горисполкомом 17.01.2019г.
+          <Box
+            className={styles.info}
+            sx={{
+              display: 'grid',
+              gridTemplateRows: { xs: 'auto', lg: 'auto auto' },
+            }}
+          >
+            <Box
+              className={styles.infoContent}
+              sx={{
+                display: 'grid',
+                rowGap: '24px',
+                gridTemplateRows: { xs: 'auto', lg: 'auto auto' },
+              }}
+            >
+              <Typography variant='h6' component='p' color='white'>
+                ООО “Студия Цвет Букет” УНП 193608253
               </Typography>
-              <Typography variant='subtitle1' component='p' color='white'>
+              <Typography variant='h6' component='p' color='white'>
                 Регистрационный номер в торговом реестре РБ 455583 от
                 18.07.2019г.
               </Typography>
@@ -528,17 +501,22 @@ export default function Footer() {
           </Box>
           {lg ? (
             <>
-              <Box columnGap={1.5} className={styles.iconsConteiner}>
-                  <Image src={visa} alt='visa icon'></Image>
-                  <Image src={mastercard} alt='mastercard icon'></Image>
-                  <Image src={belcard} alt='belcard icon'></Image>
+              <Box columnGap={12} className={styles.iconsConteiner}>
+                <Image src={visa} alt='visa icon'></Image>
+                <Image src={mastercard} alt='mastercard icon'></Image>
+                <Image src={belcard} alt='belcard icon'></Image>
               </Box>
               <Box className={styles.info}>
                 <Box className={styles.infoContent}>
-                  <Typography variant='subtitle1' component='p' color='white'>
-                    © Цвет·Букет 2022
+                  <Typography variant='h6' component='p' color='white'>
+                    © Цвет·Букет {new Date().getFullYear()}
                   </Typography>
-                  <Typography variant='subtitle1' component='p' color='white'>
+                  <Typography
+                    variant='h6'
+                    component='p'
+                    color='white'
+                    onClick={() => router.push('/privacy')}
+                  >
                     Политика конфиденциальности
                   </Typography>
                 </Box>

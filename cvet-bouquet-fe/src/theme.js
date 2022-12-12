@@ -158,7 +158,6 @@ const theme = createTheme({
     h6: {
       fontSize: customFontsSize.h6.regular,
       lineHeight: 1.4,
-      fontWeight: 600,
       fontStyle: 'normal',
       // textTransform: 'uppercase',
       color: '#4F4F4F',
