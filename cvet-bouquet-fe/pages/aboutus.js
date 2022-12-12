@@ -12,14 +12,14 @@ import size from '../src/utils/size';
 export default function AboutUs({ instagramPosts, pageData }) {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: `${pageData[0].title.ru}`, href: null },
+    { title: `${pageData.title.ru}`, href: null },
   ];
 
   return (
     <>
       <IntroBlock
-        mainImage={pageData[0].mainImage}
-        secondImage={pageData[0].secondImage}
+        mainImage={pageData.aboutusBlock.mainImage}
+        secondImage={pageData.aboutusBlock.secondImage}
         isSecondFlower={true}
         isSecondFlowerMobile={true}
         textBlock={
@@ -35,12 +35,20 @@ export default function AboutUs({ instagramPosts, pageData }) {
               isInIntro={true}
               breadCrumbsList={breadCrumbsList}
             ></BreadCrumbs>
-            <Box sx={{ mt: { xs: '0', lg: 'max(40px,2.1vw)' } }}>
-              <TitleWithTextBlock
-                title={pageData[0].title.ru}
-                blocks={pageData[0].text.ru}
-              ></TitleWithTextBlock>
+            <Box sx={{ mt: size(40),'& div+div':{
+              mt: size(60)
+            }}}>
+            {pageData.aboutusBlock.articles.map((article)=>(
+               <Box key={article._key}>
+               <TitleWithTextBlock
+                 title={article.title.ru}
+                 blocks={article.text.ru}
+               ></TitleWithTextBlock>
+             </Box>
+
+            ))}
             </Box>
+           
           </Box>
         }
       ></IntroBlock>
@@ -58,13 +66,12 @@ export default function AboutUs({ instagramPosts, pageData }) {
 }
 
 export const getServerSideProps = async (pageContext) => {
-  const query = `*[ _type == "aboutusPage"]
+  const query = `*[ _type == "aboutusPage"][0]
   {
     _id,
+    _id,
     title,
-    text,
-    mainImage,
-    secondImage,
+    aboutusBlock,
 
   }`;
 

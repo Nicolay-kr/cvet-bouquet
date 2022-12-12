@@ -170,7 +170,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                       variant='h5'
                       component='p'
                       color='#000000'
-                      sx={{ mt: { xs: 10, xxl: '0.05vw' }, mb: size(30) }}
+                      sx={{ mt: { xs: 20, xxl: '0.05vw' }, mb: {...size(30),xs:20} }}
                     >
                       С уважением, Наталья Новицкая
                     </Typography>
@@ -343,6 +343,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                   variant='body1'
                   component='p'
                   color='#000000'
+                  sx={{mb:40}}
                 >
                   Отправляя заявку, вы принимаете{' '}
                   <Link style={{ color: '#8C7B5F' }} href='/privacy'>
