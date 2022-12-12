@@ -148,7 +148,7 @@ export default function Footer({ data }) {
                       variant='h6'
                       component='a'
                       color='white'
-                      href={`tel:${data.phone.replace(/-|\s/gi, '')}`}
+                      href={`tel:${data?.phone?.replace(/-|\s/gi, '')}`}
                     >
                       {data.phone}
                     </Typography>
@@ -185,7 +185,7 @@ export default function Footer({ data }) {
                       variant='h6'
                       color='white'
                       component='a'
-                      href={`https://www.instagram.com/${data.instagram.slice(
+                      href={`https://www.instagram.com/${data?.instagram?.slice(
                         1
                       )}`}
                       target='_component'
@@ -352,6 +352,7 @@ export default function Footer({ data }) {
                   Категории
                   {data?.categories?.categories?.map((category) => (
                     <Typography
+                      
                       variant='h6'
                       component='li'
                       color='white'
@@ -400,7 +401,7 @@ export default function Footer({ data }) {
                           cursor: 'pointer',
                         }}
                       >
-                        {data.instagram}
+                        {data?.instagram}
                       </Typography>
                     </Typography>
                     <Typography variant='h6' component='li' color='white'>
