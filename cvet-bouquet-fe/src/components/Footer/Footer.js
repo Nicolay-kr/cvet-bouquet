@@ -97,7 +97,7 @@ export default function Footer({ data }) {
                   className={styles.navigation}
                 >
                   Режим работы:
-                  {data.shopsList.map((shop) =>
+                  {data?.shopsList?.map((shop) =>
                     shop.published ? (
                       <>
                         <Typography

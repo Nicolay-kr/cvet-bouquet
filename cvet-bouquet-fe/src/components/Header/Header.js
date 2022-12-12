@@ -4,14 +4,11 @@ import styles from './Header.module.css';
 // import Button from '@mui/material/Button';
 import Link from '../CustopNextComponents/Link';
 import Box from '@mui/material/Box';
-import logoFlower from '../../../public/assets/images/logo_flower.svg';
 import logo from '../../../public/assets/images/logo.svg';
 import Image from 'next/future/image';
-import searchIcon from '../../../public/assets/icons/search.svg';
 import heartIcon from '../../../public/assets/icons/heart.svg';
 import instaIcon from '../../../public/assets/icons/insta.svg';
 import bagIcon from '../../../public/assets/icons/bag.svg';
-import burgerIcon from '../../../public/assets/icons/burger.svg';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 
@@ -19,11 +16,6 @@ import DropList from '../DropList/DropList';
 import { useAppContext } from '../context/BouquetsContext';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
 import SearchModal from '../SearchModal';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { sanityClient } from '../../../sanity';
-import { useCallback } from 'react';
-
 export const Header = ({data}) => {
   const router = useRouter();
   const bouckeList = useAppContext();
@@ -66,12 +58,6 @@ export const Header = ({data}) => {
           columnGap: { xs: '10px', lg: '20px' },
         }}
       >
-        {/* {lg ? (
-          <Box className={styles.iconsConteiner} sx={{ mr: 'auto', ml: '0px' }}>
-            <BurgerMenu></BurgerMenu>
-            <SearchModal bouquets={bouquets}></SearchModal>
-          </Box>
-        ) : null} */}
 
         <Box
           className={styles.iconsConteiner}
