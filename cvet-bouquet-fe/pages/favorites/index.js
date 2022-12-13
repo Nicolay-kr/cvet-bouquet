@@ -20,7 +20,7 @@ export default function Favorites() {
   return (
     <>
       <Head lang='ru'>
-        <title>Понравившиеся букеты | cvetbuket.by</title>
+        <title>Избранное | cvetbuket.by</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box sx={{ width: '100%', px: {xs:'5%',lg:'10%',}}}>

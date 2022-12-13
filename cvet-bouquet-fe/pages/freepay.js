@@ -12,7 +12,7 @@ export default function freepayPage({}) {
   return (
     <>
           <Head lang='ru'>
-        <title> Свободный платеж s| cvetbuket.by</title>
+        <title> Свободный платеж | cvetbuket.by</title>
       </Head>
     <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs><Box
       sx={{

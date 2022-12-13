@@ -19,7 +19,7 @@ export default function AboutUs({ instagramPosts, pageData }) {
   return (
     <>
      <Head lang='ru'>
-        <title> {pageData.title.ru}| cvetbuket.by</title>
+        <title> {pageData.title.ru} | cvetbuket.by</title>
       </Head>
       <IntroBlock
         mainImage={pageData.aboutusBlock.mainImage}

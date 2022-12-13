@@ -32,10 +32,6 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
   };
   return (
     <>
-      <Head lang='ru'>
-        <title>Корзина | cvetbuket.by</title>
-      </Head>
-
       <TableRow
         key={id}
         sx={{
@@ -129,6 +125,10 @@ export default function Cart() {
 
   return (
     <>
+       <Head lang='ru'>
+        <title>Корзина | cvetbuket.by</title>
+      </Head>
+
       <Box
         sx={{
           px: { xs: '5%', lg: '10%' },

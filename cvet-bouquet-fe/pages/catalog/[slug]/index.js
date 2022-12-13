@@ -60,12 +60,18 @@ export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
       </Box>
     </>
   ) : (
-    <BouquetListPage
+    <>
+       <Head lang='ru'>
+        <title>{category[0].title} | cvetbuket.by</title>
+      </Head>
+      <BouquetListPage
       breadCrumbsList={breadCrumbsList}
       instagramPosts={instagramPosts}
       category={category}
       generalInfo={generalInfo}
     ></BouquetListPage>
+    </>
+
   );
 };
 

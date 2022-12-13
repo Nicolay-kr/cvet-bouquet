@@ -18,7 +18,7 @@ export default function CorporateClientsPage({ instagramPosts, pageData }) {
   return (
     <>
     <Head lang='ru'>
-        <title> {pageData[0].title.ru}| cvetbuket.by</title>
+        <title> {pageData[0].title.ru} | cvetbuket.by</title>
       </Head>
       <IntroBlock
         mainImage={pageData[0].mainImage}
