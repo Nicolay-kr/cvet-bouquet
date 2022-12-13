@@ -1,5 +1,4 @@
 import React from 'react';
-import IntroBlock from '../src/components/IntroBlock/IntroBlock';
 import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
@@ -8,8 +7,8 @@ import DoubleBlock from '../src/components/doubleBlock/DoubleBlock';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Image from 'next/future/image';
 import bigFlower from '../public/assets/images/bigFlower.svg';
-import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
+import Head from 'next/head';
 
 export default function BonusCardPage({ pageData, instagramPosts }) {
   const lg = useMediaQuery('(min-width:1200px)');
@@ -19,6 +18,9 @@ export default function BonusCardPage({ pageData, instagramPosts }) {
   ];
   return (
     <>
+       <Head lang='ru'>
+        <title> {pageData[0].title.ru}| cvetbuket.by</title>
+      </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <DoubleBlock>
         <Box

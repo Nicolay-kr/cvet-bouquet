@@ -1,8 +1,9 @@
+import Head from 'next/head';
 import React from 'react';
 import { sanityClient } from '../../sanity';
 import BouquetListPage from '../../src/components/BouquetListPage';
 
-export const AllBouquetsPage = ({instagramPosts, bouquets,generalInfo}) => {
+export const AllBouquetsPage = ({ instagramPosts, bouquets, generalInfo }) => {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: 'Каталог', href: '/catalog' },
@@ -10,13 +11,18 @@ export const AllBouquetsPage = ({instagramPosts, bouquets,generalInfo}) => {
   ];
 
   return (
-    <BouquetListPage
-      breadCrumbsList={breadCrumbsList}
-      instagramPosts={instagramPosts}
-      category={[{bouqets:bouquets,slug:{current:'allbouquets'}}]}
-      generalInfo={generalInfo}
-    ></BouquetListPage>
-  )
+    <>
+      <Head lang='ru'>
+        <title>Все букеты | cvetbuket.by</title>
+      </Head>
+      <BouquetListPage
+        breadCrumbsList={breadCrumbsList}
+        instagramPosts={instagramPosts}
+        category={[{ bouqets: bouquets, slug: { current: 'allbouquets' } }]}
+        generalInfo={generalInfo}
+      ></BouquetListPage>
+    </>
+  );
 };
 
 export const getServerSideProps = async (pageContext) => {
@@ -35,7 +41,6 @@ export const getServerSideProps = async (pageContext) => {
 
   }`;
 
-  
   const generalInfoQuery = `*[ _type == "generalInfo"]
   {
     _id,

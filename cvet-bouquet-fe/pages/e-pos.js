@@ -4,6 +4,7 @@ import { sanityClient } from '../sanity';
 import Typography from '@mui/material/Typography';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
+import Head from 'next/head';
 
 export default function EposPage({ pageData }) {
   const breadCrumbsList = [
@@ -12,6 +13,9 @@ export default function EposPage({ pageData }) {
   ];
   return (
     <>
+       <Head lang='ru'>
+        <title> {pageData[0].title.ru}| cvetbuket.by</title>
+      </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box
         sx={{

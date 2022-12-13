@@ -7,6 +7,7 @@ import InstagramBlock from '../../../src/components/InstagramBlock/InstagramBloc
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextsQuote from '../../../src/components/TextsQuote';
+import Head from 'next/head';
 // import { useState } from 'react';
 
 export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
@@ -20,6 +21,9 @@ export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
 
   return isPremium ? (
     <>
+      <Head lang='ru'>
+        <title>{category[0].title} | cvetbuket.by</title>
+      </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box
         sx={{ display: { xs: 'block', lg: 'none' }, width: '100%', px: '5%' }}

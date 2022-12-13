@@ -1,8 +1,9 @@
 import React from 'react';
 import { sanityClient } from '../../sanity';
 import BouquetListPage from '../../src/components/BouquetListPage';
+import Head from 'next/head';
 
-export const Popular = ({instagramPosts, bouquets,generalInfo}) => {
+export const Popular = ({ instagramPosts, bouquets, generalInfo }) => {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: 'Каталог', href: '/catalog' },
@@ -10,13 +11,18 @@ export const Popular = ({instagramPosts, bouquets,generalInfo}) => {
   ];
 
   return (
-    <BouquetListPage
-      breadCrumbsList={breadCrumbsList}
-      instagramPosts={instagramPosts}
-      category={[{bouqets:bouquets,slug:{current:'popular'}}]}
-      generalInfo={generalInfo}
-    ></BouquetListPage>
-  )
+    <>
+      <Head lang='ru'>
+        <title>Популярные букеты | cvetbuket.by</title>
+      </Head>
+      <BouquetListPage
+        breadCrumbsList={breadCrumbsList}
+        instagramPosts={instagramPosts}
+        category={[{ bouqets: bouquets, slug: { current: 'popular' } }]}
+        generalInfo={generalInfo}
+      ></BouquetListPage>
+    </>
+  );
 };
 
 export const getServerSideProps = async (pageContext) => {
@@ -40,7 +46,6 @@ export const getServerSideProps = async (pageContext) => {
     deliveryPrice,
     deliveryMin,
   }`;
-
 
   const resultBouquet = await sanityClient.fetch(query);
   const generalInfo = await sanityClient.fetch(generalInfoQuery);

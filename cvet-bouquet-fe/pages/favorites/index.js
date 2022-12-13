@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import { useAppContext } from '../../src/components/context/BouquetsContext';
 import Typography from '@mui/material/Typography';
 import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
+import Head from 'next/head';
 
 export default function Favorites() {
   const [checked, setChecked] = React.useState(false);
@@ -18,6 +19,9 @@ export default function Favorites() {
 
   return (
     <>
+      <Head lang='ru'>
+        <title>Понравившиеся букеты | cvetbuket.by</title>
+      </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box sx={{ width: '100%', px: {xs:'5%',lg:'10%',}}}>
         <Box

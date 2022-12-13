@@ -10,6 +10,7 @@ import Image from 'next/future/image';
 import bigFlower from '../public/assets/images/bigFlower.svg';
 import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
+import Head from 'next/head';
 
 export default function DeliveryPage({ pageData, instagramPosts }) {
   const lg = useMediaQuery('(min-width:1200px)');
@@ -19,6 +20,9 @@ export default function DeliveryPage({ pageData, instagramPosts }) {
   ];
   return (
     <>
+      <Head lang='ru'>
+        <title> {pageData[0].title.ru}| cvetbuket.by</title>
+      </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <DoubleBlock>
         <Box

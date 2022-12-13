@@ -8,9 +8,9 @@ import phoneIcon from '../public/assets/icons/phoneBlack.svg';
 import instaIcon from '../public/assets/icons/insta.svg';
 import Image from 'next/future/image';
 import Typography from '@mui/material/Typography';
-import FreePayForm from '../src/components/freeForm/FreePayForm';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
+import Head from 'next/head';
 
 export default function Contacts({ instagramPosts, pageData, generalInfo }) {
   const defaultState = {
@@ -25,6 +25,9 @@ export default function Contacts({ instagramPosts, pageData, generalInfo }) {
 
   return (
     <>
+     <Head lang='ru'>
+        <title> {pageData[0].title.ru}| cvetbuket.by</title>
+      </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box
         sx={{

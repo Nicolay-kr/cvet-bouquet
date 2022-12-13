@@ -7,6 +7,7 @@ import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTe
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import FreePayForm from '../src/components/freeForm/FreePayForm';
 import size from '../src/utils/size';
+import Head from 'next/head';
 
 
 export default function AboutUs({ instagramPosts, pageData }) {
@@ -17,6 +18,9 @@ export default function AboutUs({ instagramPosts, pageData }) {
 
   return (
     <>
+     <Head lang='ru'>
+        <title> {pageData.title.ru}| cvetbuket.by</title>
+      </Head>
       <IntroBlock
         mainImage={pageData.aboutusBlock.mainImage}
         secondImage={pageData.aboutusBlock.secondImage}

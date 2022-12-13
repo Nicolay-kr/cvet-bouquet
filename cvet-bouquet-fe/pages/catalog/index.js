@@ -5,6 +5,7 @@ import InstagramBlock from '../../src/components/InstagramBlock/InstagramBlock';
 import { sanityClient } from '../../sanity';
 import SimpleBouquetCard from '../../src/components/SimpleBouquetCard/SimpleBouquetCard';
 import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
+import Head from 'next/head';
 
 export default function Home({ category, instagramPosts }) {
   const [mappedBouquets, setMappedBouquets] = React.useState(category);
@@ -17,6 +18,9 @@ export default function Home({ category, instagramPosts }) {
 
   return (
     <>
+      <Head lang='ru'>
+        <title>Каталог | cvetbuket.by</title>
+      </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box sx={{ width: '100%', px: '10%', my: '40px' }}>
         <Box
@@ -31,7 +35,7 @@ export default function Home({ category, instagramPosts }) {
                 md: '1fr 1fr 1fr',
                 lg: '1fr 1fr 1fr 1fr',
               },
-              columnGap: {xs:'4px',lg:'max(30px, 1.5vw)'},
+              columnGap: { xs: '4px', lg: 'max(30px, 1.5vw)' },
               rowGap: 'max(30px, 1.5vw)',
             }}
           >
@@ -42,16 +46,14 @@ export default function Home({ category, instagramPosts }) {
                   index
                 ) => (
                   <Box key={_id}>
-                        <SimpleBouquetCard
-                    id={_id}
-                    title={title}
-                    imagePath={mainImage}
-                    slug={slug}
-                    price={null}
-                  ></SimpleBouquetCard>
-
+                    <SimpleBouquetCard
+                      id={_id}
+                      title={title}
+                      imagePath={mainImage}
+                      slug={slug}
+                      price={null}
+                    ></SimpleBouquetCard>
                   </Box>
-              
                 )
               )
             ) : (

@@ -10,6 +10,7 @@ import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 import Layout from '../src/components/Layout/Layout';
 import { BouquetsProvider } from '../src/components/context/BouquetsContext';
+import logo from '../public/assets/images/logo_flower.svg';
 // import LogRocket from 'logrocket';
 // LogRocket.init('wp94cm/cvet-buket');
 // import { sanityClient } from '../sanity';
@@ -22,14 +23,29 @@ export default function MyApp(props) {
 
   return (
     <CacheProvider value={emotionCache}>
-      <Head lang="ru">
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <Head lang='ru'>
+        <link rel='icon' href={logo.src} />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta name='description' content='Премиум цветы 💐 в Минске'></meta>
+        <meta property='og:type' content='website'></meta>
+        <meta
+          property='og:description'
+          content='Премиум цветы 💐 в Минске'
+        ></meta>
+        <meta
+          property='twitter:title'
+          content='Премиум цветы 💐 в Минске'
+        ></meta>
+        <meta property='og:url' content='https://cvetbuket.by'></meta>
+        <meta property='vk:image' content={logo.src}></meta>
+        <meta property='twitter:image' content={logo.src}></meta>
+        <meta property='og:image' content={logo.src}></meta>
       </Head>
       <ThemeProvider theme={theme}>
         <BouquetsProvider>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. For MUI*/}
           <CssBaseline />
-          <Layout category = {pageProps.category} bouquets={pageProps.bouquets}>
+          <Layout category={pageProps.category} bouquets={pageProps.bouquets}>
             <Component {...pageProps} />
           </Layout>
         </BouquetsProvider>
@@ -43,7 +59,6 @@ MyApp.propTypes = {
   emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };
-
 
 // export const getServerSideProps = async (pageContext) => {
 //   const queryCategory = `*[ _type == "category"]

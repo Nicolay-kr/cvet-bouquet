@@ -22,16 +22,20 @@ import Link from '../../src/components/CustopNextComponents/Link';
 import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 import { urlFor } from '../../sanity';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
   const bouquetsContext = useAppContext();
-  
 
   const removeFromCart = () => {
     bouquetsContext.removeFromCart(id);
   };
   return (
     <>
+      <Head lang='ru'>
+        <title>Корзина | cvetbuket.by</title>
+      </Head>
+
       <TableRow
         key={id}
         sx={{
@@ -99,28 +103,29 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
 export default function Cart() {
   const bouquetsContext = useAppContext();
   const bouquets = bouquetsContext.bouquetsInCarts;
-  const router = useRouter()
-  const [isCheckout, setIsCheckout] = React.useState(router.query.isCheckout?router.query.isCheckout:false);
+  const router = useRouter();
+  const [isCheckout, setIsCheckout] = React.useState(
+    router.query.isCheckout ? router.query.isCheckout : false
+  );
   const handleToCheckout = () => {
     setIsCheckout(true);
   };
   const removeFromCart = (e, id) => {
     bouquetsContext.removeFromCart(id);
   };
-  console.log(bouquets)
+  console.log(bouquets);
 
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: 'Корзина', href: null },
   ];
-  
 
   const price = bouquets.reduce(
     (akk, item) => akk + item.price * item.quantity,
     0
   );
-  const delivery = price<bouquets[0]?.deliveryMin?bouquets[0].deliveryPrice:0
-
+  const delivery =
+    price < bouquets[0]?.deliveryMin ? bouquets[0].deliveryPrice : 0;
 
   return (
     <>
@@ -140,7 +145,10 @@ export default function Cart() {
           }}
         >
           <Box>
-          <BreadCrumbs breadCrumbsList={breadCrumbsList} isInIntro={true}></BreadCrumbs>
+            <BreadCrumbs
+              breadCrumbsList={breadCrumbsList}
+              isInIntro={true}
+            ></BreadCrumbs>
             <TableContainer sx={{ width: '100%', mb: '24px' }} component='div'>
               <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                 <TableHead>
@@ -212,9 +220,7 @@ export default function Cart() {
                 Доставка
               </Typography>
               <span className={styles.price}>
-                <Typography variant='h4'>
-                  {delivery}
-                </Typography>
+                <Typography variant='h4'>{delivery}</Typography>
                 <sup>BYN</sup>
               </span>
             </Box>
@@ -243,7 +249,7 @@ export default function Cart() {
                     fontWeight: 700,
                   }}
                 >
-                  {price+delivery}
+                  {price + delivery}
                 </Typography>
                 <sup>BYN</sup>
               </Typography>
@@ -453,7 +459,9 @@ export default function Cart() {
           </Box>
         </Box>
 
-        {isCheckout && bouquets.length>0 ? <Checkout price={price}></Checkout> : null}
+        {isCheckout && bouquets.length > 0 ? (
+          <Checkout price={price}></Checkout>
+        ) : null}
       </Box>
     </>
   );

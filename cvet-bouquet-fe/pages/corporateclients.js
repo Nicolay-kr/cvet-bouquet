@@ -7,6 +7,7 @@ import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTe
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Typography from '@mui/material/Typography';
 import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';
+import Head from 'next/head';
 
 export default function CorporateClientsPage({ instagramPosts, pageData }) {
   const breadCrumbsList = [
@@ -16,6 +17,9 @@ export default function CorporateClientsPage({ instagramPosts, pageData }) {
 
   return (
     <>
+    <Head lang='ru'>
+        <title> {pageData[0].title.ru}| cvetbuket.by</title>
+      </Head>
       <IntroBlock
         mainImage={pageData[0].mainImage}
         secondImage={pageData[0].secondImage}

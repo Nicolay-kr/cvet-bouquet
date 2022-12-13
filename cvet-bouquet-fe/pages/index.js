@@ -12,6 +12,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import BlockContentBox from '../src/components/blockcontentBox/BlockContentBox';
 import CaruselBlockWithArch from '../src/components/CaruselBlockWithArch/CaruselBlockWithArch';
 import size from '../src/utils/size';
+import Head from 'next/head';
 
 export default function Home({ instagramPosts, category, pageData }) {
   const router = useRouter();
@@ -23,6 +24,9 @@ export default function Home({ instagramPosts, category, pageData }) {
 
   return (
     <>
+       <Head lang="ru">
+        <title>{pageData.title.ru} | cvetbuket.by</title>
+      </Head>
       {pageData.firstBlock.published ? (
         <IntroBlock
           mainImage={pageData.firstBlock.mainImage}
