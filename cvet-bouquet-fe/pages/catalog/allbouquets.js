@@ -20,7 +20,7 @@ export const AllBouquetsPage = ({instagramPosts, bouquets,generalInfo}) => {
 };
 
 export const getServerSideProps = async (pageContext) => {
-  const pageSlug = pageContext.query.slug;
+  // const pageSlug = pageContext.query.slug;
   const queryBouquet = `*[ _type == "bouquet"]
   {
       _id,

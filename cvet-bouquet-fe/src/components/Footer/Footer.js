@@ -142,7 +142,6 @@ export default function Footer({ data }) {
                   <Typography
                     variant='h6'
                     component='li'
-                    onClick={() => router.push('/catalog')}
                   >
                     <Typography
                       variant='h6'
@@ -160,13 +159,12 @@ export default function Footer({ data }) {
                     variant='h6'
                     component='li'
                     color='white'
-                    onClick={() => router.push('/contacts')}
                   >
                     <Typography
                       variant='h6'
                       component='a'
                       color='white'
-                      href={`email:${data.email}`}
+                      href={`mailto:${data.email}`}
                     >
                       {data.email}
                     </Typography>
@@ -414,7 +412,7 @@ export default function Footer({ data }) {
                           ml: '16px',
                           cursor: 'pointer',
                         }}
-                        href={`email:${data.email}`}
+                        href={`mailto:${data.email}`}
                       >
                         {data.email}
                       </Typography>

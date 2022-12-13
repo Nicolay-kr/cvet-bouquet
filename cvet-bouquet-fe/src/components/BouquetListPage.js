@@ -45,7 +45,7 @@ const BouquetListPage = ({
         pathname: router.pathname,
         query: !(value === 'all')
           ? { price: `${value}`, slug: router.query.slug }
-          : { slug: router.query.slug },
+          : router.query.slug? { slug: router.query.slug }:null
       },
       undefined,
       { shallow: true }

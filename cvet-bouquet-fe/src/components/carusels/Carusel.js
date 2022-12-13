@@ -69,7 +69,7 @@ const Carusel = ({
     <Swiper
       ref={caruselRef}
       // slidesPerView={breakpoints.m ? (breakpoints.xs ? "2" : "3") : "5"}
-      slidesPerView={isSpec ? (sm ? 1.3 : 'auto') : sm ? 2 : '5.2'}
+      slidesPerView={isSpec ? (sm ? 1.3 : 'auto') : sm ? 2 : '4.5'}
       loopedSlides={4}
       grabCursor={true}
       loop={true}

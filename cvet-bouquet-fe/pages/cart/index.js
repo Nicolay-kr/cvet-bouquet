@@ -100,7 +100,6 @@ export default function Cart() {
   const bouquetsContext = useAppContext();
   const bouquets = bouquetsContext.bouquetsInCarts;
   const router = useRouter()
-  console.log(router.query.isCheckout);
   const [isCheckout, setIsCheckout] = React.useState(router.query.isCheckout?router.query.isCheckout:false);
   const handleToCheckout = () => {
     setIsCheckout(true);
@@ -454,7 +453,7 @@ export default function Cart() {
           </Box>
         </Box>
 
-        {isCheckout ? <Checkout price={price}></Checkout> : null}
+        {isCheckout && bouquets.length>0 ? <Checkout price={price}></Checkout> : null}
       </Box>
     </>
   );

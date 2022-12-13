@@ -168,7 +168,7 @@ export default function BouquetCard({
                 px: '0px',
               }}
             >
-              <Typography gutterBottom variant='h5' component='p'>
+              <Typography gutterBottom variant='h4' component='p'>
                 {title}
               </Typography>
               <Box
