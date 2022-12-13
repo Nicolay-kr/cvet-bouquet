@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import React from 'react';
 import { sanityClient } from '../../sanity';
 import BouquetPage from '../../src/components/bouquePage/BouquetPage';
@@ -10,12 +11,18 @@ export const Bouquet = ({ bouquet, instagramPosts,generalInfo }) => {
   ];
 
   return (
+    <>
+     <Head lang='ru'>
+        <title>{bouquet.title.ru} | ЦВЕТ•БУКЕТ</title>
+      </Head>
+   
     <BouquetPage
       bouquet={{ ...bouquet, title: bouquet.title.ru }}
       breadCrumbsList={breadCrumbsList}
       instagramPosts={instagramPosts}
       generalInfo={generalInfo}
     ></BouquetPage>
+     </>
   );
 };
 

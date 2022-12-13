@@ -13,7 +13,7 @@ export const Bouquet = ({ bouquet, instagramPosts, generalInfo }) => {
   return (
     <>
       <Head lang='ru'>
-        <title>{bouquet.title.ru} | cvetbuket.by</title>
+        <title>{bouquet.title.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
 
       <BouquetPage

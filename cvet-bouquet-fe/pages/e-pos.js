@@ -14,7 +14,7 @@ export default function EposPage({ pageData }) {
   return (
     <>
        <Head lang='ru'>
-        <title> {pageData[0].title.ru} | cvetbuket.by</title>
+        <title> {pageData[0].title.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box

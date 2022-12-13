@@ -13,7 +13,7 @@ export const AllBouquetsPage = ({ instagramPosts, bouquets, generalInfo }) => {
   return (
     <>
       <Head lang='ru'>
-        <title>Все букеты | cvetbuket.by</title>
+        <title>Все букеты | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BouquetListPage
         breadCrumbsList={breadCrumbsList}

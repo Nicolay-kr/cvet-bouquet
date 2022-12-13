@@ -13,7 +13,7 @@ export const Popular = ({ instagramPosts, bouquets, generalInfo }) => {
   return (
     <>
       <Head lang='ru'>
-        <title>Популярные букеты | cvetbuket.by</title>
+        <title>Популярные букеты | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BouquetListPage
         breadCrumbsList={breadCrumbsList}

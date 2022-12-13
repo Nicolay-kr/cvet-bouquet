@@ -19,7 +19,7 @@ export default function Home({ category, instagramPosts }) {
   return (
     <>
       <Head lang='ru'>
-        <title>Каталог | cvetbuket.by</title>
+        <title>Каталог | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box sx={{ width: '100%', px: '10%', my: '40px' }}>

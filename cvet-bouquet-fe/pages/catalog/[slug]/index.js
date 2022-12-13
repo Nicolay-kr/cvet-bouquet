@@ -22,7 +22,7 @@ export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
   return isPremium ? (
     <>
       <Head lang='ru'>
-        <title>{category[0].title} | cvetbuket.by</title>
+        <title>{category[0].title} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box
@@ -62,7 +62,7 @@ export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
   ) : (
     <>
        <Head lang='ru'>
-        <title>{category[0].title} | cvetbuket.by</title>
+        <title>{category[0].title} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BouquetListPage
       breadCrumbsList={breadCrumbsList}

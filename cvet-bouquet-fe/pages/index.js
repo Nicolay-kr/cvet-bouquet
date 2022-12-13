@@ -25,7 +25,7 @@ export default function Home({ instagramPosts, category, pageData }) {
   return (
     <>
        <Head lang="ru">
-        <title>{pageData.title.ru} | cvetbuket.by</title>
+        <title>{pageData.title.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       {pageData.firstBlock.published ? (
         <IntroBlock

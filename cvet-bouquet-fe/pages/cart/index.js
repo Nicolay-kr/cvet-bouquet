@@ -126,7 +126,7 @@ export default function Cart() {
   return (
     <>
        <Head lang='ru'>
-        <title>Корзина | cvetbuket.by</title>
+        <title>Корзина | ЦВЕТ•БУКЕТ</title>
       </Head>
 
       <Box
