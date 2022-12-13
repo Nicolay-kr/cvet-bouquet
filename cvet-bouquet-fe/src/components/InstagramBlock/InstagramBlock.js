@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import styles from './InstagramBlock.module.css';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -46,6 +45,7 @@ export default function InstagramBlock({ instagramPosts }) {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 key={item.id}
                 src={item.media_url}
+                alt='instagram image'
               ></img>
             );
           }

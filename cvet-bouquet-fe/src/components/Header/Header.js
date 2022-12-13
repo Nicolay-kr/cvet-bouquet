@@ -16,6 +16,7 @@ import DropList from '../DropList/DropList';
 import { useAppContext } from '../context/BouquetsContext';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
 import SearchModal from '../SearchModal';
+import size from '../../utils/size';
 export const Header = ({data}) => {
   const router = useRouter();
   const bouckeList = useAppContext();
@@ -31,19 +32,16 @@ export const Header = ({data}) => {
   const navList = (
     <ul className={styles.navigation}>
       <li>
-        {/* <a onClick={() => router.push('/catalog')}>Каталог</a> */}
-
         <DropList list={data?.categories?.categories?.filter(category => category.published ===true)} prevSlug={'/catalog'} title='Каталог' />
       </li>
       <li>
-        {/* <a onClick={() => router.push('/delivery')}>Доставка и оплата</a> */}
         <DropList list={pages} prevSlug={null} title='Доставка и оплата' />
       </li>
       <li>
-        <a onClick={() => router.push('/contacts')}>Контакты</a>
+        <Box sx={{fontSize: {...size(20),xs:16},fontWeight:'500',color: '#000000'}} noLinkStyle component={Link} href='/contacts'>Контакты</Box>
       </li>
       <li>
-        <a onClick={() => router.push('/aboutus')}>О нас</a>
+      <Box sx={{fontSize: {...size(20),xs:16},fontWeight:'500',color: '#000000'}} noLinkStyle component={Link} href='/aboutus'>О нас</Box>
       </li>
     </ul>
   );
