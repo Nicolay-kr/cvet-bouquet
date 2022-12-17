@@ -19,7 +19,7 @@ import telegram from '../../../public/assets/icons/telegram.svg';
 import Typography from '@mui/material/Typography';
 import BurgerAccordion from '../burgerAccordion/BurgerAccordion';
 
-export default function BurgerMenu() {
+export default function BurgerMenu({categories}) {
   const [isOpen, setIsOpen] = React.useState(false);
   const router = useRouter();
   const toggleDrawer = (event, open) => {
@@ -33,37 +33,6 @@ export default function BurgerMenu() {
 
     setIsOpen(open);
   };
-  const bouquetsCategory = [
-    {
-      title: 'Цветочные письма',
-      slug: { _type: 'slug', current: 'cvetochnye-pisma' },
-    },
-    {
-      title: 'Букет невесты',
-      slug: { _type: 'slug', current: 'buket-nevesty' },
-    },
-    {
-      title: 'Монобукет',
-      slug: { _type: 'slug', current: 'monobukety' },
-    },
-    {
-      title: 'Авторские букеты',
-      slug: { _type: 'slug', current: 'avtorskie-bukety' },
-    },
-    {
-      title: 'Премиум флористика',
-      slug: { _type: 'slug', current: 'premium-floristika' },
-    },
-    {
-      title: 'В коробке',
-      slug: { _type: 'slug', current: 'v-korobke' },
-    },
-    {
-      title: 'В корзине',
-      slug: { _type: 'slug', current: 'v-korzine' },
-    },
-  ];
-
   const pages = [
     { title: 'Свободный платеж', slug: { current: '/freepay' } },
     { title: 'E-pos оплата', slug: { current: '/e-pos' } },
@@ -75,7 +44,7 @@ export default function BurgerMenu() {
       title: 'Каталог',
       href: '/catalog',
       hasMenu: true,
-      links: bouquetsCategory,
+      links: categories,
       parentSlug: '/catalog/',
     },
     {
@@ -107,8 +76,8 @@ export default function BurgerMenu() {
         <Box
           component={Image}
           sx={{
-            width: { xs: '20px', sm: '24px'},
-            height: { xs: '20px', sm: '24px'},
+            width: { xs: '24px', sm: '24px'},
+            height: { xs: '24px', sm: '24px'},
           }}
           src={burgerIcon}
           alt='belcard icon'

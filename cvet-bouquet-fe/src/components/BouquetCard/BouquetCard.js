@@ -33,6 +33,7 @@ export default function BouquetCard({
   categoryName = null,
   deliveryPrice,
   deliveryMin,
+  width = null,
 }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
@@ -78,22 +79,38 @@ export default function BouquetCard({
   });
 
   return (
-    <div className={styles.cardConteiner}>
+    <Box
+      className={styles.cardConteiner}
+      sx={{
+        height: '100%',
+        position: 'relative',
+        cursor: 'pointer',
+        transition: '0.3s',
+        width: width ? width : '100%',
+      }}
+    >
       <IconButton
-        sx={{ zIndex: '2', p: { xs: '6px', sm: '10px' } }}
+        sx={{ 
+        zIndex: '2',
+        p: size(10),
+        position: 'absolute ',
+        right:width? '2%':'10%',
+        top:'4%',
+        backgroundColor: '#F8F2EA !important',
+       }}
         onMouseOver={() => {
           setIsHovered(true);
         }}
         component='div'
-        className={styles.cardHeart}
-        href='#'
         onClick={addToFavoritList}
       >
         <Box
           component={Image}
           sx={{
-            width: { xs: '16px', sm: '30px', lg: '24px' },
-            height: { xs: '16px', sm: '30px', lg: '24px' },
+            // width: { xs: '16px', sm: '30px', lg: '24px',xxl: '1.5vw'},
+            // height: { xs: '16px', sm: '30px', lg: '24px',xxl:'1.5vw'},
+            width: size(32),
+            height: size(32),
           }}
           src={
             bouckeList.favoriteBouquets.find((item) => item.id === id)
@@ -106,13 +123,15 @@ export default function BouquetCard({
       <Fade timeout={1000} in={checked}>
         <Card
           sx={{
-            width: '100%',
-            // maxWidth: '345px',
+            width: width ? width : '100%',
             height: '100%',
             bgcolor: 'fon.main',
             boxShadow: isHovered ? '0px 0px 15px 7px #00000012' : null,
+            display: 'flex',
+            flexDirection: 'column',
+            p: '10px',
+            transition: '0.3s',
           }}
-          className={styles.card}
           elevation={0}
           raised={true}
           onMouseOver={() => {
@@ -196,11 +215,12 @@ export default function BouquetCard({
                 </Typography>
                 <Typography
                   gutterBottom
-                  variant='body1'
+                  variant='h6'
                   component='p'
                   sx={{
                     textAlign: 'end',
                     width: '51%',
+                    fontSize:{...size(18),xs:10}
                   }}
                 >
                   {bouquet.price >= deliveryMin ? (
@@ -254,6 +274,6 @@ export default function BouquetCard({
           </CardActions>
         </Card>
       </Fade>
-    </div>
+    </Box>
   );
 }

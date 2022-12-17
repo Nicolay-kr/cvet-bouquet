@@ -7,8 +7,8 @@ export default function ArcheMainConteiner({ src,isSwiper=false }) {
     <Box
       sx={{
         position: 'relative',
-        width: {xs:isSwiper?'45vw':'55vw',lg:'25.5vw'},
-        height:{xs:'70vw',lg:'37vw'},
+        width: {xs:isSwiper?'45vw':'62vw',lg:'25.5vw'},
+        height:{xs:isSwiper?'62vw':'79vw',lg:'37vw'},
         zIndex: '2',
         borderRadius:'400px 400px 0 0',
         overflow: 'hidden',

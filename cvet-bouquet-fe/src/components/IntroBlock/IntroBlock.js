@@ -1,16 +1,14 @@
 import * as React from 'react';
 
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import ArcheMainConteiner from '../ArcheImageConteiners/ArcheMainConteiner';
 import { urlFor } from '../../../sanity';
-import { NextSanityIMG } from '../CustopNextComponents/NextSanityIMG';
 import ArcheSecondConteiner from '../ArcheImageConteiners/ArcheSecondConteiner';
 import bigFlower from '../../../public/assets/images/bigFlower.svg';
 import Image from 'next/future/image';
 import MobileBlock from '../MobileBlock';
 import DesktopBlock from '../DesktopBlock';
+import size from '../../utils/size';
 
 export default function IntroBlock({
   mainImage,
@@ -65,10 +63,10 @@ export default function IntroBlock({
           mt: '0',
           position: 'relative',
           display: 'grid',
-          columnGap: 'max(30px, 1.5vw)',
+          columnGap: size(160),
           gridTemplateColumns: {
             xs: '1fr',
-            lg: '5fr 7fr',
+            lg: '5fr 6fr',
           },
           height: '100%',
         }}
@@ -83,7 +81,6 @@ export default function IntroBlock({
         </Box>
         <Box
           sx={{
-            ml: { xs: '0', lg: desctopReverse ? '0px' : '60px' },
             mr: { xs: '0', lg: desctopReverse ? '60px' : '0px' },
             position: 'relative',
             order: { xs: mobileReverse ? 1 : 2, lg: 2 },

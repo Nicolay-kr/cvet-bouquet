@@ -14,7 +14,7 @@ export default function InstagramBlock({ instagramPosts }) {
   return (
     <>
       <TitleWithSubtitle
-        title={'Подписыватесь'}
+        title={'Подписывайтесь'}
         subtitle={'на наш инстаграм'}
       ></TitleWithSubtitle>
       <Box

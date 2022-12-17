@@ -2,7 +2,7 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-export default function TitleWithSubtitle({ title, subtitle }) {
+export default function TitleWithSubtitle({ title, subtitle,subtileRight=20 }) {
   return (
     <Box
       sx={{
@@ -21,9 +21,9 @@ export default function TitleWithSubtitle({ title, subtitle }) {
         component='p'
         sx={{
           ml: 'auto',
-          mt: 'max(10px,0.5vw)',
+          // mt: 'max(10px,0.5vw)',
           position: 'relative',
-          right:{ xs:'-10%',md:'-20%'},
+          right:{ xs:`-${subtileRight/2}%`,md:`-${subtileRight}%`},
           color:'#000000'
         }}
       >

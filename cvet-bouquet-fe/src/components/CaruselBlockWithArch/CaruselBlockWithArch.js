@@ -49,7 +49,7 @@ export default function CaruselBlockWithArch({
       <SwiperSlide key={index}>
         <Box
           component={Link}
-          sx={{ textDecoration: 'none', mt: size(200), }}
+          sx={{ textDecoration: 'none', mt: size(200),top: { xs: isPremium?'6px':'0px', sm:'0' },position:'relative' }}
           href={`/catalog/${isPremium? `premium-floristika/${item.slug?.current}`:item.slug?.current}`}
         >
           <ArcheMainConteiner
@@ -80,9 +80,9 @@ export default function CaruselBlockWithArch({
                 // mt: '16px',
                 textAlign: isPremium ? 'left' : 'center',
                 textDecoration: 'none',
-                fontWeight: '700',
+                fontWeight: '500',
               }}
-              variant='h5'
+              variant='h3'
               component='p'
             >
               {item.title.ru ? item.title.ru : item.title}
@@ -108,7 +108,7 @@ export default function CaruselBlockWithArch({
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
-        mt: !isPremium?{ xs: '80px', lg: '200px' }:'0',
+        mt: !isPremium?{ ...size(300), xs:80}:'0',
       }}
     >
       {title || subtitle ? (
@@ -132,7 +132,7 @@ export default function CaruselBlockWithArch({
           >
             <Box
               component={Image}
-              sx={{ width: { xs: '32px', sm: '60px', lg: '95px' } }}
+              sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
               src={leftArrow}
               alt='leftArrow icon'
             ></Box>
@@ -143,7 +143,7 @@ export default function CaruselBlockWithArch({
           >
             <Box
               component={Image}
-              sx={{ width: { xs: '32px', sm: '60px', lg: '95px' } }}
+              sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
               src={rightArrow}
               alt='rightArrow icon'
             ></Box>
@@ -170,7 +170,7 @@ export default function CaruselBlockWithArch({
             position: 'relative',
             // top: { xs: '6vw', lg: '2vw' },
             width: { xs: '45vw', lg: '25.5vw' },
-            mr: { xs: '10px', lg: '20px' },
+            mr: {...size(30),xs:10},
             // '&>div': { pb: '40px' },
           }}
         >

@@ -19,6 +19,7 @@ const config = {
    * Authenticated request (like preview) will always bypass the CDN
    **/
   useCdn: process.env.NODE_ENV === 'production',
+  apiVersion: '2022-12-15',
 
   /**
    * OPTIONAL config to enable authentication with custom token

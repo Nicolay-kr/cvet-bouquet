@@ -3,7 +3,6 @@ import { Swiper } from 'swiper/react';
 import 'swiper/css';
 import SwiperCore, { Mousewheel, FreeMode } from 'swiper';
 import { SwiperSlide } from 'swiper/react';
-import style from './Carusel.module.css';
 import BouquetCard from '../BouquetCard/BouquetCard';
 import SimpleBouquetCard from '../SimpleBouquetCard/SimpleBouquetCard';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -16,6 +15,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/controller';
+import size from '../../utils/size';
 
 SwiperCore.use([Mousewheel, FreeMode]);
 
@@ -28,38 +28,33 @@ const Carusel = ({
   isPremium = false,
 }) => {
   const sm = useMediaQuery('(max-width:600px)');
+  const xl = useMediaQuery('(max-width:1536px)');
 
   const listItems = bouquets?.map((bouquet) => {
     return (
-      <SwiperSlide className={style.bouquetBox} key={bouquet._id}>
+      <SwiperSlide style={{ width: 'auto', height: 'auto' }} key={bouquet._id}>
         {isSpec ? (
-          // <Box sx={{ width: { xs: '120px', lg: '20vw' } }}>
           <SimpleBouquetCard
+            width={{ ...size(360), xs: '100%' }}
             isPremium={isPremium}
             id={bouquet._id}
             title={bouquet.title.ru ? bouquet.title.ru : bouquet.title}
             price={bouquet.price}
-            // description={description.ru}
             imagePath={isPremium ? bouquet.images[0] : bouquet.mainImage}
             slug={bouquet.slug}
           ></SimpleBouquetCard>
         ) : (
-          // </Box>
-          <Box
-            sx={{ height: '100%', mr: { xs: '10px', lg: 'max(20px,1.2vw)' } }}
-          >
-            <BouquetCard
-              id={bouquet._id}
-              title={bouquet.title.ru}
-              price={bouquet.price}
-              categorySlug={`catalog/${categoryslug}`}
-              // description={description.ru}
-              imagePath={bouquet.images[0]}
-              slug={bouquet.slug}
-              deliveryPrice={bouquet.delivery.deliveryPrice}
-              deliveryMin={bouquet.delivery.deliveryMin}
-            ></BouquetCard>
-          </Box>
+          <BouquetCard
+            width={{ ...size(360), xs: '100%' }}
+            id={bouquet._id}
+            title={bouquet.title.ru}
+            price={bouquet.price}
+            categorySlug={`catalog/${categoryslug}`}
+            imagePath={bouquet.images[0]}
+            slug={bouquet.slug}
+            deliveryPrice={bouquet.delivery.deliveryPrice}
+            deliveryMin={bouquet.delivery.deliveryMin}
+          ></BouquetCard>
         )}
       </SwiperSlide>
     );
@@ -69,11 +64,12 @@ const Carusel = ({
     <Swiper
       ref={caruselRef}
       // slidesPerView={breakpoints.m ? (breakpoints.xs ? "2" : "3") : "5"}
-      slidesPerView={isSpec ? (sm ? 1.3 : 'auto') : sm ? 2 : '4.5'}
+      slidesPerView={isSpec ? (sm ? 1.5 : 'auto') : sm ? 2.1 : 'auto'}
+      // slidesPerView={sm && !isSpec ? 2:'auto'}
       loopedSlides={4}
       grabCursor={true}
       loop={true}
-      spaceBetween={10}
+      spaceBetween={sm ? (isSpec ? 10 : 15) : xl ? (isSpec ? 20 : 30) : 30}
       modules={[Controller]}
       controller={{ control: controlledSwiper }}
     >

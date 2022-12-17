@@ -99,7 +99,8 @@ export default function Footer({ data }) {
                   Режим работы:
                   {data?.shopsList?.map((shop) =>
                     shop.published ? (
-                      <>
+                      <Box key={shop.adress}>
+
                         <Typography
                           variant='h6'
                           component='li'
@@ -126,7 +127,7 @@ export default function Footer({ data }) {
                         >
                           {shop.adress}
                         </Typography>
-                      </>
+                      </Box>
                     ) : null
                   )}
                 </Typography>
@@ -350,6 +351,7 @@ export default function Footer({ data }) {
                   Категории
                   {data?.categories?.categories?.map((category) => (
                     <Typography
+                      key={category.title}
                       
                       variant='h6'
                       component='li'
@@ -428,7 +430,7 @@ export default function Footer({ data }) {
                     Режим работы:
                     {data?.shopsList?.map((shop) =>
                       shop.published ? (
-                        <>
+                        <Box key={shop.adress}>
                           <Typography
                             variant='h6'
                             component='li'
@@ -455,7 +457,7 @@ export default function Footer({ data }) {
                           >
                             {shop.adress}
                           </Typography>
-                        </>
+                        </Box>
                       ) : null
                     )}
                   </Typography>

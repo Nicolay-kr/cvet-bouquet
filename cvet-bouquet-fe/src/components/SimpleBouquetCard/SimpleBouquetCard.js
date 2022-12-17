@@ -20,6 +20,7 @@ export default function SimpleBouquetCard({
   price,
   slug,
   isPremium=false,
+  width=null
 }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
@@ -65,8 +66,8 @@ export default function SimpleBouquetCard({
       <Fade in={checked}>
         <Card
           sx={{
-            width: '100%',
-            maxWidth: '345px',
+            width: width? width:'100%',
+            // maxWidth: '345px',
             height: '100%',
             bgcolor: 'fon.main',
             p: '0',
@@ -106,7 +107,7 @@ export default function SimpleBouquetCard({
                 sx={{ objectFit: 'cover' }}
                 layout='fill'
                 fill={true}
-                sizes='(max-width: 768px) 100vw,
+                widths='(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw'
                 src={urlFor(imagePath).width(400).url()}

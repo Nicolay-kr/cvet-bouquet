@@ -36,7 +36,7 @@ export default function CaruselBlock({
         mt: size(200),
       }}
     >
-      <TitleWithSubtitle title={title} subtitle={subtitle}></TitleWithSubtitle>
+      <TitleWithSubtitle title={title} subtitle={subtitle} subtileRight={10}></TitleWithSubtitle>
       <Box
         sx={{
           display: 'flex',
@@ -50,7 +50,7 @@ export default function CaruselBlock({
         >
           <Box
             component={Image}
-            sx={{ width: { xs: '32px', sm: '60px', lg: '95px' } }}
+            sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
             src={leftArrow}
             alt='leftArrow icon'
           ></Box>
@@ -61,7 +61,7 @@ export default function CaruselBlock({
         >
           <Box
             component={Image}
-            sx={{ width: { xs: '32px', sm: '60px', lg: '95px' } }}
+            sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
             src={rightArrow}
             alt='rightArrow icon'
           ></Box>

@@ -5,7 +5,7 @@ export const customFontsSize = {
   xl: 2,
   widthMobile: 0.875,
   h1: { regular: 140, adaptiv: '7.3vw' }, //Zeferino One
-  h2: { regular: 36, adaptiv: '1.8vw' }, //Raleway
+  h2: { regular: 40, adaptiv: '1.8vw' }, //Raleway
   h3: { regular: 32, adaptiv: '1.6vw' }, //Raleway
   h4: { regular: 24, adaptiv: '1.25vw' }, // Raleway
   h5: { regular: 20, adaptiv: '1.04vw' }, // Raleway
@@ -92,6 +92,9 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h2.adaptiv,
       },
+      '@media (max-width:1536px)': {
+        fontSize: '32px',
+      },
       // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
       //   fontSize: customFontsSize.h2.regular/1.25,
       // },
@@ -111,7 +114,7 @@ const theme = createTheme({
       '@media (max-width:1536px)': {
         fontSize: '24px',
       },
-      '@media (mфч-width:600px)': {
+      '@media (max-width:600px)': {
         fontSize: '18px',
       },
     },

@@ -17,10 +17,10 @@ import { useAppContext } from '../context/BouquetsContext';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
 import SearchModal from '../SearchModal';
 import size from '../../utils/size';
-export const Header = ({data}) => {
+export const Header = ({ data }) => {
   const router = useRouter();
   const bouckeList = useAppContext();
-  console.log(data)
+  console.log(data);
 
   const pages = [
     { title: 'Свободный платеж', slug: { current: 'freepay' } },
@@ -28,20 +28,47 @@ export const Header = ({data}) => {
     { title: 'Доставка и самовывоз', slug: { current: 'delivery' } },
   ];
 
-
   const navList = (
     <ul className={styles.navigation}>
       <li>
-        <DropList list={data?.categories?.categories?.filter(category => category.published ===true)} prevSlug={'/catalog'} title='Каталог' />
+        <DropList
+          list={data?.categories?.categories?.filter(
+            (category) => category.published === true
+          )}
+          prevSlug={'/catalog'}
+          title='Каталог'
+        />
       </li>
       <li>
         <DropList list={pages} prevSlug={null} title='Доставка и оплата' />
       </li>
       <li>
-        <Box sx={{fontSize: {...size(20),xs:16},fontWeight:'500',color: '#000000'}} noLinkStyle component={Link} href='/contacts'>Контакты</Box>
+        <Box
+          sx={{
+            fontSize: { ...size(20), xs: 16 },
+            fontWeight: '500',
+            color: '#000000',
+          }}
+          noLinkStyle
+          component={Link}
+          href='/contacts'
+        >
+          Контакты
+        </Box>
       </li>
       <li>
-      <Box sx={{fontSize: {...size(20),xs:16},fontWeight:'500',color: '#000000'}} noLinkStyle component={Link} href='/aboutus'>О нас</Box>
+        <Box
+          sx={{
+            fontSize: { ...size(20), xs: 16 },
+            fontWeight: '500',
+            color: '#000000',
+          }}
+          noLinkStyle
+          component={Link}
+          href='/aboutus'
+        >
+          О нас
+        </Box>
       </li>
     </ul>
   );
@@ -54,14 +81,24 @@ export const Header = ({data}) => {
         sx={{
           gridTemplateColumns: { xs: '1fr 3fr 1fr', lg: '5fr 5fr 2fr;' },
           columnGap: { xs: '10px', lg: '20px' },
+          position: 'relative',
+          zIndex: '2',
+          width: '100%',
+          display: 'grid',
+          py: size(40),
+          px: 0,
+          borderBottom: '2px solid #A08863',
         }}
       >
-
         <Box
           className={styles.iconsConteiner}
           sx={{ display: { xs: 'flex', lg: 'none' }, mr: 'auto', ml: '0px' }}
         >
-          <BurgerMenu></BurgerMenu>
+          <BurgerMenu
+            categories={data?.categories?.categories?.filter(
+              (category) => category.published === true
+            )}
+          ></BurgerMenu>
           <SearchModal></SearchModal>
         </Box>
 
@@ -77,11 +114,23 @@ export const Header = ({data}) => {
         >
           <Image src={logo} alt='logo '></Image>
         </Box>
-        <Box sx={{ display: { xs: 'none', lg: 'block',alignSelf: 'center' } }}>{navList}</Box>
+        <Box sx={{ display: { xs: 'none', lg: 'block', alignSelf: 'center' } }}>
+          {navList}
+        </Box>
 
         <Box
-          className={styles.iconsConteiner}
-          sx={{ '& a': { px: { xs: '4px', sm: '8px' } } }}
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: 'repeat(3, auto)',
+              lg: 'repeat(4, auto)',
+            },
+            marginLeft: { ...size(30), xs: 0 },
+            alignItems: 'center',
+            justifyContent: 'right',
+            columnGap: size(8),
+            '& a': { px: { xs: '4px', sm: '8px' } },
+          }}
         >
           {/* {lg ? null : <SearchModal bouquets={bouquets}></SearchModal>} */}
           <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
@@ -101,7 +150,11 @@ export const Header = ({data}) => {
           >
             <Image src={instaIcon} alt='insta icon'></Image>
           </IconButton>
-          <IconButton component={Link} href='/cart'>
+          <IconButton
+            sx={{ pr: '0px !important', pt: '4px !important' }}
+            component={Link}
+            href='/cart'
+          >
             <Badge
               color='primary'
               badgeContent={bouckeList.bouquetsInCarts.length}

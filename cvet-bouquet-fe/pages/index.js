@@ -44,14 +44,14 @@ export default function Home({ instagramPosts, category, pageData }) {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  pt: { xs: '30px', lg: '100px' },
+                  pt: {...size(100),xs:30},
                   // width: { xs: '100%', md: '50%' },
                   
                 }}
               >
                 <Typography
                   sx={{
-                    fontSize: { xs: '36px', sm: '60px', xl: 'max(82px,4.3vw)' },
+                    fontSize: size(80),
                     textAlign: { xs: 'end', md: 'start' },
                     color:'#000000'
                   }}
@@ -69,7 +69,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                       xl: 'max(140px,7.3vw)',
                       color:'#000000'
                     },
-                    textAlign: 'center',
+                    textAlign: 'right',
                   }}
                   variant='h1'
                   component='h1'
@@ -78,12 +78,8 @@ export default function Home({ instagramPosts, category, pageData }) {
                 </Typography>
                 <Typography
                   sx={{
-                    fontSize: {
-                      xs: '36px',
-                      sm: '60px',
-                      xl: 'max(82px,4.3vw)',
-                      color:'#000000',
-                    },
+                    fontSize: size(80),
+                    color:'#000000',
                     textAlign: 'end',
                   }}
                   variant='h2'
@@ -110,11 +106,11 @@ export default function Home({ instagramPosts, category, pageData }) {
               >
                 <Button
                   sx={{
-                    height: '60px',
-                    width: '100%',
+                    height: {...size(60), xs:60},
+                    width: {...size(360), xs:'100%'},
                     bgcolor: 'primary.main',
                     mt: {...size(64)},
-                    fontSize: { xs: '18px', md: '24px' },
+                    fontSize: { xs: '18px', xl: '24px' },
                     fontWeight: { xs: '600' },
                   }}
                   variant='contained'
@@ -164,7 +160,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                   width: '100%',
                 }}
               >
-                <Box sx={{ mt:{xs:'40px',lg:'auto'} }}>
+                <Box sx={{ mt:{xs:'24px',lg:'auto'},textAlign:{xs:'center',sm:'left'} }}>
                   <BlockContentBox
                     fs={32}
                     blocks={pageData.secondBlock.text.ru}
@@ -178,12 +174,12 @@ export default function Home({ instagramPosts, category, pageData }) {
                 >
                   <Button
                     sx={{
-                      height: '60px',
-                      width: '100%',
+                      height: {...size(60), xs:60},
+                      width: {...size(360), xs:'100%'},
                       bgcolor: 'primary.main',
                       mt: {...size(120),xs:32},
                       
-                      fontSize: { xs: '18px', md: '24px' },
+                      fontSize: { xs: '18px', xl: '24px' },
                       fontWeight: { xs: '600' },
                     }}
                     variant='contained'

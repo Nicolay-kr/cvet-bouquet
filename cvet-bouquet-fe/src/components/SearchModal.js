@@ -81,7 +81,16 @@ export default function SearchModal({}) {
   return (
     <div>
       <IconButton onClick={handleOpen} sx={{ px: { xs: '4px', sm: '8px' } }}>
-        <Image src={searchIcon} alt='search icon'></Image>
+      <Box
+          component={Image}
+          sx={{
+            width: { xs: '24px', md: '26px'},
+            height: { xs: '24px', md: '26px'},
+          }}
+          src={searchIcon}
+          alt='search icon'
+        ></Box>
+        {/* <Image src={searchIcon} alt='search icon'></Image> */}
       </IconButton>
       <Modal
         aria-labelledby='spring-modal-title'

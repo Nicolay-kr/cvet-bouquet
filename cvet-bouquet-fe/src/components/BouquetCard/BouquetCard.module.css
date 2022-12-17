@@ -1,9 +1,4 @@
-.cardConteiner {
-  height: 100%;
-  position: relative;
-  cursor: pointer;
-  transition: 0.3s;
-}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -13,13 +8,5 @@
 
 .cardConteiner:hover{
   transition: 0.3s;
-}
-
-.cardHeart{
-  
-  position: absolute !important;
-  right:10%;
-  top:4%;
-  background-color: #F8F2EA !important;
 }
 
