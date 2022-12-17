@@ -19,7 +19,7 @@ import telegram from '../../../public/assets/icons/telegram.svg';
 import Typography from '@mui/material/Typography';
 import BurgerAccordion from '../burgerAccordion/BurgerAccordion';
 
-export default function BurgerMenu({categories}) {
+export default function BurgerMenu({ categories, shops }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const router = useRouter();
   const toggleDrawer = (event, open) => {
@@ -76,8 +76,8 @@ export default function BurgerMenu({categories}) {
         <Box
           component={Image}
           sx={{
-            width: { xs: '24px', sm: '24px'},
-            height: { xs: '24px', sm: '24px'},
+            width: { xs: '24px', sm: '24px' },
+            height: { xs: '24px', sm: '24px' },
           }}
           src={burgerIcon}
           alt='belcard icon'
@@ -127,8 +127,8 @@ export default function BurgerMenu({categories}) {
               },
             }}
           >
-            {listItems.map((item, index) => (
-              <ListItem key={item.title} disablePadding>
+            {listItems?.map((item, index) => (
+              <ListItem key={index} disablePadding>
                 <ListItemButton>
                   {item.hasMenu ? (
                     <BurgerAccordion
@@ -171,12 +171,13 @@ export default function BurgerMenu({categories}) {
             </IconButton>
           </Box>
           <Box sx={{ mt: '40px', mr: 'auto' }}>
-            <Typography variant='body1' color='white'>
-              пр.Победителей, 27 (Славянский квартал)
-            </Typography>
-            <Typography variant='body1' color='white'>
-              пр.Независимости, 104 (метро Московская)
-            </Typography>
+            {shops?.map((shop) =>
+              shop.published ? (
+                <Typography variant='body1' color='white' key={shop.adress}>
+                  {shop.adress}
+                </Typography>
+              ) : null
+            )}
           </Box>
         </Box>
       </SwipeableDrawer>

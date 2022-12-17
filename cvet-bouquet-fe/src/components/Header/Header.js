@@ -98,6 +98,7 @@ export const Header = ({ data }) => {
             categories={data?.categories?.categories?.filter(
               (category) => category.published === true
             )}
+            shops={data.shopsList}
           ></BurgerMenu>
           <SearchModal></SearchModal>
         </Box>

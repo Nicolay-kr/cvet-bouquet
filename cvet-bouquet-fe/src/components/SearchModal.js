@@ -185,7 +185,7 @@ export default function SearchModal({}) {
                     rowGap: { xs: '20px', lg: '30px' },
                     width: '100%',
                     overflowY:'scroll',
-                    height:{xs:'76vh',lg:'30vh'}
+                    height:{xs:'77vh',lg:'30vh'}
                     
                   }}
                 >

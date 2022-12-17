@@ -10,7 +10,7 @@ import BlockContentBox from '../blockcontentBox/BlockContentBox';
 import Box from '@mui/material/Box';
 import { useRouter } from 'next/router';
 
-export default function BurgerAccordion({ title, links, parentSlug,onClose }) {
+export default function BurgerAccordion({ title, links, parentSlug, onClose }) {
   const [expanded, setExpanded] = React.useState();
   const router = useRouter();
 
@@ -20,12 +20,12 @@ export default function BurgerAccordion({ title, links, parentSlug,onClose }) {
   return (
     <Accordion
       key={title}
-      sx={{ background: 'transparent', boxShadow: 'none', p: '0',m:'0' }}
+      sx={{ background: 'transparent', boxShadow: 'none', p: '0', m: '0' }}
       expanded={expanded === title}
       onChange={handleChange(title)}
     >
       <AccordionSummary
-        sx={{ p: '0',minHeight:'auto', '& div':{m: '0'} }}
+        sx={{ p: '0', minHeight: 'auto', '& div': { m: '0' } }}
         // expandIcon={<Image src={navArrow} alt='belcard icon'></Image>}
         aria-controls='panel1a-content'
         id='panel1a-header'
@@ -37,6 +37,7 @@ export default function BurgerAccordion({ title, links, parentSlug,onClose }) {
       <AccordionDetails sx={{ '& p+p': { mt: '16px' } }}>
         {links.map((link) => (
           <Box
+            key={link.title}
             sx={{
               color: 'white',
               my: '0',
@@ -44,7 +45,9 @@ export default function BurgerAccordion({ title, links, parentSlug,onClose }) {
               fontWeight: '300',
             }}
             component='p'
-            onClick={() => {router.push(parentSlug+link.slug.current),onClose()}}
+            onClick={() => {
+              router.push(parentSlug + link.slug.current), onClose();
+            }}
           >
             {link.title}
           </Box>
