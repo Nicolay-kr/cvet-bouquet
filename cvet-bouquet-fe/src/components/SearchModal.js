@@ -184,6 +184,9 @@ export default function SearchModal({}) {
                     columnGap: { xs: '20px', lg: '30px' },
                     rowGap: { xs: '20px', lg: '30px' },
                     width: '100%',
+                    overflowY:'scroll',
+                    height:{xs:'80vh',lg:'30vh'}
+                    
                   }}
                 >
                   {sortedList.map((bouquet, index) => (
@@ -195,7 +198,7 @@ export default function SearchModal({}) {
                         flexDirection: { xs: 'column', lg: 'row' },
                         gap: '20px',
                         '& img': { objectFit: 'cover' },
-                      }}ha
+                      }}
                     >
                       <Box onClick={handleClose}>
                       <Image
