@@ -3,7 +3,7 @@ import React from 'react';
 import { sanityClient } from '../../sanity';
 import BouquetPage from '../../src/components/bouquePage/BouquetPage';
 
-export const Bouquet = ({ bouquet, instagramPosts,generalInfo }) => {
+export const Bouquet = ({ bouquet, instagramPosts, generalInfo }) => {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: 'Корзина', href: '/cart' },

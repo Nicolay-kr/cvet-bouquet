@@ -11,7 +11,7 @@ export default function AddToCartButton({
   isInCart = false,
 }) {
   const {
-    id,
+    id=bouquet.id||bouquet._id,
     title,
     imagePath,
     price,
@@ -24,6 +24,7 @@ export default function AddToCartButton({
   const [isOpenSnack, setIsOpenSnack] = React.useState(false);
   const bouckeList = useAppContext();
   const addToCart = (e) => {
+    console.log(bouquet)
     setIsOpenSnack(true);
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();

@@ -20,7 +20,6 @@ import size from '../../utils/size';
 export const Header = ({ data }) => {
   const router = useRouter();
   const bouckeList = useAppContext();
-  console.log(data);
 
   const pages = [
     { title: 'Свободный платеж', slug: { current: 'freepay' } },
