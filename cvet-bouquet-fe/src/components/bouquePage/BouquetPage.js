@@ -199,7 +199,7 @@ export const BouquetPage = ({
           <Box
             sx={{
               display: 'grid',
-              height: 'max(60px,3vw)',
+              height: {...size(60),xs:45},
               gridTemplateColumns: '2fr 3fr',
               marginTop: { ...size(60), xs: 20 },
               columnGap: size(30),
@@ -217,7 +217,7 @@ export const BouquetPage = ({
                 variant='contained'
               ></AddToCartButton>
               <Button
-                sx={{ ml: size(10) }}
+                sx={{ ml: size(10),height: {...size(60),xs:45}, }}
                 variant='contained'
                 color='primary'
                 onClick={addToFavoritList}
@@ -297,7 +297,7 @@ export const BouquetPage = ({
               ) : (
                 <span>
                   Стоимость доставки {generalInfo.deliveryPrice}
-                  <Box sx={{ fontSize: '12px', pt: size(4) }} component='sup'>
+                  <Box sx={{ fontSize: '0.5em', pt: size(4) }} component='sup'>
                     BYN
                   </Box>
                 </span>
