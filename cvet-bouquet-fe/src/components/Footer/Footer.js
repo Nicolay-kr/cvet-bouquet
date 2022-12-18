@@ -2,20 +2,19 @@ import React from 'react';
 import styles from './Footer.module.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import Link from '../CustopNextComponents/Link';
-import logoFlower from '../../../public/assets/images/logo_flower_white.svg';
-import logoText from '../../../public/assets/images/logo_text_white.svg';
-import visa from '../../../public/assets/icons/visa.svg';
-import mastercard from '../../../public/assets/icons/mastercard.svg';
-import belcard from '../../../public/assets/icons/belcard.svg';
-import telegram from '../../../public/assets/icons/telegram.svg';
-import viber from '../../../public/assets/icons/viber.svg';
-import whatsapp from '../../../public/assets/icons/whatsapp.svg';
-import letter from '../../../public/assets/icons/letter.svg';
-import phone from '../../../public/assets/icons/phone.svg';
-import insta_mini from '../../../public/assets/icons/insta_mini.svg';
+import LogoFlower from '../../../public/assets/images/logo_flower_white.svg';
+import LogoText from '../../../public/assets/images/logo_text_white.svg';
+import Visa from '../../../public/assets/icons/visa.svg';
+import Mastercard from '../../../public/assets/icons/mastercard.svg';
+import Belcard from '../../../public/assets/icons/belcard.svg';
+import Telegram from '../../../public/assets/icons/telegram.svg';
+import Viber from '../../../public/assets/icons/viber.svg';
+import Whatsapp from '../../../public/assets/icons/whatsapp.svg';
+import Letter from '../../../public/assets/icons/letter.svg';
+import Phone from '../../../public/assets/icons/phone.svg';
+import Instamini from '../../../public/assets/icons/insta_mini.svg';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import size from '../../utils/size';
@@ -43,10 +42,11 @@ export default function Footer({ data }) {
                   href='/'
                   sx={{ gridColumnStart: '1', gridColumnEnd: '3' }}
                 >
-                  <Image src={logoFlower} alt='logo flower'></Image>
-                  <Image src={logoText} alt='logo flower'></Image>
+                  <LogoFlower />
+                  <Box sx={{ mt: { ...size(20), xs: 20 } }}>
+                    <LogoText />
+                  </Box>
                 </Box>
-                {/* <Box className={styles.doubleColumn}> */}
                 <Typography
                   variant='h6'
                   component='ul'
@@ -99,7 +99,6 @@ export default function Footer({ data }) {
                   {data?.shopsList?.map((shop) =>
                     shop.published ? (
                       <Box key={shop.adress}>
-
                         <Typography
                           variant='h6'
                           component='li'
@@ -139,10 +138,7 @@ export default function Footer({ data }) {
                   className={styles.navigation}
                 >
                   Контакты
-                  <Typography
-                    variant='h6'
-                    component='li'
-                  >
+                  <Typography variant='h6' component='li'>
                     <Typography
                       variant='h6'
                       component='a'
@@ -152,14 +148,7 @@ export default function Footer({ data }) {
                       {data.phone}
                     </Typography>
                   </Typography>
-                 
-                 
-             
-                  <Typography
-                    variant='h6'
-                    component='li'
-                    color='white'
-                  >
+                  <Typography variant='h6' component='li' color='white'>
                     <Typography
                       variant='h6'
                       component='a'
@@ -179,7 +168,7 @@ export default function Footer({ data }) {
                 >
                   Подписывайтесь
                   <Typography variant='h6' component='li'>
-                  <Typography
+                    <Typography
                       variant='h6'
                       color='white'
                       component='a'
@@ -208,13 +197,13 @@ export default function Footer({ data }) {
 
                 <Box columnGap={10} className={styles.iconsConteiner}>
                   <IconButton component={Link} href='/'>
-                    <Image src={telegram} alt='telegram icon'></Image>
+                    <Telegram />
                   </IconButton>
                   <IconButton component={Link} href='/'>
-                    <Image src={viber} alt='viber icon'></Image>
+                    <Viber />
                   </IconButton>
                   <IconButton component={Link} href='/'>
-                    <Image src={whatsapp} alt='whatsapp icon'></Image>
+                    <Whatsapp />
                   </IconButton>
                 </Box>
                 {/* </Box> */}
@@ -331,14 +320,16 @@ export default function Footer({ data }) {
                   </Typography>
 
                   <Box columnGap={12} className={styles.iconsConteiner}>
-                    <Image src={visa} alt='visa icon'></Image>
-                    <Image src={mastercard} alt='mastercard icon'></Image>
-                    <Image src={belcard} alt='belcard icon'></Image>
+                    <Visa />
+                    <Mastercard />
+                    <Belcard />
                   </Box>
                 </Box>
                 <Box className={styles.logoConteiner} component={Link} href='/'>
-                  <Image src={logoFlower} alt='logo flower'></Image>
-                  <Image src={logoText} alt='logo flower'></Image>
+                  <LogoFlower />
+                  <Box sx={{ mt: { ...size(20), xs: 20 } }}>
+                    <LogoText />
+                  </Box>
                 </Box>
                 <Typography
                   variant='h6'
@@ -351,7 +342,6 @@ export default function Footer({ data }) {
                   {data?.categories?.categories?.map((category) => (
                     <Typography
                       key={category.title}
-                      
                       variant='h6'
                       component='li'
                       color='white'
@@ -371,7 +361,7 @@ export default function Footer({ data }) {
                   >
                     Контакты
                     <Typography variant='h6' component='li'>
-                      <Image src={phone} alt='phone icon'></Image>
+                      <Phone />
                       <Typography
                         variant='h6'
                         component='a'
@@ -386,7 +376,7 @@ export default function Footer({ data }) {
                       </Typography>
                     </Typography>
                     <Typography variant='h6' component='li' color='white'>
-                      <Image src={insta_mini} alt='insta icon'></Image>
+                      <Instamini />
                       <Typography
                         variant='h6'
                         color='white'
@@ -404,7 +394,7 @@ export default function Footer({ data }) {
                       </Typography>
                     </Typography>
                     <Typography variant='h6' component='li' color='white'>
-                      <Image src={letter} alt='letter icon'></Image>
+                      <Letter />
                       <Typography
                         variant='h6'
                         component='a'
@@ -462,13 +452,13 @@ export default function Footer({ data }) {
                   </Typography>
                   <Box columnGap={20} className={styles.iconsConteiner}>
                     <IconButton component={Link} href='/'>
-                      <Image src={telegram} alt='telegram icon'></Image>
+                      <Telegram />
                     </IconButton>
                     <IconButton component={Link} href='/'>
-                      <Image src={viber} alt='viber icon'></Image>
+                      <Viber />
                     </IconButton>
                     <IconButton component={Link} href='/'>
-                      <Image src={whatsapp} alt='whatsapp icon'></Image>
+                      <Whatsapp />
                     </IconButton>
                   </Box>
                 </Box>
@@ -502,9 +492,9 @@ export default function Footer({ data }) {
           {lg ? (
             <>
               <Box columnGap={12} className={styles.iconsConteiner}>
-                <Image src={visa} alt='visa icon'></Image>
-                <Image src={mastercard} alt='mastercard icon'></Image>
-                <Image src={belcard} alt='belcard icon'></Image>
+                <Visa />
+                <Mastercard />
+                <Belcard />
               </Box>
               <Box className={styles.info}>
                 <Box className={styles.infoContent}>

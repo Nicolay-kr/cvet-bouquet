@@ -1,12 +1,9 @@
 import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import navArrow from '../../../public/assets/icons/navArrow.svg';
-import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import logoFlower from '../../../public/assets/images/logo_flower.svg';
-import Box from '@mui/material/Box';
 import WordWithArrow from '../WordWithArrow';
 import size from '../../utils/size';
 

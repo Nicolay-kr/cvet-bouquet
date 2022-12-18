@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextsQuote from '../../../src/components/TextsQuote';
 import Head from 'next/head';
+import size from '../../../src/utils/size';
 // import { useState } from 'react';
 
 export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
@@ -55,7 +56,7 @@ export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
         </Typography>
       </Box>
 
-      <Box sx={{ my: 'max(100px,5vw)', px: { xs: '5%', lg: '10%' } }}>
+      <Box sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}>
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </>

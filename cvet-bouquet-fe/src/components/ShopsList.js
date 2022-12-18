@@ -1,8 +1,8 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import Image from 'next/future/image';
-import metroIcon from '../../public/assets/icons/metro.svg';
+import MetroIcon from '../../public/assets/icons/metro.svg';
 import Box from '@mui/material/Box';
+import size from '../utils/size';
 
 
 export default function ShopsList({shop, delivery=false}) {
@@ -23,11 +23,11 @@ export default function ShopsList({shop, delivery=false}) {
       >
         {shop.adress}
         <span>
-        <Image
-          style={{ margin: '0 10px' }}
-          src={metroIcon}
-          alt='metro icon'
-        ></Image>
+        <Box
+          component={MetroIcon}
+          viewBox="0 0 33 33" 
+          sx={{ margin: '0 10px',width:size(32) }}
+        ></Box>
         </span>
         {shop.metro}
       </Typography>

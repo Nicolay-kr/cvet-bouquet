@@ -4,13 +4,13 @@ import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import ShopsList from '../src/components/ShopsList';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
-import phoneIcon from '../public/assets/icons/phoneBlack.svg';
-import instaIcon from '../public/assets/icons/insta.svg';
-import Image from 'next/future/image';
+import PhoneIcon from '../public/assets/icons/phoneBlack.svg';
+import InstaIcon from '../public/assets/icons/insta.svg';
 import Typography from '@mui/material/Typography';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Head from 'next/head';
+import size from '../src/utils/size';
 
 export default function Contacts({ instagramPosts, pageData, generalInfo }) {
   const defaultState = {
@@ -77,7 +77,7 @@ export default function Contacts({ instagramPosts, pageData, generalInfo }) {
               все волнующие вопросы.
             </Typography>
             <Box sx={{ display: 'flex' }}>
-              <Image src={phoneIcon} color='black' alt='phone icon'></Image>
+              <PhoneIcon/>
               <Typography
                 variant='h5'
                 component='a'
@@ -131,7 +131,7 @@ export default function Contacts({ instagramPosts, pageData, generalInfo }) {
               день. Разделите с нами эти чувства!
             </Typography>
             <Box sx={{ display: 'flex' }}>
-              <Image src={instaIcon} alt='instagram icon'></Image>
+              <InstaIcon/>
               <Typography
                 variant='h5'
                 component='a'
@@ -145,7 +145,7 @@ export default function Contacts({ instagramPosts, pageData, generalInfo }) {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ my: 'max(200px,5vw)', px: { xs: '5%', lg: '10%' } }}>
+      <Box sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}>
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </>

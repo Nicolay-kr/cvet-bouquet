@@ -4,19 +4,20 @@ import styles from './Header.module.css';
 // import Button from '@mui/material/Button';
 import Link from '../CustopNextComponents/Link';
 import Box from '@mui/material/Box';
-import logo from '../../../public/assets/images/logo.svg';
-import Image from 'next/future/image';
-import heartIcon from '../../../public/assets/icons/heart.svg';
-import instaIcon from '../../../public/assets/icons/insta.svg';
-import bagIcon from '../../../public/assets/icons/bag.svg';
+import logo from '../../../public/assets/images/logo.png';
+import Logo from '../../../public/assets/images/logo.svg';
+import HeeartIcon from '../../../public/assets/icons/heart.svg';
+import InstaIcon from '../../../public/assets/icons/insta.svg';
+import BagIcon from '../../../public/assets/icons/bag.svg';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-
+import Image from 'next/future/image';
 import DropList from '../DropList/DropList';
 import { useAppContext } from '../context/BouquetsContext';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
 import SearchModal from '../SearchModal';
 import size from '../../utils/size';
+
 export const Header = ({ data }) => {
   const router = useRouter();
   const bouckeList = useAppContext();
@@ -84,7 +85,7 @@ export const Header = ({ data }) => {
           zIndex: '2',
           width: '100%',
           display: 'grid',
-          py: size(40),
+          py: {...size(40),xs:10},
           px: 0,
           borderBottom: '2px solid #A08863',
         }}
@@ -112,7 +113,8 @@ export const Header = ({ data }) => {
             pr: { xs: '0', lg: '20px' },
           }}
         >
-          <Image src={logo} alt='logo '></Image>
+          <Image src={logo} style={{objectFit:'contain'}} alt='logo '></Image>
+          {/* <Logo width={'100%'} height={'100%'}/> */}
         </Box>
         <Box sx={{ display: { xs: 'none', lg: 'block', alignSelf: 'center' } }}>
           {navList}
@@ -141,14 +143,14 @@ export const Header = ({ data }) => {
               color='primary'
               badgeContent={bouckeList.favoriteBouquets.length}
             >
-              <Image src={heartIcon} alt='heart icon'></Image>
+              <HeeartIcon/>
             </Badge>
           </IconButton>
           <IconButton
             component={Link}
             href='https://www.instagram.com/cvetbuket.by/'
           >
-            <Image src={instaIcon} alt='insta icon'></Image>
+            <InstaIcon/>
           </IconButton>
           <IconButton
             sx={{ pr: '0px !important', pt: '4px !important' }}
@@ -159,7 +161,7 @@ export const Header = ({ data }) => {
               color='primary'
               badgeContent={bouckeList.bouquetsInCarts.length}
             >
-              <Image src={bagIcon} alt='cart icon'></Image>
+              <BagIcon/>
             </Badge>
           </IconButton>
         </Box>

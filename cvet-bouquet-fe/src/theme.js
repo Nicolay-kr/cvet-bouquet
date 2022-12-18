@@ -123,7 +123,7 @@ const theme = createTheme({
       lineHeight: 1.4,
       fontWeight: 500,
       fontStyle: 'normal',
-      color: '#333333',
+      color: '#000000',
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h4.adaptiv,
       },
@@ -237,7 +237,7 @@ const theme = createTheme({
       fontWeight: 600,
       fontStyle: 'normal',
       textTransform: 'uppercase',
-      color: '#333333',
+      color: '#000000',
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.subtitle2.adaptiv,
       },
@@ -248,7 +248,7 @@ const theme = createTheme({
       fontWeight: 500,
       fontStyle: 'normal',
       textTransform: 'uppercase',
-      color: '#333333',
+      color: '#000000',
       fontFamily: ['Raleway', 'sans-serif'].join(','),
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.button.adaptiv,
@@ -260,7 +260,7 @@ const theme = createTheme({
       fontWeight: 600,
       fontStyle: 'normal',
       textTransform: 'uppercase',
-      color: '#333333',
+      color: '#000000',
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.caption.adaptiv,
       },

@@ -8,6 +8,7 @@ import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Typography from '@mui/material/Typography';
 import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';
 import Head from 'next/head';
+import size from '../src/utils/size';
 
 export default function CorporateClientsPage({ instagramPosts, pageData }) {
   const breadCrumbsList = [
@@ -91,7 +92,7 @@ export default function CorporateClientsPage({ instagramPosts, pageData }) {
 
       <Box
         component='section'
-        sx={{ my: 'max(100px,5vw)', px: { xs: '5%', lg: '10%' } }}
+        sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}
       >
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>

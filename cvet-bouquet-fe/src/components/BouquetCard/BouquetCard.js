@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Box from '@mui/material/Box';
 import Link from '../CustopNextComponents/Link';
-import heartIcon from '../../../public/assets/icons/heart.svg';
-import heartIconFill from '../../../public/assets/icons/heartFill.svg';
+import HeartIcon from '../../../public/assets/icons/heart.svg';
+import HeartIconFill from '../../../public/assets/icons/heartFill.svg';
 import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
 import { useAppContext } from '../context/BouquetsContext';
@@ -90,35 +90,30 @@ export default function BouquetCard({
       }}
     >
       <IconButton
-        sx={{ 
-        zIndex: '2',
-        p: size(10),
-        position: 'absolute ',
-        right:width? '2%':'10%',
-        top:'4%',
-        backgroundColor: '#F8F2EA !important',
-       }}
+        sx={{
+          zIndex: '2',
+          p: size(10),
+          position: 'absolute ',
+          right: width ? '2%' : '10%',
+          top: '4%',
+          backgroundColor: '#F8F2EA !important',
+        }}
         onMouseOver={() => {
           setIsHovered(true);
         }}
         component='div'
         onClick={addToFavoritList}
       >
-        <Box
-          component={Image}
-          sx={{
-            // width: { xs: '16px', sm: '30px', lg: '24px',xxl: '1.5vw'},
-            // height: { xs: '16px', sm: '30px', lg: '24px',xxl:'1.5vw'},
-            width: size(32),
-            height: size(32),
-          }}
-          src={
-            bouckeList.favoriteBouquets.find((item) => item.id === id)
-              ? heartIconFill
-              : heartIcon
-          }
-          alt='heart icon'
-        ></Box>
+        <Box sx={{
+          width:{xs:24,lg:30},
+          height:{xs:24,lg:30},
+          }}>
+        {bouckeList.favoriteBouquets.find((item) => item.id === id) ? (
+          <HeartIconFill width={'100%'} height={'100%'} viewBox='-3 -3 30 30' />
+        ) : (
+          <HeartIcon width={'100%'} height={'100%'} viewBox='-3 -3 30 30'/>
+        )}
+        </Box>
       </IconButton>
       <Fade timeout={1000} in={checked}>
         <Card
@@ -220,7 +215,7 @@ export default function BouquetCard({
                   sx={{
                     textAlign: 'end',
                     width: '51%',
-                    fontSize:{...size(18),xs:10}
+                    fontSize: { ...size(18), xs: 10 },
                   }}
                 >
                   {bouquet.price >= deliveryMin ? (
@@ -261,7 +256,7 @@ export default function BouquetCard({
                     });
                   }}
                   sx={{
-                    py: { ...size(30), xs: 20 },
+                    py: size(30),
                     textDecoration: 'underline',
                     color: 'primary.main',
                     textAlign: 'center',

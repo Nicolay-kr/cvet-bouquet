@@ -1,5 +1,5 @@
 import * as React from 'react';
-import navArrow from '../../public/assets/icons/navArrow.svg';
+import NavArrow from '../../public/assets/icons/navArrow.svg';
 import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
 import Box from '@mui/material/Box';
@@ -53,7 +53,7 @@ export default function WordWithArrow({
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
       >
-        <Image src={navArrow} alt='belcard icon'></Image>
+        <NavArrow/>
       </IconButton>
     </Box>
   );

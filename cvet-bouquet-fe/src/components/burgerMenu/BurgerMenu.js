@@ -1,21 +1,19 @@
 import * as React from 'react';
 
-import whitecros from '../../../public/assets/icons/whitecros.svg';
+import Whitecros from '../../../public/assets/icons/whitecros.svg';
 import {
   IconButton,
   List,
   ListItem,
   ListItemButton,
 } from '../../../node_modules/@mui/material/index';
-import Image from 'next/future/image';
 import { useRouter } from 'next/router';
-import logoFlower from '../../../public/assets/images/logo_flower.svg';
 import Box from '@mui/material/Box';
-import burgerIcon from '../../../public/assets/icons/burger.svg';
+import BurgerIcon from '../../../public/assets/icons/burger.svg';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import viber from '../../../public/assets/icons/viber.svg';
-import whatsapp from '../../../public/assets/icons/whatsapp.svg';
-import telegram from '../../../public/assets/icons/telegram.svg';
+import Viber from '../../../public/assets/icons/viber.svg';
+import Whatsapp from '../../../public/assets/icons/whatsapp.svg';
+import Telegram from '../../../public/assets/icons/telegram.svg';
 import Typography from '@mui/material/Typography';
 import BurgerAccordion from '../burgerAccordion/BurgerAccordion';
 
@@ -73,7 +71,7 @@ export default function BurgerMenu({ categories, shops }) {
         onClick={(e) => toggleDrawer(e, true)}
         onKeyDown={(e) => toggleDrawer(e, true)}
       >
-        <Box
+        {/* <Box
           component={Image}
           sx={{
             width: { xs: '24px', sm: '24px' },
@@ -81,7 +79,8 @@ export default function BurgerMenu({ categories, shops }) {
           }}
           src={burgerIcon}
           alt='belcard icon'
-        ></Box>
+        ></Box> */}
+        <BurgerIcon/>
       </IconButton>
       <SwipeableDrawer
         anchor='left'
@@ -111,12 +110,13 @@ export default function BurgerMenu({ categories, shops }) {
             role='presentation'
             onClick={(e) => toggleDrawer(e, false)}
           >
-            <Box
+            {/* <Box
               component={Image}
               sx={{ width: '24px', height: '24px' }}
               src={whitecros}
               alt='cros icon'
-            ></Box>
+            ></Box> */}
+            <Whitecros/>
           </IconButton>
 
           <List
@@ -161,13 +161,16 @@ export default function BurgerMenu({ categories, shops }) {
             }}
           >
             <IconButton onClick={() => router.push('/')}>
-              <Image src={telegram} alt='telegram icon'></Image>
+              {/* <Image src={telegram} alt='telegram icon'></Image> */}
+              <Telegram/>
             </IconButton>
             <IconButton onClick={() => router.push('/')}>
-              <Image src={viber} alt='viber icon'></Image>
+              {/* <Image src={viber} alt='viber icon'></Image> */}
+              <Viber/>
             </IconButton>
             <IconButton onClick={() => router.push('/')}>
-              <Image src={whatsapp} alt='whatsapp icon'></Image>
+              {/* <Image src={whatsapp} alt='whatsapp icon'></Image> */}
+              <Whatsapp/>
             </IconButton>
           </Box>
           <Box sx={{ mt: '40px', mr: 'auto' }}>

@@ -4,8 +4,8 @@ import styles from './CaruselBlock.module.css';
 import Box from '@mui/material/Box';
 
 import Image from 'next/future/image';
-import leftArrow from '../../../public/assets/icons/leftArrow.svg';
-import rightArrow from '../../../public/assets/icons/rightArrow.svg';
+import LeftArrow from '../../../public/assets/icons/leftArrow.svg';
+import RightArrow from '../../../public/assets/icons/rightArrow.svg';
 import IconButton from '@mui/material/IconButton';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import Carusel from '../carusels/Carusel';
@@ -27,7 +27,6 @@ export default function CaruselBlock({
     caruselRef.current.swiper.slidePrev();
   };
 
-
   return (
     <Box
       sx={{
@@ -36,7 +35,11 @@ export default function CaruselBlock({
         mt: size(200),
       }}
     >
-      <TitleWithSubtitle title={title} subtitle={subtitle} subtileRight={10}></TitleWithSubtitle>
+      <TitleWithSubtitle
+        title={title}
+        subtitle={subtitle}
+        subtileRight={10}
+      ></TitleWithSubtitle>
       <Box
         sx={{
           display: 'flex',
@@ -49,10 +52,9 @@ export default function CaruselBlock({
           sx={{ marginLeft: isSpec ? 0 : { xs: '5vw', lg: '10vw' } }}
         >
           <Box
-            component={Image}
             sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
-            src={leftArrow}
-            alt='leftArrow icon'
+            viewBox='0 0 104 18'
+            component={LeftArrow}
           ></Box>
         </IconButton>
         <IconButton
@@ -60,14 +62,12 @@ export default function CaruselBlock({
           onClick={handleRightArrowClick}
         >
           <Box
-            component={Image}
             sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
-            src={rightArrow}
-            alt='rightArrow icon'
+            viewBox='0 0 104 18'
+            component={RightArrow}
           ></Box>
         </IconButton>
       </Box>
-
 
       <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
         <Carusel

@@ -2,8 +2,7 @@ import * as React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import breadCrumbArrow from '../../../public/assets/icons/breadCrumbArrow.svg';
-import Image from 'next/future/image';
+import BreadCrumbArrow from '../../../public/assets/icons/breadCrumbArrow.svg';
 import Link from 'next/link';
 
 export default function BreadCrumbs({ breadCrumbsList, isInIntro = false }) {
@@ -37,7 +36,7 @@ export default function BreadCrumbs({ breadCrumbsList, isInIntro = false }) {
       }}
     >
       <Breadcrumbs
-        separator={<Image src={breadCrumbArrow} alt='arrow icon'></Image>}
+        separator={<BreadCrumbArrow/>}
         aria-label='breadcrumb'
       >
         {breadcrumbs}

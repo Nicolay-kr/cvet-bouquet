@@ -4,8 +4,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import CounterButtons from '../CounterButtons/CounterButtons';
-import butttonHeart from '../../../public/assets/icons/buttonHeart.svg';
-import butttonHeartFill from '../../../public/assets/icons/buttonHeartFill.svg';
+import ButttonHeart from '../../../public/assets/icons/buttonHeart.svg';
+import ButttonHeartFill from '../../../public/assets/icons/buttonHeartFill.svg';
 import Image from 'next/future/image';
 import AccordionCustom from '../AccordionCustom/AccordionCustom';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
@@ -161,7 +161,6 @@ export const BouquetPage = ({
           sx={{
             display: { xs: 'none', lg: 'flex' },
             flexDirection: 'column',
-            mt: size(20),
           }}
         >
           <Typography variant='h3' component='h1' color='#000000'>
@@ -222,16 +221,16 @@ export const BouquetPage = ({
                 color='primary'
                 onClick={addToFavoritList}
               >
-                <Image
-                  src={
+                <Box
+                  component={
                     bouckeList.favoriteBouquets.find(
                       (item) => item.id === bouquet.id
                     )
-                      ? butttonHeartFill
-                      : butttonHeart
+                      ? ButttonHeartFill
+                      : ButttonHeart
                   }
                   alt='heart icon'
-                />
+                ></Box>
               </Button>
             </Box>
           </Box>
@@ -323,16 +322,16 @@ export const BouquetPage = ({
               color='primary'
               onClick={addToFavoritList}
             >
-              <Image
-                src={
-                  bouckeList.favoriteBouquets.find(
-                    (item) => item.id === bouquet.id
-                  )
-                    ? butttonHeartFill
-                    : butttonHeart
-                }
-                alt='heart icon'
-              />
+               <Box
+                  component={
+                    bouckeList.favoriteBouquets.find(
+                      (item) => item.id === bouquet.id
+                    )
+                      ? ButttonHeartFill
+                      : ButttonHeart
+                  }
+                  alt='heart icon'
+                ></Box>
             </Button>
           </Box>
 
@@ -342,7 +341,7 @@ export const BouquetPage = ({
         </Box>
       </Box>
 
-      <Box sx={{ my: size(100), px: '10%' }}>
+      <Box sx={{ my: size(300), px: '10%' }}>
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </>

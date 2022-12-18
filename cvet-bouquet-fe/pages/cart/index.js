@@ -8,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useAppContext } from '../../src/components/context/BouquetsContext';
-import cros from '../../public/assets/icons/cros.svg';
+import Cros from '../../public/assets/icons/cros.svg';
 // import cros from '../src/assets';
 import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
@@ -23,6 +23,7 @@ import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 import { urlFor } from '../../sanity';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import size from '../../src/utils/size';
 
 const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
   const bouquetsContext = useAppContext();
@@ -88,7 +89,7 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
             href='#'
             onClick={removeFromCart}
           >
-            <Image src={cros} alt='heart icon'></Image>
+            <Box component={Cros} sx={{width:size(18)}}viewBox="0 0 18 18"></Box>
           </IconButton>
         </TableCell>
       </TableRow>
@@ -346,7 +347,7 @@ export default function Cart() {
                       onClick={(e) => removeFromCart(e, bouquet.id)}
                       // sx={{mr:'20px'}}
                     >
-                      <Image src={cros} alt='heart icon'></Image>
+                      <Box component={Cros} sx={{width:size(18)}}viewBox="0 0 18 18"></Box>
                     </IconButton>
                   </Box>
                 </Box>

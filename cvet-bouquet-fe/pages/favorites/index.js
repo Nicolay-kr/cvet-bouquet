@@ -75,7 +75,7 @@ export default function Favorites() {
           </Box>
         </Box>
       </Box>
-      {/* <Box sx={{ mt: 'max(150px,7vw)', mb: 'max(150px,7vw)' }}>
+      {/* <Box sx={{ my: size(300) }}>
         <InstagramBlock></InstagramBlock>
       </Box> */}
     </>

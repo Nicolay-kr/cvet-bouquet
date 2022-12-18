@@ -154,7 +154,7 @@ const BouquetListPage = ({
         }}
       />
       <PriceFilter value={value} changeFunc={handleChangePrice}></PriceFilter>
-      <Box sx={{ width: '100%', px: { xs: '5%', lg: '10%' }, my: 3 }}>
+      <Box sx={{ width: '100%', px: { xs: '3%', lg: '9.4%' }, my: size(30) }}>
         <Box
           sx={{ width: '100%', mx: 'auto' }}
           // className={styles.cardsContainer}
@@ -193,7 +193,7 @@ const BouquetListPage = ({
             )}
           </Box>
         </Box>
-        <Box sx={{ my: 'max(100px,5vw)' }}>
+        <Box sx={{ my: size(300) }}>
           <InstagramBlock instagramPosts={instagramPosts} />
         </Box>
       </Box>

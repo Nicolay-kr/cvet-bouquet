@@ -4,8 +4,8 @@ import styles from './CaruselBlock.module.css';
 import Box from '@mui/material/Box';
 
 import Image from 'next/future/image';
-import leftArrow from '../../../public/assets/icons/leftArrow.svg';
-import rightArrow from '../../../public/assets/icons/rightArrow.svg';
+import LeftArrow from '../../../public/assets/icons/leftArrow.svg';
+import RightArrow from '../../../public/assets/icons/rightArrow.svg';
 import IconButton from '@mui/material/IconButton';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import Carusel from '../carusels/Carusel';
@@ -16,7 +16,7 @@ import { Swiper } from 'swiper/react';
 import { SwiperSlide } from 'swiper/react';
 import { EffectFade, Controller } from 'swiper';
 import Link from '../CustopNextComponents/Link';
-import bigFlower from '../../../public/assets/images/bigFlower.svg';
+import BigFlower from '../../../public/assets/images/bigFlower.svg';
 import size from '../../utils/size';
 
 // Import Swiper styles
@@ -49,8 +49,17 @@ export default function CaruselBlockWithArch({
       <SwiperSlide key={index}>
         <Box
           component={Link}
-          sx={{ textDecoration: 'none', mt: size(200),top: { xs: isPremium?'6px':'0px', sm:'0' },position:'relative' }}
-          href={`/catalog/${isPremium? `premium-floristika/${item.slug?.current}`:item.slug?.current}`}
+          sx={{
+            textDecoration: 'none',
+            mt: size(200),
+            top: { xs: isPremium ? '6px' : '0px', sm: '0' },
+            position: 'relative',
+          }}
+          href={`/catalog/${
+            isPremium
+              ? `premium-floristika/${item.slug?.current}`
+              : item.slug?.current
+          }`}
         >
           <ArcheMainConteiner
             isSwiper={true}
@@ -108,7 +117,7 @@ export default function CaruselBlockWithArch({
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
-        mt: !isPremium?{ ...size(300), xs:80}:'0',
+        mt: !isPremium ? { ...size(300), xs: 80 } : '0',
       }}
     >
       {title || subtitle ? (
@@ -128,32 +137,24 @@ export default function CaruselBlockWithArch({
         >
           <IconButton
             onClick={handleLeftArrowClick}
-            sx={{ marginLeft: isSpec ? 0 : { xs: '5vw', lg: '10vw' } }}
+            sx={{ marginLeft: isSpec ? 0 : { xs: '5vw', lg: '10vw' }}}
           >
-            <Box
-              component={Image}
-              sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
-              src={leftArrow}
-              alt='leftArrow icon'
-            ></Box>
+           <Box sx={{width:{ xs: '32px', sm: '60px', lg: '94px' }}} viewBox="0 0 104 18"  component={LeftArrow}></Box>
+
           </IconButton>
           <IconButton
             sx={{ marginRight: { xs: '5vw', lg: '10vw' } }}
             onClick={handleRightArrowClick}
           >
-            <Box
-              component={Image}
-              sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
-              src={rightArrow}
-              alt='rightArrow icon'
-            ></Box>
+            <Box sx={{width:{ xs: '32px', sm: '60px', lg: '94px' } }} viewBox="0 0 104 18"  component={RightArrow}></Box>
           </IconButton>
         </Box>
       )}
 
       <Box sx={{ display: 'flex', alignItems: 'end', position: 'relative' }}>
         <Box
-          component={Image}
+          component={BigFlower}
+          viewBox="0 0 350 341"
           sx={{
             position: 'absolute',
             top: isPremium ? '-4vw' : '-12vw',
@@ -162,15 +163,13 @@ export default function CaruselBlockWithArch({
             height: { xs: '70vw', lg: isPremium ? '40vw' : '50vw' },
             pointerEvents: 'none',
           }}
-          src={bigFlower}
-          alt='flower'
         ></Box>
         <Box
           sx={{
             position: 'relative',
             // top: { xs: '6vw', lg: '2vw' },
             width: { xs: '45vw', lg: '25.5vw' },
-            mr: {...size(30),xs:10},
+            mr: { ...size(30), xs: 10 },
             // '&>div': { pb: '40px' },
           }}
         >

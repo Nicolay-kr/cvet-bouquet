@@ -11,6 +11,7 @@ import bigFlower from '../public/assets/images/bigFlower.svg';
 import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
+import size from '../src/utils/size';
 
 export default function DeliveryPage({ pageData, instagramPosts }) {
   const lg = useMediaQuery('(min-width:1200px)');
@@ -85,7 +86,7 @@ export default function DeliveryPage({ pageData, instagramPosts }) {
       ></IntroBlock>
 
       {instagramPosts.data.length > 1 ? (
-        <Box sx={{ my: 'max(100px,5vw)', px: '10%' }}>
+        <Box sx={{ my: size(300), px: '10%' }}>
           <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
         </Box>
       ) : null}

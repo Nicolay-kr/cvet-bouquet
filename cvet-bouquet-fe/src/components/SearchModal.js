@@ -4,17 +4,16 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import Image from 'next/future/image';
-import searchIcon from '../../public/assets/icons/search.svg';
-import whitesearch from '../../public/assets/icons/whitesearch.svg';
+import SearchIcon from '../../public/assets/icons/search.svg';
+import Whitesearch from '../../public/assets/icons/whitesearch.svg';
 import IconButton from '@mui/material/IconButton';
 import Fade from '@mui/material/Fade';
-import whitecros from '../../public/assets/icons/whitecros.svg';
+import Whitecros from '../../public/assets/icons/whitecros.svg';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { sanityClient, urlFor } from '../../sanity';
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from './CustopNextComponents/Link';
 
 // export default function SearchModal({bouquets}) {
 export default function SearchModal({}) {
@@ -81,16 +80,8 @@ export default function SearchModal({}) {
   return (
     <div>
       <IconButton onClick={handleOpen} sx={{ px: { xs: '4px', sm: '8px' } }}>
-      <Box
-          component={Image}
-          sx={{
-            width: { xs: '24px', md: '26px'},
-            height: { xs: '24px', md: '26px'},
-          }}
-          src={searchIcon}
-          alt='search icon'
-        ></Box>
-        {/* <Image src={searchIcon} alt='search icon'></Image> */}
+        <Box sx={{width:{ xs: 22, sm: 24, lg: 26 } }} viewBox="0 0 26 26"component={SearchIcon}></Box>
+
       </IconButton>
       <Modal
         aria-labelledby='spring-modal-title'
@@ -139,12 +130,7 @@ export default function SearchModal({}) {
                   variant='contained'
                   color='primary'
                 >
-                  <Box
-                    component={Image}
-                    sx={{ width: '24px', height: '24px' }}
-                    src={whitesearch}
-                    alt='search icon'
-                  ></Box>
+                  <Whitesearch/>
                 </Button>
               </Box>
               <IconButton
@@ -155,12 +141,7 @@ export default function SearchModal({}) {
                 role='presentation'
                 onClick={handleClose}
               >
-                <Box
-                  component={Image}
-                  sx={{ width: '24px', height: '24px' }}
-                  src={whitecros}
-                  alt='cros icon'
-                ></Box>
+            <Whitecros/>
               </IconButton>
             </Box>
             {sortedList.length > 0 ? (

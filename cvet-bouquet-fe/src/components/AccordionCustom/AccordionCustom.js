@@ -3,7 +3,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import navArrow from '../../../public/assets/icons/navArrow.svg';
+import NavArrow from '../../../public/assets/icons/navArrow.svg';
 import Image from 'next/future/image';
 import BlockContentBox from '../blockcontentBox/BlockContentBox';
 
@@ -27,7 +27,7 @@ export default function AccordionCustom({ fieldList }) {
             onChange={handleChange(title)}
           >
             <AccordionSummary
-              expandIcon={<Image src={navArrow} alt='belcard icon'></Image>}
+              expandIcon={<NavArrow/>}
               aria-controls='panel1a-content'
               id='panel1a-header'
             >

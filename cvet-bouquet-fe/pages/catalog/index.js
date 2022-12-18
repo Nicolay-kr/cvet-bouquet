@@ -6,6 +6,7 @@ import { sanityClient } from '../../sanity';
 import SimpleBouquetCard from '../../src/components/SimpleBouquetCard/SimpleBouquetCard';
 import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
+import size from '../../src/utils/size';
 
 export default function Home({ category, instagramPosts }) {
   const [mappedBouquets, setMappedBouquets] = React.useState(category);
@@ -61,7 +62,7 @@ export default function Home({ category, instagramPosts }) {
             )}
           </Box>
         </Box>
-        <Box sx={{ my: 'max(100px,5vw)' }}>
+        <Box sx={{ my: size(300)}}>
           <InstagramBlock instagramPosts={instagramPosts} />
         </Box>
       </Box>

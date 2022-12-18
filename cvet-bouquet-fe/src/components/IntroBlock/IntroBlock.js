@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import ArcheMainConteiner from '../ArcheImageConteiners/ArcheMainConteiner';
 import { urlFor } from '../../../sanity';
 import ArcheSecondConteiner from '../ArcheImageConteiners/ArcheSecondConteiner';
-import bigFlower from '../../../public/assets/images/bigFlower.svg';
+import BigFlower from '../../../public/assets/images/bigFlower.svg';
 import Image from 'next/future/image';
 import MobileBlock from '../MobileBlock';
 import DesktopBlock from '../DesktopBlock';
@@ -29,33 +29,32 @@ export default function IntroBlock({
     >
       {isSecondFlower ? (
         <DesktopBlock>
-          <Image
-            style={{
+          <Box
+            viewBox='0 0 350 341'
+            component={BigFlower}
+            sx={{
               position: 'absolute',
               top: '0',
               right: '0',
               width: '40vw',
               height: '40vw',
             }}
-            src={bigFlower}
-            alt='flower'
-          ></Image>
+          ></Box>
         </DesktopBlock>
       ) : null}
 
       {isMainFlower ? (
-          <Box
-            component={Image}
-            sx={{
-              position: 'absolute',
-              top: {xs:'-10vw',lg:'-2vw'},
-              left: {xs:'-8vw',lg:'36vw'},
-              width: {xs:'80vw',lg:'47vw'},
-              height: {xs:'80vw',lg:'47vw'},
-            }}
-            src={bigFlower}
-            alt='flower'
-          ></Box>
+        <Box
+          viewBox='0 0 350 341'
+          component={BigFlower}
+          sx={{
+            position: 'absolute',
+            top: { xs: '-10vw', lg: '-2vw' },
+            left: { xs: '-8vw', lg: '39vw' },
+            width: { xs: '80vw', lg: '47vw' },
+            height: { xs: '80vw', lg: '47vw' },
+          }}
+        ></Box>
       ) : null}
 
       <Box
@@ -88,17 +87,17 @@ export default function IntroBlock({
         >
           {isSecondFlowerMobile ? (
             <MobileBlock>
-              <Image
-                style={{
+               <Box
+            viewBox='0 0 350 341'
+            component={BigFlower}
+                sx={{
                   position: 'absolute',
                   right: '-5%',
                   top: '-15%',
                   width: '80vw',
                   height: '80vw',
                 }}
-                src={bigFlower}
-                alt='flower'
-              ></Image>
+              ></Box>
             </MobileBlock>
           ) : null}
 
