@@ -69,7 +69,7 @@ export default function BurgerMenu({ categories, shops }) {
         aria-label="BurgerIcon"
         
         component='span'
-        role='presentation'
+        role='button'
         onClick={(e) => toggleDrawer(e, true)}
         onKeyDown={(e) => toggleDrawer(e, true)}
       >
