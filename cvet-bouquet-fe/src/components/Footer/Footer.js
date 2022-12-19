@@ -196,13 +196,13 @@ export default function Footer({ data }) {
                 </Typography>
 
                 <Box columnGap={10} className={styles.iconsConteiner}>
-                  <IconButton component={Link} href='/'>
+                  <IconButton component={Link} href='/' aria-label="TelegramIcon">
                     <Telegram />
                   </IconButton>
-                  <IconButton component={Link} href='/'>
+                  <IconButton component={Link} href='/' aria-label="ViberIcon">
                     <Viber />
                   </IconButton>
-                  <IconButton component={Link} href='/'>
+                  <IconButton component={Link} href='/' aria-label="WhatsappIcon">
                     <Whatsapp />
                   </IconButton>
                 </Box>
@@ -451,13 +451,13 @@ export default function Footer({ data }) {
                     )}
                   </Typography>
                   <Box columnGap={20} className={styles.iconsConteiner}>
-                    <IconButton component={Link} href='/'>
+                    <IconButton component={Link} href='/' aria-label="TelegramIcon">
                       <Telegram />
                     </IconButton>
-                    <IconButton component={Link} href='/'>
+                    <IconButton component={Link} href='/' aria-label="ViberIcon">
                       <Viber />
                     </IconButton>
-                    <IconButton component={Link} href='/'>
+                    <IconButton component={Link} href='/' aria-label="WhatsappIcon">
                       <Whatsapp />
                     </IconButton>
                   </Box>

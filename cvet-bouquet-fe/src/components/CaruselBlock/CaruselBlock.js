@@ -50,6 +50,7 @@ export default function CaruselBlock({
         <IconButton
           onClick={handleLeftArrowClick}
           sx={{ marginLeft: isSpec ? 0 : { xs: '5vw', lg: '10vw' } }}
+          aria-label="LeftArrowIcon"
         >
           <Box
             sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
@@ -60,6 +61,7 @@ export default function CaruselBlock({
         <IconButton
           sx={{ marginRight: { xs: '5vw', lg: '10vw' } }}
           onClick={handleRightArrowClick}
+          aria-label="RightArrowIcon"
         >
           <Box
             sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}

@@ -88,6 +88,7 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
             // className={styles.cardHeart}
             href='#'
             onClick={removeFromCart}
+            aria-label="CrossIcon"
           >
             <Box component={Cros} sx={{width:size(18)}}viewBox="0 0 18 18"></Box>
           </IconButton>
@@ -345,6 +346,7 @@ export default function Cart() {
                     <IconButton
                       component='div'
                       onClick={(e) => removeFromCart(e, bouquet.id)}
+                      aria-label="CrossIcon"
                       // sx={{mr:'20px'}}
                     >
                       <Box component={Cros} sx={{width:size(18)}}viewBox="0 0 18 18"></Box>

@@ -138,7 +138,7 @@ export const Header = ({ data }) => {
           <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
             <SearchModal></SearchModal>
           </Box>
-          <IconButton component={Link} href='/favorites'>
+          <IconButton component={Link} href='/favorites' aria-label="HeeartIcon">
             <Badge
               color='primary'
               badgeContent={bouckeList.favoriteBouquets.length}
@@ -149,6 +149,7 @@ export const Header = ({ data }) => {
           <IconButton
             component={Link}
             href='https://www.instagram.com/cvetbuket.by/'
+            aria-label="InstaIcon"
           >
             <InstaIcon/>
           </IconButton>
@@ -156,6 +157,7 @@ export const Header = ({ data }) => {
             sx={{ pr: '0px !important', pt: '4px !important' }}
             component={Link}
             href='/cart'
+            aria-label="BagIcon"
           >
             <Badge
               color='primary'

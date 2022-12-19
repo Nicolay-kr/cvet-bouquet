@@ -52,6 +52,7 @@ export default function WordWithArrow({
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
+        aria-label="ArrowIcon"
       >
         <NavArrow/>
       </IconButton>

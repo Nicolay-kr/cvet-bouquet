@@ -98,6 +98,7 @@ export default function BouquetCard({
           top: '4%',
           backgroundColor: '#F8F2EA !important',
         }}
+        aria-label="HeartIcon"
         onMouseOver={() => {
           setIsHovered(true);
         }}

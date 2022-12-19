@@ -55,6 +55,7 @@ export default function SuccsessModal({
               component='p'
               role='presentation'
               onClick={handleClose}
+              aria-label="CrossIcon"
             >
               <Box
                 component={Image}

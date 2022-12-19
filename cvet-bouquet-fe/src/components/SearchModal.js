@@ -79,7 +79,7 @@ export default function SearchModal({}) {
 
   return (
     <div>
-      <IconButton onClick={handleOpen} sx={{ px: { xs: '4px', sm: '8px' } }}>
+      <IconButton onClick={handleOpen} sx={{ px: { xs: '4px', sm: '8px'}}} aria-label="SearchIcon">
         <Box sx={{width:{ xs: 22, sm: 24, lg: 26 } }} viewBox="0 0 26 26"component={SearchIcon}></Box>
 
       </IconButton>
@@ -140,6 +140,7 @@ export default function SearchModal({}) {
                 component='p'
                 role='presentation'
                 onClick={handleClose}
+                aria-label="CrossIcon"
               >
             <Whitecros/>
               </IconButton>

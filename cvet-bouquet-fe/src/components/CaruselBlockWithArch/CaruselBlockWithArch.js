@@ -138,6 +138,7 @@ export default function CaruselBlockWithArch({
           <IconButton
             onClick={handleLeftArrowClick}
             sx={{ marginLeft: isSpec ? 0 : { xs: '5vw', lg: '10vw' }}}
+            aria-label="LeftArrowIcon"
           >
            <Box sx={{width:{ xs: '32px', sm: '60px', lg: '94px' }}} viewBox="0 0 104 18"  component={LeftArrow}></Box>
 
@@ -145,6 +146,7 @@ export default function CaruselBlockWithArch({
           <IconButton
             sx={{ marginRight: { xs: '5vw', lg: '10vw' } }}
             onClick={handleRightArrowClick}
+            aria-label="RightArrowIcon"
           >
             <Box sx={{width:{ xs: '32px', sm: '60px', lg: '94px' } }} viewBox="0 0 104 18"  component={RightArrow}></Box>
           </IconButton>

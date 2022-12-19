@@ -66,6 +66,8 @@ export default function BurgerMenu({ categories, shops }) {
           px: { xs: '4px', sm: '8px' },
           width: {},
         }}
+        aria-label="BurgerIcon"
+        
         component='span'
         role='presentation'
         onClick={(e) => toggleDrawer(e, true)}
@@ -109,6 +111,8 @@ export default function BurgerMenu({ categories, shops }) {
             component='p'
             role='presentation'
             onClick={(e) => toggleDrawer(e, false)}
+            aria-label="CrossIcon"
+            
           >
             {/* <Box
               component={Image}
@@ -160,15 +164,15 @@ export default function BurgerMenu({ categories, shops }) {
               justifyContent: 'center',
             }}
           >
-            <IconButton onClick={() => router.push('/')}>
+            <IconButton onClick={() => router.push('/')} aria-label="TelegramIcon">
               {/* <Image src={telegram} alt='telegram icon'></Image> */}
               <Telegram/>
             </IconButton>
-            <IconButton onClick={() => router.push('/')}>
+            <IconButton onClick={() => router.push('/')} aria-label="ViberIcon">
               {/* <Image src={viber} alt='viber icon'></Image> */}
               <Viber/>
             </IconButton>
-            <IconButton onClick={() => router.push('/')}>
+            <IconButton onClick={() => router.push('/')} aria-label="WhatsappIcon">
               {/* <Image src={whatsapp} alt='whatsapp icon'></Image> */}
               <Whatsapp/>
             </IconButton>
