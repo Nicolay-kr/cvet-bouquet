@@ -152,6 +152,10 @@ export default function Cart() {
           pb: 10,
         }}
       >
+        <BreadCrumbs
+          breadCrumbsList={breadCrumbsList}
+          isInIntro={true}
+        ></BreadCrumbs>
         <Box
           className={styles.conteiner}
           sx={{
@@ -162,10 +166,6 @@ export default function Cart() {
           }}
         >
           <Box>
-            <BreadCrumbs
-              breadCrumbsList={breadCrumbsList}
-              isInIntro={true}
-            ></BreadCrumbs>
             <TableContainer sx={{ width: '100%', mb: '24px' }} component='div'>
               <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                 <TableHead>
@@ -194,7 +194,6 @@ export default function Cart() {
               </Table>
             </TableContainer>
           </Box>
-
           <Paper
             sx={{
               ml: { sm: '10%', xl: '20%' },
@@ -294,11 +293,6 @@ export default function Cart() {
 
         {/* mobile version */}
 
-        <BreadCrumbs
-          breadCrumbsList={breadCrumbsList}
-          isInIntro={true}
-        ></BreadCrumbs>
-
         <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
           <Typography sx={{ fontWeight: 700 }} variant='h4'>
             В корзине
@@ -389,7 +383,11 @@ export default function Cart() {
           >
             <Box
               className={styles.deliveryPrice}
-              sx={{ display: 'grid', gridTemplateColumns: '1fr 2fr', alignItems:'center' }}
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 2fr',
+                alignItems: 'center',
+              }}
             >
               <Typography
                 // sx={{ color: 'primary.main', mt: 2, textDecoration: 'underline', cursor:'pointer' }}
