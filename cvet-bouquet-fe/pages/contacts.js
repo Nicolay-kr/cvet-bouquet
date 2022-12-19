@@ -46,12 +46,12 @@ export default function Contacts({ data }) {
                   iconColor: '#746449',
                 }}
               />
-              <Placemark
+              {/* <Placemark
                 geometry={[53.928699, 27.631585]}
                 options={{
                   iconColor: '#746449',
                 }}
-              />
+              /> */}
             </Map>
           </YMaps>
         </Box>
