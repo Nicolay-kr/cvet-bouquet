@@ -4,6 +4,7 @@ import styles from './InstagramBlock.module.css';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRouter } from 'next/router';
+import Image from 'next/image'
 
 
 export default function InstagramBlock({ instagramPosts }) {
@@ -40,12 +41,17 @@ export default function InstagramBlock({ instagramPosts }) {
         {instagramPosts?.data?.map((item, index) => {
           if (index <= postsNumber-1) {
             return (
-              <img
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              <Image
+                objectFit='cover'
                 key={item.id}
+                width={400}
+                height={400}
                 src={item.media_url}
                 alt='instagram image'
-              ></img>
+                sizes="(max-width: 768px) 200px,
+              (max-width: 1200px) 400px,
+              21vw"
+              />
             );
           }
         })}
