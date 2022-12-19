@@ -304,7 +304,7 @@ export default function Checkout({price}) {
                       '& button': { fontSize: '16px !important' },
                     }}
                     label='Выберите дату'
-                    inputFormat='dd/mm/yyyy'
+                    inputFormat='dd/MM/yyyy'
                     value={dateValue}
                     onChange={(newValue) => {
                       setDateValue(newValue);
