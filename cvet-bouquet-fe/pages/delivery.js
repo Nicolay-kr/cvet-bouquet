@@ -5,12 +5,10 @@ import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
 import DoubleBlock from '../src/components/doubleBlock/DoubleBlock';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Image from 'next/future/image';
-import bigFlower from '../public/assets/images/bigFlower.svg';
+import BigFlower from '../public/assets/images/bigFlower.svg';
 import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
-import size from '../src/utils/size';
 
 export default function DeliveryPage({ data }) {
   const lg = useMediaQuery('(min-width:1200px)');
@@ -49,8 +47,10 @@ export default function DeliveryPage({ data }) {
           }}
         >
           {lg ? (
-            <Image
-              style={{
+            <Box
+              viewBox='0 0 350 341'
+              component={BigFlower}
+              sx={{
                 position: 'absolute',
                 top: '0',
                 // right: '0',
@@ -59,9 +59,7 @@ export default function DeliveryPage({ data }) {
                 alignSelf: 'center',
                 justifySelf: 'center',
               }}
-              src={bigFlower}
-              alt='flower'
-            ></Image>
+            ></Box>
           ) : null}
 
           <TitleWithTextBlock
@@ -77,9 +75,7 @@ export default function DeliveryPage({ data }) {
         isDrop={true}
         textBlock={
           <Box sx={{ mt: { xs: '40px', lg: '35%' } }}>
-            <AccordionCustom
-              fieldList={data?.conditions}
-            ></AccordionCustom>
+            <AccordionCustom fieldList={data?.conditions}></AccordionCustom>
           </Box>
         }
       ></IntroBlock>
