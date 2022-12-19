@@ -107,7 +107,7 @@ const theme = createTheme({
       lineHeight: 1.4,
       fontWeight: 400,
       fontStyle: 'normal',
-      color: '#4F4F4F',
+      color: '#000000',
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h3.adaptiv,
       },
@@ -163,7 +163,7 @@ const theme = createTheme({
       lineHeight: 1.4,
       fontStyle: 'normal',
       // textTransform: 'uppercase',
-      color: '#4F4F4F',
+      color: '#000000',
       scrollbarWidth: 'none',
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h6.adaptiv,
@@ -181,7 +181,7 @@ const theme = createTheme({
       letterSpacing: '0.015em',
       fontWeight: 400,
       fontStyle: 'normal',
-      color: '#4F4F4F',
+      color: '#000000',
       scrollbarWidth: 'none',
       fontFamily: ['Raleway', 'sans-serif'].join(','),
       '@media (min-width:1921px)': {
