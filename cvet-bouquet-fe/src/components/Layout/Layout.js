@@ -43,7 +43,6 @@ export default function Layout({ children}) {
 
   const fetchInstagrammData = useCallback(async () => {
     const posts = await getInstagramPost();
-    console.log('posts',posts)
     setInstagramPosts(posts)
     
   }, []);

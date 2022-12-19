@@ -22,6 +22,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import SuccsessModal from '../SuccsessModal';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import size from '../../utils/size';
 
 export default function Checkout({price}) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
@@ -147,7 +148,7 @@ export default function Checkout({price}) {
         onSubmit={handleSubmit(onSubmit)}
         sx={{
           width: { xs: '100%', lg: '60%' },
-          my: 'max(80px,4.2vw)',
+          mt: size(80),
           display: 'grid',
           rowGap: 'max(50px,2.6vw)',
         }}
