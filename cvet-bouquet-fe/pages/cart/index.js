@@ -9,7 +9,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useAppContext } from '../../src/components/context/BouquetsContext';
 import Cros from '../../public/assets/icons/cros.svg';
-// import cros from '../src/assets';
 import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
 import Box from '@mui/material/Box';
@@ -24,6 +23,7 @@ import { urlFor } from '../../sanity';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import size from '../../src/utils/size';
+import Promocode from '../../src/components/Promocode/Promocode';
 
 const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
   const bouquetsContext = useAppContext();
@@ -51,6 +51,7 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
           >
             <Link href={`cart/${slug.current}`}>
               <Image
+                style={{ objectFit: 'cover' }}
                 layout='fill'
                 width={100}
                 height={125}
@@ -88,9 +89,13 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
             // className={styles.cardHeart}
             href='#'
             onClick={removeFromCart}
-            aria-label="CrossIcon"
+            aria-label='CrossIcon'
           >
-            <Box component={Cros} sx={{width:size(18)}}viewBox="0 0 18 18"></Box>
+            <Box
+              component={Cros}
+              sx={{ width: size(18) }}
+              viewBox='0 0 18 18'
+            ></Box>
           </IconButton>
         </TableCell>
       </TableRow>
@@ -105,13 +110,23 @@ export default function Cart() {
   const [isCheckout, setIsCheckout] = React.useState(
     router.query.isCheckout ? router.query.isCheckout : false
   );
+  const [isPromoCodeActive, setIsPromoCodeActivet] = React.useState(false);
+  const [promocode, setPromocode] = React.useState('');
+
   const handleToCheckout = () => {
     setIsCheckout(true);
   };
+
+  const handleClickPromoCode = () => {
+    setIsPromoCodeActivet(true);
+  };
+  const handlePromocodeChange = (e) => {
+    setPromocode(e.target.value);
+  };
+
   const removeFromCart = (e, id) => {
     bouquetsContext.removeFromCart(id);
   };
-  console.log(bouquets);
 
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
@@ -127,7 +142,7 @@ export default function Cart() {
 
   return (
     <>
-       <Head lang='ru'>
+      <Head lang='ru'>
         <title>Корзина | ЦВЕТ•БУКЕТ</title>
       </Head>
 
@@ -140,8 +155,8 @@ export default function Cart() {
         <Box
           className={styles.conteiner}
           sx={{
-            display: { xs: 'none', md: 'grid' },
-            gridTemplateColumns: { sx: '1fr', md: '8fr 3fr' },
+            display: { xs: 'none', lg: 'grid' },
+            gridTemplateColumns: { sx: '1fr', lg: '8fr 3fr' },
             columnGap: 'max(30px,1.5vw)',
             rawGap: 'max(30px,1.5vw)',
           }}
@@ -200,18 +215,12 @@ export default function Cart() {
             >
               {bouquets.reduce((akk, item) => akk + item.quantity, 0)} товаров
             </Typography>
-            <Typography
-              sx={{
-                color: 'primary.main',
-                mt: 2,
-                textDecoration: 'underline',
-                cursor: 'pointer',
-              }}
-              variant='h5'
-              component='p'
-            >
-              Ввести промокод
-            </Typography>
+            <Promocode
+              isActive={isPromoCodeActive}
+              promocode={promocode}
+              handleClickPromoCode={handleClickPromoCode}
+              handlePromocodeChange={handlePromocodeChange}
+            ></Promocode>
             <Box mt={10} className={styles.deliveryPrice}>
               <Typography
                 // sx={{ color: 'primary.main', mt: 2, textDecoration: 'underline', cursor:'pointer' }}
@@ -272,6 +281,7 @@ export default function Cart() {
               <Button
                 sx={{
                   mt: 10,
+                  height: '36px',
                 }}
                 variant='contained'
                 onClick={handleToCheckout}
@@ -284,7 +294,12 @@ export default function Cart() {
 
         {/* mobile version */}
 
-        <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+        <BreadCrumbs
+          breadCrumbsList={breadCrumbsList}
+          isInIntro={true}
+        ></BreadCrumbs>
+
+        <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
           <Typography sx={{ fontWeight: 700 }} variant='h4'>
             В корзине
           </Typography>
@@ -309,6 +324,7 @@ export default function Cart() {
               >
                 <Link href={`cart/${bouquet.slug.current}`}>
                   <Image
+                    style={{ objectFit: 'cover' }}
                     layout='fill'
                     width={100}
                     height={125}
@@ -346,10 +362,14 @@ export default function Cart() {
                     <IconButton
                       component='div'
                       onClick={(e) => removeFromCart(e, bouquet.id)}
-                      aria-label="CrossIcon"
+                      aria-label='CrossIcon'
                       // sx={{mr:'20px'}}
                     >
-                      <Box component={Cros} sx={{width:{...size(18),xs:18}}}viewBox="0 0 18 18"></Box>
+                      <Box
+                        component={Cros}
+                        sx={{ width: { ...size(18), xs: 18 } }}
+                        viewBox='0 0 18 18'
+                      ></Box>
                     </IconButton>
                   </Box>
                 </Box>
@@ -369,7 +389,7 @@ export default function Cart() {
           >
             <Box
               className={styles.deliveryPrice}
-              sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}
+              sx={{ display: 'grid', gridTemplateColumns: '1fr 2fr', alignItems:'center' }}
             >
               <Typography
                 // sx={{ color: 'primary.main', mt: 2, textDecoration: 'underline', cursor:'pointer' }}
@@ -391,19 +411,12 @@ export default function Cart() {
               </Typography>
             </Box>
 
-            <Typography
-              sx={{
-                color: 'primary.main',
-                mt: 2,
-                textDecoration: 'underline',
-                cursor: 'pointer',
-                ml: 'auto',
-              }}
-              variant='h5'
-              component='p'
-            >
-              Ввести промокод
-            </Typography>
+            <Promocode
+              isActive={isPromoCodeActive}
+              promocode={promocode}
+              handleClickPromoCode={handleClickPromoCode}
+              handlePromocodeChange={handlePromocodeChange}
+            ></Promocode>
 
             <Box
               className={styles.deliveryPrice}
@@ -455,7 +468,14 @@ export default function Cart() {
                 Вернуться в католог
               </Typography>
             ) : (
-              <Button variant='contained' onClick={handleToCheckout}>
+              <Button
+                variant='contained'
+                onClick={handleToCheckout}
+                sx={{
+                  mt: 10,
+                  height: '36px',
+                }}
+              >
                 К оформлению
               </Button>
             )}
