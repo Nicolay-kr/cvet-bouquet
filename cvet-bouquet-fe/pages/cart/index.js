@@ -152,10 +152,10 @@ export default function Cart() {
           pb: 10,
         }}
       >
-        <BreadCrumbs
+        {/* <BreadCrumbs
           breadCrumbsList={breadCrumbsList}
           isInIntro={true}
-        ></BreadCrumbs>
+        ></BreadCrumbs> */}
         <Box
           className={styles.conteiner}
           sx={{
@@ -166,6 +166,10 @@ export default function Cart() {
           }}
         >
           <Box>
+          <BreadCrumbs
+          breadCrumbsList={breadCrumbsList}
+          isInIntro={true}
+        ></BreadCrumbs>
             <TableContainer sx={{ width: '100%', mb: '24px' }} component='div'>
               <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                 <TableHead>
@@ -292,6 +296,14 @@ export default function Cart() {
         </Box>
 
         {/* mobile version */}
+        <Box sx={{display:{xs:'block',lg:'none'}}}>
+        <BreadCrumbs
+          breadCrumbsList={breadCrumbsList}
+          isInIntro={true}
+        ></BreadCrumbs>
+
+        </Box>
+ 
 
         <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
           <Typography sx={{ fontWeight: 700 }} variant='h4'>
