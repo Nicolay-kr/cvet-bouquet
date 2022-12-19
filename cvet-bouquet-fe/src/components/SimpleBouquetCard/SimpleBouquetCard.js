@@ -121,7 +121,7 @@ export default function SimpleBouquetCard({
             >
               <Typography
                 sx={{ textAlign: 'center' }}
-                variant='h5'
+                variant='h4'
                 component='p'
               >
                 {title}
