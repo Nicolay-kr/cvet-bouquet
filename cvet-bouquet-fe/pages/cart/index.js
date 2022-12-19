@@ -24,6 +24,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import size from '../../src/utils/size';
 import Promocode from '../../src/components/Promocode/Promocode';
+import EmptyCart from '../../src/components/EmptyCart/EmptyCart';
 
 const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
   const bouquetsContext = useAppContext();
@@ -146,7 +147,7 @@ export default function Cart() {
         <title>Корзина | ЦВЕТ•БУКЕТ</title>
       </Head>
 
-      <Box
+      {bouquets.length?(  <Box
         sx={{
           px: { xs: '5%', lg: '10%' },
           pb: 10,
@@ -495,7 +496,9 @@ export default function Cart() {
         {isCheckout && bouquets.length > 0 ? (
           <Checkout price={price}></Checkout>
         ) : null}
-      </Box>
+      </Box>):(<EmptyCart/>)}
+
+    
     </>
   );
 }

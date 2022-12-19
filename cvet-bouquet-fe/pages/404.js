@@ -5,6 +5,7 @@ import Image from 'next/future/image';
 import bigFlower404 from '../public/assets/images/404.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
+import size from '../src/utils/size';
 
 export default function Custom404() {
   const router = useRouter();
@@ -55,9 +56,10 @@ export default function Custom404() {
 
         <Button
           sx={{
-            height: '60px',
+            height: { ...size(60), xs: 60 },
+            width: { ...size(360), xs: '100%' },
             bgcolor: 'primary.main',
-            mt: { xs: '30px' },
+            mt: size(60),
             fontSize: { xs: '18px', md: '24px' },
             fontWeight: { xs: '600' },
           }}

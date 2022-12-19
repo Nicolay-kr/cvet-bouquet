@@ -1,34 +1,32 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Image from 'next/future/image';
-import bigFlower500 from '../public/assets/images/500.png';
+import BigFlower from '../../../public/assets/images/bigFlower.svg';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
-import size from '../src/utils/size';
+import size from '../../utils/size';
 
-export default function Custom500() {
+export default function EmptyCart() {
   const router = useRouter();
   return (
     <>
       <Box
         sx={{
-          height:'70vh',
+          height: '70vh',
           px: { xs: '5%', lg: '10%' },
         }}
       >
         <Box
-        component={Image}
+          component={BigFlower}
+          viewBox='0 0 350 341'
           sx={{
             position: 'absolute',
-            top: {xs:'30vh',lg:'20vh'},
-            right: {xs:'10%',lg:'50%'},
-            mr: {xs:'0',lg:'-25%'},
-            width: {xs:'80vw',lg:'40vw'},
-            height: {xs:'80vw',lg:'40vw'},
+            top: { xs: '40vh', lg: '35vh' },
+            right: { xs: '10%', lg: '58%' },
+            mr: { xs: '0', lg: '-25%' },
+            width: { xs: '80vw', lg: '30vw' },
+            height: { xs: '80vw', lg: '30vw' },
           }}
-          src={bigFlower500}
-          alt='flower'
         ></Box>
         <Typography
           variant='h1'
@@ -41,7 +39,7 @@ export default function Custom500() {
             mt: { xs: '40px', lg: '80px' },
           }}
         >
-          О нет
+          Ваша корзина пуста
         </Typography>
         <Typography
           variant='h4'
@@ -51,7 +49,7 @@ export default function Custom500() {
             mt: { xs: '20px', lg: '20px' },
           }}
         >
-          Что-то пошло не так, давайте начем сначала.
+          Пожалуйста, добавьте букет в корзину
         </Typography>
 
         <Button
@@ -64,9 +62,9 @@ export default function Custom500() {
             fontWeight: { xs: '600' },
           }}
           variant='contained'
-          onClick={() => router.push('/')}
+          onClick={() => router.push('/catalog')}
         >
-          Вернуться на главную
+          Выбрать букет
         </Button>
       </Box>
     </>

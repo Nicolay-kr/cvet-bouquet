@@ -5,7 +5,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Image from 'next/future/image';
 import CheckoutsButtons from '../CheckoutsButtons/CheckoutsButtons';
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
