@@ -84,3 +84,10 @@ a {
 /* .fadeHouse-exit-done {
   opacity: 0;
 } */
+
+.MuiCalendarOrClockPicker-root{
+  /* background: #F8F2EA !important; */
+}
+.MuiDayPicker-weekDayLabel{
+  font-size: 18px !important;
+}

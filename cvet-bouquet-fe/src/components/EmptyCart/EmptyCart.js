@@ -58,7 +58,7 @@ export default function EmptyCart() {
             width: { ...size(360), xs: '100%' },
             bgcolor: 'primary.main',
             mt: size(60),
-            fontSize: { xs: '18px', md: '24px' },
+            fontSize: {...size(24),xs:18},
             fontWeight: { xs: '600' },
           }}
           variant='contained'

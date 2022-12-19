@@ -10,7 +10,6 @@ import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import styles from './Checkout.module.css';
 import ruLocale from 'date-fns/locale/ru';
@@ -22,6 +21,10 @@ import * as yup from 'yup';
 import SuccsessModal from '../SuccsessModal';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import size from '../../utils/size';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import {ru} from 'date-fns/locale';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
 
 export default function Checkout({price}) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
@@ -135,8 +138,9 @@ export default function Checkout({price}) {
 
   return (
     <LocalizationProvider
-      dateAdapter={AdapterDayjs}
-      adapterLocale={localeMap.ru}
+      dateAdapter={AdapterDateFns}
+      locale={ru}
+      // adapterLocale={localeMap.ru}
     >
       <SuccsessModal
         onClose={onClose}
@@ -292,19 +296,20 @@ export default function Checkout({price}) {
                 name='customerDate'
                 control={control}
                 render={({ field }) => (
-                  <DesktopDatePicker
+                  // <DesktopDatePicker
+                  <DatePicker
                     sx={{
                       fontSize: '16px',
+                      backGroundColor:"red",
                       '& button': { fontSize: '16px !important' },
                     }}
                     label='Выберите дату'
-                    inputFormat='DD/MM/YYYY'
+                    inputFormat='dd/mm/yyyy'
                     value={dateValue}
-                    onChange={handleChange}
+                    onChange={(newValue) => {
+                      setDateValue(newValue);
+                    }}
                     renderInput={(params) => <TextField {...params} />}
-                    // error={errors.customerDate?.message.length > 0}
-                    // helperText={errors.customerDate?.message}
-                    // className={styles.datePicker}
                     {...field}
                   />
                 )}
