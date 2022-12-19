@@ -349,7 +349,7 @@ export default function Cart() {
                       aria-label="CrossIcon"
                       // sx={{mr:'20px'}}
                     >
-                      <Box component={Cros} sx={{width:size(18)}}viewBox="0 0 18 18"></Box>
+                      <Box component={Cros} sx={{width:{...size(18),xs:18}}}viewBox="0 0 18 18"></Box>
                     </IconButton>
                   </Box>
                 </Box>

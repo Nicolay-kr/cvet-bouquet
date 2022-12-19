@@ -17,6 +17,7 @@ import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import { urlFor } from '../../../sanity';
 import size from '../../utils/size';
 import { useRouter } from 'next/router';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 // import AspectRatio from '@mui/joy/AspectRatio';
 // import { CssVarsProvider } from '@mui/joy/styles';
@@ -38,6 +39,7 @@ export default function BouquetCard({
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
   const bouckeList = useAppContext();
+  const lg = useMediaQuery('(max-width:1200px)');
   const bouquet = {
     id,
     title,
@@ -246,7 +248,7 @@ export default function BouquetCard({
               bouquet={{ ...bouquet, quantity: 1 }}
             ></AddToCartButton>
             <Box sx={{ height: size(80), width: '100%' }}>
-              {isHovered ? (
+              {isHovered || lg ? (
                 <Typography
                   variant='h5'
                   onClick={(e) => {

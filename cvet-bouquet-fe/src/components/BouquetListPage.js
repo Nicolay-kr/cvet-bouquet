@@ -158,7 +158,6 @@ const BouquetListPage = ({
       <Box sx={{ width: '100%', px: { xs: '3%', lg: '9.4%' }, my: size(30) }}>
         <Box
           sx={{ width: '100%', mx: 'auto' }}
-          // className={styles.cardsContainer}
         >
           <Box
             sx={{
@@ -169,7 +168,7 @@ const BouquetListPage = ({
                 lg: '1fr 1fr 1fr 1fr',
               },
               columnGap: size(10),
-              rowGap: size(60),
+              rowGap: {...size(60),xs:40},
             }}
           >
             {category ? (
