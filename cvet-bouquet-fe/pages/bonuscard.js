@@ -1,5 +1,4 @@
 import React from 'react';
-import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
@@ -10,7 +9,7 @@ import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 import size from '../src/utils/size';
 
-export default function BonusCardPage({ data, instagramPosts }) {
+export default function BonusCardPage({ data }) {
   const lg = useMediaQuery('(min-width:1200px)');
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
@@ -67,12 +66,6 @@ export default function BonusCardPage({ data, instagramPosts }) {
           ></TitleWithTextBlock>
         </Box>
       </DoubleBlock>
-
-      {instagramPosts.data.length > 1 ? (
-        <Box sx={{ my: size(300), px: '10%' }}>
-          <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
-        </Box>
-      ) : null}
     </>
   );
 }
@@ -86,10 +79,6 @@ export const getServerSideProps = async (pageContext) => {
     text2,
   }`;
 
-  const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const dataInst = await fetch(instagramUrl);
-  const instagramPosts = await dataInst.json();
-
   const data = await sanityClient.fetch(query);
 
   if (!data) {
@@ -102,7 +91,6 @@ export const getServerSideProps = async (pageContext) => {
     return {
       props: {
         data,
-        instagramPosts,
       },
     };
   }

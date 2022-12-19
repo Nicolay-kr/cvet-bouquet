@@ -1,6 +1,5 @@
 import React from 'react';
 import IntroBlock from '../src/components/IntroBlock/IntroBlock';
-import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
@@ -8,22 +7,21 @@ import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Typography from '@mui/material/Typography';
 import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';
 import Head from 'next/head';
-import size from '../src/utils/size';
 
-export default function CorporateClientsPage({ instagramPosts, pageData }) {
+export default function CorporateClientsPage({ data }) {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: `${pageData[0].title.ru}`, href: null },
+    { title: `${data?.title.ru}`, href: null },
   ];
 
   return (
     <>
     <Head lang='ru'>
-        <title> {pageData[0].title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <IntroBlock
-        mainImage={pageData[0].mainImage}
-        secondImage={pageData[0].secondImage}
+        mainImage={data?.mainImage}
+        secondImage={data?.secondImage}
         isSecondFlower={true}
         isSecondFlowerMobile={true}
         textBlock={
@@ -38,8 +36,8 @@ export default function CorporateClientsPage({ instagramPosts, pageData }) {
             <BreadCrumbs isInIntro={true} breadCrumbsList={breadCrumbsList}></BreadCrumbs>
             <Box sx={{ mt: { xs: '0', lg: 'max(40px,2.1vw)' },}}>
             <TitleWithTextBlock
-              title={pageData[0].title.ru}
-              blocks={pageData[0].text.ru}
+              title={data?.title.ru}
+              blocks={data?.text.ru}
             ></TitleWithTextBlock>
 
             </Box>
@@ -62,7 +60,7 @@ export default function CorporateClientsPage({ instagramPosts, pageData }) {
 
               <Box sx={{ mt: { xs: '20px', lg: '20px' } }}>
                 <AccordionCustom
-                  fieldList={pageData[0].advantages}
+                  fieldList={data?.advantages}
                 ></AccordionCustom>
               </Box>
             </Box>
@@ -86,15 +84,8 @@ export default function CorporateClientsPage({ instagramPosts, pageData }) {
         </Typography>
 
         <Box sx={{ mt: { xs: '20px', lg: '20px' },px: { xs: '5%', lg: '10%' } }}>
-          <AccordionCustom fieldList={pageData[0].advantages}></AccordionCustom>
+          <AccordionCustom fieldList={data?.advantages}></AccordionCustom>
         </Box>
-      </Box>
-
-      <Box
-        component='section'
-        sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}
-      >
-        <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </>
   );
@@ -113,10 +104,6 @@ export const getServerSideProps = async (pageContext) => {
 
   const data = await sanityClient.fetch(query);
 
-  const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const dataInst = await fetch(instagramUrl);
-  const instagramPosts = await dataInst.json();
-
   if (!data) {
     return {
       props: {
@@ -126,8 +113,7 @@ export const getServerSideProps = async (pageContext) => {
   } else {
     return {
       props: {
-        instagramPosts,
-        data,
+        data
       },
     };
   }

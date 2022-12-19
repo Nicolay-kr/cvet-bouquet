@@ -10,7 +10,6 @@ import Image from 'next/future/image';
 import AccordionCustom from '../AccordionCustom/AccordionCustom';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import { useAppContext } from '../context/BouquetsContext';
-import InstagramBlock from '../InstagramBlock/InstagramBlock';
 import BreadCrumbs from '../breadcrubs/BreadCrumbs';
 import { useRouter } from 'next/router';
 import { urlFor } from '../../../sanity';
@@ -21,7 +20,6 @@ import size from '../../utils/size';
 export const BouquetPage = ({
   bouquet,
   breadCrumbsList,
-  instagramPosts,
   generalInfo,
 }) => {
   const [quantity, setQuantity] = useState(1);
@@ -339,10 +337,6 @@ export const BouquetPage = ({
             <AccordionCustom fieldList={serviceList}></AccordionCustom>
           </Box>
         </Box>
-      </Box>
-
-      <Box sx={{ my: size(300), px: '10%' }}>
-        <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </>
   );

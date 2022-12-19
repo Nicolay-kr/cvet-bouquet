@@ -1,6 +1,5 @@
 import React from 'react';
 import IntroBlock from '../src/components/IntroBlock/IntroBlock';
-import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
@@ -10,7 +9,7 @@ import size from '../src/utils/size';
 import Head from 'next/head';
 
 
-export default function AboutUs({ instagramPosts, data }) {
+export default function AboutUs({ data }) {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: `${data?.title.ru}`, href: null },
@@ -59,12 +58,6 @@ export default function AboutUs({ instagramPosts, data }) {
       <Box sx={{ px: { xs: '5%', lg: '10%' }, mt:size(100) }}>
         <FreePayForm isContactsForm={true}></FreePayForm>
       </Box>
-      <Box
-        component='section'
-        sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}
-      >
-        <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
-      </Box>
     </>
   );
 }
@@ -79,10 +72,6 @@ export const getServerSideProps = async (pageContext) => {
 
   const data = await sanityClient.fetch(query);
 
-  const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const dataInst = await fetch(instagramUrl);
-  const instagramPosts = await dataInst.json();
-
   if (!data) {
     return {
       props: {
@@ -92,8 +81,7 @@ export const getServerSideProps = async (pageContext) => {
   } else {
     return {
       props: {
-        data,
-        instagramPosts,
+        data
       },
     };
   }

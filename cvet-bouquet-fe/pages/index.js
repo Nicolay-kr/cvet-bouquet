@@ -1,7 +1,6 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import IntroBlock from '../src/components/IntroBlock/IntroBlock';
-import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import CaruselBlock from '../src/components/CaruselBlock/CaruselBlock';
 import { sanityClient } from '../sanity';
@@ -14,12 +13,10 @@ import CaruselBlockWithArch from '../src/components/CaruselBlockWithArch/Carusel
 import size from '../src/utils/size';
 import Head from 'next/head';
 
-// export default function Home({ instagramPosts, category, data? }) {
-export default function Home({ instagramPosts, data}) {
+export default function Home({data}) {
   const router = useRouter();
   const lg = useMediaQuery('(min-width:1200px)');
   const [mappedBouquets, setMappedBouquets] = useState(data.category);
-  console.log(data)
 
 
   return (
@@ -196,10 +193,6 @@ export default function Home({ instagramPosts, data}) {
           ></IntroBlock>
         </Box>
       ) : null}
-
-      <Box sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}>
-        <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
-      </Box>
     </>
   );
 }
@@ -240,10 +233,6 @@ export const getServerSideProps = async (pageContext) => {
 
   const data = await sanityClient.fetch(query);
 
-  const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const dataInst = await fetch(instagramUrl);
-  const instagramPosts = await dataInst.json();
-
   if (!data) {
     return {
       props: {
@@ -253,7 +242,6 @@ export const getServerSideProps = async (pageContext) => {
   } else {
     return {
       props: {
-        instagramPosts,
         data,
       },
     };

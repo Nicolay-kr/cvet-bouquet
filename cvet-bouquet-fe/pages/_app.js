@@ -45,7 +45,7 @@ export default function MyApp(props) {
         <BouquetsProvider>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. For MUI*/}
           <CssBaseline />
-          <Layout category={pageProps.category} bouquets={pageProps.bouquets}>
+          <Layout>
             <Component {...pageProps} />
           </Layout>
         </BouquetsProvider>
@@ -60,26 +60,3 @@ MyApp.propTypes = {
   pageProps: PropTypes.object.isRequired,
 };
 
-// export const getServerSideProps = async (pageContext) => {
-//   const queryCategory = `*[ _type == "category"]
-//   {
-//     slug,
-//     title,
-//   }`;
-
-//   const resultCategory = await sanityClient.fetch(queryCategory);
-
-//   if (!resultCategory.length) {
-//     return {
-//       props: {
-//         bouquets: [],
-//       },
-//     };
-//   } else {
-//     return {
-//       props: {
-//         category: resultCategory,
-//       },
-//     };
-//   }
-// };

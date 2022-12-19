@@ -3,15 +3,12 @@ import { sanityClient } from '../../../sanity';
 import BouquetListPage from '../../../src/components/BouquetListPage';
 import BreadCrumbs from '../../../src/components/breadcrubs/BreadCrumbs';
 import CaruselBlockWithArch from '../../../src/components/CaruselBlockWithArch/CaruselBlockWithArch';
-import InstagramBlock from '../../../src/components/InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextsQuote from '../../../src/components/TextsQuote';
 import Head from 'next/head';
-import size from '../../../src/utils/size';
-// import { useState } from 'react';
 
-export const CategoryBouquets = ({ data, instagramPosts }) => {
+export const CategoryBouquets = ({ data }) => {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: 'Каталог', href: '/catalog' },
@@ -55,10 +52,6 @@ export const CategoryBouquets = ({ data, instagramPosts }) => {
           Вместе с Цвет-Букет!{' '}
         </Typography>
       </Box>
-
-      <Box sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}>
-        <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
-      </Box>
     </>
   ) : (
     <>
@@ -67,7 +60,6 @@ export const CategoryBouquets = ({ data, instagramPosts }) => {
       </Head>
       <BouquetListPage
       breadCrumbsList={breadCrumbsList}
-      instagramPosts={instagramPosts}
       category={data?.category}
       generalInfo={data?.generalInfo}
     ></BouquetListPage>
@@ -106,10 +98,6 @@ export const getServerSideProps = async (pageContext) => {
 
   const data = await sanityClient.fetch(query);
 
-  const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const dataInst = await fetch(instagramUrl);
-  const instagramPosts = await dataInst.json();
-
   if (!data) {
     return {
       props: {
@@ -119,7 +107,6 @@ export const getServerSideProps = async (pageContext) => {
   } else {
     return {
       props: {
-        instagramPosts,
         data,
       },
     };

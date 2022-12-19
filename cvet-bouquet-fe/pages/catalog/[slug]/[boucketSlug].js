@@ -3,7 +3,7 @@ import React from 'react';
 import { sanityClient } from '../../../sanity';
 import BouquetPage from '../../../src/components/bouquePage/BouquetPage';
 
-export const Bouquet = ({instagramPosts, data }) => {
+export const Bouquet = ({ data }) => {
   let breadCrumbsList = [];
 
   if (data.category && data?.category?.title) {
@@ -33,7 +33,6 @@ export const Bouquet = ({instagramPosts, data }) => {
       <BouquetPage
         bouquet={{ ...data?.bouquet, title: data?.bouquet.title.ru }}
         breadCrumbsList={breadCrumbsList}
-        instagramPosts={instagramPosts}
         generalInfo={data?.generalInfo}
       ></BouquetPage>
     </>
@@ -77,11 +76,6 @@ export const getServerSideProps = async (pageContext) => {
 
   const data = await sanityClient.fetch(query);
 
-
-  const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const dataInst = await fetch(instagramUrl);
-  const instagramPosts = await dataInst.json();
-
   if (!data) {
     return {
       props: {
@@ -92,7 +86,6 @@ export const getServerSideProps = async (pageContext) => {
     return {
       props: {
         data,
-        instagramPosts,
       },
     };
   }

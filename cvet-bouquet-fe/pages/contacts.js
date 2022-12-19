@@ -8,11 +8,9 @@ import PhoneIcon from '../public/assets/icons/phoneBlack.svg';
 import InstaIcon from '../public/assets/icons/insta.svg';
 import Typography from '@mui/material/Typography';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
-import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Head from 'next/head';
-import size from '../src/utils/size';
 
-export default function Contacts({ instagramPosts, data }) {
+export default function Contacts({ data }) {
   const defaultState = {
     center: [53.893009, 27.567444],
     zoom: 12,
@@ -153,9 +151,6 @@ export default function Contacts({ instagramPosts, data }) {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}>
-        <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
-      </Box>
     </>
   );
 }
@@ -179,10 +174,6 @@ export const getServerSideProps = async (pageContext) => {
 
   const data = await sanityClient.fetch(query);
 
-  const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const dataInst = await fetch(instagramUrl);
-  const instagramPosts = await dataInst.json();
-
   if (!data) {
     return {
       props: {
@@ -193,7 +184,6 @@ export const getServerSideProps = async (pageContext) => {
     return {
       props: {
         data,
-        instagramPosts,
       },
     };
   }

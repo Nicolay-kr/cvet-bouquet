@@ -1,14 +1,12 @@
 import React from 'react';
 import styles from '../../styles/Catalog.module.css';
 import Box from '@mui/material/Box';
-import InstagramBlock from '../../src/components/InstagramBlock/InstagramBlock';
 import { sanityClient } from '../../sanity';
 import SimpleBouquetCard from '../../src/components/SimpleBouquetCard/SimpleBouquetCard';
 import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
-import size from '../../src/utils/size';
 
-export default function Home({ data, instagramPosts }) {
+export default function Home({ data }) {
   const [mappedBouquets, setMappedBouquets] = React.useState(data);
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
@@ -62,9 +60,6 @@ export default function Home({ data, instagramPosts }) {
             )}
           </Box>
         </Box>
-        <Box sx={{ my: size(300)}}>
-          <InstagramBlock instagramPosts={instagramPosts} />
-        </Box>
       </Box>
     </>
   );
@@ -89,10 +84,6 @@ export const getServerSideProps = async (pageContext) => {
 
   const data = await sanityClient.fetch(queryCategory);
 
-  const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const dataInst = await fetch(instagramUrl);
-  const instagramPosts = await dataInst.json();
-
   if (!data) {
     return {
       props: {
@@ -102,7 +93,6 @@ export const getServerSideProps = async (pageContext) => {
   } else {
     return {
       props: {
-        instagramPosts,
         data
       },
     };

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
-import InstagramBlock from './InstagramBlock/InstagramBlock';
 import BouquetCard from './BouquetCard/BouquetCard';
 import BreadCrumbs from './breadcrubs/BreadCrumbs';
 import BouquetSort from './BouquetSort/BouquetSort';
@@ -10,7 +9,6 @@ import { useRouter } from 'next/router';
 
 const BouquetListPage = ({
   category,
-  instagramPosts,
   breadCrumbsList,
   generalInfo,
 }) => {
@@ -192,9 +190,6 @@ const BouquetListPage = ({
               <>Букеты с этой категорией не найдены</>
             )}
           </Box>
-        </Box>
-        <Box sx={{ my: size(300) }}>
-          <InstagramBlock instagramPosts={instagramPosts} />
         </Box>
       </Box>
     </>

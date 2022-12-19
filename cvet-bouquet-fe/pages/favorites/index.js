@@ -75,9 +75,6 @@ export default function Favorites() {
           </Box>
         </Box>
       </Box>
-      {/* <Box sx={{ my: size(300) }}>
-        <InstagramBlock></InstagramBlock>
-      </Box> */}
     </>
   );
 }

@@ -4,8 +4,7 @@ import styles from './InstagramBlock.module.css';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRouter } from 'next/router';
-// import InstagramEmbed from 'react-instagram-embed';
-// import Instagram from '../Instagram/Instagram';
+
 
 export default function InstagramBlock({ instagramPosts }) {
   const md = useMediaQuery('(min-width:900px)');
@@ -38,7 +37,7 @@ export default function InstagramBlock({ instagramPosts }) {
         @cvetbuket.by
       </Box>
       <div className={styles.imagesConteiner}>
-        {instagramPosts.data.map((item, index) => {
+        {instagramPosts?.data?.map((item, index) => {
           if (index <= postsNumber-1) {
             return (
               <img
