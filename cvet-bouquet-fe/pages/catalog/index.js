@@ -8,8 +8,8 @@ import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 import size from '../../src/utils/size';
 
-export default function Home({ category, instagramPosts }) {
-  const [mappedBouquets, setMappedBouquets] = React.useState(category);
+export default function Home({ data, instagramPosts }) {
+  const [mappedBouquets, setMappedBouquets] = React.useState(data);
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: 'Каталог', href: null },
@@ -87,23 +87,23 @@ export const getServerSideProps = async (pageContext) => {
     },
   }`;
 
-  const resultCategory = await sanityClient.fetch(queryCategory);
+  const data = await sanityClient.fetch(queryCategory);
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const data = await fetch(instagramUrl);
-  const instagramPosts = await data.json();
+  const dataInst = await fetch(instagramUrl);
+  const instagramPosts = await dataInst.json();
 
-  if (!instagramPosts.data || !instagramPosts.data.length) {
+  if (!data) {
     return {
       props: {
-        bouquets: [],
+        data: [],
       },
     };
   } else {
     return {
       props: {
         instagramPosts,
-        category: resultCategory,
+        data
       },
     };
   }

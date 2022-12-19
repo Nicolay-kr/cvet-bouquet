@@ -11,16 +11,18 @@ export default function freepayPage({}) {
   ];
   return (
     <>
-          <Head lang='ru'>
+      <Head lang='ru'>
         <title> Свободный платеж | ЦВЕТ•БУКЕТ</title>
       </Head>
-    <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs><Box
-      sx={{
-        width: '100%',
-        px: { xs: '5%', lg: '10%' }
-      }}
-    >
-      <FreePayForm></FreePayForm>
-    </Box></>
+      <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
+      <Box
+        sx={{
+          width: '100%',
+          px: { xs: '5%', lg: '10%' },
+        }}
+      >
+        <FreePayForm></FreePayForm>
+      </Box>
+    </>
   );
 }

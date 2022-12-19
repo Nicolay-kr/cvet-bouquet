@@ -12,7 +12,7 @@ import InstagramBlock from '../src/components/InstagramBlock/InstagramBlock';
 import Head from 'next/head';
 import size from '../src/utils/size';
 
-export default function Contacts({ instagramPosts, pageData, generalInfo }) {
+export default function Contacts({ instagramPosts, data }) {
   const defaultState = {
     center: [53.893009, 27.567444],
     zoom: 12,
@@ -20,13 +20,13 @@ export default function Contacts({ instagramPosts, pageData, generalInfo }) {
 
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: pageData[0].title.ru, href: null },
+    { title: data?.title.ru, href: null },
   ];
 
   return (
     <>
-     <Head lang='ru'>
-        <title> {pageData[0].title.ru} | ЦВЕТ•БУКЕТ</title>
+      <Head lang='ru'>
+        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box
@@ -77,14 +77,18 @@ export default function Contacts({ instagramPosts, pageData, generalInfo }) {
               все волнующие вопросы.
             </Typography>
             <Box sx={{ display: 'flex' }}>
-              <PhoneIcon/>
+              <PhoneIcon />
               <Typography
                 variant='h5'
                 component='a'
-                sx={{ textDecoration: 'underline', ml: '10px',cursor:'pointer' }}
-                href={`tel:${generalInfo.phone.replace(/-|\s/gi,'')}`}
+                sx={{
+                  textDecoration: 'underline',
+                  ml: '10px',
+                  cursor: 'pointer',
+                }}
+                href={`tel:${data?.generalInfo?.phone.replace(/-|\s/gi, '')}`}
               >
-                {generalInfo.phone}
+                {data?.generalInfo?.phone}
               </Typography>
             </Box>
           </Box>
@@ -104,11 +108,9 @@ export default function Contacts({ instagramPosts, pageData, generalInfo }) {
               композиции.
             </Typography>
 
-            {generalInfo.shopsList.map((shop) => (
+            {data?.generalInfo?.shopsList.map((shop) => (
               <Box key={shop._key}>
-                {shop.published ? (
-                  <ShopsList shop={shop}></ShopsList>
-                ) : null}
+                {shop.published ? <ShopsList shop={shop}></ShopsList> : null}
               </Box>
             ))}
           </Box>
@@ -131,15 +133,21 @@ export default function Contacts({ instagramPosts, pageData, generalInfo }) {
               день. Разделите с нами эти чувства!
             </Typography>
             <Box sx={{ display: 'flex' }}>
-              <InstaIcon/>
+              <InstaIcon />
               <Typography
                 variant='h5'
                 component='a'
-                href={`https://www.instagram.com/${generalInfo.instagram.slice(1)}`}
+                href={`https://www.instagram.com/${data?.generalInfo?.instagram.slice(
+                  1
+                )}`}
                 target='_component'
-                sx={{ textDecoration: 'underline', ml: '10px',cursor:'pointer' }}
+                sx={{
+                  textDecoration: 'underline',
+                  ml: '10px',
+                  cursor: 'pointer',
+                }}
               >
-                {generalInfo.instagram}
+                {data?.generalInfo?.instagram}
               </Typography>
             </Box>
           </Box>
@@ -153,41 +161,38 @@ export default function Contacts({ instagramPosts, pageData, generalInfo }) {
 }
 
 export const getServerSideProps = async (pageContext) => {
-  const query = `*[ _type == "contactsPage"]
+  const query = `*[ _type == "contactsPage"][0]
   {
     _id,
     title,
     text,
+    "generalInfo":*[ _type == "generalInfo"][0]
+    {
+      _id,
+      phone,
+      email,
+      instagram,
+      worktime,
+      shopsList[],
+    }
   }`;
 
-  const generalInfoQuery = `*[ _type == "generalInfo"]
-  {
-    _id,
-    phone,
-    email,
-    instagram,
-    worktime,
-    shopsList[],
-  }`;
-
-  const pageData = await sanityClient.fetch(query);
-  const generalInfo = await sanityClient.fetch(generalInfoQuery);
+  const data = await sanityClient.fetch(query);
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const data = await fetch(instagramUrl);
-  const instagramPosts = await data.json();
+  const dataInst = await fetch(instagramUrl);
+  const instagramPosts = await dataInst.json();
 
-  if (!pageData.length || !generalInfo.length) {
+  if (!data) {
     return {
       props: {
-        pageData: [],
+        data: {},
       },
     };
   } else {
     return {
       props: {
-        pageData,
-        generalInfo: generalInfo[0],
+        data,
         instagramPosts,
       },
     };

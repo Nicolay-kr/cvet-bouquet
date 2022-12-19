@@ -3,24 +3,24 @@ import React from 'react';
 import { sanityClient } from '../../sanity';
 import BouquetPage from '../../src/components/bouquePage/BouquetPage';
 
-export const Bouquet = ({ bouquet, instagramPosts, generalInfo }) => {
+export const Bouquet = ({ data, instagramPosts }) => {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: 'Избранное', href: '/favorites' },
-    { title: bouquet.title.ru, href: null },
+    { title: data?.bouquet.title.ru, href: null },
   ];
 
   return (
     <>
       <Head lang='ru'>
-        <title>{bouquet.title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title>{data?.bouquet.title.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
 
       <BouquetPage
-        bouquet={{ ...bouquet, title: bouquet.title.ru }}
+        bouquet={{ ...data?.bouquet, title: data?.bouquet.title.ru }}
         breadCrumbsList={breadCrumbsList}
         instagramPosts={instagramPosts}
-        generalInfo={generalInfo}
+        generalInfo={data?.generalInfo}
       ></BouquetPage>
     </>
   );
@@ -36,7 +36,8 @@ export const getServerSideProps = async (pageContext) => {
     };
   }
 
-  const query = `*[ _type == "bouquet" && slug.current == "${boucketSlug}" ]{
+  const query = `{
+    "bouquet" : *[ _type == "bouquet" && slug.current == "${boucketSlug}" ][0]{
       _id,
       title,
       slug,
@@ -45,45 +46,43 @@ export const getServerSideProps = async (pageContext) => {
       description,
       care,
       delivery->,
-    }`;
-
-  const queryCategory = `*[ _type == "category" && slug.current == "${categorySlug}"]
+    },
+    "category":*[ _type == "category" && slug.current == "${categorySlug}"][0]
     {
       _id,
       slug,
       title,
-    }`;
-
-  const generalInfoQuery = `*[ _type == "generalInfo"]
+    },
+    "generalInfo":*[ _type == "generalInfo"][0]
     {
       _id,
       deliveryPrice,
       deliveryMin,
-    }`;
+    }
+  }`;
 
-  const resultCategory = await sanityClient.fetch(queryCategory);
-  const result = await sanityClient.fetch(query);
-  const generalInfo = await sanityClient.fetch(generalInfoQuery);
-  const bouquet = result[0];
+
+  const data = await sanityClient.fetch(query);
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const data = await fetch(instagramUrl);
-  const instagramPosts = await data.json();
+  const dataInst = await fetch(instagramUrl);
+  const instagramPosts = await dataInst.json();
 
-  if (!result) {
+  if (!data) {
     return {
-      notFound: true,
+      props: {
+        data: {},
+      },
     };
   } else {
     return {
       props: {
-        bouquet: bouquet,
-        instagramPosts: instagramPosts ? instagramPosts : [],
-        category: resultCategory,
-        generalInfo: generalInfo[0],
+        data,
+        instagramPosts,
       },
     };
   }
+
 };
 
 export default Bouquet;

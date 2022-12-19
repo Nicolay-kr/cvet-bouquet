@@ -11,19 +11,19 @@ import Head from 'next/head';
 import size from '../../../src/utils/size';
 // import { useState } from 'react';
 
-export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
+export const CategoryBouquets = ({ data, instagramPosts }) => {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: 'Каталог', href: '/catalog' },
-    { title: category[0].title, href: null },
+    { title: data?.category?.title, href: null },
   ];
   
-  const isPremium = category[0].slug.current === 'premium-floristika';
+  const isPremium = data?.category?.slug.current === 'premium-floristika';
 
   return isPremium ? (
     <>
       <Head lang='ru'>
-        <title>{category[0].title} | ЦВЕТ•БУКЕТ</title>
+        <title>{data?.category?.title} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box
@@ -32,7 +32,7 @@ export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
         <TextsQuote></TextsQuote>
       </Box>
       <CaruselBlockWithArch
-        bouquets={category[0].bouqets}
+        bouquets={data?.category?.bouqets}
         isPremium={isPremium}
         isSpec={true}
       ></CaruselBlockWithArch>
@@ -63,13 +63,13 @@ export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
   ) : (
     <>
        <Head lang='ru'>
-        <title>{category[0].title} | ЦВЕТ•БУКЕТ</title>
+        <title>{data?.category?.title} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BouquetListPage
       breadCrumbsList={breadCrumbsList}
       instagramPosts={instagramPosts}
-      category={category}
-      generalInfo={generalInfo}
+      category={data?.category}
+      generalInfo={data?.generalInfo}
     ></BouquetListPage>
     </>
 
@@ -78,53 +78,49 @@ export const CategoryBouquets = ({ category, instagramPosts,generalInfo }) => {
 
 export const getServerSideProps = async (pageContext) => {
   const pageSlug = pageContext.query.slug;
-  const queryCategory = `*[ _type == "category" && slug.current == "${pageSlug}"]
-  {
-    _id,
-    slug,
-    title,
-    mainImage,
-    data,
-    bouqets[]->{
+  const query = `{
+    "category":*[ _type == "category" && slug.current == "${pageSlug}"][0]{
       _id,
-      title,
       slug,
-      images,
-      price,
-      description,
-      care,
-      "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin},
-      publishedAt,
+      title,
+      mainImage,
+      data,
+      bouqets[]->{
+        _id,
+        title,
+        slug,
+        images,
+        price,
+        description,
+        care,
+        "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin},
+        publishedAt,
+      },
     },
+    "generalInfo":*[ _type == "generalInfo"][0]{
+      _id,
+      deliveryPrice,
+      deliveryMin,
+      }
   }`;
 
-  const generalInfoQuery = `*[ _type == "generalInfo"]
-  {
-    _id,
-    deliveryPrice,
-    deliveryMin,
-  }`;
-
-
-  const resultCategory = await sanityClient.fetch(queryCategory);
-  const generalInfo = await sanityClient.fetch(generalInfoQuery);
+  const data = await sanityClient.fetch(query);
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const data = await fetch(instagramUrl);
-  const instagramPosts = await data.json();
+  const dataInst = await fetch(instagramUrl);
+  const instagramPosts = await dataInst.json();
 
-  if (!instagramPosts.data || !instagramPosts.data.length) {
+  if (!data) {
     return {
       props: {
-        bouquets: [],
+        data: {},
       },
     };
   } else {
     return {
       props: {
         instagramPosts,
-        category: resultCategory,
-        generalInfo:generalInfo[0]
+        data,
       },
     };
   }

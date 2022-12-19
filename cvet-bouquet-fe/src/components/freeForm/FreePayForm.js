@@ -124,7 +124,7 @@ export default function FreePayForm({ isContactsForm = false }) {
       >
         <Paper
           sx={{
-            px: {...size(130),xs:'5%'},
+            px: { ...size(130), xs: '5%' },
             width: '100%',
             display: 'grid',
             gridTemplateColumns: { sx: '1fr', lg: '10fr' },
@@ -170,24 +170,29 @@ export default function FreePayForm({ isContactsForm = false }) {
                       variant='h5'
                       component='p'
                       color='#000000'
-                      sx={{ mt: { xs: 20, xxl: '0.05vw' }, mb: {...size(30),xs:20} }}
+                      sx={{
+                        mt: { xs: 20, xxl: '0.05vw' },
+                        mb: { ...size(30), xs: 20 },
+                      }}
                     >
                       С уважением, Наталья Новицкая
                     </Typography>
                   </>
                 ) : null}
               </Box>
-              <Box
-                component={Image}
-                src={verticalLogo}
-                alt='logo'
-                sx={{
-                  display: { xs: 'none', lg: 'block' },
-                  width: size(180),
-                  height: size(120),
-                  ml: 'auto',
-                }}
-              ></Box>
+              {isContactsForm ? (
+                <Box
+                  component={Image}
+                  src={verticalLogo}
+                  alt='logo'
+                  sx={{
+                    display: { xs: 'none', lg: 'block' },
+                    width: size(180),
+                    height: size(120),
+                    ml: 'auto',
+                  }}
+                ></Box>
+              ) : null}
             </Box>
             <Box
               sx={{
@@ -254,7 +259,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                     sx={{
                       display: 'grid',
                       gridTemplateColumns: '2fr 3fr',
-                      columnGap: {...size(30),xs:16},
+                      columnGap: { ...size(30), xs: 16 },
                       mt: 'auto',
                     }}
                   >
@@ -319,7 +324,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                         '& div': { height: '100%' },
                         '& textarea': { height: '100% !important' },
                       }}
-                      rows={isContactsForm?8:10}
+                      rows={isContactsForm ? 8 : 10}
                       id='customerComment'
                       label={
                         isContactsForm ? 'Ваш вопрос' : 'Комментарии к заказу'
@@ -343,7 +348,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                   variant='body1'
                   component='p'
                   color='#000000'
-                  sx={{mb:40}}
+                  sx={{ mb: 40 }}
                 >
                   Отправляя заявку, вы принимаете{' '}
                   <Link style={{ color: '#8C7B5F' }} href='/privacy'>

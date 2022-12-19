@@ -13,16 +13,16 @@ import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 import size from '../src/utils/size';
 
-export default function DeliveryPage({ pageData, instagramPosts }) {
+export default function DeliveryPage({ data, instagramPosts }) {
   const lg = useMediaQuery('(min-width:1200px)');
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: pageData[0].title.ru, href: null },
+    { title: data?.title.ru, href: null },
   ];
   return (
     <>
       <Head lang='ru'>
-        <title> {pageData[0].title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <DoubleBlock>
@@ -34,8 +34,8 @@ export default function DeliveryPage({ pageData, instagramPosts }) {
           }}
         >
           <TitleWithTextBlock
-            title={pageData[0].title.ru}
-            blocks={pageData[0].text1.ru}
+            title={data?.title.ru}
+            blocks={data?.text1.ru}
           ></TitleWithTextBlock>
         </Box>
         <Box
@@ -67,19 +67,19 @@ export default function DeliveryPage({ pageData, instagramPosts }) {
 
           <TitleWithTextBlock
             title='Самовывоз из салона'
-            blocks={pageData[0].text2.ru}
+            blocks={data?.text2.ru}
           ></TitleWithTextBlock>
         </Box>
       </DoubleBlock>
       <IntroBlock
         desctopReverse={true}
-        mainImage={pageData[0].mainImage}
-        secondImage={pageData[0].secondImage}
+        mainImage={data?.mainImage}
+        secondImage={data?.secondImage}
         isDrop={true}
         textBlock={
           <Box sx={{ mt: { xs: '40px', lg: '35%' } }}>
             <AccordionCustom
-              fieldList={pageData[0].conditions}
+              fieldList={data?.conditions}
             ></AccordionCustom>
           </Box>
         }
@@ -95,7 +95,7 @@ export default function DeliveryPage({ pageData, instagramPosts }) {
 }
 
 export const getServerSideProps = async (pageContext) => {
-  const query = `*[ _type == "deliveryPage"]
+  const query = `*[ _type == "deliveryPage"][0]
   {
     _id,
     title,
@@ -104,19 +104,18 @@ export const getServerSideProps = async (pageContext) => {
     conditions,
     mainImage,
     secondImage,
- 
   }`;
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const data = await fetch(instagramUrl);
-  const instagramPosts = await data.json();
+  const dataInst = await fetch(instagramUrl);
+  const instagramPosts = await dataInst.json();
 
-  const pageData = await sanityClient.fetch(query);
+  const data = await sanityClient.fetch(query);
 
   return {
     props: {
       instagramPosts: !instagramPosts.data ? [] : instagramPosts,
-      pageData: !pageData.length ? [] : pageData,
+      data,
     },
   };
 };

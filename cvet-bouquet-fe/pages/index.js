@@ -14,23 +14,23 @@ import CaruselBlockWithArch from '../src/components/CaruselBlockWithArch/Carusel
 import size from '../src/utils/size';
 import Head from 'next/head';
 
-export default function Home({ instagramPosts, category, pageData }) {
+// export default function Home({ instagramPosts, category, data? }) {
+export default function Home({ instagramPosts, data}) {
   const router = useRouter();
   const lg = useMediaQuery('(min-width:1200px)');
-  const [mappedBouquets, setMappedBouquets] = useState(category);
+  const [mappedBouquets, setMappedBouquets] = useState(data.category);
+  console.log(data)
 
-
-  const popular = mappedBouquets[7];
 
   return (
     <>
-       <Head lang="ru">
-        <title>{pageData.title.ru} | ЦВЕТ•БУКЕТ</title>
+      <Head lang='ru'>
+        <title>{data?.title.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
-      {pageData.firstBlock.published ? (
+      {data?.firstBlock.published ? (
         <IntroBlock
-          mainImage={pageData.firstBlock.mainImage}
-          secondImage={pageData.firstBlock.secondImage}
+          mainImage={data?.firstBlock.mainImage}
+          secondImage={data?.firstBlock.secondImage}
           mobileReverse={true}
           textBlock={
             <Box
@@ -44,16 +44,15 @@ export default function Home({ instagramPosts, category, pageData }) {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  pt: {...size(100),xs:30},
+                  pt: { ...size(100), xs: 30 },
                   // width: { xs: '100%', md: '50%' },
-                  
                 }}
               >
                 <Typography
                   sx={{
                     fontSize: size(80),
                     textAlign: { xs: 'end', md: 'start' },
-                    color:'#000000'
+                    color: '#000000',
                   }}
                   variant='h2'
                   component='h1'
@@ -67,7 +66,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                       xs: '64px',
                       sm: '100px',
                       xl: 'max(140px,7.3vw)',
-                      color:'#000000'
+                      color: '#000000',
                     },
                     textAlign: 'right',
                   }}
@@ -79,7 +78,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                 <Typography
                   sx={{
                     fontSize: size(80),
-                    color:'#000000',
+                    color: '#000000',
                     textAlign: 'end',
                   }}
                   variant='h2'
@@ -93,7 +92,7 @@ export default function Home({ instagramPosts, category, pageData }) {
                 <Box sx={{ my: 'auto' }}>
                   <BlockContentBox
                     fs={32}
-                    blocks={pageData.firstBlock.text.ru}
+                    blocks={data?.firstBlock.text.ru}
                   ></BlockContentBox>
                 </Box>
               ) : null}
@@ -106,10 +105,10 @@ export default function Home({ instagramPosts, category, pageData }) {
               >
                 <Button
                   sx={{
-                    height: {...size(60), xs:60},
-                    width: {...size(360), xs:'100%'},
+                    height: { ...size(60), xs: 60 },
+                    width: { ...size(360), xs: '100%' },
                     bgcolor: 'primary.main',
-                    mt: {...size(64)},
+                    mt: { ...size(64) },
                     fontSize: { xs: '18px', xl: '24px' },
                     fontWeight: { xs: '600' },
                   }}
@@ -121,7 +120,6 @@ export default function Home({ instagramPosts, category, pageData }) {
                   Выбрать букет
                 </Button>
               </Box>
-              
             </Box>
           }
         ></IntroBlock>
@@ -134,20 +132,20 @@ export default function Home({ instagramPosts, category, pageData }) {
         isSpec={true}
       ></CaruselBlockWithArch>
 
-      {pageData?.popularBouqets? (
+      {data?.popularBouqets ? (
         <CaruselBlock
-          bouquets={pageData.popularBouqets}
+          bouquets={data?.popularBouqets}
           title={'Популярные'}
           subtitle={'букеты'}
           categoryslug='popular'
         ></CaruselBlock>
       ) : null}
 
-      {pageData.secondBlock.published ? (
-        <Box sx={{ mt: size(200)}}>
+      {data?.secondBlock.published ? (
+        <Box sx={{ mt: size(200) }}>
           <IntroBlock
-            mainImage={pageData.secondBlock.mainImage}
-            secondImage={pageData.secondBlock.secondImage}
+            mainImage={data?.secondBlock.mainImage}
+            secondImage={data?.secondBlock.secondImage}
             isDrop={true}
             mobileReverse={true}
             isMainFlower={true}
@@ -160,10 +158,15 @@ export default function Home({ instagramPosts, category, pageData }) {
                   width: '100%',
                 }}
               >
-                <Box sx={{ mt:{xs:'24px',lg:'auto'},textAlign:{xs:'center',sm:'left'} }}>
+                <Box
+                  sx={{
+                    mt: { xs: '24px', lg: 'auto' },
+                    textAlign: { xs: 'center', sm: 'left' },
+                  }}
+                >
                   <BlockContentBox
                     fs={32}
-                    blocks={pageData.secondBlock.text.ru}
+                    blocks={data?.secondBlock.text.ru}
                   ></BlockContentBox>
                 </Box>
                 <Box
@@ -174,11 +177,11 @@ export default function Home({ instagramPosts, category, pageData }) {
                 >
                   <Button
                     sx={{
-                      height: {...size(60), xs:60},
-                      width: {...size(360), xs:'100%'},
+                      height: { ...size(60), xs: 60 },
+                      width: { ...size(360), xs: '100%' },
                       bgcolor: 'primary.main',
-                      mt: {...size(120),xs:32},
-                      
+                      mt: { ...size(120), xs: 32 },
+
                       fontSize: { xs: '18px', xl: '24px' },
                       fontWeight: { xs: '600' },
                     }}
@@ -194,7 +197,7 @@ export default function Home({ instagramPosts, category, pageData }) {
         </Box>
       ) : null}
 
-      <Box sx={{ my: size(300), px: {xs:'5%',lg:'10%'} }}>
+      <Box sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}>
         <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
       </Box>
     </>
@@ -202,22 +205,6 @@ export default function Home({ instagramPosts, category, pageData }) {
 }
 
 export const getServerSideProps = async (pageContext) => {
-  const queryCategory = `*[ _type == "category"]
-  {
-    _id,
-    slug,
-    title,
-    mainImage,
-    bouqets[]->{
-      _id,
-      title,
-      slug,
-      images,
-      price,
-      description,
-      "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
-    },
-  }`;
   const query = `*[ _type == "mainPage"][0]
   {
     _id,
@@ -233,29 +220,41 @@ export const getServerSideProps = async (pageContext) => {
       description,
       "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
     },
+    "category": *[ _type == "category"]
+    {
+      _id,
+      slug,
+      title,
+      mainImage,
+      bouqets[]->{
+        _id,
+        title,
+        slug,
+        images,
+        price,
+        description,
+        "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
+      },
+    }
   }`;
 
-
-
-  const resultCategory = await sanityClient.fetch(queryCategory);
-  const pageData = await sanityClient.fetch(query);
+  const data = await sanityClient.fetch(query);
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const data = await fetch(instagramUrl);
-  const instagramPosts = await data.json();
+  const dataInst = await fetch(instagramUrl);
+  const instagramPosts = await dataInst.json();
 
-  if (!instagramPosts.data || !instagramPosts.data.length) {
+  if (!data) {
     return {
       props: {
-        bouquets: [],
+        data: {},
       },
     };
   } else {
     return {
       props: {
         instagramPosts,
-        category: resultCategory,
-        pageData: pageData,
+        data,
       },
     };
   }

@@ -4,10 +4,10 @@ import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 
-export default function PrivacyPage({ pageData }) {
+export default function PrivacyPage({ data }) {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: pageData[0].title.ru, href: null },
+    { title: data?.title.ru, href: null },
   ];
   return (
     <>
@@ -27,8 +27,8 @@ export default function PrivacyPage({ pageData }) {
           }}
         >
           <TitleWithTextBlock
-            title={pageData[0].title.ru}
-            blocks={pageData[0].text.ru}
+            title={data?.title.ru}
+            blocks={data?.text.ru}
           ></TitleWithTextBlock>
         </Box>
       </Box>
@@ -37,25 +37,25 @@ export default function PrivacyPage({ pageData }) {
 }
 
 export const getServerSideProps = async (pageContext) => {
-  const query = `*[ _type == "privacyPage"]
+  const query = `*[ _type == "privacyPage"][0]
   {
     _id,
     title,
     text,
   }`;
 
-  const pageData = await sanityClient.fetch(query);
+  const data = await sanityClient.fetch(query);
 
-  if (!pageData.length) {
+  if (!data.length) {
     return {
       props: {
-        pageData: [],
+        data: {},
       },
     };
   } else {
     return {
       props: {
-        pageData: pageData,
+        data
       },
     };
   }

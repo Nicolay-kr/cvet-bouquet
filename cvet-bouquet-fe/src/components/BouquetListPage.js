@@ -14,7 +14,8 @@ const BouquetListPage = ({
   breadCrumbsList,
   generalInfo,
 }) => {
-  const defaultBouquetsList = category.length && category[0]?.bouqets;
+  console.log(category.bouqets)
+  const defaultBouquetsList = category?.bouqets;
   const [bouquetsList, setBouquetsList] = React.useState(defaultBouquetsList);
   const router = useRouter();
 
@@ -171,7 +172,7 @@ const BouquetListPage = ({
               rowGap: size(60),
             }}
           >
-            {category.length ? (
+            {category ? (
               bouquetsList?.map(
                 ({ _id, title, images, price, slug }, index) => (
                   <Box key={`${_id}-${index}`}>
@@ -180,16 +181,16 @@ const BouquetListPage = ({
                       title={title.ru}
                       imagePath={images[0]}
                       slug={slug}
-                      categorySlug={`catalog/${category[0].slug.current}`}
+                      categorySlug={`catalog/${category?.slug?.current}`}
                       price={price}
-                      deliveryPrice={generalInfo.deliveryPrice}
-                      deliveryMin={generalInfo.deliveryMin}
+                      deliveryPrice={generalInfo?.deliveryPrice}
+                      deliveryMin={generalInfo?.deliveryMin}
                     ></BouquetCard>
                   </Box>
                 )
               )
             ) : (
-              <>No Bouqets Yet</>
+              <>Букеты с этой категорией не найдены</>
             )}
           </Box>
         </Box>

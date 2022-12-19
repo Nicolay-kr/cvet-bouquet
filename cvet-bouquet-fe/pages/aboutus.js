@@ -10,20 +10,20 @@ import size from '../src/utils/size';
 import Head from 'next/head';
 
 
-export default function AboutUs({ instagramPosts, pageData }) {
+export default function AboutUs({ instagramPosts, data }) {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: `${pageData.title.ru}`, href: null },
+    { title: `${data?.title.ru}`, href: null },
   ];
 
   return (
     <>
      <Head lang='ru'>
-        <title> {pageData.title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <IntroBlock
-        mainImage={pageData.aboutusBlock.mainImage}
-        secondImage={pageData.aboutusBlock.secondImage}
+        mainImage={data?.aboutusBlock.mainImage}
+        secondImage={data?.aboutusBlock.secondImage}
         isSecondFlower={true}
         isSecondFlowerMobile={true}
         textBlock={
@@ -42,7 +42,7 @@ export default function AboutUs({ instagramPosts, pageData }) {
             <Box sx={{ mt: size(40),'& div+div':{
               mt: size(60)
             }}}>
-            {pageData.aboutusBlock.articles.map((article)=>(
+            {data?.aboutusBlock.articles.map((article)=>(
                <Box key={article._key}>
                <TitleWithTextBlock
                  title={article.title.ru}
@@ -73,29 +73,27 @@ export const getServerSideProps = async (pageContext) => {
   const query = `*[ _type == "aboutusPage"][0]
   {
     _id,
-    _id,
     title,
     aboutusBlock,
-
   }`;
 
-  const pageData = await sanityClient.fetch(query);
+  const data = await sanityClient.fetch(query);
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const data = await fetch(instagramUrl);
-  const instagramPosts = await data.json();
+  const dataInst = await fetch(instagramUrl);
+  const instagramPosts = await dataInst.json();
 
-  if (!instagramPosts.data || !instagramPosts.data.length) {
+  if (!data) {
     return {
       props: {
-        bouquets: [],
+        data: {},
       },
     };
   } else {
     return {
       props: {
+        data,
         instagramPosts,
-        pageData: pageData,
       },
     };
   }

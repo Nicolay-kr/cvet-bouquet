@@ -6,15 +6,15 @@ import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTe
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 
-export default function EposPage({ pageData }) {
+export default function EposPage({ data }) {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: pageData[0].title.ru, href: null },
+    { title: data?.title.ru, href: null },
   ];
   return (
     <>
        <Head lang='ru'>
-        <title> {pageData[0].title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box
@@ -32,8 +32,8 @@ export default function EposPage({ pageData }) {
           }}
         >
           <TitleWithTextBlock
-            title={pageData[0].title.ru}
-            blocks={pageData[0].text.ru}
+            title={data?.title.ru}
+            blocks={data?.text.ru}
           ></TitleWithTextBlock>
 
           <Box
@@ -45,8 +45,8 @@ export default function EposPage({ pageData }) {
             <Typography variant='h5' component='p' >
               Ссылка для оплаты:
             </Typography>
-            <Typography variant='h5' component='a' href={pageData[0].link} target='_blank'>
-              {pageData[0].link}
+            <Typography variant='h5' component='a' href={data?.link} target='_blank'>
+              {data?.link}
             </Typography>
           </Box>
 
@@ -58,7 +58,7 @@ export default function EposPage({ pageData }) {
             <Typography variant='h5' sx={{ '& span': { fontWeight: '700' } }}>
               или в дереве ЕРИП выберите услугу <br />
               "E-POS - оплата товаров и услуг" и введите код{' '}
-              <span>{pageData[0].code}</span>
+              <span>{data?.code}</span>
             </Typography>
           </Box>
         </Box>
@@ -68,28 +68,27 @@ export default function EposPage({ pageData }) {
 }
 
 export const getServerSideProps = async (pageContext) => {
-  const query = `*[ _type == "eposPage"]
+  const query = `*[ _type == "eposPage"][0]
   {
     _id,
     title,
     text,
     link,
     code,
- 
   }`;
 
-  const pageData = await sanityClient.fetch(query);
+  const data = await sanityClient.fetch(query);
 
-  if (!pageData.length) {
+  if (!data) {
     return {
       props: {
-        pageData: [],
+        data: {},
       },
     };
   } else {
     return {
       props: {
-        pageData: pageData,
+        data
       },
     };
   }

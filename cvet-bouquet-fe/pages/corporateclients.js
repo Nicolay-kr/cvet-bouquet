@@ -101,7 +101,7 @@ export default function CorporateClientsPage({ instagramPosts, pageData }) {
 }
 
 export const getServerSideProps = async (pageContext) => {
-  const query = `*[ _type == "corporateclientsPage"]
+  const query = `*[ _type == "corporateclientsPage"][0]
   {
     _id,
     title,
@@ -111,23 +111,23 @@ export const getServerSideProps = async (pageContext) => {
     advantages,
   }`;
 
-  const pageData = await sanityClient.fetch(query);
+  const data = await sanityClient.fetch(query);
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const data = await fetch(instagramUrl);
-  const instagramPosts = await data.json();
+  const dataInst = await fetch(instagramUrl);
+  const instagramPosts = await dataInst.json();
 
-  if (!instagramPosts.data || !instagramPosts.data.length) {
+  if (!data) {
     return {
       props: {
-        bouquets: [],
+        data: {},
       },
     };
   } else {
     return {
       props: {
         instagramPosts,
-        pageData: pageData,
+        data,
       },
     };
   }

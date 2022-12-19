@@ -17,6 +17,10 @@ export default function BlockContentBox({ blocks,fs=20 }) {
         my: 'auto',
         '& li+li': {
           mt: '16px',
+          fontSize: {...size(fs),xs:16},
+        },
+        '& li': {
+          fontSize: {...size(fs),xs:16},
         },
       }}
     >

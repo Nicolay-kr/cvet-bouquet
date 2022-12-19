@@ -3,7 +3,7 @@ import React from 'react';
 import { sanityClient } from '../../sanity';
 import BouquetListPage from '../../src/components/BouquetListPage';
 
-export const AllBouquetsPage = ({ instagramPosts, bouquets, generalInfo }) => {
+export const AllBouquetsPage = ({ instagramPosts, data }) => {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: 'Каталог', href: '/catalog' },
@@ -18,17 +18,16 @@ export const AllBouquetsPage = ({ instagramPosts, bouquets, generalInfo }) => {
       <BouquetListPage
         breadCrumbsList={breadCrumbsList}
         instagramPosts={instagramPosts}
-        category={[{ bouqets: bouquets, slug: { current: 'allbouquets' } }]}
-        generalInfo={generalInfo}
+        category={[{ bouqets: data?.bouquets, slug: { current: 'allbouquets' } }]}
+        generalInfo={data?.generalInfo}
       ></BouquetListPage>
     </>
   );
 };
 
 export const getServerSideProps = async (pageContext) => {
-  // const pageSlug = pageContext.query.slug;
-  const queryBouquet = `*[ _type == "bouquet"]
-  {
+  const query = `{
+    "bouquets":*[ _type == "bouquet"]{
       _id,
       title,
       slug,
@@ -38,35 +37,32 @@ export const getServerSideProps = async (pageContext) => {
       care,
       "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin},
       publishedAt,
-
+    },
+    "generalInfo":*[ _type == "generalInfo"][0]{
+      _id,
+      deliveryPrice,
+      deliveryMin,
+    }
   }`;
 
-  const generalInfoQuery = `*[ _type == "generalInfo"]
-  {
-    _id,
-    deliveryPrice,
-    deliveryMin,
-  }`;
 
-  const resultBouquet = await sanityClient.fetch(queryBouquet);
-  const generalInfo = await sanityClient.fetch(generalInfoQuery);
+  const data = await sanityClient.fetch(query);
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const data = await fetch(instagramUrl);
-  const instagramPosts = await data.json();
+  const dataInst = await fetch(instagramUrl);
+  const instagramPosts = await dataInst.json();
 
-  if (!instagramPosts.data || !instagramPosts.data.length) {
+  if (!data) {
     return {
       props: {
-        bouquets: [],
+        bouquets: {},
       },
     };
   } else {
     return {
       props: {
         instagramPosts,
-        bouquets: resultBouquet,
-        generalInfo: generalInfo[0],
+        data,
       },
     };
   }

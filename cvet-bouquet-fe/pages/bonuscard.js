@@ -5,22 +5,21 @@ import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
 import DoubleBlock from '../src/components/doubleBlock/DoubleBlock';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Image from 'next/future/image';
-import bigFlower from '../public/assets/images/bigFlower.svg';
+import BigFlower from '../public/assets/images/bigFlower.svg';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 import size from '../src/utils/size';
 
-export default function BonusCardPage({ pageData, instagramPosts }) {
+export default function BonusCardPage({ data, instagramPosts }) {
   const lg = useMediaQuery('(min-width:1200px)');
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: pageData[0].title.ru, href: null },
+    { title: data?.title.ru, href: null },
   ];
   return (
     <>
        <Head lang='ru'>
-        <title> {pageData[0].title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <DoubleBlock>
@@ -33,7 +32,7 @@ export default function BonusCardPage({ pageData, instagramPosts }) {
         >
           <TitleWithTextBlock
             title='Система скидок'
-            blocks={pageData[0].text1.ru}
+            blocks={data?.text1.ru}
           ></TitleWithTextBlock>
         </Box>
         <Box
@@ -48,24 +47,23 @@ export default function BonusCardPage({ pageData, instagramPosts }) {
           }}
         >
           {lg ? (
-            <Image
-              style={{
-                position: 'absolute',
-                top: '10vw',
-                // right: '0',
-                width: '40vw',
-                height: '40vw',
-                alignSelf: 'center',
-                justifySelf: 'center',
-              }}
-              src={bigFlower}
-              alt='flower'
-            ></Image>
+            <Box
+            component={BigFlower}
+            viewBox="0 0 350 341"
+            sx={{
+              position: 'absolute',
+                  top: '6vw',
+                  width: '40vw',
+                  height: '40vw',
+                  alignSelf: 'center',
+                  justifySelf: 'center',
+            }}
+          ></Box>
           ) : null}
 
           <TitleWithTextBlock
             title='Важно'
-            blocks={pageData[0].text2.ru}
+            blocks={data?.text2.ru}
           ></TitleWithTextBlock>
         </Box>
       </DoubleBlock>
@@ -80,7 +78,7 @@ export default function BonusCardPage({ pageData, instagramPosts }) {
 }
 
 export const getServerSideProps = async (pageContext) => {
-  const query = `*[ _type == "bonuscardPage"]
+  const query = `*[ _type == "bonuscardPage"][0]
   {
     _id,
     title,
@@ -89,15 +87,23 @@ export const getServerSideProps = async (pageContext) => {
   }`;
 
   const instagramUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${process.env.INSTAGRAM_TOKEN}`;
-  const data = await fetch(instagramUrl);
-  const instagramPosts = await data.json();
+  const dataInst = await fetch(instagramUrl);
+  const instagramPosts = await dataInst.json();
 
-  const pageData = await sanityClient.fetch(query);
+  const data = await sanityClient.fetch(query);
 
-  return {
-    props: {
-      instagramPosts: !instagramPosts.data ? [] : instagramPosts,
-      pageData: !pageData.length ? [] : pageData,
-    },
-  };
+  if (!data) {
+    return {
+      props: {
+        data: {},
+      },
+    };
+  } else {
+    return {
+      props: {
+        data,
+        instagramPosts,
+      },
+    };
+  }
 };
