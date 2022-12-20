@@ -5,10 +5,12 @@ import { sanityClient } from '../sanity';
 import ShopsList from '../src/components/ShopsList';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import PhoneIcon from '../public/assets/icons/phoneBlack.svg';
+import Letter from '../public/assets/icons/letter.svg';
 import InstaIcon from '../public/assets/icons/insta.svg';
 import Typography from '@mui/material/Typography';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
+import size from '../src/utils/size';
 
 export default function Contacts({ data }) {
   const defaultState = {
@@ -41,7 +43,7 @@ export default function Contacts({ data }) {
           <YMaps>
             <Map defaultState={defaultState} width='100%' height='100%'>
               <Placemark
-                geometry={[53.911747, 27.540074]}
+                geometry={[53.912048, 27.539391]}
                 options={{
                   iconColor: '#746449',
                 }}
@@ -64,7 +66,7 @@ export default function Contacts({ data }) {
               color='#000000'
               sx={{ fontWeight: '700', mb: '20px' }}
             >
-              Позвоните нам
+              Позвоните или напишите нам
             </Typography>
             <Typography
               variant='h5'
@@ -74,20 +76,39 @@ export default function Contacts({ data }) {
               Мы с удовольствием обсудим с Вами все детали заказа, ответим на
               все волнующие вопросы.
             </Typography>
-            <Box sx={{ display: 'flex' }}>
-              <PhoneIcon />
-              <Typography
-                variant='h5'
-                component='a'
-                sx={{
-                  textDecoration: 'underline',
-                  ml: '10px',
-                  cursor: 'pointer',
-                }}
-                href={`tel:${data?.generalInfo?.phone.replace(/-|\s/gi, '')}`}
-              >
-                {data?.generalInfo?.phone}
-              </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Box sx={{ display: 'flex' }}>
+                <PhoneIcon />
+                <Typography
+                  variant='h5'
+                  component='a'
+                  sx={{
+                    textDecoration: 'underline',
+                    ml: '10px',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                  }}
+                  href={`tel:${data?.generalInfo?.phone.replace(/-|\s/gi, '')}`}
+                >
+                  {data?.generalInfo?.phone}
+                </Typography>
+              </Box>
+              <Box sx={{ display: 'flex', mt: size(20) }}>
+                <Letter fill='#000000'/>
+                <Typography
+                  variant='h5'
+                  component='a'
+                  sx={{
+                    textDecoration: 'underline',
+                    ml: '10px',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                  }}
+                  href={`mailto:${data.email}`}
+                >
+                  {data?.generalInfo?.email}
+                </Typography>
+              </Box>
             </Box>
           </Box>
 
@@ -143,6 +164,7 @@ export default function Contacts({ data }) {
                   textDecoration: 'underline',
                   ml: '10px',
                   cursor: 'pointer',
+                  fontWeight: '600',
                 }}
               >
                 {data?.generalInfo?.instagram}
