@@ -53,7 +53,7 @@ export default function SearchModal({}) {
   const search = (str, searchArr) => {
     const arr = [];
     searchArr.forEach((element) => {
-      if (str.includes(element.toLowerCase())) {
+      if (str?.includes(element.toLowerCase())) {
         arr.push(element);
       }
     });
@@ -66,7 +66,7 @@ export default function SearchModal({}) {
     }
     const searchStrArr = str.split(' ');
     const sortArr = arr.filter((item) =>
-      search(item.title.ru.toLowerCase(), searchStrArr)
+      search(item.title?.ru?.toLowerCase(), searchStrArr)
     );
     return sortArr;
   };
