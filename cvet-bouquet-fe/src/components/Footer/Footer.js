@@ -462,21 +462,21 @@ export default function Footer({ data }) {
                   <Box columnGap={20} className={styles.iconsConteiner}>
                     <IconButton
                       component={Link}
-                      href='/'
+                      href={data?.telegram}
                       aria-label='TelegramIcon'
                     >
                       <Telegram />
                     </IconButton>
                     <IconButton
                       component={Link}
-                      href='/'
+                      href={data?.viber}
                       aria-label='ViberIcon'
                     >
                       <Viber />
                     </IconButton>
                     <IconButton
                       component={Link}
-                      href='/'
+                      href={data?.whatsapp}
                       aria-label='WhatsappIcon'
                     >
                       <Whatsapp />
