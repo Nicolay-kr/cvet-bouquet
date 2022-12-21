@@ -12,7 +12,7 @@ export const AllBouquetsPage = ({ data }) => {
 
   return (
     <>
-      <Head lang='ru'>
+      <Head>
         <title>Все букеты | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BouquetListPage

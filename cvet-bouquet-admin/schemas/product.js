@@ -75,23 +75,14 @@ export default {
     },
   ],
 
-  // preview: {
-  //   select: {
-  //     title: 'title',
-  //     subtitle: 'categories[0]',
-  //     media: 'defaultProductVariant.images[0]',
-  //   },
-  // },
   preview: {
     select: {
       title: 'title',
       category: 'categories'
     },
-    prepare: ({ title, category }) => {
+    prepare: ({ title }) => {
       return {
         title: `${title}`,
-        // subtitle: `Категория: ${category[0]._ref}`,
-        // media: images[0],
       };
     },
   },

@@ -17,7 +17,7 @@ export default function AboutUs({ data }) {
 
   return (
     <>
-     <Head lang='ru'>
+     <Head>
         <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <IntroBlock

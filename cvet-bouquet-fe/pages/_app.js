@@ -23,7 +23,7 @@ export default function MyApp(props) {
 
   return (
     <CacheProvider value={emotionCache}>
-      <Head lang='ru'>
+      <Head>
         <link rel='icon' href={logo.src} />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='description' content='Премиум цветы 💐 в Минске'></meta>

@@ -21,7 +21,6 @@ export default function TitleWithSubtitle({ title, subtitle,subtileRight=20 }) {
         component='p'
         sx={{
           ml: 'auto',
-          // mt: 'max(10px,0.5vw)',
           position: 'relative',
           right:{ xs:`-${subtileRight/2}%`,md:`-${subtileRight}%`},
           color:'#000000'

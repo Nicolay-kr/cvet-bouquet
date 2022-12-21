@@ -16,7 +16,7 @@ export default function CorporateClientsPage({ data }) {
 
   return (
     <>
-    <Head lang='ru'>
+    <Head>
         <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <IntroBlock

@@ -47,33 +47,6 @@ export default function DropList({ list, prevSlug, title }) {
         }}
       >
         {list?.map((item) => {
-          // if (item.title === 'Премиум флористика') {
-          if (false) {
-            return (
-              <MenuItem
-                key={`${item.slug.current}-list`}
-                sx={{ bgcolor: '#FFFBF6', position: 'relative' }}
-                onClick={(e) =>
-                  handleClickListItem(
-                    e,
-                    `${prevSlug ? prevSlug : ''}/${item.slug.current}`
-                  )
-                }
-              >
-                <span style={{ zIndex: '3' }}>{item.title}</span>
-                <Image
-                  style={{
-                    position: 'absolute',
-                    right: '1%',
-                    width: '40px',
-                    zIndex: '2',
-                  }}
-                  src={logoFlower}
-                  alt='logo flower'
-                ></Image>
-              </MenuItem>
-            );
-          } else {
             return (
               <MenuItem
                 key={`${item.slug.current}-list`}
@@ -88,7 +61,7 @@ export default function DropList({ list, prevSlug, title }) {
                 {item.title}
               </MenuItem>
             );
-          }
+          
         })}
       </Menu>
     </>

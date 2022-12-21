@@ -12,7 +12,7 @@ export const Bouquet = ({data }) => {
 
   return (
     <>
-     <Head lang='ru'>
+     <Head>
         <title>{data?.bouquet.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
    

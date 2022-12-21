@@ -15,7 +15,6 @@ export default function ShopsList({shop, delivery=false}) {
           alignItems: 'center',
           marginBottom: '0px',
           opacity: !delivery || delivery === shop.adress ? '1' : '0.5',
-          // fontSize: { lg: '16px', xl: '20px' },
         }}
         gutterBottom
         variant='h5'

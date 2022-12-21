@@ -19,7 +19,7 @@ export const CategoryBouquets = ({ data }) => {
 
   return isPremium ? (
     <>
-      <Head lang='ru'>
+      <Head>
         <title>{data?.category?.title} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
@@ -55,7 +55,7 @@ export const CategoryBouquets = ({ data }) => {
     </>
   ) : (
     <>
-       <Head lang='ru'>
+       <Head>
         <title>{data?.category?.title} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BouquetListPage

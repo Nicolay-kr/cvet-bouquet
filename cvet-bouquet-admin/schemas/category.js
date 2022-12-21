@@ -40,11 +40,6 @@ export default {
         hotspot: true,
       },
     },
-    // {
-    //   name: 'description',
-    //   title: 'Описание',
-    //   type: 'text',
-    // },
     {
       name: 'bouqets',
       title: 'Букеты',
@@ -56,27 +51,9 @@ export default {
             {type: 'bouquet'},
           ]
         },
-        // {
-        //   type: 'bouquet',
-        //   title:'Добавить новый',
-        //   options: {
-        //     hotspot: true,
-        //   },
-        // },
+
       ],
     },
-
-    // {
-    //   name: 'parents',
-    //   title: 'Parent categories',
-    //   type: 'array',
-    //   of: [
-    //     {
-    //       type: 'reference',
-    //       to: [{type: 'category'}],
-    //     },
-    //   ],
-    // },
   ],
   preview: {
     select: {

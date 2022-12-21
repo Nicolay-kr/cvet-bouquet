@@ -7,7 +7,6 @@ export default {
       name: 'title',
       title: 'Заголовок',
       type: 'localeString',
-      // validation: Rule => Rule.required().error('Поле должно быть заполнено'),
     },
 
     {
@@ -18,9 +17,4 @@ export default {
 
 
   ],
-  // preview: {
-  //   select: {
-  //     title: 'title',
-  //   },
-  // },
 };

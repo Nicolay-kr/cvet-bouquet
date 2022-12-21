@@ -17,7 +17,7 @@ export default function Home({ data }) {
 
   return (
     <>
-      <Head lang='ru'>
+      <Head>
         <title>Каталог | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>

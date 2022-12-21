@@ -37,45 +37,22 @@ export default function SimpleBouquetCard({
     setChecked(true);
     return () => {
       setChecked(false);
-      // Clean up the subscription
-      // subscription.unsubscribe();
     };
   });
 
   return (
     <div className={styles.cardConteiner} key={id}>
-      {/* <IconButton
-        sx={{zIndex:'2'}}
-        onMouseOver={() => {
-          setIsHovered(true);
-        }}
-        component='div'
-        className={styles.cardHeart}
-        href='#'
-        onClick={addToFavoritList}
-      >
-        <Image
-          src={
-            bouckeList.favoriteBouquets.find((item) => item.id === id)
-              ? heartIconFill
-              : heartIcon
-          }
-          alt='heart icon'
-        ></Image>
-      </IconButton> */}
+
       <Fade in={checked}>
         <Card
           sx={{
             width: width? width:'100%',
-            // maxWidth: '345px',
             height: '100%',
             bgcolor: 'fon.main',
             p: '0',
-            // boxShadow: isHovered ? '0px 0px 15px 7px #00000012' : null,
           }}
           className={styles.card}
           elevation={0}
-          // raised={true}
           onMouseOver={() => {
             setIsHovered(true);
           }}
@@ -98,7 +75,6 @@ export default function SimpleBouquetCard({
               sx={{
                 position: 'relative',
                 width: '100%',
-                // height: '360px',
                 aspectRatio: '3/4',
               }}
             >
@@ -113,7 +89,6 @@ export default function SimpleBouquetCard({
                 src={urlFor(imagePath)?.width(400)?.url()}
                 alt='Bouquet image'
               ></Box>
-              {/* <NextSanityIMG image={imagePath}></NextSanityIMG> */}
             </Box>
 
             <CardContent
@@ -132,14 +107,6 @@ export default function SimpleBouquetCard({
                 display='inline-flex'
                 justifyContent='space-between'
               >
-                {/* <Typography
-                  gutterBottom
-                  variant='h5'
-                  component='p'
-                  sx={{ fontWeight: 700, mt: 'auto' }}
-                >
-                  {price} руб.
-                </Typography> */}
               </Box>
             </CardContent>
           </Box>

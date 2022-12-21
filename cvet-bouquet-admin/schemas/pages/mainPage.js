@@ -19,7 +19,6 @@ export default {
           name: 'published',
           type: 'boolean',
         },
-        // { name: 'title', type: 'localeString', title: 'Название способа' },
         { name: 'text', type: 'localeBlockContent', title: 'Описание' },
         {
           name: 'mainImage',
@@ -83,31 +82,6 @@ export default {
         },
       ],
     },
-    // {
-    //   name: 'text',
-    //   title: 'Текст',
-    //   type: 'localeBlockContent',
-    // },
-    // {
-    //   name: 'mainImage',
-    //   title: 'Первое изображение',
-    //   type: 'image',
-    //   options: {
-    //     hotspot: true,
-    //   },
-    // },
-    // {
-    //   name: 'secondImage',
-    //   title: 'Второе изображение',
-    //   type: 'image',
-    //   options: {
-    //     hotspot: true,
-    //   },
-    // },
   ],
-  // preview: {
-  //   select: {
-  //     title: 'title',
-  //   },
-  // },
+
 };

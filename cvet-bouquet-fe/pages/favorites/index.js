@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '../../styles/Catalog.module.css';
-// import BouquetCard from '../../../src/components/BouquetCard/BouquetCard';
 import BouquetCard from '../../src/components/BouquetCard/BouquetCard';
 import Box from '@mui/material/Box';
 import { useAppContext } from '../../src/components/context/BouquetsContext';
@@ -19,7 +18,7 @@ export default function Favorites() {
 
   return (
     <>
-      <Head lang='ru'>
+      <Head>
         <title>Избранное | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>

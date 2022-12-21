@@ -143,7 +143,7 @@ export default function Cart() {
 
   return (
     <>
-      <Head lang='ru'>
+      <Head>
         <title>Корзина | ЦВЕТ•БУКЕТ</title>
       </Head>
 
@@ -153,10 +153,6 @@ export default function Cart() {
           pb: 10,
         }}
       >
-        {/* <BreadCrumbs
-          breadCrumbsList={breadCrumbsList}
-          isInIntro={true}
-        ></BreadCrumbs> */}
         <Box
           className={styles.conteiner}
           sx={{
@@ -227,7 +223,6 @@ export default function Cart() {
             ></Promocode>
             <Box mt={10} className={styles.deliveryPrice}>
               <Typography
-                // sx={{ color: 'primary.main', mt: 2, textDecoration: 'underline', cursor:'pointer' }}
                 variant='h5'
                 component='p'
                 mr={8}
@@ -244,7 +239,6 @@ export default function Cart() {
 
             <Box className={styles.deliveryPrice}>
               <Typography
-                // sx={{ color: 'primary.main', mt: 2, textDecoration: 'underline', cursor:'pointer' }}
                 variant='h5'
                 component='p'
                 mr={8}

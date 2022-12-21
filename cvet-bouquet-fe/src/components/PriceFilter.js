@@ -30,7 +30,6 @@ export default function PriceFilter({ value, changeFunc }) {
           '& p': {
             fontSize: { xs: '12px',sm:'14',md:'15px',xl:'20px',xxl:'1.04vw' },
           },
-          // gridTemplateColumns: { xs: '1fr 1fr' },
         }}
       >
         <FormControlLabel

@@ -106,30 +106,6 @@ export default {
       type: 'datetime',
       readOnly: true,
     },
-    // {
-    //   name: 'delivery',
-    //   title: 'Доставка',
-    //   type: 'localeBlockContent',
-    // },
-    // {
-    //   name: 'bouquetCare',
-    //   title: 'Уход за букетом',
-    //   type: 'localeBlockContent',
-    // },
-
-    // {
-    //   title: 'Tags',
-    //   name: 'tags',
-    //   type: 'array',
-    //   of: [
-    //     {
-    //       type: 'string',
-    //     },
-    //   ],
-    //   options: {
-    //     layout: 'tags',
-    //   },
-    // },
     {
       name: 'order',
       title: 'Order',
@@ -137,29 +113,7 @@ export default {
       hidden: true,
     },
   ],
-  // orderings: [
-  //   {
-  //     title: 'Release Date, New',
-  //     name: 'releaseDateDesc',
-  //     by: [
-  //       {field: 'releaseDate', direction: 'desc'}
-  //     ]
-  //   },
-  //   {
-  //     title: 'Release Date, Old',
-  //     name: 'releaseDateAsc',
-  //     by: [
-  //       {field: 'releaseDate', direction: 'asc'}
-  //     ]
-  //   },
-  //   {
-  //     title: 'Категория',
-  //     name: 'category',
-  //     by: [
-  //       {field: 'category', direction: 'desc'}
-  //     ]
-  //   }
-  // ],
+
 
   preview: {
     select: {

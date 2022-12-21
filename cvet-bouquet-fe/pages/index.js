@@ -21,7 +21,7 @@ export default function Home({ data }) {
 
   return (
     <>
-      <Head lang='ru'>
+      <Head>
         <title>{data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       {data?.firstBlock?.published ? (

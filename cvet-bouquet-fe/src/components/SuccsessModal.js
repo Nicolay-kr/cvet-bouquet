@@ -10,7 +10,6 @@ import Fade from '@mui/material/Fade';
 import cros from '../../public/assets/icons/cros.svg';
 import Button from '@mui/material/Button';
 
-// export default function SearchModal({bouquets}) {
 
 const style = {
   display: 'flex',
@@ -24,6 +23,7 @@ const style = {
   boxShadow: 24,
   p: '40px',
 };
+
 export default function SuccsessModal({
   open = false,
   onClose,
@@ -69,7 +69,6 @@ export default function SuccsessModal({
               id='modal-modal-title'
               variant='h3'
               component='h2'
-              // sx={{ mt: '20px' }}
             >
               {isContactsForm
                 ? 'Ваше соощение отправленно'

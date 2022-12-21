@@ -1,11 +1,8 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import styles from './Header.module.css';
-// import Button from '@mui/material/Button';
 import Link from '../CustopNextComponents/Link';
 import Box from '@mui/material/Box';
 import logo from '../../../public/assets/images/logo.png';
-import Logo from '../../../public/assets/images/logo.svg';
 import HeeartIcon from '../../../public/assets/icons/heart.svg';
 import InstaIcon from '../../../public/assets/icons/insta.svg';
 import BagIcon from '../../../public/assets/icons/bag.svg';
@@ -19,7 +16,6 @@ import SearchModal from '../SearchModal';
 import size from '../../utils/size';
 
 export const Header = ({ data }) => {
-  const router = useRouter();
   const bouckeList = useAppContext();
 
   const pages = [
@@ -134,7 +130,6 @@ export const Header = ({ data }) => {
             '& a': { px: { xs: '4px', sm: '8px' } },
           }}
         >
-          {/* {lg ? null : <SearchModal bouquets={bouquets}></SearchModal>} */}
           <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
             <SearchModal></SearchModal>
           </Box>

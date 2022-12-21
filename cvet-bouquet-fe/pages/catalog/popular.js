@@ -12,7 +12,7 @@ export const Popular = ({ data }) => {
 
   return (
     <>
-      <Head lang='ru'>
+      <Head>
         <title>Популярные букеты | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BouquetListPage
