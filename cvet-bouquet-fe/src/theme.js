@@ -95,9 +95,6 @@ const theme = createTheme({
       '@media (max-width:1536px)': {
         fontSize: '32px',
       },
-      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-      //   fontSize: customFontsSize.h2.regular/1.25,
-      // },
       '@media (max-width:600px)': {
         fontSize: 18,
       },
@@ -133,9 +130,6 @@ const theme = createTheme({
       '@media (max-width:600px)': {
         fontSize: '18px',
       },
-      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-      //   fontSize: customFontsSize.h4.regular/1.25,
-      // },
     },
 
     h5: {
@@ -143,7 +137,6 @@ const theme = createTheme({
       lineHeight: 1.4,
       fontWeight: 500,
       fontStyle: 'normal',
-      // textTransform: 'uppercase',
       color: '#333',
       
 
@@ -162,7 +155,6 @@ const theme = createTheme({
       fontSize: customFontsSize.h6.regular,
       lineHeight: 1.4,
       fontStyle: 'normal',
-      // textTransform: 'uppercase',
       color: '#000000',
       scrollbarWidth: 'none',
       '@media (min-width:1921px)': {
@@ -171,9 +163,6 @@ const theme = createTheme({
       '@media (max-width:1536px)': {
         fontSize: '14px',
       },
-      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-      //   fontSize: customFontsSize.h6.regular/1.25,
-      // },
     },
     body1: {
       fontSize: customFontsSize.body1.regular,
@@ -193,9 +182,6 @@ const theme = createTheme({
       '@media (max-width:600px)': {
         fontSize: '10px',
       },
-      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-      //   fontSize: customFontsSize.body1.regular/1.25,
-      // },
     },
     body2: {
       fontSize: customFontsSize.body2.regular,
@@ -213,9 +199,6 @@ const theme = createTheme({
       '@media (max-width:600px)': {
         fontSize: '10px',
       },
-      // '@media (-webkit-min-device-pixel-ratio: 1.25)':{
-      //   fontSize: customFontsSize.body2.regular/1.25,
-      // },
     },
     subtitle1: {
       fontSize: customFontsSize.subtitle1.regular,
@@ -265,7 +248,6 @@ const theme = createTheme({
         fontSize: customFontsSize.caption.adaptiv,
       },
     },
-    srOnly: {},
   },
 
   components: {
@@ -278,15 +260,6 @@ const theme = createTheme({
           textTransform: 'none',
         },
       },
-      variants: [
-        // {
-        //   props: { variant: 'contained', color: 'primary' },
-        //   style: {
-        //     border: `4px dashed ${red[500]}`,
-        //     backgroundColor: 'red',
-        //   },
-        // },
-      ],
     },
     MuiSnackbarContent: {
       styleOverrides: {
