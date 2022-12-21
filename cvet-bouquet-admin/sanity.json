@@ -1,10 +1,10 @@
 {
   "root": true,
   "project": {
-    "name": "cvet-bouquet-admin"
+    "name": "cvetbouquet-admin"
   },
   "api": {
-    "projectId": "444cz5oj",
+    "projectId": "t8hv5shf",
     "dataset": "production"
   },
   "plugins": [

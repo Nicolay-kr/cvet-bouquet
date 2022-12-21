@@ -52,7 +52,6 @@ export default {
       of: [
         {
           type: 'reference',
-          title:'Выбрать из существующих',
           to: [
             {type: 'bouquet'},
           ]

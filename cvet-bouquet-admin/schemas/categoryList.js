@@ -14,17 +14,9 @@ export default {
       of: [
         {
           type: 'reference',
-          title:'Выбрать из существующих',
           to: [
             {type: 'category'},
           ]
-        },
-        {
-          type: 'category',
-          title:'Добавить новую',
-          options: {
-            hotspot: true,
-          },
         },
       ],
     },

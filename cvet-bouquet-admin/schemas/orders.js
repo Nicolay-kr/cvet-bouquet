@@ -52,26 +52,7 @@ export default {
         calendarTodayLabel: 'Today'
       }
     },
-
-
-    // {
-    //   name: 'parents',
-    //   title: 'Parent categories',
-    //   type: 'array',
-    //   of: [
-    //     {
-    //       type: 'reference',
-    //       to: [{type: 'category'}],
-    //     },
-    //   ],
-    // },
   ],
-  // preview: {
-  //   select: {
-  //     title: 'title',
-  //     media: 'mainImage',
-  //   },
-  // },
   preview: {
     select: {
       name: 'name',
@@ -82,7 +63,6 @@ export default {
     prepare: ({ name, phone, email, bouquet }) => {
       return {
         title: `${name}. ${bouquet} `,
-        // subtitle: `Категория: ${category.title}`,
         subtitle: `${phone}, ${email}`,
       };
     },

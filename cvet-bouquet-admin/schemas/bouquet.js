@@ -47,7 +47,6 @@ export default {
           'Поле должно быть заполнено, пожалуйста нажмите кнопку Generate'
         ),
       options: {
-        // source: 'title.ru',
         maxLength: 96,
         source: async (doc, options) => {
           if (doc.categories) {
@@ -172,7 +171,6 @@ export default {
     prepare: ({ title, category, price, images }) => {
       return {
         title: `${title} `,
-        // subtitle: `Категория: ${category.title}`,
         subtitle: `${price}руб`,
         media: images[0],
       };

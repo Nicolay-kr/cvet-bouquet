@@ -29,24 +29,7 @@ export default {
     },
 
 
-    // {
-    //   name: 'parents',
-    //   title: 'Parent categories',
-    //   type: 'array',
-    //   of: [
-    //     {
-    //       type: 'reference',
-    //       to: [{type: 'category'}],
-    //     },
-    //   ],
-    // },
   ],
-  // preview: {
-  //   select: {
-  //     title: 'title',
-  //     media: 'mainImage',
-  //   },
-  // },
   preview: {
     select: {
       name: 'name',
@@ -56,7 +39,6 @@ export default {
     prepare: ({ name, phone, email }) => {
       return {
         title: `${name} `,
-        // subtitle: `Категория: ${category.title}`,
         subtitle: `${phone}, ${email}`,
       };
     },
