@@ -24,7 +24,6 @@ export default function SimpleBouquetCard({
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
   const bouckeList = useAppContext();
-  console.log(width)
 
   const bouquet = { id, title, imagePath: imagePath, price, slug };
   const addToFavoritList = (e) => {
