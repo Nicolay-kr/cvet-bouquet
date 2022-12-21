@@ -12,7 +12,6 @@ const BouquetListPage = ({
   breadCrumbsList,
   generalInfo,
 }) => {
-  console.log(category.bouqets)
   const defaultBouquetsList = category?.bouqets;
   const [bouquetsList, setBouquetsList] = React.useState(defaultBouquetsList);
   const router = useRouter();
@@ -58,7 +57,6 @@ const BouquetListPage = ({
       arrValue = value.split('-');
     }
     if (value === 'all') {
-      console.log();
       let sortedBouquetsList = handlePriceSort(defaultBouquetsList);
       sortedBouquetsList = sortBy.func(sortedBouquetsList);
       setBouquetsList([...sortedBouquetsList]);

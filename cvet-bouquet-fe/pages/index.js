@@ -17,7 +17,6 @@ export default function Home({ data }) {
   const router = useRouter();
   const lg = useMediaQuery('(min-width:1200px)');
   const [mappedBouquets, setMappedBouquets] = useState(data?.category);
-  console.log(data)
 
   return (
     <>
