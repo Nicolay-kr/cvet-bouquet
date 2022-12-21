@@ -83,9 +83,8 @@ export default function SimpleBouquetCard({
                 sx={{ objectFit: 'cover' }}
                 layout='fill'
                 fill={true}
-                widths='(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw'
+                sizes='(max-width: 768px) 30vw, (max-width: 1200px) 50vw,
+                33vw'
                 src={urlFor(imagePath)?.width(400)?.url()}
                 alt='Bouquet image'
               ></Box>
