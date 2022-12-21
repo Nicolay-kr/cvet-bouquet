@@ -12,19 +12,19 @@ import { useEffect } from 'react';
 
 import { urlFor } from '../../../sanity';
 
-
 export default function SimpleBouquetCard({
   id,
   title,
   imagePath,
   price,
   slug,
-  isPremium=false,
-  width=null
+  isPremium = false,
+  width = null,
 }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
   const bouckeList = useAppContext();
+  console.log(width)
 
   const bouquet = { id, title, imagePath: imagePath, price, slug };
   const addToFavoritList = (e) => {
@@ -42,11 +42,10 @@ export default function SimpleBouquetCard({
 
   return (
     <div className={styles.cardConteiner} key={id}>
-
       <Fade in={checked}>
         <Card
           sx={{
-            width: width? width:'100%',
+            width: width ? width : '100%',
             height: '100%',
             bgcolor: 'fon.main',
             p: '0',
@@ -69,13 +68,21 @@ export default function SimpleBouquetCard({
             }}
             component={Link}
             noLinkStyle
-            href={`/catalog/${isPremium? `premium-floristika/${slug?.current}`:slug?.current}`}
+            href={`/catalog/${
+              isPremium ? `premium-floristika/${slug?.current}` : slug?.current
+            }`}
           >
             <Box
               sx={{
                 position: 'relative',
                 width: '100%',
-                aspectRatio: '3/4',
+                height: width
+                  ? { xs: '40vw', md: width.md*4/3, xl: width.xl*4/3 }
+                  : {
+                      xs: '60vw',
+                      md: '38vw',
+                      xl: '25vw',
+                    },
               }}
             >
               <Box
@@ -91,7 +98,12 @@ export default function SimpleBouquetCard({
             </Box>
 
             <CardContent
-              sx={{ display: 'flex', flexDirection: 'column', flexGrow: '1',minHeight:'70px'}}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                flexGrow: '1',
+                minHeight: '70px',
+              }}
             >
               <Typography
                 sx={{ textAlign: 'center' }}
@@ -105,8 +117,7 @@ export default function SimpleBouquetCard({
                 width='100%'
                 display='inline-flex'
                 justifyContent='space-between'
-              >
-              </Box>
+              ></Box>
             </CardContent>
           </Box>
         </Card>

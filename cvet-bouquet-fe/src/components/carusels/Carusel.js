@@ -27,7 +27,7 @@ const Carusel = ({
   controlledSwiper = null,
   isPremium = false,
 }) => {
-  const sm = useMediaQuery('(max-width:600px)');
+  const md = useMediaQuery('(max-width:720px)');
   const xl = useMediaQuery('(max-width:1536px)');
 
   const listItems = bouquets?.map((bouquet) => {
@@ -64,12 +64,12 @@ const Carusel = ({
     <Swiper
       ref={caruselRef}
       // slidesPerView={breakpoints.m ? (breakpoints.xs ? "2" : "3") : "5"}
-      slidesPerView={isSpec ? (sm ? 1.5 : 'auto') : sm ? 2.1 : 'auto'}
-      // slidesPerView={sm && !isSpec ? 2:'auto'}
+      slidesPerView={isSpec ? (md ? 1.5 : 'auto') : md ? 2.1 : 'auto'}
+      // slidesPerView={md && !isSpec ? 2:'auto'}
       loopedSlides={4}
       grabCursor={true}
       loop={true}
-      spaceBetween={sm ? (isSpec ? 10 : 15) : xl ? (isSpec ? 20 : 30) : 30}
+      spaceBetween={md ? (isSpec ? 10 : 15) : xl ? (isSpec ? 20 : 30) : 30}
       modules={[Controller]}
       controller={{ control: controlledSwiper }}
     >

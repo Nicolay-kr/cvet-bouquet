@@ -160,7 +160,13 @@ export default function BouquetCard({
               sx={{
                 position: 'relative',
                 width: '100%',
-                aspectRatio: '3/4',
+                height:width
+                ? { xs: '60vw', md: width.md*4/3, xl: width.xl*4/3 }:{
+                  xs: '55vw',
+                  md: '38vw',
+                  lg: '25vw',
+                },
+                // aspectRatio: '3/4',
               }}
             >
               {imagePath ? (
