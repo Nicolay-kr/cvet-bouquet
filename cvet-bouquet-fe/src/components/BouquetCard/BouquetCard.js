@@ -100,22 +100,28 @@ export default function BouquetCard({
           top: '4%',
           backgroundColor: '#F8F2EA !important',
         }}
-        aria-label="HeartIcon"
+        aria-label='HeartIcon'
         onMouseOver={() => {
           setIsHovered(true);
         }}
         component='div'
         onClick={addToFavoritList}
       >
-        <Box sx={{
-          width:{xs:24,lg:30},
-          height:{xs:24,lg:30},
-          }}>
-        {bouckeList.favoriteBouquets.find((item) => item.id === id) ? (
-          <HeartIconFill width={'100%'} height={'100%'} viewBox='-3 -3 30 30' />
-        ) : (
-          <HeartIcon width={'100%'} height={'100%'} viewBox='-3 -3 30 30'/>
-        )}
+        <Box
+          sx={{
+            width: { xs: 24, lg: 30 },
+            height: { xs: 24, lg: 30 },
+          }}
+        >
+          {bouckeList.favoriteBouquets.find((item) => item.id === id) ? (
+            <HeartIconFill
+              width={'100%'}
+              height={'100%'}
+              viewBox='-3 -3 30 30'
+            />
+          ) : (
+            <HeartIcon width={'100%'} height={'100%'} viewBox='-3 -3 30 30' />
+          )}
         </Box>
       </IconButton>
       <Fade timeout={1000} in={checked}>
@@ -154,7 +160,6 @@ export default function BouquetCard({
               sx={{
                 position: 'relative',
                 width: '100%',
-                // height: '360px',
                 aspectRatio: '3/4',
               }}
             >
@@ -171,10 +176,7 @@ export default function BouquetCard({
                   src={urlFor(imagePath)?.width(400)?.url()}
                   alt='Bouquet image'
                 ></Box>
-              ) : // <NextSanityIMG image={imagePath}></NextSanityIMG>
-              //</Box> </AspectRatio>
-              // </CssVarsProvider>
-              null}
+              ) : null}
             </Box>
 
             <CardContent
