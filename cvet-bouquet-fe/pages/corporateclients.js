@@ -11,13 +11,13 @@ import Head from 'next/head';
 export default function CorporateClientsPage({ data }) {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: `${data?.title.ru}`, href: null },
+    { title: `${data?.title?.ru}`, href: null },
   ];
 
   return (
     <>
     <Head lang='ru'>
-        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <IntroBlock
         mainImage={data?.mainImage}
@@ -36,8 +36,8 @@ export default function CorporateClientsPage({ data }) {
             <BreadCrumbs isInIntro={true} breadCrumbsList={breadCrumbsList}></BreadCrumbs>
             <Box sx={{ mt: { xs: '0', lg: 'max(40px,2.1vw)' },}}>
             <TitleWithTextBlock
-              title={data?.title.ru}
-              blocks={data?.text.ru}
+              title={data?.title?.ru}
+              blocks={data?.text?.ru}
             ></TitleWithTextBlock>
 
             </Box>

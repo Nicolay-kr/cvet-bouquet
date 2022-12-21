@@ -87,9 +87,9 @@ export default function IntroBlock({
         >
           {isSecondFlowerMobile ? (
             <MobileBlock>
-               <Box
-            viewBox='0 0 350 341'
-            component={BigFlower}
+              <Box
+                viewBox='0 0 350 341'
+                component={BigFlower}
                 sx={{
                   position: 'absolute',
                   right: '-5%',
@@ -102,9 +102,11 @@ export default function IntroBlock({
           ) : null}
 
           <Box sx={{ mt: { xs: '40px', lg: '60px' } }}>
-            <ArcheMainConteiner
-              src={urlFor(mainImage).width(400).url()}
-            ></ArcheMainConteiner>
+            {mainImage ? (
+              <ArcheMainConteiner
+                src={urlFor(mainImage)?.width(400)?.url()}
+              ></ArcheMainConteiner>
+            ) : null}
           </Box>
           <Box
             sx={{
@@ -114,10 +116,12 @@ export default function IntroBlock({
               mr: { xs: isSecondFlower ? '15%' : '0', lg: '0' },
             }}
           >
-            <ArcheSecondConteiner
-              isDrop={isDrop}
-              src={urlFor(secondImage).width(400).url()}
-            ></ArcheSecondConteiner>
+            {secondImage ? (
+              <ArcheSecondConteiner
+                isDrop={isDrop}
+                src={urlFor(secondImage)?.width(400)?.url()}
+              ></ArcheSecondConteiner>
+            ) : null}
           </Box>
         </Box>
       </Box>

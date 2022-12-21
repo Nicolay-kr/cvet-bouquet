@@ -7,7 +7,7 @@ import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 export default function PrivacyPage({ data }) {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: data?.title.ru, href: null },
+    { title: data?.title?.ru, href: null },
   ];
   return (
     <>
@@ -27,8 +27,8 @@ export default function PrivacyPage({ data }) {
           }}
         >
           <TitleWithTextBlock
-            title={data?.title.ru}
-            blocks={data?.text.ru}
+            title={data?.title?.ru}
+            blocks={data?.text?.ru}
           ></TitleWithTextBlock>
         </Box>
       </Box>
@@ -46,7 +46,7 @@ export const getServerSideProps = async (pageContext) => {
 
   const data = await sanityClient.fetch(query);
 
-  if (!data.length) {
+  if (!data?.length) {
     return {
       props: {
         data: {},

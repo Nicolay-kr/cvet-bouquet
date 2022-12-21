@@ -33,7 +33,7 @@ export const Header = ({ data }) => {
       <li>
         <DropList
           list={data?.categories?.categories?.filter(
-            (category) => category.published === true
+            (category) => category?.published === true
           )}
           prevSlug={'/catalog'}
           title='Каталог'
@@ -96,9 +96,9 @@ export const Header = ({ data }) => {
         >
           <BurgerMenu
             categories={data?.categories?.categories?.filter(
-              (category) => category.published === true
+              (category) => category?.published === true
             )}
-            shops={data.shopsList}
+            shops={data?.shopsList}
           ></BurgerMenu>
           <SearchModal></SearchModal>
         </Box>

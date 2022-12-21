@@ -84,9 +84,9 @@ export default function FreePayForm({ isContactsForm = false }) {
     const doc = {
       _id: uniqid(),
       _type: 'clients',
-      name: data.customerName,
-      phone: data.customerPhone,
-      email: data.customerEmail,
+      name: data?.customerName,
+      phone: data?.customerPhone,
+      email: data?.customerEmail,
     };
 
     sanityClient

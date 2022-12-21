@@ -55,6 +55,12 @@ export default {
             { name: 'title', type: 'localeString', title: 'Название способа' },
             { name: 'desc', type: 'localeBlockContent', title: 'Описание' },
           ],
+          preview: {
+            select: {
+              title: 'title.ru',
+            },
+          },
+          
         },
       ],
       preview: {

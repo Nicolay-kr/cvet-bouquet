@@ -7,17 +7,17 @@ export const Bouquet = ({data }) => {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: 'Корзина', href: '/cart' },
-    { title: data?.bouquet.title.ru, href: null },
+    { title: data?.bouquet.title?.ru, href: null },
   ];
 
   return (
     <>
      <Head lang='ru'>
-        <title>{data?.bouquet.title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title>{data?.bouquet.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
    
     <BouquetPage
-      bouquet={{ ...data?.bouquet, title: data?.bouquet.title.ru }}
+      bouquet={{ ...data?.bouquet, title: data?.bouquet.title?.ru }}
       breadCrumbsList={breadCrumbsList}
       generalInfo={data?.generalInfo}
     ></BouquetPage>

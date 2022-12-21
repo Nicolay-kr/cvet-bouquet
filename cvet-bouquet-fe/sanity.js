@@ -11,7 +11,7 @@ const config = {
    * https://nextjs.org/docs/basic-features/environment-variables
    **/
   dataset: process.env.SANITY_DATASET || 'production',
-  projectId: '444cz5oj',
+  projectId: 't8hv5shf',
   // apiVersion: '2021-10-21', // Learn more: https://www.sanity.io/docs/api-versioning
   /**
    * Set useCdn to `false` if your application require the freshest possible
@@ -19,13 +19,15 @@ const config = {
    * Authenticated request (like preview) will always bypass the CDN
    **/
   useCdn: process.env.NODE_ENV === 'production',
-  apiVersion: '2022-12-15',
+  apiVersion: '2022-12-21',
 
   /**
    * OPTIONAL config to enable authentication with custom token
    * You might need this if you host the preview on a different url than Sanity Studio
    */
-  token: 'skwGJy26rDinNPz866iSuWdFcHfTSSvpNbsmzcy9nU27K3uMAJWw0RZQq3clLemRGvS57BoO9S9Xf3WakoJaVaQNLCLZ7kLjI7fTGNjZfIJlcXwHpFBsjvLTDtaQiox7ci1ZaU2myzovR4eRz88ZE6HeePOBQU89tCHhRvF0TX49IBPNGUsF',
+  // token: 'skwGJy26rDinNPz866iSuWdFcHfTSSvpNbsmzcy9nU27K3uMAJWw0RZQq3clLemRGvS57BoO9S9Xf3WakoJaVaQNLCLZ7kLjI7fTGNjZfIJlcXwHpFBsjvLTDtaQiox7ci1ZaU2myzovR4eRz88ZE6HeePOBQU89tCHhRvF0TX49IBPNGUsF',
+  // token: 'skryLGDdP2lCP9bsXuvqbqMJ4mzIeR4ZKk7oBgnxtzbAVsb25iu8t0oc3gfka4XxRP1cZKlffPSmfErDogC1skhqlAs5a0KhQGjSGT81P3REmQ1sOnBexgCDdpCFoFA3fpa2XJSjrcgWPl5HpmU4SdrW8Y0EwIzbTRJJdWrCY0rl3DOR8n0C',
+  token: 'skn3wbH5ulXbOk8gF28kPCByjFQPGkrafiABxaHdZIeMBMguXSITKdL8lJNht063dA1rkZJZ2jww0s4mcwYwuk48dJCW0V9RHpKF7BxCQopsuGaoPNKicjIGPBgP0RUPjnnPtNOGUvj3sIg6lNfkbyqY725LrKe0idODDC9ZgfcfBwavPhTy',
  /* EventSource:  provide your own event source implementation. Required in browsers to support the above token parameter. */
 };
 

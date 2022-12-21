@@ -13,12 +13,12 @@ export default function BonusCardPage({ data }) {
   const lg = useMediaQuery('(min-width:1200px)');
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: data?.title.ru, href: null },
+    { title: data?.title?.ru, href: null },
   ];
   return (
     <>
        <Head lang='ru'>
-        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <DoubleBlock>

@@ -110,7 +110,7 @@ export default function SimpleBouquetCard({
                 widths='(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw'
-                src={urlFor(imagePath).width(400).url()}
+                src={urlFor(imagePath)?.width(400)?.url()}
                 alt='Bouquet image'
               ></Box>
               {/* <NextSanityIMG image={imagePath}></NextSanityIMG> */}

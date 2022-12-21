@@ -20,13 +20,13 @@ export default function Contacts({ data }) {
 
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: data?.title.ru, href: null },
+    { title: data?.title?.ru, href: null },
   ];
 
   return (
     <>
       <Head lang='ru'>
-        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box
@@ -104,7 +104,7 @@ export default function Contacts({ data }) {
                     cursor: 'pointer',
                     fontWeight: '600',
                   }}
-                  href={`mailto:${data.email}`}
+                  href={`mailto:${data?.email}`}
                 >
                   {data?.generalInfo?.email}
                 </Typography>

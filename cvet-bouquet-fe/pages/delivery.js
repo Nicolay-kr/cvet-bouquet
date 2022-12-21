@@ -14,12 +14,12 @@ export default function DeliveryPage({ data }) {
   const lg = useMediaQuery('(min-width:1200px)');
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: data?.title.ru, href: null },
+    { title: data?.title?.ru, href: null },
   ];
   return (
     <>
       <Head lang='ru'>
-        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <DoubleBlock>
@@ -31,7 +31,7 @@ export default function DeliveryPage({ data }) {
           }}
         >
           <TitleWithTextBlock
-            title={data?.title.ru}
+            title={data?.title?.ru}
             blocks={data?.text1.ru}
           ></TitleWithTextBlock>
         </Box>

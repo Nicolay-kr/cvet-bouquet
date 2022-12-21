@@ -175,7 +175,7 @@ const BouquetListPage = ({
                   <Box key={`${_id}-${index}`}>
                     <BouquetCard
                       id={_id}
-                      title={title.ru}
+                      title={title?.ru}
                       imagePath={images[0]}
                       slug={slug}
                       categorySlug={`catalog/${category?.slug?.current}`}

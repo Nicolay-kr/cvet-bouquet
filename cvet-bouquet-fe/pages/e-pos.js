@@ -9,12 +9,12 @@ import Head from 'next/head';
 export default function EposPage({ data }) {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: data?.title.ru, href: null },
+    { title: data?.title?.ru, href: null },
   ];
   return (
     <>
        <Head lang='ru'>
-        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box
@@ -32,8 +32,8 @@ export default function EposPage({ data }) {
           }}
         >
           <TitleWithTextBlock
-            title={data?.title.ru}
-            blocks={data?.text.ru}
+            title={data?.title?.ru}
+            blocks={data?.text?.ru}
           ></TitleWithTextBlock>
 
           <Box

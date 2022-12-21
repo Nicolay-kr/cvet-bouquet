@@ -12,17 +12,17 @@ import Head from 'next/head';
 export default function AboutUs({ data }) {
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
-    { title: `${data?.title.ru}`, href: null },
+    { title: `${data?.title?.ru}`, href: null },
   ];
 
   return (
     <>
      <Head lang='ru'>
-        <title> {data?.title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <IntroBlock
-        mainImage={data?.aboutusBlock.mainImage}
-        secondImage={data?.aboutusBlock.secondImage}
+        mainImage={data?.aboutusBlock?.mainImage}
+        secondImage={data?.aboutusBlock?.secondImage}
         isSecondFlower={true}
         isSecondFlowerMobile={true}
         textBlock={
@@ -41,11 +41,11 @@ export default function AboutUs({ data }) {
             <Box sx={{ mt: size(40),'& div+div':{
               mt: size(60)
             }}}>
-            {data?.aboutusBlock.articles.map((article)=>(
+            {data?.aboutusBlock?.articles.map((article)=>(
                <Box key={article._key}>
                <TitleWithTextBlock
-                 title={article.title.ru}
-                 blocks={article.text.ru}
+                 title={article.title?.ru}
+                 blocks={article.text?.ru}
                ></TitleWithTextBlock>
              </Box>
 

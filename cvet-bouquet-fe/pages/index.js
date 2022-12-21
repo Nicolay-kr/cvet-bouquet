@@ -13,18 +13,18 @@ import CaruselBlockWithArch from '../src/components/CaruselBlockWithArch/Carusel
 import size from '../src/utils/size';
 import Head from 'next/head';
 
-export default function Home({data}) {
+export default function Home({ data }) {
   const router = useRouter();
   const lg = useMediaQuery('(min-width:1200px)');
-  const [mappedBouquets, setMappedBouquets] = useState(data.category);
-
+  const [mappedBouquets, setMappedBouquets] = useState(data?.category);
+  console.log(data)
 
   return (
     <>
       <Head lang='ru'>
-        <title>{data?.title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title>{data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
-      {data?.firstBlock.published ? (
+      {data?.firstBlock?.published ? (
         <IntroBlock
           mainImage={data?.firstBlock.mainImage}
           secondImage={data?.firstBlock.secondImage}
@@ -89,7 +89,7 @@ export default function Home({data}) {
                 <Box sx={{ my: 'auto' }}>
                   <BlockContentBox
                     fs={32}
-                    blocks={data?.firstBlock.text.ru}
+                    blocks={data?.firstBlock.text?.ru}
                   ></BlockContentBox>
                 </Box>
               ) : null}
@@ -122,12 +122,14 @@ export default function Home({data}) {
         ></IntroBlock>
       ) : null}
 
-      <CaruselBlockWithArch
-        bouquets={mappedBouquets}
-        title={'Выберите '}
-        subtitle={'категорию'}
-        isSpec={true}
-      ></CaruselBlockWithArch>
+      {mappedBouquets ? (
+        <CaruselBlockWithArch
+          bouquets={mappedBouquets}
+          title={'Выберите '}
+          subtitle={'категорию'}
+          isSpec={true}
+        ></CaruselBlockWithArch>
+      ) : null}
 
       {data?.popularBouqets ? (
         <CaruselBlock
@@ -138,7 +140,7 @@ export default function Home({data}) {
         ></CaruselBlock>
       ) : null}
 
-      {data?.secondBlock.published ? (
+      {data?.secondBlock?.published ? (
         <Box sx={{ mt: size(200) }}>
           <IntroBlock
             mainImage={data?.secondBlock.mainImage}
@@ -163,7 +165,7 @@ export default function Home({data}) {
                 >
                   <BlockContentBox
                     fs={32}
-                    blocks={data?.secondBlock.text.ru}
+                    blocks={data?.secondBlock.text?.ru}
                   ></BlockContentBox>
                 </Box>
                 <Box

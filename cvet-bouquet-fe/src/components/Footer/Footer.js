@@ -145,7 +145,7 @@ export default function Footer({ data }) {
                       color='white'
                       href={`tel:${data?.phone?.replace(/-|\s/gi, '')}`}
                     >
-                      {data.phone}
+                      {data?.phone}
                     </Typography>
                   </Typography>
                   <Typography variant='h6' component='li' color='white'>
@@ -153,9 +153,9 @@ export default function Footer({ data }) {
                       variant='h6'
                       component='a'
                       color='white'
-                      href={`mailto:${data.email}`}
+                      href={`mailto:${data?.email}`}
                     >
-                      {data.email}
+                      {data?.email}
                     </Typography>
                   </Typography>
                 </Typography>
@@ -196,13 +196,21 @@ export default function Footer({ data }) {
                 </Typography>
 
                 <Box columnGap={10} className={styles.iconsConteiner}>
-                  <IconButton component={Link} href='/' aria-label="TelegramIcon">
+                  <IconButton
+                    component={Link}
+                    href='/'
+                    aria-label='TelegramIcon'
+                  >
                     <Telegram />
                   </IconButton>
-                  <IconButton component={Link} href='/' aria-label="ViberIcon">
+                  <IconButton component={Link} href='/' aria-label='ViberIcon'>
                     <Viber />
                   </IconButton>
-                  <IconButton component={Link} href='/' aria-label="WhatsappIcon">
+                  <IconButton
+                    component={Link}
+                    href='/'
+                    aria-label='WhatsappIcon'
+                  >
                     <Whatsapp />
                   </IconButton>
                 </Box>
@@ -340,15 +348,16 @@ export default function Footer({ data }) {
                 >
                   Категории
                   {data?.categories?.categories?.map((category) => (
-                    <Typography
-                      key={category.title}
-                      variant='h6'
-                      component='li'
-                      color='white'
-                      onClick={() => router.push(`/${category.slug.current}`)}
-                    >
-                      {category.title}
-                    </Typography>
+                    <Box key={category?.title}>
+                      <Typography
+                        variant='h6'
+                        component='li'
+                        color='white'
+                        onClick={() => router.push(`/${category.slug.current}`)}
+                      >
+                        {category?.title}
+                      </Typography>
+                    </Box>
                   ))}
                 </Typography>
                 <Box className={styles.lastColumn}>
@@ -372,7 +381,7 @@ export default function Footer({ data }) {
                         }}
                         href={`tel:${data?.phone?.replace(/-|\s/gi, '')}`}
                       >
-                        {data.phone}
+                        {data?.phone}
                       </Typography>
                     </Typography>
                     <Typography variant='h6' component='li' color='white'>
@@ -403,9 +412,9 @@ export default function Footer({ data }) {
                           ml: '16px',
                           cursor: 'pointer',
                         }}
-                        href={`mailto:${data.email}`}
+                        href={`mailto:${data?.email}`}
                       >
-                        {data.email}
+                        {data?.email}
                       </Typography>
                     </Typography>
                   </Typography>
@@ -451,13 +460,25 @@ export default function Footer({ data }) {
                     )}
                   </Typography>
                   <Box columnGap={20} className={styles.iconsConteiner}>
-                    <IconButton component={Link} href='/' aria-label="TelegramIcon">
+                    <IconButton
+                      component={Link}
+                      href='/'
+                      aria-label='TelegramIcon'
+                    >
                       <Telegram />
                     </IconButton>
-                    <IconButton component={Link} href='/' aria-label="ViberIcon">
+                    <IconButton
+                      component={Link}
+                      href='/'
+                      aria-label='ViberIcon'
+                    >
                       <Viber />
                     </IconButton>
-                    <IconButton component={Link} href='/' aria-label="WhatsappIcon">
+                    <IconButton
+                      component={Link}
+                      href='/'
+                      aria-label='WhatsappIcon'
+                    >
                       <Whatsapp />
                     </IconButton>
                   </Box>

@@ -17,7 +17,7 @@ export default function AccordionCustom({ fieldList }) {
   return (
     <div>
       {fieldList.map((item, index) => {
-        const title = item.title.ru ? item.title.ru : item.title;
+        const title = item.title?.ru ? item.title?.ru : item.title;
         const desc = item.desc?.ru ? item.desc.ru : item.desc;
         return (
           <Accordion

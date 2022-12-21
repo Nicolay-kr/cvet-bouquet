@@ -114,7 +114,7 @@ export const BouquetPage = ({
                 <Image
                   fill={true}
                   style={{ objectFit: 'cover' }}
-                  src={urlFor(activeImg).width(400).url()}
+                  src={urlFor(activeImg)?.width(400)?.url()}
                   alt='main bouquet image'
                 ></Image>
               </CSSTransition>
@@ -145,7 +145,7 @@ export const BouquetPage = ({
                 {image && (
                   <Image
                     fill={true}
-                    src={urlFor(image).width(400).url()}
+                    src={urlFor(image)?.width(400)?.url()}
                     style={{ objectFit: 'cover' }}
                     alt='bouquet image'
                   ></Image>

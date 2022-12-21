@@ -6,32 +6,32 @@ import BouquetPage from '../../../src/components/bouquePage/BouquetPage';
 export const Bouquet = ({ data }) => {
   let breadCrumbsList = [];
 
-  if (data.category && data?.category?.title) {
+  if (data?.category && data?.category?.title) {
     breadCrumbsList = [
       { title: 'Главная', href: '/' },
       { title: 'Каталог', href: '/catalog' },
       {
-        title: data.category.title,
+        title: data?.category?.title,
         href: `/catalog/${data?.category.slug.current}`,
       },
-      { title: data?.bouquet.title.ru, href: null },
+      { title: data?.bouquet.title?.ru, href: null },
     ];
   } else {
     breadCrumbsList = [
       { title: 'Главная', href: '/' },
       { title: 'Каталог', href: '/catalog' },
-      { title: data?.bouquet.title.ru, href: null },
+      { title: data?.bouquet.title?.ru, href: null },
     ];
   }
 
   return (
     <>
       <Head lang='ru'>
-        <title>{data?.bouquet.title.ru} | ЦВЕТ•БУКЕТ</title>
+        <title>{data?.bouquet.title?.ru} | ЦВЕТ•БУКЕТ</title>
       </Head>
 
       <BouquetPage
-        bouquet={{ ...data?.bouquet, title: data?.bouquet.title.ru }}
+        bouquet={{ ...data?.bouquet, title: data?.bouquet.title?.ru }}
         breadCrumbsList={breadCrumbsList}
         generalInfo={data?.generalInfo}
       ></BouquetPage>

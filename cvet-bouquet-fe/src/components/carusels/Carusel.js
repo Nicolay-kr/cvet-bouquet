@@ -38,7 +38,7 @@ const Carusel = ({
             width={{ ...size(360), xs: '100%' }}
             isPremium={isPremium}
             id={bouquet._id}
-            title={bouquet.title.ru ? bouquet.title.ru : bouquet.title}
+            title={bouquet.title?.ru ? bouquet.title?.ru : bouquet.title}
             price={bouquet.price}
             imagePath={isPremium ? bouquet.images[0] : bouquet.mainImage}
             slug={bouquet.slug}
@@ -47,7 +47,7 @@ const Carusel = ({
           <BouquetCard
             width={{ ...size(360), xs: '100%' }}
             id={bouquet._id}
-            title={bouquet.title.ru}
+            title={bouquet.title?.ru}
             price={bouquet.price}
             categorySlug={`catalog/${categoryslug}`}
             imagePath={bouquet.images[0]}

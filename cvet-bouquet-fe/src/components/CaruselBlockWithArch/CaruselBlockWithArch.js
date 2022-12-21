@@ -65,8 +65,8 @@ export default function CaruselBlockWithArch({
             isSwiper={true}
             src={
               isPremium
-                ? urlFor(item.images[0]).width(400).url()
-                : urlFor(item.mainImage).width(400).url()
+                ? urlFor(item.images[0])?.width(400)?.url()
+                : urlFor(item.mainImage)?.width(400)?.url()
             }
           />
           <Box
@@ -94,7 +94,7 @@ export default function CaruselBlockWithArch({
               variant='h3'
               component='p'
             >
-              {item.title.ru ? item.title.ru : item.title}
+              {item.title?.ru ? item.title?.ru : item.title}
             </Typography>
             {isPremium ? (
               <Typography
