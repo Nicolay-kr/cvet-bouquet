@@ -42,6 +42,15 @@ const nextConfig = {
     SANITY_DATASET : process.env.SANITY_DATASET,
     SANITY_API_TOKEN : process.env.SANITY_API_TOKEN
   },
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: 'https://cvetbuket-admin.sanity.studio',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
