@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -14,7 +14,6 @@ import BreadCrumbs from '../breadcrubs/BreadCrumbs';
 import { useRouter } from 'next/router';
 import { urlFor } from '../../../sanity';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { useEffect } from 'react';
 import size from '../../utils/size';
 
 export const BouquetPage = ({

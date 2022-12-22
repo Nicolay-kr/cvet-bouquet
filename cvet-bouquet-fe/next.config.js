@@ -1,5 +1,8 @@
 // /** @type {import('next').NextConfig} */
 require('dotenv').config
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 const nextConfig = {
   reactStrictMode: false,
@@ -53,4 +56,5 @@ const nextConfig = {
   },
 }
 
+// module.exports = withBundleAnalyzer(nextConfig)
 module.exports = nextConfig
