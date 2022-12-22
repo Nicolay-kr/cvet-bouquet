@@ -80,7 +80,7 @@ export default function SimpleBouquetCard({
                   : {
                       xs: '60vw',
                       md: '38vw',
-                      xl: '25vw',
+                      lg: '25vw',
                     },
               }}
             >
