@@ -104,7 +104,7 @@ export default function IntroBlock({
           <Box sx={{ mt: { xs: '40px', lg: '60px' } }}>
             {mainImage ? (
               <ArcheMainConteiner
-                src={urlFor(mainImage)?.width(400)?.url()}
+                src={urlFor(mainImage)?.width(500)?.url()}
               ></ArcheMainConteiner>
             ) : null}
           </Box>

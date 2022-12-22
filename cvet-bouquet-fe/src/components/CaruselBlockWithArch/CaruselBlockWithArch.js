@@ -65,8 +65,8 @@ export default function CaruselBlockWithArch({
             isSwiper={true}
             src={
               isPremium
-                ? urlFor(item.images[0])?.width(400)?.url()
-                : urlFor(item.mainImage)?.width(400)?.url()
+                ? urlFor(item.images[0])?.width(500)?.url()
+                : urlFor(item.mainImage)?.width(500)?.url()
             }
           />
           <Box
