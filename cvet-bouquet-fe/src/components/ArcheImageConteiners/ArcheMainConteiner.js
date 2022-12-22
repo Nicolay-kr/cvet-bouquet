@@ -4,7 +4,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Image from 'next/future/image';
 
-export default function ArcheMainConteiner({ src, isSwiper = false }) {
+export default function ArcheMainConteiner({ src, isSwiper = false,priority=false}) {
   return (
     <Box
       sx={{
@@ -25,6 +25,7 @@ export default function ArcheMainConteiner({ src, isSwiper = false }) {
         src={src}
         alt='Bouquet image'
         fill={true}
+        priority={priority}
         style={{
           objectFit: 'cover',
           left: '1%',
