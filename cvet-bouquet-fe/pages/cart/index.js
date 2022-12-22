@@ -19,7 +19,7 @@ import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
 import Checkout from '../../src/components/Checkout/Checkout';
 import Link from '../../src/components/CustopNextComponents/Link';
 import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
-import { urlFor } from '../../sanity';
+import { sanityClient, urlFor } from '../../sanity';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import size from '../../src/utils/size';
@@ -104,7 +104,7 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
   );
 };
 
-export default function Cart() {
+export default function Cart({data}) {
   const bouquetsContext = useAppContext();
   const bouquets = bouquetsContext.bouquetsInCarts;
   const router = useRouter();
@@ -488,7 +488,7 @@ export default function Cart() {
         </Box>
 
         {isCheckout && bouquets.length > 0 ? (
-          <Checkout price={price}></Checkout>
+          <Checkout price={price} shopsList={data?.generalInfo?.shopsList}></Checkout>
         ) : null}
       </Box>):(<EmptyCart/>)}
 
@@ -496,3 +496,34 @@ export default function Cart() {
     </>
   );
 }
+
+
+export const getServerSideProps = async (pageContext) => {
+  const query = `{
+    "generalInfo":*[ _type == "generalInfo"][0]
+    {
+      _id,
+      phone,
+      email,
+      instagram,
+      worktime,
+      shopsList[],
+    }
+  }`;
+
+  const data = await sanityClient.fetch(query);
+
+  if (!data) {
+    return {
+      props: {
+        data: {},
+      },
+    };
+  } else {
+    return {
+      props: {
+        data,
+      },
+    };
+  }
+};

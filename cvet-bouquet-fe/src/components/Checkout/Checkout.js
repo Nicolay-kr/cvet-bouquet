@@ -10,7 +10,6 @@ import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import styles from './Checkout.module.css';
 import ruLocale from 'date-fns/locale/ru';
 import enLocale from 'date-fns/locale/en-US';
@@ -22,13 +21,13 @@ import SuccsessModal from '../SuccsessModal';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import size from '../../utils/size';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import {ru} from 'date-fns/locale';
+import { ru } from 'date-fns/locale';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-
-export default function Checkout({price}) {
+export default function Checkout({ price, shopsList }) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
   const [isOpenSuccessModal, setIsOpenSuccessModal] = React.useState(false);
+  console.log(shopsList);
 
   const defaultSchema = yup
     .object({
@@ -49,19 +48,6 @@ export default function Checkout({price}) {
       // customerTime: yup.string().required('Это поле должно быть заполнено'),
     })
     .required();
-
-  const shopsList = [
-    {
-      adress: 'г. Минск, пр. Победителей, 27, Славянский квартал',
-      time: 'Время работы: пн-вс 9:00-21:00',
-      metro: 'Немига',
-    },
-    // {
-    //   adress: 'г. Минск, пр. Независимости, 104',
-    //   time: 'Время работы: пн-вс 9:00-21:00',
-    //   metro: 'Московская',
-    // },
-  ];
 
   const checkoutOptionsDefault = {
     delivery: true,
@@ -86,7 +72,7 @@ export default function Checkout({price}) {
     customerEnter: '',
     customerFloor: '',
     customerFlat: '',
-    price:price,
+    price: price,
   };
 
   const [isPrivareHouse, setIsPrivareHouse] = React.useState(false);
@@ -300,7 +286,7 @@ export default function Checkout({price}) {
                   <DatePicker
                     sx={{
                       fontSize: '16px',
-                      backGroundColor:"red",
+                      backGroundColor: 'red',
                       '& button': { fontSize: '16px !important' },
                     }}
                     label='Выберите дату'
@@ -475,37 +461,43 @@ export default function Checkout({price}) {
           </Box>
         ) : (
           <FormControl>
-            {shopsList.map((shop, index) => (
-              <FormControlLabel
-                key={index}
-                sx={{ mb: '20px' }}
-                value={shop.adress}
-                control={<Radio checked={delivery === shop.adress} />}
-                onChange={handleChangeDeliveryAdress}
-                label={<ShopsList shop={shop} delivery={delivery}></ShopsList>}
-              />
-            ))}
+            {shopsList.map((shop, index) => {
+              if (shop.published) {
+                return (
+                  <FormControlLabel
+                    key={index}
+                    sx={{ mb: '20px' }}
+                    value={shop.adress}
+                    control={<Radio checked={delivery === shop.adress} />}
+                    onChange={handleChangeDeliveryAdress}
+                    label={
+                      <ShopsList shop={shop} delivery={delivery}></ShopsList>
+                    }
+                  />
+                );
+              }
+            })}
           </FormControl>
         )}
-         <Controller
-                name='customerComment'
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    multiline
-                    style={{ height: '100%' }}
-                    sx={{
-                      mt: '0',
-                      '& div': { height: '100%' },
-                      '& textarea': { height: '100% !important' },
-                    }}
-                    rows={6}
-                    id='customerComment'
-                    label={'Комментарии к заказу, текст для открытки'}
-                    {...field}
-                  />
-                )}
-              />
+        <Controller
+          name='customerComment'
+          control={control}
+          render={({ field }) => (
+            <TextField
+              multiline
+              style={{ height: '100%' }}
+              sx={{
+                mt: '0',
+                '& div': { height: '100%' },
+                '& textarea': { height: '100% !important' },
+              }}
+              rows={6}
+              id='customerComment'
+              label={'Комментарии к заказу, текст для открытки'}
+              {...field}
+            />
+          )}
+        />
 
         <CheckoutsButtons
           title={'Выберите способ оплаты'}
