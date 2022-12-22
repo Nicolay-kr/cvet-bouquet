@@ -187,7 +187,7 @@ export default function Footer({ data }) {
                     variant='h6'
                     component='li'
                     color='white'
-                    onClick={() => router.push('/delivery')}
+                    onClick={() => router.push(data?.telegram?data?.telegram:'/')}
                   >
                     <Typography variant='h6' component='p' color='white'>
                       Телеграм канал
