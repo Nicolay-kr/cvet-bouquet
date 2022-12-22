@@ -28,7 +28,7 @@ export default function ArcheMainConteiner({ src, isSwiper = false }) {
         style={{
           objectFit: 'cover',
           left: '1%',
-          top: '-1%',
+          top: isSwiper? '0%':'-1%',
         }}
       ></Image>
     </Box>
