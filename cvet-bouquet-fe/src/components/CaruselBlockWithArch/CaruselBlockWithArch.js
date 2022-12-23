@@ -16,7 +16,7 @@ import { Swiper } from 'swiper/react';
 import { SwiperSlide } from 'swiper/react';
 import { EffectFade, Controller } from 'swiper';
 import Link from '../CustopNextComponents/Link';
-import BigFlower from '../../../public/assets/images/bigFlower.svg';
+import bigFlower from '../../../public/assets/images/bigFlower.png';
 import size from '../../utils/size';
 
 // Import Swiper styles
@@ -155,8 +155,9 @@ export default function CaruselBlockWithArch({
 
       <Box sx={{ display: 'flex', alignItems: 'end', position: 'relative' }}>
         <Box
-          component={BigFlower}
-          viewBox="0 0 350 341"
+          component={Image}
+          src={bigFlower}
+          alt='fower imgage'
           sx={{
             position: 'absolute',
             top: isPremium ? '-4vw' : '-12vw',

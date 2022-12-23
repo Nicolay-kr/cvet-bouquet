@@ -4,10 +4,11 @@ import Box from '@mui/material/Box';
 import ArcheMainConteiner from '../ArcheImageConteiners/ArcheMainConteiner';
 import { urlFor } from '../../../sanity';
 import ArcheSecondConteiner from '../ArcheImageConteiners/ArcheSecondConteiner';
-import BigFlower from '../../../public/assets/images/bigFlower.svg';
+import bigFlower from '../../../public/assets/images/bigFlower.png';
 import MobileBlock from '../MobileBlock';
 import DesktopBlock from '../DesktopBlock';
 import size from '../../utils/size';
+import Image from 'next/future/image';
 
 export default function IntroBlock({
   mainImage,
@@ -28,31 +29,32 @@ export default function IntroBlock({
     >
       {isSecondFlower ? (
         <DesktopBlock>
-          <Box
-            viewBox='0 0 350 341'
-            component={BigFlower}
-            sx={{
+          <Image
+            style={{
               position: 'absolute',
               top: '0',
               right: '0',
               width: '40vw',
               height: '40vw',
             }}
-          ></Box>
+            src={bigFlower}
+            alt='flower'
+          ></Image>
         </DesktopBlock>
       ) : null}
 
       {isMainFlower ? (
         <Box
-          viewBox='0 0 350 341'
-          component={BigFlower}
+          component={Image}
           sx={{
             position: 'absolute',
             top: { xs: '-10vw', lg: '-2vw' },
-            left: { xs: '-8vw', lg: '39vw' },
+            left: { xs: '-8vw', lg: '40vw' },
             width: { xs: '80vw', lg: '47vw' },
             height: { xs: '80vw', lg: '47vw' },
           }}
+          src={bigFlower}
+          alt='flower'
         ></Box>
       ) : null}
 
@@ -86,24 +88,24 @@ export default function IntroBlock({
         >
           {isSecondFlowerMobile ? (
             <MobileBlock>
-              <Box
-                viewBox='0 0 350 341'
-                component={BigFlower}
-                sx={{
+              <Image
+                style={{
                   position: 'absolute',
                   right: '-5%',
                   top: '-15%',
                   width: '80vw',
                   height: '80vw',
                 }}
-              ></Box>
+                src={bigFlower}
+                alt='flower'
+              ></Image>
             </MobileBlock>
           ) : null}
 
           <Box sx={{ mt: { xs: '40px', lg: '60px' } }}>
             {mainImage ? (
               <ArcheMainConteiner
-              priority={true}
+                priority={true}
                 src={urlFor(mainImage)?.width(500)?.url()}
               ></ArcheMainConteiner>
             ) : null}

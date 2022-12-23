@@ -5,7 +5,8 @@ import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
 import DoubleBlock from '../src/components/doubleBlock/DoubleBlock';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import BigFlower from '../public/assets/images/bigFlower.svg';
+import Image from 'next/future/image';
+import bigFlower from '../public/assets/images/bigFlower.png';
 import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
@@ -47,19 +48,19 @@ export default function DeliveryPage({ data }) {
           }}
         >
           {lg ? (
-            <Box
-              viewBox='0 0 350 341'
-              component={BigFlower}
-              sx={{
-                position: 'absolute',
-                top: '0',
-                // right: '0',
-                width: '30vw',
-                height: '30vw',
-                alignSelf: 'center',
-                justifySelf: 'center',
-              }}
-            ></Box>
+            <Image
+            style={{
+              position: 'absolute',
+              top: '0',
+              // right: '0',
+              width: '30vw',
+              height: '30vw',
+              alignSelf: 'center',
+              justifySelf: 'center',
+            }}
+            src={bigFlower}
+            alt='flower'
+          ></Image>
           ) : null}
 
           <TitleWithTextBlock

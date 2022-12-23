@@ -4,20 +4,21 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
 import Link from '../CustopNextComponents/Link';
-import LogoFlower from '../../../public/assets/images/logo_flower_white.svg';
-import LogoText from '../../../public/assets/images/logo_text_white.svg';
-import Visa from '../../../public/assets/icons/visa.svg';
-import Mastercard from '../../../public/assets/icons/mastercard.svg';
-import Belcard from '../../../public/assets/icons/belcard.svg';
-import Telegram from '../../../public/assets/icons/telegram.svg';
-import Viber from '../../../public/assets/icons/viber.svg';
-import Whatsapp from '../../../public/assets/icons/whatsapp.svg';
+import logoFlower from '../../../public/assets/images/logo_flower_white.png';
+import logoText from '../../../public/assets/images/logo_text_white.png';
+import visa from '../../../public/assets/icons/visa.png';
+import mastercard from '../../../public/assets/icons/mastercard.png';
+import belcard from '../../../public/assets/icons/belcard.png';
+import telegram from '../../../public/assets/icons/telegram.png';
+import viber from '../../../public/assets/icons/viber.png';
+import whatsapp from '../../../public/assets/icons/whatsapp.png';
 import Letter from '../../../public/assets/icons/letter.svg';
 import Phone from '../../../public/assets/icons/phone.svg';
 import Instamini from '../../../public/assets/icons/insta_mini.svg';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import size from '../../utils/size';
+import Image from 'next/future/image';
 
 export default function Footer({ data }) {
   const router = useRouter();
@@ -42,10 +43,8 @@ export default function Footer({ data }) {
                   href='/'
                   sx={{ gridColumnStart: '1', gridColumnEnd: '3' }}
                 >
-                  <LogoFlower />
-                  <Box sx={{ mt: { ...size(20), xs: 20 } }}>
-                    <LogoText />
-                  </Box>
+                  <Image src={logoFlower} alt='logo flower'></Image>
+                  <Image src={logoText} alt='logo text'></Image>
                 </Box>
                 <Typography
                   variant='h6'
@@ -187,7 +186,9 @@ export default function Footer({ data }) {
                     variant='h6'
                     component='li'
                     color='white'
-                    onClick={() => router.push(data?.telegram?data?.telegram:'/')}
+                    onClick={() =>
+                      router.push(data?.telegram ? data?.telegram : '/')
+                    }
                   >
                     <Typography variant='h6' component='p' color='white'>
                       Телеграм канал
@@ -198,20 +199,20 @@ export default function Footer({ data }) {
                 <Box columnGap={10} className={styles.iconsConteiner}>
                   <IconButton
                     component={Link}
-                    href='/'
+                    href={data?.telegram ? data?.telegram : '/'}
                     aria-label='TelegramIcon'
                   >
-                    <Telegram />
+                    <Image src={telegram} alt='telegram icon'></Image>
                   </IconButton>
-                  <IconButton component={Link} href='/' aria-label='ViberIcon'>
-                    <Viber />
+                  <IconButton component={Link} href={data?.viber ? data?.viber : '/'} aria-label='ViberIcon'>
+                    <Image src={viber} alt='viber icon'></Image>
                   </IconButton>
                   <IconButton
                     component={Link}
-                    href='/'
+                    href={data?.whatsapp ? data?.whatsapp : '/'}
                     aria-label='WhatsappIcon'
                   >
-                    <Whatsapp />
+                    <Image src={whatsapp} alt='whatsapp icon'></Image>
                   </IconButton>
                 </Box>
                 {/* </Box> */}
@@ -328,16 +329,14 @@ export default function Footer({ data }) {
                   </Typography>
 
                   <Box columnGap={12} className={styles.iconsConteiner}>
-                    <Visa />
-                    <Mastercard />
-                    <Belcard />
+                    <Image src={visa} alt='visa icon'></Image>
+                    <Image src={mastercard} alt='mastercard icon'></Image>
+                    <Image src={belcard} alt='belcard icon'></Image>
                   </Box>
                 </Box>
                 <Box className={styles.logoConteiner} component={Link} href='/'>
-                  <LogoFlower />
-                  <Box sx={{ mt: { ...size(20), xs: 20 } }}>
-                    <LogoText />
-                  </Box>
+                  <Image src={logoFlower} alt='logo flower'></Image>
+                  <Image src={logoText} alt='logo text'></Image>
                 </Box>
                 <Typography
                   variant='h6'
@@ -462,24 +461,24 @@ export default function Footer({ data }) {
                   <Box columnGap={20} className={styles.iconsConteiner}>
                     <IconButton
                       component={Link}
-                      href={data?.telegram?data?.telegram:'/'}
+                      href={data?.telegram ? data?.telegram : '/'}
                       aria-label='TelegramIcon'
                     >
-                      <Telegram />
+                      <Image src={telegram} alt='telegram icon'></Image>
                     </IconButton>
                     <IconButton
                       component={Link}
-                      href={data?.viber?data?.viber:'/'}
+                      href={data?.viber ? data?.viber : '/'}
                       aria-label='ViberIcon'
                     >
-                      <Viber />
+                      <Image src={viber} alt='viber icon'></Image>
                     </IconButton>
                     <IconButton
                       component={Link}
-                      href={data?.whatsapp?data?.whatsapp:'/'}
+                      href={data?.whatsapp ? data?.whatsapp : '/'}
                       aria-label='WhatsappIcon'
                     >
-                      <Whatsapp />
+                      <Image src={whatsapp} alt='whatsapp icon'></Image>
                     </IconButton>
                   </Box>
                 </Box>
@@ -513,9 +512,9 @@ export default function Footer({ data }) {
           {lg ? (
             <>
               <Box columnGap={12} className={styles.iconsConteiner}>
-                <Visa />
-                <Mastercard />
-                <Belcard />
+                <Image src={visa} alt='visa icon'></Image>
+                <Image src={mastercard} alt='mastercard icon'></Image>
+                <Image src={belcard} alt='belcard icon'></Image>
               </Box>
               <Box className={styles.info}>
                 <Box className={styles.infoContent}>

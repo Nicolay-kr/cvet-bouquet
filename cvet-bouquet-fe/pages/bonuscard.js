@@ -4,7 +4,8 @@ import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
 import DoubleBlock from '../src/components/doubleBlock/DoubleBlock';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import BigFlower from '../public/assets/images/bigFlower.svg';
+import Image from 'next/future/image';
+import bigFlower from '../public/assets/images/bigFlower.png';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 import size from '../src/utils/size';
@@ -46,18 +47,19 @@ export default function BonusCardPage({ data }) {
           }}
         >
           {lg ? (
-            <Box
-            component={BigFlower}
-            viewBox="0 0 350 341"
-            sx={{
-              position: 'absolute',
-                  top: '6vw',
-                  width: '40vw',
-                  height: '40vw',
-                  alignSelf: 'center',
-                  justifySelf: 'center',
-            }}
-          ></Box>
+               <Image
+               style={{
+                 position: 'absolute',
+                 top: '5vw',
+                 // right: '0',
+                 width: '40vw',
+                 height: '40vw',
+                 alignSelf: 'center',
+                 justifySelf: 'center',
+               }}
+               src={bigFlower}
+               alt='flower'
+             ></Image>
           ) : null}
 
           <TitleWithTextBlock

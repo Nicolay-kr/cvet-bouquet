@@ -1,10 +1,11 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import BigFlower from '../../../public/assets/images/bigFlower.svg';
+import bigFlower from '../../../public/assets/images/bigFlower.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
 import size from '../../utils/size';
+import Image from 'next/future/image';
 
 export default function EmptyCart() {
   const router = useRouter();
@@ -17,8 +18,9 @@ export default function EmptyCart() {
         }}
       >
         <Box
-          component={BigFlower}
-          viewBox='0 0 350 341'
+          component={Image}
+          src={bigFlower}
+          alt='flower image'
           sx={{
             position: 'absolute',
             top: { xs: '40vh', lg: '35vh' },

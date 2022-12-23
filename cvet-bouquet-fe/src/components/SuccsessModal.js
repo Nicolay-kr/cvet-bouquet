@@ -4,10 +4,9 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
-import Image from 'next/future/image';
 import IconButton from '@mui/material/IconButton';
 import Fade from '@mui/material/Fade';
-import cros from '../../public/assets/icons/cros.svg';
+import Cros from '../../public/assets/icons/cros.svg';
 import Button from '@mui/material/Button';
 
 
@@ -58,10 +57,9 @@ export default function SuccsessModal({
               aria-label="CrossIcon"
             >
               <Box
-                component={Image}
+                component={Cros}
                 sx={{ width: '24px', height: '24px' }}
-                src={cros}
-                alt='cros icon'
+                viewBox="0 0 18 18"
               ></Box>
             </IconButton>
 
