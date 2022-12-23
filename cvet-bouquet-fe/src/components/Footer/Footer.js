@@ -336,7 +336,7 @@ export default function Footer({ data }) {
                 </Box>
                 <Box className={styles.logoConteiner} component={Link} href='/'>
                   <Image src={logoFlower} quality={100} width={90}  alt='logo flower'></Image>
-                  <Image src={logoText} quality={100} width={90}  alt='logo text'></Image>
+                  <Image src={logoText} quality={100} width={236}  alt='logo text'></Image>
                 </Box>
                 <Typography
                   variant='h6'
