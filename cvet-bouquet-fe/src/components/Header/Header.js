@@ -109,7 +109,7 @@ export const Header = ({ data }) => {
             pr: { xs: '0', lg: '20px' },
           }}
         >
-          <Image src={logo} style={{objectFit:'contain'}} alt='logo '></Image>
+          <Image src={logo} style={{objectFit:'contain'}} quality={100} width={500} alt='logo '></Image>
           {/* <Logo width={'100%'} height={'100%'}/> */}
         </Box>
         <Box sx={{ display: { xs: 'none', lg: 'block', alignSelf: 'center' } }}>

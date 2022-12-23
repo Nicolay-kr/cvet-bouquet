@@ -43,8 +43,8 @@ export default function Footer({ data }) {
                   href='/'
                   sx={{ gridColumnStart: '1', gridColumnEnd: '3' }}
                 >
-                  <Image src={logoFlower} alt='logo flower'></Image>
-                  <Image src={logoText} alt='logo text'></Image>
+                  <Image src={logoFlower} quality={100} width={90} alt='logo flower' ></Image>
+                  <Image src={logoText} quality={100} width={236} alt='logo text'></Image>
                 </Box>
                 <Typography
                   variant='h6'
@@ -202,17 +202,17 @@ export default function Footer({ data }) {
                     href={data?.telegram ? data?.telegram : '/'}
                     aria-label='TelegramIcon'
                   >
-                    <Image src={telegram} alt='telegram icon'></Image>
+                    <Image src={telegram} alt='telegram icon' quality={100} width={46} ></Image>
                   </IconButton>
                   <IconButton component={Link} href={data?.viber ? data?.viber : '/'} aria-label='ViberIcon'>
-                    <Image src={viber} alt='viber icon'></Image>
+                    <Image src={viber} alt='viber icon' quality={100} width={46} ></Image>
                   </IconButton>
                   <IconButton
                     component={Link}
                     href={data?.whatsapp ? data?.whatsapp : '/'}
                     aria-label='WhatsappIcon'
                   >
-                    <Image src={whatsapp} alt='whatsapp icon'></Image>
+                    <Image src={whatsapp} alt='whatsapp icon' quality={100} width={46} ></Image>
                   </IconButton>
                 </Box>
                 {/* </Box> */}
@@ -329,9 +329,9 @@ export default function Footer({ data }) {
                   </Typography>
 
                   <Box columnGap={12} className={styles.iconsConteiner}>
-                    <Image src={visa} alt='visa icon'></Image>
-                    <Image src={mastercard} alt='mastercard icon'></Image>
-                    <Image src={belcard} alt='belcard icon'></Image>
+                    <Image src={visa} alt='visa icon' quality={100} width={62} ></Image>
+                    <Image src={mastercard} alt='mastercard icon' quality={100} width={62} ></Image>
+                    <Image src={belcard} alt='belcard icon' quality={100} width={62} ></Image>
                   </Box>
                 </Box>
                 <Box className={styles.logoConteiner} component={Link} href='/'>
@@ -464,21 +464,21 @@ export default function Footer({ data }) {
                       href={data?.telegram ? data?.telegram : '/'}
                       aria-label='TelegramIcon'
                     >
-                      <Image src={telegram} alt='telegram icon'></Image>
+                      <Image src={telegram} alt='telegram icon' quality={100} width={46} ></Image>
                     </IconButton>
                     <IconButton
                       component={Link}
                       href={data?.viber ? data?.viber : '/'}
                       aria-label='ViberIcon'
                     >
-                      <Image src={viber} alt='viber icon'></Image>
+                      <Image src={viber} alt='viber icon' quality={100} width={46} ></Image>
                     </IconButton>
                     <IconButton
                       component={Link}
                       href={data?.whatsapp ? data?.whatsapp : '/'}
                       aria-label='WhatsappIcon'
                     >
-                      <Image src={whatsapp} alt='whatsapp icon'></Image>
+                      <Image src={whatsapp} alt='whatsapp icon' quality={100} width={46} ></Image>
                     </IconButton>
                   </Box>
                 </Box>
@@ -512,9 +512,9 @@ export default function Footer({ data }) {
           {lg ? (
             <>
               <Box columnGap={12} className={styles.iconsConteiner}>
-                <Image src={visa} alt='visa icon'></Image>
-                <Image src={mastercard} alt='mastercard icon'></Image>
-                <Image src={belcard} alt='belcard icon'></Image>
+                <Image src={visa} alt='visa icon' quality={100} width={62} ></Image>
+                <Image src={mastercard} alt='mastercard icon' quality={100} width={62} ></Image>
+                <Image src={belcard} alt='belcard icon' quality={100} width={62} ></Image>
               </Box>
               <Box className={styles.info}>
                 <Box className={styles.infoContent}>

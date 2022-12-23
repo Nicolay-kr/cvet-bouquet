@@ -52,7 +52,6 @@ export default function CaruselBlockWithArch({
           sx={{
             textDecoration: 'none',
             mt: size(200),
-            top: { xs: isPremium ? '6px' : '0px', sm: '0' },
             position: 'relative',
           }}
           href={`/catalog/${
