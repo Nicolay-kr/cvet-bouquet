@@ -1,14 +1,78 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import size from '../../utils/size';
+import { sanityClient } from '../../../sanity';
+import Snackbar from '@mui/material/Snackbar';
 
-const Promocode = ({ isActive, promocode, handleClickPromoCode, handlePromocodeChange }) => {
+const Promocode = ({ setPromoCodeValue }) => {
+  const [promocode, setPromocode] = React.useState('');
+  const [isPromoCodeActive, setIsPromoCodeActive] = React.useState(false);
+  const [isOpenSnack, setIsOpenSnack] = React.useState(false);
+  const [snackMessage, setSnackMessage] = React.useState('');
+  const fetchData = useCallback(async (promocode) => {
+    sanityClient
+      .fetch(
+        `*[ _type == "promocode" && code=="${promocode}"][0]{
+          active,
+          title,
+          percent,
+          code,
+        }`
+      )
+      .then((data) => {
+        console.log(data);
+        if (data) {
+          if(data.active){
+            setSnackMessage('Промокод принят')
+            setPromoCodeValue(data);
+            setIsOpenSnack(true)
+
+          }else{
+            setSnackMessage('Промокод не активен')
+            setIsOpenSnack(true)
+          }
+          
+        } else {
+          setSnackMessage('Промокод не найден')
+          setIsOpenSnack(true)
+        }
+      })
+
+      .catch(console.error);
+  }, []);
+
+  const handleCheckPromocode = () => {
+    fetchData(promocode);
+  };
+
+  const handlePromocodeChange = (e) => {
+    setPromocode(e.target.value);
+  };
+
+  const handleClickPromoCode = () => {
+    setIsPromoCodeActive(true);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setIsOpenSnack(false);
+  };
+
   return (
     <>
-      {isActive ? (
+      <Snackbar
+        autoHideDuration={1000}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={isOpenSnack}
+        message={snackMessage}
+        onClose={handleCloseSnackbar}
+      />
+      {isPromoCodeActive ? (
         <Box
           sx={{
             display: 'flex',
@@ -34,23 +98,25 @@ const Promocode = ({ isActive, promocode, handleClickPromoCode, handlePromocodeC
               borderRadius: '0 8px 8px 0',
             }}
             variant='contained'
+            onClick={handleCheckPromocode}
           >
             Применить
           </Button>
         </Box>
-      ) : (      <Typography
-        sx={{
-          color: 'primary.main',
-          mt: 2,
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        variant='h5'
-        component='p'
-        onClick={handleClickPromoCode}
-      >
-        Ввести промокод
-      </Typography>)}
+      ) : (
+        <Typography
+          sx={{
+            color: 'primary.main',
+            textDecoration: 'underline',
+            cursor: 'pointer',
+          }}
+          variant='h5'
+          component='p'
+          onClick={handleClickPromoCode}
+        >
+          Ввести промокод
+        </Typography>
+      )}
     </>
   );
 };

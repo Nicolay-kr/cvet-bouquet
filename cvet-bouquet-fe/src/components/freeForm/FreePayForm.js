@@ -99,7 +99,7 @@ export default function FreePayForm({ isContactsForm = false }) {
 
   const onSubmit = (data) => {
     setIsOpenSuccessModal(true);
-    addClient(data);
+    // addClient(data);
   };
 
   const onClose = () => {

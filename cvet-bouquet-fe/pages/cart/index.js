@@ -104,25 +104,17 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
   );
 };
 
-export default function Cart({data}) {
+export default function Cart({ data }) {
   const bouquetsContext = useAppContext();
   const bouquets = bouquetsContext.bouquetsInCarts;
   const router = useRouter();
   const [isCheckout, setIsCheckout] = React.useState(
     router.query.isCheckout ? router.query.isCheckout : false
   );
-  const [isPromoCodeActive, setIsPromoCodeActivet] = React.useState(false);
-  const [promocode, setPromocode] = React.useState('');
+  const [promoCodeValue, setPromoCodeValue] = React.useState(null);
 
   const handleToCheckout = () => {
     setIsCheckout(true);
-  };
-
-  const handleClickPromoCode = () => {
-    setIsPromoCodeActivet(true);
-  };
-  const handlePromocodeChange = (e) => {
-    setPromocode(e.target.value);
   };
 
   const removeFromCart = (e, id) => {
@@ -141,362 +133,427 @@ export default function Cart({data}) {
   const delivery =
     price < bouquets[0]?.deliveryMin ? bouquets[0].deliveryPrice : 0;
 
+  const orderSumma =
+    promoCodeValue && promoCodeValue.percent
+      ? +(price + delivery) -
+        +((price + delivery) * (promoCodeValue.percent / 100)).toFixed(2)
+      : +(price + delivery);
+
   return (
     <>
       <Head>
         <title>Корзина | ЦВЕТ•БУКЕТ</title>
       </Head>
 
-      {bouquets.length?(  <Box
-        sx={{
-          px: { xs: '5%', lg: '10%' },
-          pb: 10,
-        }}
-      >
+      {bouquets.length ? (
         <Box
-          className={styles.conteiner}
           sx={{
-            display: { xs: 'none', lg: 'grid' },
-            gridTemplateColumns: { sx: '1fr', lg: '8fr 3fr' },
-            columnGap: 'max(30px,1.5vw)',
-            rawGap: 'max(30px,1.5vw)',
+            px: { xs: '5%', lg: '10%' },
+            pb: 10,
           }}
         >
-          <Box>
-          <BreadCrumbs
-          breadCrumbsList={breadCrumbsList}
-          isInIntro={true}
-        ></BreadCrumbs>
-            <TableContainer sx={{ width: '100%', mb: '24px' }} component='div'>
-              <Table sx={{ minWidth: 650 }} aria-label='simple table'>
-                <TableHead>
-                  <TableRow>
-                    <TableCell sx={{ width: '40%' }}></TableCell>
-                    <TableCell align='center'>Цена</TableCell>
-                    <TableCell align='center'>Количество</TableCell>
-                    <TableCell align='center'>Сумма</TableCell>
-                    <TableCell align='center'></TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {bouquets.map((bouquet) => (
-                    <CartRow
-                      key={bouquet.id}
-                      id={bouquet.id}
-                      title={bouquet.title}
-                      price={bouquet.price}
-                      image={bouquet.imagePath}
-                      quantity={bouquet.quantity}
-                      slug={bouquet.slug}
-                      categorySlug={bouquet.categorySlug}
-                    ></CartRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Box>
-          <Paper
+          <Box
+            className={styles.conteiner}
             sx={{
-              ml: { sm: '10%', xl: '20%' },
-              px: '10%',
-              bgcolor: 'fon.main',
-              height: 'fit-content',
+              display: { xs: 'none', lg: 'grid' },
+              gridTemplateColumns: { sx: '1fr', lg: '8fr 3fr' },
+              columnGap: 'max(30px,1.5vw)',
+              rawGap: 'max(30px,1.5vw)',
             }}
-            elevation={3}
-            className={styles.summConteiner}
           >
+            <Box>
+              <BreadCrumbs
+                breadCrumbsList={breadCrumbsList}
+                isInIntro={true}
+              ></BreadCrumbs>
+              <TableContainer
+                sx={{ width: '100%', mb: '24px' }}
+                component='div'
+              >
+                <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell sx={{ width: '40%' }}></TableCell>
+                      <TableCell align='center'>Цена</TableCell>
+                      <TableCell align='center'>Количество</TableCell>
+                      <TableCell align='center'>Сумма</TableCell>
+                      <TableCell align='center'></TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {bouquets.map((bouquet) => (
+                      <CartRow
+                        key={bouquet.id}
+                        id={bouquet.id}
+                        title={bouquet.title}
+                        price={bouquet.price}
+                        image={bouquet.imagePath}
+                        quantity={bouquet.quantity}
+                        slug={bouquet.slug}
+                        categorySlug={bouquet.categorySlug}
+                      ></CartRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Box>
+            <Paper
+              sx={{
+                ml: { sm: '10%' },
+                px: '10%',
+                bgcolor: 'fon.main',
+                height: 'fit-content',
+              }}
+              elevation={3}
+              className={styles.summConteiner}
+            >
+              <Typography sx={{ fontWeight: 700 }} variant='h4'>
+                В корзине
+              </Typography>
+              <Typography
+                sx={{ color: 'primary.main', mt: 2 }}
+                variant='h5'
+                component='p'
+              >
+                {bouquets.reduce((akk, item) => akk + item.quantity, 0)} товаров
+              </Typography>
+              <Promocode setPromoCodeValue={setPromoCodeValue}></Promocode>
+              <Box
+                mt={10}
+                className={styles.deliveryPrice}
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography variant='h5' component='p' mr={8}>
+                  Доставка
+                </Typography>
+                <span className={styles.price}>
+                  <Typography variant='h4'>{delivery}</Typography>
+                  <sup>BYN</sup>
+                </span>
+              </Box>
+              {promoCodeValue ? (
+                <Box
+                  mt={10}
+                  className={styles.deliveryPrice}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Typography variant='h5' component='p' mr={8}>
+                    Промокод{' '}
+                    <Box component='span' sx={{ fontWeight: '600' }}>
+                      {promoCodeValue.code}
+                    </Box>
+                  </Typography>
+                  <span className={styles.price}>
+                    <Typography variant='h4'>
+                      -
+                      {(
+                        (price + delivery) *
+                        (promoCodeValue.percent / 100)
+                      ).toFixed(2)}
+                    </Typography>
+                    <sup>BYN</sup>
+                  </span>
+                </Box>
+              ) : null}
+
+              <Divider light sx={{ width: '100%', my: '20px' }} />
+
+              <Box className={styles.deliveryPrice}>
+                <Typography variant='h5' component='p' mr={8}>
+                  Итого
+                </Typography>
+                <Typography
+                  component='div'
+                  sx={{
+                    fontWeight: 700,
+                  }}
+                  className={styles.price}
+                >
+                  <Typography
+                    variant='h4'
+                    sx={{
+                      fontWeight: 700,
+                    }}
+                  >
+                    {orderSumma}
+                  </Typography>
+                  <sup>BYN</sup>
+                </Typography>
+              </Box>
+
+              {isCheckout ? (
+                <Typography
+                  component={Link}
+                  href='/catalog'
+                  variant='h5'
+                  sx={{
+                    textDecoration: 'underline',
+                    mt: 10,
+                  }}
+                >
+                  Вернуться в католог
+                </Typography>
+              ) : (
+                <Button
+                  sx={{
+                    mt: 10,
+                    height: '36px',
+                  }}
+                  variant='contained'
+                  onClick={handleToCheckout}
+                >
+                  К оформлению
+                </Button>
+              )}
+            </Paper>
+          </Box>
+
+          {/* mobile version */}
+          <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
+            <BreadCrumbs
+              breadCrumbsList={breadCrumbsList}
+              isInIntro={true}
+            ></BreadCrumbs>
+          </Box>
+
+          <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
             <Typography sx={{ fontWeight: 700 }} variant='h4'>
               В корзине
             </Typography>
             <Typography
-              sx={{ color: 'primary.main', mt: 2 }}
+              sx={{ color: 'primary.main', my: '12px' }}
               variant='h5'
               component='p'
             >
               {bouquets.reduce((akk, item) => akk + item.quantity, 0)} товаров
             </Typography>
-            <Promocode
-              isActive={isPromoCodeActive}
-              promocode={promocode}
-              handleClickPromoCode={handleClickPromoCode}
-              handlePromocodeChange={handlePromocodeChange}
-            ></Promocode>
-            <Box mt={10} className={styles.deliveryPrice}>
-              <Typography
-                variant='h5'
-                component='p'
-                mr={8}
-              >
-                Доставка
-              </Typography>
-              <span className={styles.price}>
-                <Typography variant='h4'>{delivery}</Typography>
-                <sup>BYN</sup>
-              </span>
-            </Box>
 
-            <Divider light sx={{ width: '100%', my: '20px' }} />
-
-            <Box className={styles.deliveryPrice}>
-              <Typography
-                variant='h5'
-                component='p'
-                mr={8}
-              >
-                Итого
-              </Typography>
-              <Typography
-                component='div'
-                sx={{
-                  fontWeight: 700,
-                }}
-                className={styles.price}
-              >
-                <Typography
-                  variant='h4'
+            {bouquets.map((bouquet) => (
+              <Box key={bouquet.id}>
+                <Divider />
+                <Box
                   sx={{
-                    fontWeight: 700,
+                    py: '14px',
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 3fr',
+                    columnGap: 'max(30px,1.5vw)',
                   }}
                 >
-                  {price + delivery}
-                </Typography>
-                <sup>BYN</sup>
-              </Typography>
-            </Box>
-            {isCheckout ? (
-              <Typography
-                component={Link}
-                href='/catalog'
-                variant='h5'
-                sx={{
-                  textDecoration: 'underline',
-                  mt: 10,
-                }}
-              >
-                Вернуться в католог
-              </Typography>
-            ) : (
-              <Button
-                sx={{
-                  mt: 10,
-                  height: '36px',
-                }}
-                variant='contained'
-                onClick={handleToCheckout}
-              >
-                К оформлению
-              </Button>
-            )}
-          </Paper>
-        </Box>
-
-        {/* mobile version */}
-        <Box sx={{display:{xs:'block',lg:'none'}}}>
-        <BreadCrumbs
-          breadCrumbsList={breadCrumbsList}
-          isInIntro={true}
-        ></BreadCrumbs>
-
-        </Box>
- 
-
-        <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
-          <Typography sx={{ fontWeight: 700 }} variant='h4'>
-            В корзине
-          </Typography>
-          <Typography
-            sx={{ color: 'primary.main', my: '12px' }}
-            variant='h5'
-            component='p'
-          >
-            {bouquets.reduce((akk, item) => akk + item.quantity, 0)} товаров
-          </Typography>
-
-          {bouquets.map((bouquet) => (
-            <Box key={bouquet.id}>
-              <Divider />
-              <Box
-                sx={{
-                  py: '14px',
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 3fr',
-                  columnGap: 'max(30px,1.5vw)',
-                }}
-              >
-                <Link href={`cart/${bouquet.slug.current}`}>
-                  <Image
-                    style={{ objectFit: 'cover' }}
-                    layout='fill'
-                    width={100}
-                    height={125}
-                    src={urlFor(bouquet.imagePath)?.width(400)?.url()}
-                    alt='bouquet'
-                  ></Image>
-                </Link>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  <Typography sx={{ fontSize: '16px' }}>
-                    {bouquet.title}
-                  </Typography>
-                  <Box
-                    sx={{ display: 'flex', mt: '10px', alignItems: 'center' }}
-                  >
-                    <Box sx={{ width: '100px', mr: '10px' }}>
-                      <CounterButtons
-                        id={bouquet.id}
-                        value={bouquet.quantity}
-                      />
-                    </Box>
-                    <Box className={styles.price} sx={{ mx: 'auto' }}>
-                      <Typography
-                        variant='h4'
-                        sx={{ fontWeight: '700', color: '#000000' }}
-                      >
-                        {bouquet.price * bouquet.quantity}
-                      </Typography>
-                      <Box
-                        sx={{ fontWeight: '700', color: '#000000' }}
-                        component='sup'
-                      >
-                        BYN
-                      </Box>
-                    </Box>
-                    <IconButton
-                      component='div'
-                      onClick={(e) => removeFromCart(e, bouquet.id)}
-                      aria-label='CrossIcon'
-                      // sx={{mr:'20px'}}
+                  <Link href={`cart/${bouquet.slug.current}`}>
+                    <Image
+                      style={{ objectFit: 'cover' }}
+                      layout='fill'
+                      width={100}
+                      height={125}
+                      src={urlFor(bouquet.imagePath)?.width(400)?.url()}
+                      alt='bouquet'
+                    ></Image>
+                  </Link>
+                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <Typography sx={{ fontSize: '16px' }}>
+                      {bouquet.title}
+                    </Typography>
+                    <Box
+                      sx={{ display: 'flex', mt: '10px', alignItems: 'center' }}
                     >
-                      <Box
-                        component={Cros}
-                        sx={{ width: { ...size(18), xs: 18 } }}
-                        viewBox='0 0 18 18'
-                      ></Box>
-                    </IconButton>
+                      <Box sx={{ width: '100px', mr: '10px' }}>
+                        <CounterButtons
+                          id={bouquet.id}
+                          value={bouquet.quantity}
+                        />
+                      </Box>
+                      <Box className={styles.price} sx={{ mx: 'auto' }}>
+                        <Typography
+                          variant='h4'
+                          sx={{ fontWeight: '700', color: '#000000' }}
+                        >
+                          {bouquet.price * bouquet.quantity}
+                        </Typography>
+                        <Box
+                          sx={{ fontWeight: '700', color: '#000000' }}
+                          component='sup'
+                        >
+                          BYN
+                        </Box>
+                      </Box>
+                      <IconButton
+                        component='div'
+                        onClick={(e) => removeFromCart(e, bouquet.id)}
+                        aria-label='CrossIcon'
+                        // sx={{mr:'20px'}}
+                      >
+                        <Box
+                          component={Cros}
+                          sx={{ width: { ...size(18), xs: 18 } }}
+                          viewBox='0 0 18 18'
+                        ></Box>
+                      </IconButton>
+                    </Box>
                   </Box>
                 </Box>
+                <Divider />
               </Box>
-              <Divider />
-            </Box>
-          ))}
+            ))}
 
-          <Box
-            sx={{
-              py: '14px',
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              columnGap: '20px',
-              rowGap: '20px',
-            }}
-          >
             <Box
-              className={styles.deliveryPrice}
               sx={{
+                py: '14px',
                 display: 'grid',
-                gridTemplateColumns: '1fr 2fr',
-                alignItems: 'center',
+                gridTemplateColumns: '1fr',
+                columnGap: '20px',
+                rowGap: '20px',
               }}
             >
-              <Typography
-                // sx={{ color: 'primary.main', mt: 2, textDecoration: 'underline', cursor:'pointer' }}
-                variant='h5'
-                component='p'
-                mr={8}
-              >
-                Доставка
-              </Typography>
-              <Typography
-                component='div'
-                className={styles.price}
-                sx={{ justifyContent: 'start' }}
-              >
-                <Typography variant='h4'>0</Typography>
-                <Box component='sup' sx={{ fontWeight: '700' }}>
-                  BYN
-                </Box>
-              </Typography>
-            </Box>
-
-            <Promocode
-              isActive={isPromoCodeActive}
-              promocode={promocode}
-              handleClickPromoCode={handleClickPromoCode}
-              handlePromocodeChange={handlePromocodeChange}
-            ></Promocode>
-
-            <Box
-              className={styles.deliveryPrice}
-              sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}
-            >
-              <Typography
-                // sx={{ color: 'primary.main', mt: 2, textDecoration: 'underline', cursor:'pointer' }}
-                variant='h5'
-                component='p'
-                mr={8}
-              >
-                Итого
-              </Typography>
-              <Typography
-                component='div'
+              <Box
                 sx={{
-                  fontWeight: 700,
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  columnGap: 20,
                 }}
-                className={styles.price}
               >
-                <Typography
-                  variant='h4'
+                <Box
+                  className={styles.deliveryPrice}
                   sx={{
-                    fontWeight: 700,
-                    justifyContent: 'start',
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    alignItems: 'center',
                   }}
                 >
-                  {bouquets.reduce(
-                    (akk, item) => akk + item.price * item.quantity,
-                    0
-                  )}
-                </Typography>
-                <Box component='sup' sx={{ fontWeight: '700' }}>
-                  BYN
+                  <Typography variant='h5' component='p' mr={8}>
+                    Доставка
+                  </Typography>
+                  <Box sx={{display:'flex',ml:"auto"}}>
+                  <Typography variant='h4'>{delivery}</Typography>
+                    <sup>BYN</sup>
+
+                  </Box>
+                    
+                  
                 </Box>
-              </Typography>
+
+                <Box sx={{ ml: 'auto' }}>
+                  <Promocode setPromoCodeValue={setPromoCodeValue}></Promocode>
+                </Box>
+              </Box>
+
+              {promoCodeValue ? (
+                <Box
+                  className={styles.deliveryPrice}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Typography variant='h5' component='p' mr={8}>
+                    Промокод{' '}
+                    <Box component='span' sx={{ fontWeight: '600' }}>
+                      {promoCodeValue.code}
+                    </Box>
+                  </Typography>
+                  <span className={styles.price}>
+                    <Typography variant='h4'>
+                      -
+                      {(
+                        (price + delivery) *
+                        (promoCodeValue.percent / 100)
+                      ).toFixed(2)}
+                    </Typography>
+                    <sup>BYN</sup>
+                  </span>
+                </Box>
+              ) : null}
+
+              <Divider light sx={{ width: '100%', my: '10px' }} />
+
+              <Box
+                className={styles.deliveryPrice}
+                sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}
+              >
+                <Typography
+                  // sx={{ color: 'primary.main', mt: 2, textDecoration: 'underline', cursor:'pointer' }}
+                  variant='h5'
+                  component='p'
+                  mr={8}
+                >
+                  Итого
+                </Typography>
+                <Typography
+                  component='div'
+                  sx={{
+                    fontWeight: 700,
+                    ml: 'auto',
+                  }}
+                  className={styles.price}
+                >
+                  <Typography
+                    variant='h4'
+                    sx={{
+                      fontWeight: 700,
+                      justifyContent: 'start',
+                    }}
+                  >
+                    {orderSumma.toFixed(2)}
+                  </Typography>
+                  <Box component='sup' sx={{ fontWeight: '700' }}>
+                    BYN
+                  </Box>
+                </Typography>
+              </Box>
+
+              {isCheckout ? (
+                <Typography
+                  component={Link}
+                  href='/catalog'
+                  variant='h5'
+                  sx={{
+                    textDecoration: 'underline',
+                    ml: 'auto',
+                  }}
+                >
+                  Вернуться в католог
+                </Typography>
+              ) : (
+                <Button
+                  variant='contained'
+                  onClick={handleToCheckout}
+                  sx={{
+                    mt: 10,
+                    height: '36px',
+                    width:{xs:'100%',sm:'200px'},
+                    ml:{xs:'0',sm:'auto'}
+                  }}
+                >
+                  К оформлению
+                </Button>
+              )}
             </Box>
-
-            {isCheckout ? (
-              <Typography
-                component={Link}
-                href='/catalog'
-                variant='h5'
-                sx={{
-                  textDecoration: 'underline',
-                  ml: 'auto',
-                }}
-              >
-                Вернуться в католог
-              </Typography>
-            ) : (
-              <Button
-                variant='contained'
-                onClick={handleToCheckout}
-                sx={{
-                  mt: 10,
-                  height: '36px',
-                }}
-              >
-                К оформлению
-              </Button>
-            )}
           </Box>
+
+          {isCheckout && bouquets.length > 0 ? (
+            <Checkout
+              price={price}
+              shopsList={data?.generalInfo?.shopsList}
+            ></Checkout>
+          ) : null}
         </Box>
-
-        {isCheckout && bouquets.length > 0 ? (
-          <Checkout price={price} shopsList={data?.generalInfo?.shopsList}></Checkout>
-        ) : null}
-      </Box>):(<EmptyCart/>)}
-
-    
+      ) : (
+        <EmptyCart />
+      )}
     </>
   );
 }
-
 
 export const getServerSideProps = async (pageContext) => {
   const query = `{

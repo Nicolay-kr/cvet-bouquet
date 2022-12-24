@@ -27,7 +27,6 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 export default function Checkout({ price, shopsList }) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
   const [isOpenSuccessModal, setIsOpenSuccessModal] = React.useState(false);
-  console.log(shopsList);
 
   const defaultSchema = yup
     .object({
