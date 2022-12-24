@@ -57,13 +57,13 @@ export default {
     select: {
       name: 'name',
       phone: 'phone',
-      email: 'email',
-      bouquet:'bouquet',
+      paymentType: 'paymentType',
+      status:'status',
     },
-    prepare: ({ name, phone, email, bouquet }) => {
+    prepare: ({ name, status, paymentType}) => {
       return {
-        title: `${name}. ${bouquet} `,
-        subtitle: `${phone}, ${email}`,
+        title: `${name} `,
+        subtitle: paymentType==='Онлайн'? `Онлайн. Статус: ${status}`:'Наличные',
       };
     },
   },

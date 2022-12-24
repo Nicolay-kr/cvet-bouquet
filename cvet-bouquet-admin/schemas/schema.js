@@ -7,9 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import blockContent from './blockContent'
 import category from './category'
 import categoryList from './categoryList'
-import product from './product'
 import bouquet from './bouquet'
-import vendor from './vendor'
 import users from './users'
 import orders from './orders'
 import shops from './shops'
@@ -24,6 +22,7 @@ import eposPage from './pages/eposPage'
 import privacyPage from './pages/privacyPage'
 import generalInfo from './generalInfo'
 import deliveryGeneral from './deliveryGeneral'
+import promocode from './promocode'
 
 
 import localeString from './locale/String'
@@ -62,5 +61,6 @@ export default createSchema({
     localeBlockContent,
     localeString,
     productVariant,
+    promocode,
   ]),
 })
