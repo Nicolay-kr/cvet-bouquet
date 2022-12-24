@@ -70,7 +70,7 @@ export default function SuccsessModal({
             >
               {isContactsForm
                 ? 'Ваше соощение отправленно'
-                : 'Платёж совершён успешно'}
+                : 'Ваш заказ отправлен'}
             </Typography>
             <Typography
               id='modal-modal-description'

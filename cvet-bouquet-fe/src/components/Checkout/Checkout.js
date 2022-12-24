@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -23,28 +23,30 @@ import size from '../../utils/size';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { ru } from 'date-fns/locale';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { sanityClient } from '../../../sanity';
+import uniqid from 'uniqid';
 
-export default function Checkout({ price, shopsList }) {
+export default function Checkout({ price, shopsList, orderNumber, orderlist }) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
   const [isOpenSuccessModal, setIsOpenSuccessModal] = React.useState(false);
 
   const defaultSchema = yup
     .object({
-      customerName: yup.string().required('Это поле должно быть заполнено'),
-      customerPhone: yup.string().required('Это поле должно быть заполнено'),
+      name: yup.string().required('Это поле должно быть заполнено'),
+      phone: yup.string().required('Это поле должно быть заполнено'),
       customerSumma: yup
         .number()
         .required('Это поле должно быть заполнено')
         .typeError('Это поле должно быть в числовом формате. Пример: 2000'),
-      customerEmail: yup
+      email: yup
         .string()
         .email('E-mail введен не корректно')
         .required('Это поле должно быть заполнено'),
-      customerStreet: yup.string().required('Это поле должно быть заполнено'),
-      customerHouse: yup.string().required('Это поле должно быть заполнено'),
-      customerFlat: yup.string().required('Это поле должно быть заполнено'),
-      // customerDate: yup.string().required('Это поле должно быть заполнено'),
-      // customerTime: yup.string().required('Это поле должно быть заполнено'),
+      street: yup.string().required('Это поле должно быть заполнено'),
+      house: yup.string().required('Это поле должно быть заполнено'),
+      flat: yup.string().required('Это поле должно быть заполнено'),
+      // date: yup.string().required('Это поле должно быть заполнено'),
+      // time: yup.string().required('Это поле должно быть заполнено'),
     })
     .required();
 
@@ -60,18 +62,22 @@ export default function Checkout({ price, shopsList }) {
   );
 
   const defaultState = {
-    customerName: '',
-    customerPhone: '',
-    customerEmail: '',
-    customerComment: '',
-    customerDate: '',
-    customerTime: '',
-    customerStreet: '',
-    customerHouse: '',
-    customerEnter: '',
-    customerFloor: '',
-    customerFlat: '',
-    price: price,
+    name: '',
+    phone: '',
+    email: '',
+    comment: '',
+    date: '',
+    time: '',
+    street: '',
+    house: '',
+    enter: '',
+    floor: '',
+    flat: '',
+    orderlist: orderlist,
+    OrderNumber: orderNumber,
+    OrderAmount: price,
+    Merchant_ID: 'Merchant_ID',
+    OrderCurrency: 'BYN',
   };
 
   const [isPrivareHouse, setIsPrivareHouse] = React.useState(false);
@@ -98,15 +104,51 @@ export default function Checkout({ price, shopsList }) {
     setDateValue(newValue);
   };
 
-  const localeMap = {
-    en: enLocale,
-    ru: ruLocale,
-  };
+  const addOrder = useCallback(async (data, checkoutOptions) => {
+    let orderlist = data.orderlist
+      .map((bouquet) => {
+        return `${bouquet.title} количество: ${bouquet.quantity} `;
+      })
+      .join('; ');
+
+    const doc = {
+      _id: uniqid(),
+      _type: 'orders',
+      status: data.status,
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      orderlist: orderlist,
+      comment: data.comment,
+      date: checkoutOptions.delivery ? data.date.toLocaleDateString() : '',
+      time: checkoutOptions.delivery
+        ? data.time?.toTimeString().slice(0, 5)
+        : '',
+      street: data.street,
+      house: data.house,
+      enter: data.enter,
+      floor: data.floor,
+      flat: data.flat,
+      deliveryType: checkoutOptions.delivery ? 'Курьер' : 'Самовывоз',
+      recipient: checkoutOptions.selfReceive ? 'Сам клиент' : 'Другой человек',
+      paymentType: checkoutOptions.paymentByCard ? 'Онлайн' : 'Наличные',
+      OrderNumber: data.OrderNumber,
+      OrderAmount: `${data.OrderAmount}`,
+      registration: new Date(),
+    };
+
+    sanityClient
+      .createIfNotExists(doc)
+      .then((res) => {
+        console.log('Order was created (or was already present)');
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   const {
     control,
     handleSubmit,
-    watch,
+    register,
     formState: { errors },
   } = useForm({
     defaultValues: defaultState,
@@ -114,7 +156,8 @@ export default function Checkout({ price, shopsList }) {
   });
 
   const onSubmit = (data) => {
-    setIsOpenSuccessModal(true);
+    // setIsOpenSuccessModal(true);
+    addOrder(data, checkoutOptions);
   };
 
   const onClose = () => {
@@ -131,9 +174,12 @@ export default function Checkout({ price, shopsList }) {
         onClose={onClose}
         open={isOpenSuccessModal}
       ></SuccsessModal>
+
       <Box
         component={'form'}
         onSubmit={handleSubmit(onSubmit)}
+        // action='https://<SERVER-NAME>/pay/order.cfm'
+        // method='POST'
         sx={{
           width: { xs: '100%', lg: '60%' },
           mt: size(80),
@@ -141,6 +187,10 @@ export default function Checkout({ price, shopsList }) {
           rowGap: 'max(50px,2.6vw)',
         }}
       >
+        <input type='hidden' {...register('Merchant_ID')} />
+        <input type='hidden' {...register('OrderNumber')} />
+        <input type='hidden' {...register('OrderAmount')} />
+        <input type='hidden' {...register('OrderCurrency')} />
         <CheckoutsButtons
           title={'Выберите, кто будет получать заказ'}
           leftBtnTitle={'Я сам (а)'}
@@ -166,42 +216,42 @@ export default function Checkout({ price, shopsList }) {
               }}
             >
               <Controller
-                name='customerName'
+                name='name'
                 control={control}
                 render={({ field }) => (
                   <TextField
                     label='Вашe имя'
-                    id='customerName'
-                    error={errors.customerName?.message.length > 0}
-                    helperText={errors.customerName?.message}
+                    id='name'
+                    error={errors.name?.message.length > 0}
+                    helperText={errors.name?.message}
                     {...field}
                   />
                 )}
               />
               {/* <TextField id='customer-name' label='Ваше имя' /> */}
               <Controller
-                name='customerPhone'
+                name='phone'
                 control={control}
                 render={({ field }) => (
                   <TextField
-                    id='customerPhone'
+                    id='phone'
                     label='Ваш номер телефона.'
-                    error={errors.customerPhone?.message.length > 0}
-                    helperText={errors.customerPhone?.message}
+                    error={errors.phone?.message.length > 0}
+                    helperText={errors.phone?.message}
                     {...field}
                   />
                 )}
               />
               <Controller
-                name='customerEmail'
+                name='email'
                 control={control}
                 render={({ field }) => (
                   <TextField
-                    id='customerEmail'
+                    id='email'
                     label='Ваш e-mail'
                     {...field}
-                    error={errors.customerEmail?.message.length > 0}
-                    helperText={errors.customerEmail?.message}
+                    error={errors.email?.message.length > 0}
+                    helperText={errors.email?.message}
                   />
                 )}
               />
@@ -223,28 +273,28 @@ export default function Checkout({ price, shopsList }) {
               }}
             >
               <Controller
-                name='customerName'
+                name='name'
                 control={control}
                 render={({ field }) => (
                   <TextField
                     label='Имя получателя'
-                    id='customerName'
-                    error={errors.customerName?.message.length > 0}
-                    helperText={errors.customerName?.message}
+                    id='name'
+                    error={errors.name?.message.length > 0}
+                    helperText={errors.name?.message}
                     {...field}
                   />
                 )}
               />
               {/* <TextField id='customer-name' label='Имя получателя' /> */}
               <Controller
-                name='customerPhone'
+                name='phone'
                 control={control}
                 render={({ field }) => (
                   <TextField
-                    id='customerPhone'
+                    id='phone'
                     label='Номер телефона получателя'
-                    error={errors.customerPhone?.message.length > 0}
-                    helperText={errors.customerPhone?.message}
+                    error={errors.phone?.message.length > 0}
+                    helperText={errors.phone?.message}
                     {...field}
                   />
                 )}
@@ -278,7 +328,7 @@ export default function Checkout({ price, shopsList }) {
               }}
             >
               <Controller
-                name='customerDate'
+                name='date'
                 control={control}
                 render={({ field }) => (
                   // <DesktopDatePicker
@@ -300,7 +350,7 @@ export default function Checkout({ price, shopsList }) {
                 )}
               />
               <Controller
-                name='customerTime'
+                name='time'
                 control={control}
                 render={({ field }) => (
                   <TimePicker
@@ -313,42 +363,16 @@ export default function Checkout({ price, shopsList }) {
                   />
                 )}
               />
-              {/* <DesktopDatePicker
-                sx={{
-                  fontSize: '16px',
-                  '& button': { fontSize: '16px !important' },
-                }}
-                label='Выберите дату'
-                inputFormat='DD/MM/YYYY'
-                value={dateValue}
-                onChange={handleChange}
-                renderInput={(params) => <TextField {...params} />}
-                className={styles.datePicker}
-              /> */}
-              {/* <TextField type="date" inputFormat='DD/MM/YYYY' id='customer-date' value={dateValue}  /> */}
 
-              {/* <Controller
-                name='customerTime'
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    id='customerTime'
-                    label='Выберите время'
-                    error={errors.customerTime?.message.length > 0}
-                    helperText={errors.customerTime?.message}
-                    {...field}
-                  />
-                )}
-              /> */}
               <Controller
-                name='customerStreet'
+                name='street'
                 control={control}
                 render={({ field }) => (
                   <TextField
-                    id='customerStreet'
+                    id='street'
                     label='Улица'
-                    error={errors.customerStreet?.message.length > 0}
-                    helperText={errors.customerStreet?.message}
+                    error={errors.street?.message.length > 0}
+                    helperText={errors.street?.message}
                     {...field}
                   />
                 )}
@@ -364,14 +388,14 @@ export default function Checkout({ price, shopsList }) {
               >
                 {/* <TextField id='customer-house' label='Дом' /> */}
                 <Controller
-                  name='customerHouse'
+                  name='house'
                   control={control}
                   render={({ field }) => (
                     <TextField
-                      id='customerHouse'
+                      id='house'
                       label='Дом'
-                      error={errors.customerHouse?.message.length > 0}
-                      helperText={errors.customerHouse?.message}
+                      error={errors.house?.message.length > 0}
+                      helperText={errors.house?.message}
                       {...field}
                     />
                   )}
@@ -399,28 +423,28 @@ export default function Checkout({ price, shopsList }) {
                     }}
                   >
                     <Controller
-                      name='customerEnter'
+                      name='enter'
                       control={control}
                       render={({ field }) => (
                         <TextField
-                          id='customerEnter'
+                          id='enter'
                           label='Подъезд'
-                          error={errors.customerEnter?.message.length > 0}
-                          helperText={errors.customerEnter?.message}
+                          error={errors.enter?.message.length > 0}
+                          helperText={errors.enter?.message}
                           {...field}
                         />
                       )}
                     />
                     {/* <TextField id='customer-enter' label='Подъезд' /> */}
                     <Controller
-                      name='customerFloor'
+                      name='floor'
                       control={control}
                       render={({ field }) => (
                         <TextField
-                          id='customerFloor'
+                          id='floor'
                           label='Этаж'
-                          error={errors.customerFloor?.message.length > 0}
-                          helperText={errors.customerFloor?.message}
+                          error={errors.floor?.message.length > 0}
+                          helperText={errors.floor?.message}
                           {...field}
                         />
                       )}
@@ -435,15 +459,15 @@ export default function Checkout({ price, shopsList }) {
                     }}
                   >
                     <Controller
-                      name='customerFlat'
+                      name='flat'
                       control={control}
                       render={({ field }) => (
                         <TextField
                           sx={{ gridColumn: { xs: '1/3', lg: '1' } }}
-                          id='customerFlat'
+                          id='flat'
                           label='Квартира'
-                          error={errors.customerFlat?.message.length > 0}
-                          helperText={errors.customerFlat?.message}
+                          error={errors.flat?.message.length > 0}
+                          helperText={errors.flat?.message}
                           {...field}
                         />
                       )}
@@ -479,7 +503,7 @@ export default function Checkout({ price, shopsList }) {
           </FormControl>
         )}
         <Controller
-          name='customerComment'
+          name='comment'
           control={control}
           render={({ field }) => (
             <TextField
@@ -491,7 +515,7 @@ export default function Checkout({ price, shopsList }) {
                 '& textarea': { height: '100% !important' },
               }}
               rows={6}
-              id='customerComment'
+              id='comment'
               label={'Комментарии к заказу, текст для открытки'}
               {...field}
             />

@@ -112,8 +112,24 @@ export default function Cart({ data }) {
     router.query.isCheckout ? router.query.isCheckout : false
   );
   const [promoCodeValue, setPromoCodeValue] = React.useState(null);
+  const [orderNumber, setOrderNumber] = React.useState(null);
+
+  const generateOrderNumber = () => {
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    let currentDate = `B${day}${month}${year}-${hours}${minutes}${seconds}`;
+
+    return currentDate;
+  };
 
   const handleToCheckout = () => {
+    setOrderNumber(generateOrderNumber());
     setIsCheckout(true);
   };
 
@@ -432,13 +448,10 @@ export default function Cart({ data }) {
                   <Typography variant='h5' component='p' mr={8}>
                     Доставка
                   </Typography>
-                  <Box sx={{display:'flex',ml:"auto"}}>
-                  <Typography variant='h4'>{delivery}</Typography>
+                  <Box sx={{ display: 'flex', ml: 'auto' }}>
+                    <Typography variant='h4'>{delivery}</Typography>
                     <sup>BYN</sup>
-
                   </Box>
-                    
-                  
                 </Box>
 
                 <Box sx={{ ml: 'auto' }}>
@@ -531,8 +544,8 @@ export default function Cart({ data }) {
                   sx={{
                     mt: 10,
                     height: '60px',
-                    width:{xs:'100%',sm:'200px'},
-                    ml:{xs:'0',sm:'auto'}
+                    width: { xs: '100%', sm: '200px' },
+                    ml: { xs: '0', sm: 'auto' },
                   }}
                 >
                   К оформлению
@@ -545,6 +558,8 @@ export default function Cart({ data }) {
             <Checkout
               price={price}
               shopsList={data?.generalInfo?.shopsList}
+              orderNumber={orderNumber}
+              orderlist={bouquets}
             ></Checkout>
           ) : null}
         </Box>

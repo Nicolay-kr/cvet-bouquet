@@ -1,8 +1,8 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
+import { sanityClient } from '../sanity';
 
 export default function PrivacyPage({ data }) {
   const breadCrumbsList = [
@@ -46,7 +46,7 @@ export const getServerSideProps = async (pageContext) => {
 
   const data = await sanityClient.fetch(query);
 
-  if (!data?.length) {
+  if (data.length) {
     return {
       props: {
         data: {},
