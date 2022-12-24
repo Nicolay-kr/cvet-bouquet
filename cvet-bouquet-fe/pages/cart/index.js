@@ -530,7 +530,7 @@ export default function Cart({ data }) {
                   onClick={handleToCheckout}
                   sx={{
                     mt: 10,
-                    height: '36px',
+                    height: '60px',
                     width:{xs:'100%',sm:'200px'},
                     ml:{xs:'0',sm:'auto'}
                   }}
