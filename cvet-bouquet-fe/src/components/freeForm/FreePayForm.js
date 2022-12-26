@@ -52,7 +52,7 @@ export default function FreePayForm({ isContactsForm = false }) {
     formState: { errors },
   } = useForm({
     defaultValues: defaultValue,
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
 
   const onSubmit = (data) => {
