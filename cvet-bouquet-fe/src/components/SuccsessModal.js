@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Fade from '@mui/material/Fade';
 import Cros from '../../public/assets/icons/cros.svg';
 import Button from '@mui/material/Button';
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 const style = {
   display: 'flex',
@@ -27,6 +27,7 @@ export default function SuccsessModal({
   open = false,
   onClose,
   isContactsForm = false,
+  formProcessing = false,
 }) {
   const handleClose = () => {
     onClose(false);
@@ -40,59 +41,60 @@ export default function SuccsessModal({
         open={open}
         onClose={handleClose}
         closeAfterTransition
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={open}>
-          <Paper sx={style}>
-            <IconButton
-              sx={{
-                ml: 'auto',
-              }}
-              component='p'
-              role='presentation'
-              onClick={handleClose}
-              aria-label="CrossIcon"
-            >
-              <Box
-                component={Cros}
-                sx={{ width: '24px', height: '24px' }}
-                viewBox="0 0 18 18"
-              ></Box>
-            </IconButton>
+        {formProcessing ? (
+          <CircularProgress color='primary' />
+        ) : (
+          <Fade in={open}>
+            <Paper sx={style}>
+              <IconButton
+                sx={{
+                  ml: 'auto',
+                }}
+                component='p'
+                role='presentation'
+                onClick={handleClose}
+                aria-label='CrossIcon'
+              >
+                <Box
+                  component={Cros}
+                  sx={{ width: '24px', height: '24px' }}
+                  viewBox='0 0 18 18'
+                ></Box>
+              </IconButton>
 
-            <Typography
-              id='modal-modal-title'
-              variant='h3'
-              component='h2'
-            >
-              {isContactsForm
-                ? 'Ваше соощение отправленно'
-                : 'Ваш заказ отправлен'}
-            </Typography>
-            <Typography
-              id='modal-modal-description'
-              variant='h5'
-              component='p'
-              sx={{ mt: '20px' }}
-            >
-              {isContactsForm
-                ? 'Мы свяжемся с Вами в ближайшее время'
-                : 'Спасибо что воспользовались услугами нашей компании'}
-            </Typography>
+              <Typography id='modal-modal-title' variant='h3' component='h2'>
+                {isContactsForm
+                  ? 'Ваше соощение отправленно'
+                  : 'Ваш заказ отправлен'}
+              </Typography>
+              <Typography
+                id='modal-modal-description'
+                variant='h5'
+                component='p'
+                sx={{ mt: '20px' }}
+              >
+                {isContactsForm
+                  ? 'Мы свяжемся с Вами в ближайшее время'
+                  : 'Спасибо что воспользовались услугами нашей компании'}
+              </Typography>
 
-            <Button
-              onClick={handleClose}
-              variant='contained'
-              color='primary'
-              sx={{ mt: '40px', width: { xs: '100%', lg: '200px' } }}
-            >
-              Оk
-            </Button>
-          </Paper>
-        </Fade>
+              <Button
+                onClick={handleClose}
+                variant='contained'
+                color='primary'
+                sx={{ mt: '40px', width: { xs: '100%', lg: '200px' } }}
+              >
+                Оk
+              </Button>
+            </Paper>
+          </Fade>
+        )}
       </Modal>
     </div>
   );

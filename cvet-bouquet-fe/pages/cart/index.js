@@ -112,24 +112,10 @@ export default function Cart({ data }) {
     router.query.isCheckout ? router.query.isCheckout : false
   );
   const [promoCodeValue, setPromoCodeValue] = React.useState(null);
-  const [orderNumber, setOrderNumber] = React.useState(null);
 
-  const generateOrderNumber = () => {
-    const date = new Date();
 
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
-    let currentDate = `B${day}${month}${year}-${hours}${minutes}${seconds}`;
-
-    return currentDate;
-  };
 
   const handleToCheckout = () => {
-    setOrderNumber(generateOrderNumber());
     setIsCheckout(true);
   };
 
@@ -558,7 +544,6 @@ export default function Cart({ data }) {
             <Checkout
               price={price}
               shopsList={data?.generalInfo?.shopsList}
-              orderNumber={orderNumber}
               orderlist={bouquets}
             ></Checkout>
           ) : null}

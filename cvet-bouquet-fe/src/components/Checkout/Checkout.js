@@ -11,12 +11,9 @@ import Switch from '@mui/material/Switch';
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import styles from './Checkout.module.css';
-import ruLocale from 'date-fns/locale/ru';
-import enLocale from 'date-fns/locale/en-US';
 import ShopsList from '../ShopsList';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import SuccsessModal from '../SuccsessModal';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import size from '../../utils/size';
@@ -24,31 +21,13 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { ru } from 'date-fns/locale';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { sanityClient } from '../../../sanity';
-import uniqid from 'uniqid';
+import checkoutSchema from '../../verifiedSchemas/checkout';
+import generateOrderNumber from '../../utils/generateOrderNumber';
+import addOrder from '../../utils/sanityMethods/addOrder';
 
-export default function Checkout({ price, shopsList, orderNumber, orderlist }) {
+export default function Checkout({ price, shopsList, orderlist }) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
   const [isOpenSuccessModal, setIsOpenSuccessModal] = React.useState(false);
-
-  const defaultSchema = yup
-    .object({
-      name: yup.string().required('Это поле должно быть заполнено'),
-      phone: yup.string().required('Это поле должно быть заполнено'),
-      customerSumma: yup
-        .number()
-        .required('Это поле должно быть заполнено')
-        .typeError('Это поле должно быть в числовом формате. Пример: 2000'),
-      email: yup
-        .string()
-        .email('E-mail введен не корректно')
-        .required('Это поле должно быть заполнено'),
-      street: yup.string().required('Это поле должно быть заполнено'),
-      house: yup.string().required('Это поле должно быть заполнено'),
-      flat: yup.string().required('Это поле должно быть заполнено'),
-      // date: yup.string().required('Это поле должно быть заполнено'),
-      // time: yup.string().required('Это поле должно быть заполнено'),
-    })
-    .required();
 
   const checkoutOptionsDefault = {
     delivery: true,
@@ -60,6 +39,8 @@ export default function Checkout({ price, shopsList, orderNumber, orderlist }) {
   const [checkoutOptions, setCtOptions] = React.useState(
     checkoutOptionsDefault
   );
+  const [isPrivareHouse, setIsPrivareHouse] = React.useState(false);
+  const [status, setStatus] = React.useState('В ожидании');
 
   const defaultState = {
     name: '',
@@ -74,13 +55,11 @@ export default function Checkout({ price, shopsList, orderNumber, orderlist }) {
     floor: '',
     flat: '',
     orderlist: orderlist,
-    OrderNumber: orderNumber,
     OrderAmount: price,
+    URL_RETURN_OK: 'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
     Merchant_ID: 'Merchant_ID',
     OrderCurrency: 'BYN',
   };
-
-  const [isPrivareHouse, setIsPrivareHouse] = React.useState(false);
 
   const handleDeliveryChange = (value) => {
     setCtOptions({ ...checkoutOptions, delivery: value });
@@ -104,7 +83,17 @@ export default function Checkout({ price, shopsList, orderNumber, orderlist }) {
     setDateValue(newValue);
   };
 
-  const addOrder = useCallback(async (data, checkoutOptions) => {
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    defaultValues: defaultState,
+    // resolver: yupResolver(checkoutSchema),
+  });
+
+  const onSubmit = (data) => {
     let orderlist = data.orderlist
       .map((bouquet) => {
         return `${bouquet.title} количество: ${bouquet.quantity} `;
@@ -112,9 +101,7 @@ export default function Checkout({ price, shopsList, orderNumber, orderlist }) {
       .join('; ');
 
     const doc = {
-      _id: uniqid(),
-      _type: 'orders',
-      status: data.status,
+      status: status,
       name: data.name,
       phone: data.phone,
       email: data.email,
@@ -130,34 +117,53 @@ export default function Checkout({ price, shopsList, orderNumber, orderlist }) {
       floor: data.floor,
       flat: data.flat,
       deliveryType: checkoutOptions.delivery ? 'Курьер' : 'Самовывоз',
+      deliveryPlace: !checkoutOptions.delivery ? delivery : '',
       recipient: checkoutOptions.selfReceive ? 'Сам клиент' : 'Другой человек',
       paymentType: checkoutOptions.paymentByCard ? 'Онлайн' : 'Наличные',
-      OrderNumber: data.OrderNumber,
+      OrderNumber: generateOrderNumber(),
       OrderAmount: `${data.OrderAmount}`,
       registration: new Date(),
     };
-
-    sanityClient
-      .createIfNotExists(doc)
-      .then((res) => {
-        console.log('Order was created (or was already present)');
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  const {
-    control,
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm({
-    defaultValues: defaultState,
-    // resolver: yupResolver(defaultSchema),
-  });
-
-  const onSubmit = (data) => {
     // setIsOpenSuccessModal(true);
-    addOrder(data, checkoutOptions);
+
+    fetch('https://formspree.io/f/xbjerqyo', {
+      method: 'POST',
+      body: JSON.stringify(doc),
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then((response) => {
+        console.log('response', response);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+
+    // setIsOpenSuccessModal(true);
+    addOrder(doc);
+
+    const paymentData = {
+      OrderNumber: data.orderNumber,
+      OrderAmount: data.OrderAmount,
+      URL_RETURN_OK: data.URL_RETURN_OK,
+      Merchant_ID: data.Merchant_ID,
+      OrderCurrency: data.OrderCurrency,
+    };
+
+    // fetch('https://<SERVER-NAME>/pay/order.cfm', {
+    //   method: 'POST',
+    //   body: JSON.stringify(paymentData),
+    //   headers: {
+    //     Accept: 'application/json',
+    //   },
+    // })
+    //   .then((response) => {
+    //     console.log('response', response);
+    //   })
+    //   .catch((error) => {
+    //     console.log('error', error);
+    //   });
   };
 
   const onClose = () => {
@@ -178,8 +184,6 @@ export default function Checkout({ price, shopsList, orderNumber, orderlist }) {
       <Box
         component={'form'}
         onSubmit={handleSubmit(onSubmit)}
-        // action='https://<SERVER-NAME>/pay/order.cfm'
-        // method='POST'
         sx={{
           width: { xs: '100%', lg: '60%' },
           mt: size(80),
@@ -188,8 +192,8 @@ export default function Checkout({ price, shopsList, orderNumber, orderlist }) {
         }}
       >
         <input type='hidden' {...register('Merchant_ID')} />
-        <input type='hidden' {...register('OrderNumber')} />
         <input type='hidden' {...register('OrderAmount')} />
+        <input type='hidden' {...register('OrderCurrency')} />
         <input type='hidden' {...register('OrderCurrency')} />
         <CheckoutsButtons
           title={'Выберите, кто будет получать заказ'}

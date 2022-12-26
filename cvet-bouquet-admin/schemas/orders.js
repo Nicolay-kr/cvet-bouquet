@@ -29,12 +29,17 @@ export default {
     },
     {
       name: 'status',
-      title: 'Статус',
+      title: 'Статус платежа',
       type: 'string',
     },
     {
       name: 'deliveryType',
       title: 'Тип доставки',
+      type: 'string',
+    },
+    {
+      name: 'deliveryPlace',
+      title: 'Место самовывоза',
       type: 'string',
     },
     {

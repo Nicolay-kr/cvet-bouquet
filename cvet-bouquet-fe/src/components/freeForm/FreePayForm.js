@@ -9,97 +9,142 @@ import { Link } from '../../../node_modules/@mui/material/index';
 import TextField from '@mui/material/TextField';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import SuccsessModal from '../SuccsessModal';
-import uniqid from 'uniqid';
-import { sanityClient } from '../../../sanity';
 import size from '../../utils/size';
 import verticalLogo from '../../../public/assets/images/verticalLogo.png';
 import Image from 'next/future/image';
+import {
+  contactSchema,
+  defaultSchema,
+} from '../../verifiedSchemas/freePayFormSchema';
+import generateOrderNumber from '../../utils/generateOrderNumber';
+import addOrder from '../../utils/sanityMethods/addOrder';
 
 export default function FreePayForm({ isContactsForm = false }) {
   const [isOpenSuccessModal, setIsOpenSuccessModal] = React.useState(false);
+  const [formProcessing, setFormProcessing] = React.useState(false);
+
   const lg = useMediaQuery('(min-width:1200px)');
 
   const defaultState = {
-    customerName: '',
-    customerPhone: '',
-    customerSumma: '',
-    customerEmail: '',
-    customerComment: '',
+    name: '',
+    phone: '',
+    OrderAmount: '',
+    email: '',
+    comment: '',
   };
 
   const defaultStateForContacts = {
-    customerName: '',
-    customerPhone: '',
-    customerEmail: '',
-    customerComment: '',
+    name: '',
+    phone: '',
+    email: '',
+    comment: '',
   };
 
   const defaultValue = isContactsForm ? defaultStateForContacts : defaultState;
 
-  yup.setLocale({
-    number: {
-      typeError: 'Это поле должно быть в числовом формате',
-    },
-  });
-
-  const defaultSchema = yup
-    .object({
-      customerName: yup.string().required('Это поле должно быть заполнено'),
-      customerPhone: yup.string().required('Это поле должно быть заполнено'),
-      customerSumma: yup
-        .number()
-        .required('Это поле должно быть заполнено')
-        .typeError('Это поле должно быть в числовом формате. Пример: 2000'),
-      customerEmail: yup
-        .string()
-        .email('E-mail введен не корректно')
-        .required('Это поле должно быть заполнено'),
-    })
-    .required();
-
-  const contactSchema = yup
-    .object({
-      customerName: yup.string().required('Это поле должно быть заполнено'),
-      customerPhone: yup.string().required('Это поле должно быть заполнено'),
-      customerEmail: yup.string().required('Это поле должно быть заполнено'),
-    })
-    .required();
-
   const schema = isContactsForm ? contactSchema : defaultSchema;
 
   const {
-    register,
     control,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: defaultValue,
-    resolver: yupResolver(schema),
+    // resolver: yupResolver(schema),
   });
 
-  const addClient = (data) => {
-    const doc = {
-      _id: uniqid(),
-      _type: 'clients',
-      name: data?.customerName,
-      phone: data?.customerPhone,
-      email: data?.customerEmail,
-    };
-
-    sanityClient
-      .createIfNotExists(doc)
-      .then((res) => {
-        console.log('Client was created (or was already present)');
-      })
-      .catch((error) => console.log(error));
-  };
-
   const onSubmit = (data) => {
-    setIsOpenSuccessModal(true);
-    // addClient(data);
+    setFormProcessing(true);
+
+    let handleDate = data.OrderAmount
+      ? {
+          Имя: data.name,
+          Телефон: data.phone,
+          Email: data.email,
+          Сумма: data.OrderAmount,
+          Сообщение: data.comment,
+        }
+      : {
+          Имя: data.name,
+          Телефон: data.phone,
+          Email: data.email,
+          Сообщение: data.comment,
+        };
+
+    if (isContactsForm) {
+      fetch('https://formspree.io/f/mzbqpyrw', {
+        method: 'POST',
+        body: JSON.stringify(handleDate),
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+        .then((response) => {
+          console.log('response', response);
+          setFormProcessing(false);
+          setIsOpenSuccessModal(true);
+          reset(defaultValue);
+        })
+
+        .catch((error) => {
+          console.log('error', error);
+          setFormProcessing(false);
+          setIsOpenSuccessModal(false);
+        });
+    } else {
+      const orderNumber = generateOrderNumber();
+
+      fetch('https://formspree.io/f/mrgvzrkp', {
+        method: 'POST',
+        body: JSON.stringify(handleDate),
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+        .then((response) => {
+          console.log('response', response);
+          setFormProcessing(false);
+          setIsOpenSuccessModal(true);
+          reset(defaultValue);
+        })
+
+        .catch((error) => {
+          console.log('error', error);
+          // setFormProcessing(false);
+          // setIsOpenSuccessModal(false);
+        });
+      addOrder({
+        ...data,
+        status: 'В ожидании',
+        OrderNumber: orderNumber,
+        OrderAmount: `${data.OrderAmount}`,
+        paymentType: 'Онлайн',
+      });
+
+      const paymentData = {
+        OrderNumber: orderNumber,
+        OrderAmount: data.OrderAmount,
+        URL_RETURN_OK: 'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
+        Merchant_ID: 'Merchant_ID',
+        OrderCurrency: 'BYN',
+      };
+
+      // fetch('https://<SERVER-NAME>/pay/order.cfm', {
+      //   method: 'POST',
+      //   body: JSON.stringify(paymentData),
+      //   headers: {
+      //     Accept: 'application/json',
+      //   },
+      // })
+      //   .then((response) => {
+      //     console.log('response', response);
+      //   })
+      //   .catch((error) => {
+      //     console.log('error', error);
+      //   });
+    }
   };
 
   const onClose = () => {
@@ -112,6 +157,7 @@ export default function FreePayForm({ isContactsForm = false }) {
         onClose={onClose}
         open={isOpenSuccessModal}
         isContactsForm={isContactsForm}
+        formProcessing={formProcessing}
       ></SuccsessModal>
       <Box
         component={'form'}
@@ -209,28 +255,28 @@ export default function FreePayForm({ isContactsForm = false }) {
                 }}
               >
                 <Controller
-                  name='customerName'
+                  name='name'
                   control={control}
                   render={({ field }) => (
                     <TextField
                       label='Вашe имя'
-                      id='customerName'
-                      error={errors.customerName?.message.length > 0}
-                      helperText={errors.customerName?.message}
+                      id='name'
+                      error={errors.name?.message.length > 0}
+                      helperText={errors.name?.message}
                       {...field}
                     />
                   )}
                 />
                 <Controller
-                  name='customerPhone'
+                  name='phone'
                   control={control}
                   render={({ field }) => (
                     <TextField
-                      id='customerPhone'
+                      id='phone'
                       label='Ваш номер телефона.'
                       sx={{ mt: 'max(24px, 1.2vw)' }}
-                      error={errors.customerPhone?.message.length > 0}
-                      helperText={errors.customerPhone?.message}
+                      error={errors.phone?.message.length > 0}
+                      helperText={errors.phone?.message}
                       {...field}
                     />
                   )}
@@ -238,15 +284,15 @@ export default function FreePayForm({ isContactsForm = false }) {
 
                 {isContactsForm ? null : (
                   <Controller
-                    name='customerSumma'
+                    name='OrderAmount'
                     control={control}
                     render={({ field }) => (
                       <TextField
-                        id='customerSumma'
+                        id='OrderAmount'
                         label='Сумма BYN'
                         sx={{ mt: 'max(24px, 1.2vw)' }}
-                        error={errors.customerSumma?.message.length > 0}
-                        helperText={errors.customerSumma?.message}
+                        error={errors.OrderAmount?.message.length > 0}
+                        helperText={errors.OrderAmount?.message}
                         {...field}
                       />
                     )}
@@ -299,20 +345,20 @@ export default function FreePayForm({ isContactsForm = false }) {
                 }}
               >
                 <Controller
-                  name='customerEmail'
+                  name='email'
                   control={control}
                   render={({ field }) => (
                     <TextField
-                      id='customerEmail'
+                      id='email'
                       label='Ваш e-mail'
                       {...field}
-                      error={errors.customerEmail?.message.length > 0}
-                      helperText={errors.customerEmail?.message}
+                      error={errors.email?.message.length > 0}
+                      helperText={errors.email?.message}
                     />
                   )}
                 />
                 <Controller
-                  name='customerComment'
+                  name='comment'
                   control={control}
                   render={({ field }) => (
                     <TextField
@@ -324,7 +370,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                         '& textarea': { height: '100% !important' },
                       }}
                       rows={isContactsForm ? 8 : 10}
-                      id='customerComment'
+                      id='comment'
                       label={
                         isContactsForm ? 'Ваш вопрос' : 'Комментарии к заказу'
                       }
