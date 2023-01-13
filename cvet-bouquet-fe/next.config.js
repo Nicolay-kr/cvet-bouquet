@@ -43,7 +43,9 @@ const nextConfig = {
     INSTAGRAM_TOKEN : process.env.INSTAGRAM_TOKEN,
     SANITY_PROJECT_ID : process.env.SANITY_PROJECT_ID,
     SANITY_DATASET : process.env.SANITY_DATASET,
-    SANITY_API_TOKEN : process.env.SANITY_API_TOKEN
+    SANITY_API_TOKEN : process.env.SANITY_API_TOKEN,
+    SERVER_NAME:process.env.SERVER_NAME,
+    MERCHANT_ID:process.env.MERCHANT_ID,
   },
   async redirects() {
     return [

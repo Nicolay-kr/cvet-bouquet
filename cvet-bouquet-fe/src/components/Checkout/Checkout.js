@@ -20,7 +20,6 @@ import size from '../../utils/size';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { ru } from 'date-fns/locale';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { sanityClient } from '../../../sanity';
 import checkoutSchema from '../../verifiedSchemas/checkout';
 import generateOrderNumber from '../../utils/generateOrderNumber';
 import addOrder from '../../utils/sanityMethods/addOrder';
@@ -55,10 +54,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
     floor: '',
     flat: '',
     orderlist: orderlist,
-    OrderAmount: price,
-    URL_RETURN_OK: 'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
-    Merchant_ID: 'Merchant_ID',
-    OrderCurrency: 'BYN',
   };
 
   const handleDeliveryChange = (value) => {
@@ -99,6 +94,8 @@ export default function Checkout({ price, shopsList, orderlist }) {
         return `${bouquet.title} количество: ${bouquet.quantity} `;
       })
       .join('; ');
+    
+    const orderNumber = generateOrderNumber();
 
     const doc = {
       status: status,
@@ -120,7 +117,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
       deliveryPlace: !checkoutOptions.delivery ? delivery : '',
       recipient: checkoutOptions.selfReceive ? 'Сам клиент' : 'Другой человек',
       paymentType: checkoutOptions.paymentByCard ? 'Онлайн' : 'Наличные',
-      OrderNumber: generateOrderNumber(),
+      OrderNumber: orderNumber,
       OrderAmount: `${data.OrderAmount}`,
       registration: new Date(),
     };
@@ -144,14 +141,14 @@ export default function Checkout({ price, shopsList, orderlist }) {
     addOrder(doc);
 
     const paymentData = {
-      OrderNumber: data.orderNumber,
-      OrderAmount: data.OrderAmount,
-      URL_RETURN_OK: data.URL_RETURN_OK,
-      Merchant_ID: data.Merchant_ID,
-      OrderCurrency: data.OrderCurrency,
+      OrderNumber: orderNumber,
+      OrderAmount: price,
+      URL_RETURN_OK:'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
+      Merchant_ID: process.env.MERCHANT_ID,
+      OrderCurrency: 'BYN',
     };
 
-    // fetch('https://<SERVER-NAME>/pay/order.cfm', {
+    // fetch(`${process.env.SERVER_NAME}`, {
     //   method: 'POST',
     //   body: JSON.stringify(paymentData),
     //   headers: {
@@ -191,10 +188,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
           rowGap: 'max(50px,2.6vw)',
         }}
       >
-        <input type='hidden' {...register('Merchant_ID')} />
-        <input type='hidden' {...register('OrderAmount')} />
-        <input type='hidden' {...register('OrderCurrency')} />
-        <input type='hidden' {...register('OrderCurrency')} />
         <CheckoutsButtons
           title={'Выберите, кто будет получать заказ'}
           leftBtnTitle={'Я сам (а)'}
@@ -232,7 +225,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
                   />
                 )}
               />
-              {/* <TextField id='customer-name' label='Ваше имя' /> */}
               <Controller
                 name='phone'
                 control={control}
