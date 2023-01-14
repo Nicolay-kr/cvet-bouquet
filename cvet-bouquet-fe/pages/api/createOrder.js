@@ -13,8 +13,8 @@ export default async function handler(req, res) {
     const orderNumber = generateOrderNumber(orderId);
     orderData.id = orderId;
     orderData.OrderNumber = orderNumber;
-    // await addOrder(orderData);
-    await sendMessageAboutOrder(orderData);
+    await addOrder(orderData);
+    // await sendMessageAboutOrder(orderData);
     // await createPayment({
     //     OrderNumber: orderData.orderNumber,
     //     OrderAmount: orderData.OrderAmount,
