@@ -2,17 +2,17 @@
 import uniqid from 'uniqid';
 import { createPayment } from '../../src/utils/createPayment';
 import generateOrderNumber from '../../src/utils/generateOrderNumber';
+import isJson from '../../src/utils/isJson';
 import addOrder from '../../src/utils/sanityMethods/addOrder';
 import { sendMessageAboutOrder } from '../../src/utils/sendMessageAboutOrder';
 
 export default async function handler(req, res) {
-  const orderData = JSON.parse(req.body);
-  const orderId = uniqid();
-  const orderNumber = generateOrderNumber(orderId);
-  orderData.id = orderId;
-  orderData.OrderNumber = orderNumber;
-
   try {
+    const orderData = isJson(req.body)?JSON.parse(req.body):req.body;
+    const orderId = uniqid();
+    const orderNumber = generateOrderNumber(orderId);
+    orderData.id = orderId;
+    orderData.OrderNumber = orderNumber;
     await addOrder(orderData);
     await sendMessageAboutOrder(orderData);
     await createPayment({

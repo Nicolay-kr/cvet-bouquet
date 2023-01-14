@@ -115,7 +115,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
       deliveryPlace: !checkoutOptions.delivery ? delivery : '',
       recipient: checkoutOptions.selfReceive ? 'Сам клиент' : 'Другой человек',
       paymentType: checkoutOptions.paymentByCard ? 'Онлайн оплата' : 'Наличные',
-      OrderAmount: price,
+      OrderAmount: price.toString(),
       OrderCurrency: 'BYN',
       registration: new Date(),
     };

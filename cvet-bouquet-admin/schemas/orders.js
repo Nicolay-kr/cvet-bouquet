@@ -134,7 +134,7 @@ export default {
     prepare: ({ name, status, paymentType, OrderNumber}) => {
       return {
         title: `${name} заказ: ${OrderNumber} `,
-        subtitle: paymentType==='Онлайн'? `Онлайн. Статус: ${status}`:'Наличные',
+        subtitle: paymentType==='Онлайн оплата'? `Онлайн. Статус: ${status}`:'Наличные',
       };
     },
   },
