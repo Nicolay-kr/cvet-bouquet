@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     orderData.OrderNumber = orderNumber;
     addOrder(orderData)
     .then(()=>res.status(200).send('Order was created'))
-    .then((e)=>res.status(500).send({ message: 'Order was not created',error: e}));
+    .catch((e)=>res.status(500).send({ message: 'Order was not created',error: e}));
     // await sendMessageAboutOrder(orderData);
     // await createPayment({
     //     OrderNumber: orderData.orderNumber,
