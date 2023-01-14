@@ -4,7 +4,7 @@ import {updateOrder} from '../../src/utils/sanityMethods/updateOrder';
 
 
 export default function handler(req, res) {
-  try{
+  // try{
     const data = isJson(req.body)?JSON.parse(req.body):req.body;
     const id = data.ordernumber.split('-').slice(2).join('');
     const status = data.orderstate;
@@ -15,8 +15,8 @@ export default function handler(req, res) {
     }else{
       res.status(500).send(`order with ${id} wasn't found.`)
     }
-  }catch(e){
-    res.status(500).send(`Order wasn't update. ${e}`)
-  }
+  // }catch(e){
+  //   res.status(500).send(`Order wasn't update. ${e}`)
+  // }
 
 }
