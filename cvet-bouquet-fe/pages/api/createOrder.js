@@ -22,6 +22,6 @@ export default async function handler(req, res) {
     });
     res.status(200).send('Order was created');
   } catch (e) {
-    res.status(500).send({ error: 'Order was created' });
+    res.status(500).send({ message: 'Order was not created',error: e, });
   }
 }
