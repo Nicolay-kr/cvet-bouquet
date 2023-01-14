@@ -1,9 +1,9 @@
 import { sanityClient } from '../../../sanity';
 
-export const updateOrder = async (id) => {
+export const updateOrder = async (id, status) => {
   sanityClient
   .patch(id) // Document ID to patch
-  .set({status: 'Исполнен'}) // Shallow merge
+  .set({status: status}) // Shallow merge
   .commit() // Perform the patch and return a promise
   .then((data) => {
     console.log('Orer status was update')

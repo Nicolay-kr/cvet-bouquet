@@ -94,10 +94,8 @@ export default function Checkout({ price, shopsList, orderlist }) {
         return `${bouquet.title} количество: ${bouquet.quantity} `;
       })
       .join('; ');
-    
-    const orderNumber = generateOrderNumber();
 
-    const doc = {
+    const orderData = {
       status: status,
       name: data.name,
       phone: data.phone,
@@ -116,16 +114,16 @@ export default function Checkout({ price, shopsList, orderlist }) {
       deliveryType: checkoutOptions.delivery ? 'Курьер' : 'Самовывоз',
       deliveryPlace: !checkoutOptions.delivery ? delivery : '',
       recipient: checkoutOptions.selfReceive ? 'Сам клиент' : 'Другой человек',
-      paymentType: checkoutOptions.paymentByCard ? 'Онлайн' : 'Наличные',
-      OrderNumber: orderNumber,
-      OrderAmount: `${data.OrderAmount}`,
+      paymentType: checkoutOptions.paymentByCard ? 'Онлайн оплата' : 'Наличные',
+      OrderAmount: price,
+      OrderCurrency: 'BYN',
       registration: new Date(),
     };
     // setIsOpenSuccessModal(true);
 
-    fetch('https://formspree.io/f/xbjerqyo', {
+    fetch('api/createOrder', {
       method: 'POST',
-      body: JSON.stringify(doc),
+      body: JSON.stringify(orderData),
       headers: {
         Accept: 'application/json',
       },
@@ -136,31 +134,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
       .catch((error) => {
         console.log('error', error);
       });
-
-    // setIsOpenSuccessModal(true);
-    addOrder(doc);
-
-    const paymentData = {
-      OrderNumber: orderNumber,
-      OrderAmount: price,
-      URL_RETURN_OK:'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
-      Merchant_ID: process.env.MERCHANT_ID,
-      OrderCurrency: 'BYN',
-    };
-
-    // fetch(`${process.env.SERVER_NAME}`, {
-    //   method: 'POST',
-    //   body: JSON.stringify(paymentData),
-    //   headers: {
-    //     Accept: 'application/json',
-    //   },
-    // })
-    //   .then((response) => {
-    //     console.log('response', response);
-    //   })
-    //   .catch((error) => {
-    //     console.log('error', error);
-    //   });
   };
 
   const onClose = () => {

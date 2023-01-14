@@ -4,7 +4,7 @@ import uniqid from 'uniqid';
 const addOrder = async (doc) => {
   const data = {
     ...doc,
-    _id: uniqid(),
+    _id: doc.id,
     _type: 'orders',
   }
 
@@ -13,7 +13,7 @@ const addOrder = async (doc) => {
     .then((res) => {
       console.log('Order was created (or was already present)');
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.log('Order was not created. Error ' + error));
 };
 
 export default addOrder;

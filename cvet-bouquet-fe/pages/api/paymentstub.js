@@ -3,11 +3,10 @@ import {updateOrder} from '../../src/utils/sanityMethods/updateOrder';
 
 
 export default function handler(req, res) {
-  const answer = JSON.parse(req.body)
-  console.log(req)
-  if(answer.ordernumber){
-    updateOrder('lc4h3o9t')
+  const data = JSON.parse(req.body)
+  if(data.Merchant_ID){
+    res.status(200).send(`order wasn update`, data)
+  }else{
+    res.status(500).send(`order wasn't update. Error`);
   }
-
-  res.status(200).json(req.body)
 }
