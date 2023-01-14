@@ -13,13 +13,13 @@ export default async function handler(req, res) {
     const orderNumber = generateOrderNumber(orderId);
     orderData.id = orderId;
     orderData.OrderNumber = orderNumber;
-    await addOrder(orderData);
+    // await addOrder(orderData);
     await sendMessageAboutOrder(orderData);
-    await createPayment({
-        OrderNumber: orderData.orderNumber,
-        OrderAmount: orderData.OrderAmount,
-        URL_RETURN_OK:'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
-    });
+    // await createPayment({
+    //     OrderNumber: orderData.orderNumber,
+    //     OrderAmount: orderData.OrderAmount,
+    //     URL_RETURN_OK:'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
+    // });
     res.status(200).send('Order was created');
   } catch (e) {
     res.status(500).send({ message: 'Order was not created',error: e, });

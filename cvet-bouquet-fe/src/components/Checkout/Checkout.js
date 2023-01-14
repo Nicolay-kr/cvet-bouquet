@@ -121,7 +121,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
     };
     // setIsOpenSuccessModal(true);
 
-    fetch('https://cvet-bouquet-nicolay-kr.vercel.app/api/createOrder', {
+    fetch('api/createOrder', {
       method: 'POST',
       body: JSON.stringify(orderData),
       headers: {
