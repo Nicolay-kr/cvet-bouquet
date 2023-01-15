@@ -5,7 +5,7 @@ import { sanityClient } from '../sanity';
 import ShopsList from '../src/components/ShopsList';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import PhoneIcon from '../public/assets/icons/phoneBlack.svg';
-import Letter from '../public/assets/icons/letter.svg';
+import Letter from '../public/assets/icons/emailIcon.svg';
 import InstaIcon from '../public/assets/icons/insta.svg';
 import Typography from '@mui/material/Typography';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
@@ -42,18 +42,19 @@ export default function Contacts({ data }) {
         <Box sx={{ width: '100%', height: { xs: '100vw', lg: 'auto' } }}>
           <YMaps>
             <Map defaultState={defaultState} width='100%' height='100%'>
-              <Placemark
-                geometry={[53.912048, 27.539391]}
-                options={{
-                  iconColor: '#746449',
-                }}
-              />
-              {/* <Placemark
-                geometry={[53.928699, 27.631585]}
-                options={{
-                  iconColor: '#746449',
-                }}
-              /> */}
+              {data.generalInfo.shopsList.map((shop) => {
+                if (shop.published) {
+                  return (
+                    <Placemark
+                      key={shop._key}
+                      geometry={[shop.location.lat, shop.location.lng]}
+                      options={{
+                        iconColor: '#746449',
+                      }}
+                    />
+                  );
+                }
+              })}
             </Map>
           </YMaps>
         </Box>
@@ -93,8 +94,8 @@ export default function Contacts({ data }) {
                   {data?.generalInfo?.phone}
                 </Typography>
               </Box>
-              <Box sx={{ display: 'flex', mt: size(20) }}>
-                <Letter fill='#000000'/>
+              <Box sx={{ display: 'flex', mt: size(20), alignItems: 'center' }}>
+                <Letter />
                 <Typography
                   variant='h5'
                   component='a'

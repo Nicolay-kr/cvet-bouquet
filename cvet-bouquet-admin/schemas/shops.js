@@ -28,6 +28,11 @@ export default {
       title: 'Ближайшая станция метро',
       type: 'string',
     },
+    {
+      name: 'location',
+      title: 'Координаты магазина',
+      type: 'geopoint',
+    },
 
   ],
   preview: {
