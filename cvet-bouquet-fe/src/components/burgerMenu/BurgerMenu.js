@@ -165,23 +165,25 @@ export default function BurgerMenu({ categories, data }) {
             }}
           >
             <IconButton
-              onClick={() => router.push('/')}
+              onClick={() => router.push(`${data.telegram?data.telegram:'/'}`)}
               aria-label='TelegramIcon'
             >
               <Telegram />
             </IconButton>
-            <IconButton onClick={() => router.push('/')} aria-label='ViberIcon'>
+            <IconButton onClick={() => router.push(`${data.viber?data.viber:'/'}`)} aria-label='ViberIcon'>
               <Viber />
             </IconButton>
             <IconButton
-              onClick={() => router.push('/')}
+              onClick={() => router.push(`${data.whatsapp?data.whatsapp:'/'}`)}
               aria-label='WhatsappIcon'
             >
               <Whatsapp />
             </IconButton>
             <IconButton
-              onClick={() => router.push('/')}
-              aria-label='WhatsappIcon'
+              onClick={() => router.push(data?.instagram?`https://www.instagram.com/${data?.instagram?.slice(
+                1
+              )}`:'/')}
+              aria-label='InstagramIcon'
             >
               <Instagram />
             </IconButton>
