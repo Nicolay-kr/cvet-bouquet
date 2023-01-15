@@ -14,10 +14,12 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Viber from '../../../public/assets/icons/viber.svg';
 import Whatsapp from '../../../public/assets/icons/whatsapp.svg';
 import Telegram from '../../../public/assets/icons/telegram.svg';
+import Instagram from '../../../public/assets/icons/instagram.svg';
 import Typography from '@mui/material/Typography';
 import BurgerAccordion from '../burgerAccordion/BurgerAccordion';
+import size from '../../utils/size';
 
-export default function BurgerMenu({ categories, shops }) {
+export default function BurgerMenu({ categories, data }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const router = useRouter();
   const toggleDrawer = (event, open) => {
@@ -66,8 +68,7 @@ export default function BurgerMenu({ categories, shops }) {
           px: { xs: '4px', sm: '8px' },
           width: {},
         }}
-        aria-label="BurgerIcon"
-        
+        aria-label='BurgerIcon'
         component='span'
         role='button'
         onClick={(e) => toggleDrawer(e, true)}
@@ -82,7 +83,7 @@ export default function BurgerMenu({ categories, shops }) {
           src={burgerIcon}
           alt='belcard icon'
         ></Box> */}
-        <BurgerIcon/>
+        <BurgerIcon />
       </IconButton>
       <SwipeableDrawer
         anchor='left'
@@ -111,8 +112,7 @@ export default function BurgerMenu({ categories, shops }) {
             component='p'
             role='presentation'
             onClick={(e) => toggleDrawer(e, false)}
-            aria-label="CrossIcon"
-            
+            aria-label='CrossIcon'
           >
             {/* <Box
               component={Image}
@@ -120,7 +120,7 @@ export default function BurgerMenu({ categories, shops }) {
               src={whitecros}
               alt='cros icon'
             ></Box> */}
-            <Whitecros/>
+            <Whitecros />
           </IconButton>
 
           <List
@@ -164,23 +164,43 @@ export default function BurgerMenu({ categories, shops }) {
               justifyContent: 'center',
             }}
           >
-            <IconButton onClick={() => router.push('/')} aria-label="TelegramIcon">
-              {/* <Image src={telegram} alt='telegram icon'></Image> */}
-              <Telegram/>
+            <IconButton
+              onClick={() => router.push('/')}
+              aria-label='TelegramIcon'
+            >
+              <Telegram />
             </IconButton>
-            <IconButton onClick={() => router.push('/')} aria-label="ViberIcon">
-              {/* <Image src={viber} alt='viber icon'></Image> */}
-              <Viber/>
+            <IconButton onClick={() => router.push('/')} aria-label='ViberIcon'>
+              <Viber />
             </IconButton>
-            <IconButton onClick={() => router.push('/')} aria-label="WhatsappIcon">
-              {/* <Image src={whatsapp} alt='whatsapp icon'></Image> */}
-              <Whatsapp/>
+            <IconButton
+              onClick={() => router.push('/')}
+              aria-label='WhatsappIcon'
+            >
+              <Whatsapp />
+            </IconButton>
+            <IconButton
+              onClick={() => router.push('/')}
+              aria-label='WhatsappIcon'
+            >
+              <Instagram />
             </IconButton>
           </Box>
-          <Box sx={{ mt: '40px', mr: 'auto' }}>
-            {shops?.map((shop) =>
+          <Box sx={{ mt: '60px', mr: 'auto' }}>
+            <Typography
+              variant='h6'
+              component='a'
+              color='white'
+              sx={{ fontSize: { ...size(20), xs: 20 }, fontWeight: '600' }}
+              href={`tel:${data?.phone?.replace(/-|\s/gi, '')}`}
+            >
+              {data?.phone}
+            </Typography>
+          </Box>
+          <Box sx={{ mt: '24px', mr: 'auto' }}>
+            {data?.shopsList?.map((shop) =>
               shop.published ? (
-                <Typography variant='body1' color='white' key={shop.adress}>
+                <Typography variant='h6' color='white' key={shop.adress}>
                   {shop.adress}
                 </Typography>
               ) : null

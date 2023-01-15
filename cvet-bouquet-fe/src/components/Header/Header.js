@@ -23,6 +23,7 @@ export const Header = ({ data }) => {
     { title: 'E-pos оплата', slug: { current: 'e-pos' } },
     { title: 'Доставка и самовывоз', slug: { current: 'delivery' } },
   ];
+  console.log(data)
 
   const navList = (
     <ul className={styles.navigation}>
@@ -94,7 +95,7 @@ export const Header = ({ data }) => {
             categories={data?.categories?.categories?.filter(
               (category) => category?.published === true
             )}
-            shops={data?.shopsList}
+            data={data}
           ></BurgerMenu>
           <SearchModal></SearchModal>
         </Box>
