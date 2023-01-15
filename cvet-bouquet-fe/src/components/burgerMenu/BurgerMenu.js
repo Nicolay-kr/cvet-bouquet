@@ -188,7 +188,7 @@ export default function BurgerMenu({ categories, data }) {
               <Instagram />
             </IconButton>
           </Box>
-          <Box sx={{ mt: '60px', mr: 'auto' }}>
+          <Box sx={{ mt: '40px', mr: 'auto' }}>
             <Typography
               variant='h6'
               component='a'
