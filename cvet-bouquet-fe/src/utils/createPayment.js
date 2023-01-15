@@ -1,5 +1,5 @@
 export const createPayment = (paymentIfo) => {
-  fetch(`${process.env.SERVER_NAME}`, {
+  return fetch(`${process.env.SERVER_NAME}`, {
     method: 'POST',
     body: JSON.stringify({
       ...paymentIfo,
@@ -10,10 +10,4 @@ export const createPayment = (paymentIfo) => {
       Accept: 'application/json',
     },
   })
-    .then((response) => {
-      console.log('response', response);
-    })
-    .catch((error) => {
-      console.log('error', error);
-    });
 };

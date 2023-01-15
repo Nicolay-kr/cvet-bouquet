@@ -1,12 +1,18 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import {updateOrder} from '../../src/utils/sanityMethods/updateOrder';
+import isJson from '../../src/utils/isJson';
 
 
 export default function handler(req, res) {
-  const data = JSON.parse(req.body)
-  if(data.Merchant_ID){
-    res.status(200).send(`order wasn update`, data)
-  }else{
-    res.status(500).send(`order wasn't update. Error`);
+  try{
+    const data = isJson(req.body)?JSON.parse(req.body):req.body;
+    if(data.Merchant_ID){
+      return res.status(200).send(`Payment was initialize`, JSON.stringify(data))
+    }else{
+      return res.status(500).send(`order wasn't update. Error`);
+    }
+
+  }catch(e){
+    return res.status(500).send(`order wasn't update. ${e}`);
   }
+ 
 }
