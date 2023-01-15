@@ -1,4 +1,5 @@
 export const createPayment = (paymentIfo) => {
+  console.log(paymentIfo)
   return fetch(`${process.env.SERVER_NAME}`, {
     method: 'POST',
     body: JSON.stringify({

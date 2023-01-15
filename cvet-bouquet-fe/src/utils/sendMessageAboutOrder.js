@@ -8,10 +8,4 @@ export const sendMessageAboutOrder = (orderInfo) => {
       Accept: 'application/json',
     },
   })
-    // .then((response) => {
-    //   console.log('Email was sent', response);
-    // })
-    // .catch((error) => {
-    //   console.log('Email about order  was not sent. Error ', error);
-    // });
 };

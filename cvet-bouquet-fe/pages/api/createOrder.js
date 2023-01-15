@@ -15,14 +15,14 @@ export default async function handler(req, res) {
 
   const data = {
     ...orderData,
-    _id: orderData.orderId,
+    _id: orderId,
     _type: 'orders',
   }
   try {
-    await sanityClient.createIfNotExists(data)
+    // await sanityClient.createIfNotExists(data)
     await sendMessageAboutOrder(orderData);
     await createPayment({
-        OrderNumber: orderData.orderNumber,
+        OrderNumber: orderData.OrderNumber,
         OrderAmount: orderData.OrderAmount,
         URL_RETURN_OK:'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
     });
