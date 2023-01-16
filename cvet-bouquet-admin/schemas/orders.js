@@ -18,33 +18,28 @@ export default {
       readOnly: true,
     },
     {
-      name: 'name',
-      title: 'Имя',
-      type: 'string',
-    },
-    {
-      name: 'recipient',
-      title: 'Получатель',
-      type: 'string',
-    },
-    {
       name: 'status',
       title: 'Статус платежа',
       type: 'string',
     },
     {
-      name: 'deliveryType',
-      title: 'Тип доставки',
+      name: 'orderType',
+      title: 'Тип зааказа',
       type: 'string',
     },
     {
-      name: 'deliveryPlace',
-      title: 'Место самовывоза',
+      name: 'OrderAmount',
+      title: 'Cтоимость',
       type: 'string',
     },
     {
       name: 'paymentType',
       title: 'Платежный метод',
+      type: 'string',
+    },
+    {
+      name: 'name',
+      title: 'Имя',
       type: 'string',
     },
     {
@@ -58,16 +53,30 @@ export default {
       type: 'string',
     },
     {
+      name: 'recipientName',
+      title: 'Имя получателя',
+      type: 'string',
+    },
+    {
+      name: 'recipientPhone',
+      title: 'Телефон получателя',
+      type: 'string',
+    },
+    {
       name: 'orderlist',
       title: 'Состав заказа',
       type: 'text',
     },
     {
-      name: 'OrderAmount',
-      title: 'Cтоимость',
+      name: 'deliveryType',
+      title: 'Тип доставки',
       type: 'string',
     },
-    
+    {
+      name: 'deliveryPlace',
+      title: 'Место самовывоза',
+      type: 'string',
+    },
     {
       name: 'comment',
       title: 'Комментарий к заказу',

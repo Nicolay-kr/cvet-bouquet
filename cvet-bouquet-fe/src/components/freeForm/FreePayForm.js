@@ -17,29 +17,27 @@ import {
   contactSchema,
   defaultSchema,
 } from '../../verifiedSchemas/freePayFormSchema';
-import generateOrderNumber from '../../utils/generateOrderNumber';
-import addOrder from '../../utils/sanityMethods/addOrder';
+
+const defaultState = {
+  name: '',
+  phone: '',
+  OrderAmount: '',
+  email: '',
+  comment: '',
+};
+
+const defaultStateForContacts = {
+  name: '',
+  phone: '',
+  email: '',
+  comment: '',
+};
 
 export default function FreePayForm({ isContactsForm = false }) {
-  const [isOpenSuccessModal, setIsOpenSuccessModal] = React.useState(false);
+  const [isOpenSuccessModal, setIsOpenModal] = React.useState(false);
   const [formProcessing, setFormProcessing] = React.useState(false);
 
   const lg = useMediaQuery('(min-width:1200px)');
-
-  const defaultState = {
-    name: '',
-    phone: '',
-    OrderAmount: '',
-    email: '',
-    comment: '',
-  };
-
-  const defaultStateForContacts = {
-    name: '',
-    phone: '',
-    email: '',
-    comment: '',
-  };
 
   const defaultValue = isContactsForm ? defaultStateForContacts : defaultState;
 
@@ -57,26 +55,16 @@ export default function FreePayForm({ isContactsForm = false }) {
 
   const onSubmit = (data) => {
     setFormProcessing(true);
-
-    let handleDate = data.OrderAmount
-      ? {
-          Имя: data.name,
-          Телефон: data.phone,
-          Email: data.email,
-          Сумма: data.OrderAmount,
-          Сообщение: data.comment,
-        }
-      : {
-          Имя: data.name,
-          Телефон: data.phone,
-          Email: data.email,
-          Сообщение: data.comment,
-        };
-
+    setIsOpenModal(true)
     if (isContactsForm) {
       fetch('https://formspree.io/f/mzbqpyrw', {
         method: 'POST',
-        body: JSON.stringify(handleDate),
+        body: JSON.stringify({
+          'Имя': data.name,
+          'Телефон': data.phone,
+          'Email': data.email,
+          'Сообщение': data.comment,
+        }),
         headers: {
           Accept: 'application/json',
         },
@@ -84,71 +72,44 @@ export default function FreePayForm({ isContactsForm = false }) {
         .then((response) => {
           console.log('response', response);
           setFormProcessing(false);
-          setIsOpenSuccessModal(true);
+          setIsOpenModal(true);
           reset(defaultValue);
         })
 
         .catch((error) => {
           console.log('error', error);
           setFormProcessing(false);
-          setIsOpenSuccessModal(false);
+          setIsOpenModal(false);
         });
     } else {
-      const orderNumber = generateOrderNumber();
-
-      fetch('https://formspree.io/f/mrgvzrkp', {
+      fetch('api/createOrder', {
         method: 'POST',
-        body: JSON.stringify(handleDate),
+        body: JSON.stringify({
+          ...data,
+          orderType: 'Свободный платеж',
+          paymentType: 'Онлайн оплата',
+        }),
         headers: {
           Accept: 'application/json',
         },
       })
         .then((response) => {
           console.log('response', response);
-          setFormProcessing(false);
-          setIsOpenSuccessModal(true);
-          reset(defaultValue);
+          // setFormProcessing(false);
+          // setIsOpenModal(true);
+          // reset(defaultValue);
         })
 
         .catch((error) => {
           console.log('error', error);
           // setFormProcessing(false);
-          // setIsOpenSuccessModal(false);
+          // setIsOpenModal(false);
         });
-      addOrder({
-        ...data,
-        status: 'В ожидании',
-        OrderNumber: orderNumber,
-        OrderAmount: `${data.OrderAmount}`,
-        paymentType: 'Онлайн',
-      });
-
-      const paymentData = {
-        OrderNumber: orderNumber,
-        OrderAmount: data.OrderAmount,
-        URL_RETURN_OK: 'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
-        Merchant_ID: 'Merchant_ID',
-        OrderCurrency: 'BYN',
-      };
-
-      // fetch('https://<SERVER-NAME>/pay/order.cfm', {
-      //   method: 'POST',
-      //   body: JSON.stringify(paymentData),
-      //   headers: {
-      //     Accept: 'application/json',
-      //   },
-      // })
-      //   .then((response) => {
-      //     console.log('response', response);
-      //   })
-      //   .catch((error) => {
-      //     console.log('error', error);
-      //   });
     }
   };
 
   const onClose = () => {
-    setIsOpenSuccessModal(false);
+    setIsOpenModal(false);
   };
 
   return (

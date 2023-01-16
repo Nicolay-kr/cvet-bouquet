@@ -12,6 +12,8 @@ export default async function handler(req, res) {
   const orderId = uniqid();
   const orderNumber = generateOrderNumber(orderId);
   orderData.OrderNumber = orderNumber;
+  orderData.OrderAmount = orderData.OrderAmount.toString();
+  orderData.status = 'В ожидании';
 
   const data = {
     ...orderData,
@@ -19,12 +21,11 @@ export default async function handler(req, res) {
     _type: 'orders',
   }
   try {
-    // await sanityClient.createIfNotExists(data)
+    await sanityClient.createIfNotExists(data)
     await sendMessageAboutOrder(orderData);
     await createPayment({
         OrderNumber: orderData.OrderNumber,
         OrderAmount: orderData.OrderAmount,
-        URL_RETURN_OK:'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
     });
     return res.status(200).send({ message: 'Order was created'})
     

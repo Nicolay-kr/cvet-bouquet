@@ -21,12 +21,11 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { ru } from 'date-fns/locale';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import checkoutSchema from '../../verifiedSchemas/checkout';
-import generateOrderNumber from '../../utils/generateOrderNumber';
-import addOrder from '../../utils/sanityMethods/addOrder';
 
 export default function Checkout({ price, shopsList, orderlist }) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
-  const [isOpenSuccessModal, setIsOpenSuccessModal] = React.useState(false);
+  const [isOpenModal, setIsOpenModal] = React.useState(false);
+  const [formProcessing, setFormProcessing] = React.useState(false);
 
   const checkoutOptionsDefault = {
     delivery: true,
@@ -35,14 +34,15 @@ export default function Checkout({ price, shopsList, orderlist }) {
   };
 
   const [delivery, setDelivery] = React.useState(shopsList[0].adress);
-  const [checkoutOptions, setCtOptions] = React.useState(
+  const [checkoutOptions, setCheckoutOptions] = React.useState(
     checkoutOptionsDefault
   );
   const [isPrivareHouse, setIsPrivareHouse] = React.useState(false);
-  const [status, setStatus] = React.useState('В ожидании');
 
   const defaultState = {
     name: '',
+    recipientName: '',
+    recipientPhone: '',
     phone: '',
     email: '',
     comment: '',
@@ -57,13 +57,13 @@ export default function Checkout({ price, shopsList, orderlist }) {
   };
 
   const handleDeliveryChange = (value) => {
-    setCtOptions({ ...checkoutOptions, delivery: value });
+    setCheckoutOptions({ ...checkoutOptions, delivery: value });
   };
   const handleReceiveChange = (value) => {
-    setCtOptions({ ...checkoutOptions, selfReceive: value });
+    setCheckoutOptions({ ...checkoutOptions, selfReceive: value });
   };
   const handlePaymentChange = (value) => {
-    setCtOptions({ ...checkoutOptions, paymentByCard: value });
+    setCheckoutOptions({ ...checkoutOptions, paymentByCard: value });
   };
 
   const handleChangeDeliveryAdress = (event) => {
@@ -89,6 +89,9 @@ export default function Checkout({ price, shopsList, orderlist }) {
   });
 
   const onSubmit = (data) => {
+    setFormProcessing(true);
+    setIsOpenModal(true)
+
     let orderlist = data.orderlist
       .map((bouquet) => {
         return `${bouquet.title} количество: ${bouquet.quantity} `;
@@ -96,7 +99,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
       .join('; ');
 
     const orderData = {
-      status: status,
       name: data.name,
       phone: data.phone,
       email: data.email,
@@ -113,13 +115,13 @@ export default function Checkout({ price, shopsList, orderlist }) {
       flat: data.flat,
       deliveryType: checkoutOptions.delivery ? 'Курьер' : 'Самовывоз',
       deliveryPlace: !checkoutOptions.delivery ? delivery : '',
-      recipient: checkoutOptions.selfReceive ? 'Сам клиент' : 'Другой человек',
+      recipientName: !checkoutOptions.selfReceive ? data.recipientName:data.name,
+      recipientPhone: !checkoutOptions.selfReceive ? data.recipientPhone:data.phone,
       paymentType: checkoutOptions.paymentByCard ? 'Онлайн оплата' : 'Наличные',
-      OrderAmount: price.toString(),
-      OrderCurrency: 'BYN',
+      OrderAmount: price,
       registration: new Date(),
+      orderType:'Заказ через корзину'
     };
-    // setIsOpenSuccessModal(true);
 
     fetch('api/createOrder', {
       method: 'POST',
@@ -137,7 +139,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
   };
 
   const onClose = () => {
-    setIsOpenSuccessModal(false);
+    setIsOpenModal(false);
   };
 
   return (
@@ -148,7 +150,8 @@ export default function Checkout({ price, shopsList, orderlist }) {
     >
       <SuccsessModal
         onClose={onClose}
-        open={isOpenSuccessModal}
+        open={isOpenModal}
+        formProcessing={formProcessing}
       ></SuccsessModal>
 
       <Box
@@ -170,7 +173,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
           handleClick={handleReceiveChange}
         ></CheckoutsButtons>
 
-        {checkoutOptions.selfReceive ? (
+        
           <Box width='100%'>
             <Typography variant='h3' color='#000000'>
               Ваши данные
@@ -226,7 +229,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
               />
             </Box>
           </Box>
-        ) : (
+          {!checkoutOptions.selfReceive ? (
           <Box width='100%'>
             <Typography variant='h3' color='#000000'>
               Данные получателя
@@ -242,28 +245,28 @@ export default function Checkout({ price, shopsList, orderlist }) {
               }}
             >
               <Controller
-                name='name'
+                name='recipientName'
                 control={control}
                 render={({ field }) => (
                   <TextField
                     label='Имя получателя'
-                    id='name'
-                    error={errors.name?.message.length > 0}
-                    helperText={errors.name?.message}
+                    id='recipientName'
+                    error={errors.recipientName?.message.length > 0}
+                    helperText={errors.recipientName?.message}
                     {...field}
                   />
                 )}
               />
               {/* <TextField id='customer-name' label='Имя получателя' /> */}
               <Controller
-                name='phone'
+                name='recipientPhone'
                 control={control}
                 render={({ field }) => (
                   <TextField
                     id='phone'
                     label='Номер телефона получателя'
-                    error={errors.phone?.message.length > 0}
-                    helperText={errors.phone?.message}
+                    error={errors.recipientPhone?.message.length > 0}
+                    helperText={errors.recipientPhone?.message}
                     {...field}
                   />
                 )}
@@ -274,7 +277,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
               /> */}
             </Box>
           </Box>
-        )}
+        ):null}
 
         <CheckoutsButtons
           title={'Доставка'}
