@@ -85,12 +85,12 @@ export default function Checkout({ price, shopsList, orderlist }) {
     formState: { errors },
   } = useForm({
     defaultValues: defaultState,
-    // resolver: yupResolver(checkoutSchema),
+    resolver: yupResolver(checkoutSchema(checkoutOptions.selfReceive, isPrivareHouse, !checkoutOptions.delivery)),
   });
 
   const onSubmit = (data) => {
-    setFormProcessing(true);
-    setIsOpenModal(true)
+    // setFormProcessing(true);
+    // setIsOpenModal(true)
 
     let orderlist = data.orderlist
       .map((bouquet) => {
