@@ -1,16 +1,14 @@
-const generateOrderNumber = (id) => {
-  const date = new Date();
+import { sanityClient } from '../../sanity';
 
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  let currentDate = `B${day < 9 ? '0' + day.toString() : day}${
-    month < 10 ? '0' + month.toString() : month
-  }${year.toString().slice(2)}-${hours}${minutes}-${id}`;
 
-  return currentDate;
+const generateOrderNumber = async () => {
+  const orders = await sanityClient.fetch(
+    `*[ _type == "orders"]{
+      _id,
+      status,
+    }`
+  );
+  return `order-${orders.length+1}`
 };
 
 export default generateOrderNumber;

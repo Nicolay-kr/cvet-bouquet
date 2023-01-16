@@ -88,6 +88,7 @@ export default function FreePayForm({ isContactsForm = false }) {
           ...data,
           orderType: 'Свободный платеж',
           paymentType: 'Онлайн оплата',
+          registration: new Date(),
         }),
         headers: {
           Accept: 'application/json',

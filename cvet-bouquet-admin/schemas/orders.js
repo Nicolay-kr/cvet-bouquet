@@ -24,7 +24,7 @@ export default {
     },
     {
       name: 'orderType',
-      title: 'Тип зааказа',
+      title: 'Тип заказа',
       type: 'string',
     },
     {

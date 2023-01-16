@@ -5,9 +5,14 @@ import isJson from '../../src/utils/isJson';
 export default async function handler(req, res) {
   try {
     const data = isJson(req.body) ? JSON.parse(req.body) : req.body;
-    const id = data.ordernumber.split('-').slice(2).join('');
+    const order = await sanityClient.fetch(
+      `*[ _type == "orders" && OrderNumber == "${data.ordernumber}"][0]{
+        _id,
+      }`
+    );
+    const id = order._id;
     const status = data.orderstate;
-    if (id) {
+    if (id && data.merchant_id === process.env.MERCHANT_ID) {
       await sanityClient
         .patch(id) // Document ID to patch
         .set({ status: status }) // Shallow merge

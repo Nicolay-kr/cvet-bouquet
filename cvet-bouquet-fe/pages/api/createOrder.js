@@ -10,17 +10,20 @@ import { sendMessageAboutOrder } from '../../src/utils/sendMessageAboutOrder';
 export default async function handler(req, res) {
   const orderData = isJson(req.body)?JSON.parse(req.body):req.body;
   const orderId = uniqid();
-  const orderNumber = generateOrderNumber(orderId);
-  orderData.OrderNumber = orderNumber;
+  
   orderData.OrderAmount = orderData.OrderAmount.toString();
   orderData.status = 'В ожидании';
 
-  const data = {
-    ...orderData,
-    _id: orderId,
-    _type: 'orders',
-  }
   try {
+    const orderNumber = await generateOrderNumber();
+    orderData.OrderNumber = orderNumber;
+
+    const data = {
+      ...orderData,
+      _id: orderId,
+      _type: 'orders',
+    }
+
     await sanityClient.createIfNotExists(data)
     await sendMessageAboutOrder(orderData);
     await createPayment({
