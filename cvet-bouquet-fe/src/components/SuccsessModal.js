@@ -39,7 +39,7 @@ export default function SuccsessModal({
         aria-labelledby='spring-modal-title'
         aria-describedby='spring-modal-description'
         open={open}
-        // onClose={handleClose}
+        onClose={handleClose}
         closeAfterTransition
         sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         BackdropComponent={Backdrop}

@@ -102,7 +102,7 @@ a {
     font-size: 16px !important;
   }
   .MuiPickersPopper-root button {
-    font-size: 12px;
+    font-size: 12px !important;;
   }
 
 }

@@ -122,8 +122,8 @@ export default function Checkout({ price, shopsList, orderlist }) {
   });
 
   const onSubmit = (data) => {
-    // setFormProcessing(true);
-    // setIsOpenModal(true)
+    setFormProcessing(true);
+    setIsOpenModal(true)
 
     let orderlist = data.orderlist
       .map((bouquet) => {
@@ -137,7 +137,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
       email: data.email,
       orderlist: orderlist,
       comment: data.comment,
-      date: checkoutOptions.delivery ? dateValue.format('DD-MM-YYYY') : '',
+      date: checkoutOptions.delivery ? dateValue.format('DD-MM-YYYY')  : '',
       time: time,
       street: data.street,
       house: data.house,
@@ -329,7 +329,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
                 inputFormat='dd/MM/yyyy'
                 value={dateValue}
                 onChange={(newValue) => {
-                  setDateValue(newValue);
+                  setDateValue(dayjs(newValue));
                 }}
                 renderInput={(params) => <TextField {...params}  />}
               />
