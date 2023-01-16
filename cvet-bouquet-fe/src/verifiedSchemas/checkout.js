@@ -28,12 +28,12 @@ const createCheckoutSchema = (selfReceive, isPrivareHouse, isDelivery) => {
         isPrivareHouse || isDelivery
           ? yup.mixed()
           : yup.string().required('Это поле должно быть заполнено'),
-      date: isDelivery
-        ? yup.mixed()
-        : yup.date().required('Это поле должно быть заполнено'),
-      time: isDelivery
-        ? yup.mixed()
-        : yup.date().required('Это поле должно быть заполнено'),
+      // date: isDelivery
+      //   ? yup.mixed()
+      //   : yup.date().required('Это поле должно быть заполнено'),
+      // time: isDelivery
+      //   ? yup.mixed()
+      //   : yup.date().required('Это поле должно быть заполнено'),
     })
     .required();
 

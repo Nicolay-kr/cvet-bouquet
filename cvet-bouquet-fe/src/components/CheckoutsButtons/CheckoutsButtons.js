@@ -1,13 +1,9 @@
 import React from 'react';
-// import { Header } from '../Header/Header';
-// import Footer from '../Footer/Footer';
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Typography,
-} from '../../../node_modules/@mui/material/index';
-// import { useAppContext } from '../context/BouquetsContext';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Typography from '@mui/material/Typography';
+import size from '../../utils/size';
 
 export default function CheckoutsButtons({
   title,
@@ -51,7 +47,7 @@ export default function CheckoutsButtons({
           height: 'max(140px,0.73vw)',
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          columnGap: 'max(30px,1.5vw)',
+          columnGap: {...size(30), xs:16},
         }}
         variant='text'
         aria-label='outlined button group'

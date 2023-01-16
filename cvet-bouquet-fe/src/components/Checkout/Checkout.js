@@ -10,22 +10,54 @@ import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import styles from './Checkout.module.css';
 import ShopsList from '../ShopsList';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import SuccsessModal from '../SuccsessModal';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import size from '../../utils/size';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { ru } from 'date-fns/locale';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import checkoutSchema from '../../verifiedSchemas/checkout';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+
+const MenuProps = {
+  PaperProps: {
+    style: {
+      height: 300,
+      backgroundColor: '#F8F2EA',
+    },
+  },
+};
+
+const deliveryIntervals = [
+  '9.00 - 10.00',
+  '10.00 - 11.00',
+  '11.00 - 12.00',
+  '12.00 - 13.00',
+  '13.00 - 14.00',
+  '14.00 - 15.00',
+  '15.00 - 16.00',
+  '16.00 - 17.00',
+  '17.00 - 18.00',
+  '18.00 - 19.00',
+  '19.00 - 20.00',
+  '20.00 - 21.00',
+  '21.00 - 22.00',
+];
 
 export default function Checkout({ price, shopsList, orderlist }) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [formProcessing, setFormProcessing] = React.useState(false);
+
+  const [time, setTime] = React.useState('');
+
+  const handleChangeTime = (event) => {
+    setTime(event.target.value);
+  };
 
   const checkoutOptionsDefault = {
     delivery: true,
@@ -47,7 +79,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
     email: '',
     comment: '',
     date: '',
-    time: '',
     street: '',
     house: '',
     enter: '',
@@ -74,10 +105,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
     setIsPrivareHouse(event.target.checked);
   };
 
-  const handleChange = (newValue) => {
-    setDateValue(newValue);
-  };
-
   const {
     control,
     handleSubmit,
@@ -85,7 +112,13 @@ export default function Checkout({ price, shopsList, orderlist }) {
     formState: { errors },
   } = useForm({
     defaultValues: defaultState,
-    resolver: yupResolver(checkoutSchema(checkoutOptions.selfReceive, isPrivareHouse, !checkoutOptions.delivery)),
+    resolver: yupResolver(
+      checkoutSchema(
+        checkoutOptions.selfReceive,
+        isPrivareHouse,
+        !checkoutOptions.delivery
+      )
+    ),
   });
 
   const onSubmit = (data) => {
@@ -104,10 +137,8 @@ export default function Checkout({ price, shopsList, orderlist }) {
       email: data.email,
       orderlist: orderlist,
       comment: data.comment,
-      date: checkoutOptions.delivery ? data.date.toLocaleDateString() : '',
-      time: checkoutOptions.delivery
-        ? data.time?.toTimeString().slice(0, 5)
-        : '',
+      date: checkoutOptions.delivery ? dateValue.format('DD-MM-YYYY') : '',
+      time: time,
       street: data.street,
       house: data.house,
       enter: data.enter,
@@ -115,12 +146,16 @@ export default function Checkout({ price, shopsList, orderlist }) {
       flat: data.flat,
       deliveryType: checkoutOptions.delivery ? 'Курьер' : 'Самовывоз',
       deliveryPlace: !checkoutOptions.delivery ? delivery : '',
-      recipientName: !checkoutOptions.selfReceive ? data.recipientName:data.name,
-      recipientPhone: !checkoutOptions.selfReceive ? data.recipientPhone:data.phone,
+      recipientName: !checkoutOptions.selfReceive
+        ? data.recipientName
+        : data.name,
+      recipientPhone: !checkoutOptions.selfReceive
+        ? data.recipientPhone
+        : data.phone,
       paymentType: checkoutOptions.paymentByCard ? 'Онлайн оплата' : 'Наличные',
       OrderAmount: price,
       registration: new Date(),
-      orderType:'Заказ через корзину'
+      orderType: 'Заказ через корзину',
     };
 
     fetch('api/createOrder', {
@@ -143,11 +178,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
   };
 
   return (
-    <LocalizationProvider
-      dateAdapter={AdapterDateFns}
-      locale={ru}
-      // adapterLocale={localeMap.ru}
-    >
+    <LocalizationProvider dateAdapter={AdapterDateFns} locale={ru}>
       <SuccsessModal
         onClose={onClose}
         open={isOpenModal}
@@ -173,63 +204,62 @@ export default function Checkout({ price, shopsList, orderlist }) {
           handleClick={handleReceiveChange}
         ></CheckoutsButtons>
 
-        
-          <Box width='100%'>
-            <Typography variant='h3' color='#000000'>
-              Ваши данные
-            </Typography>
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: { xs: '1fr', lg: '3fr 3fr' },
-                gridTemplateRows: 'auto',
-                columnGap: 'max(30px,1.5vw)',
-                rowGap: 'max(20px,1vw)',
-                mt: 'max(20px,1vw)',
-              }}
-            >
-              <Controller
-                name='name'
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    label='Вашe имя'
-                    id='name'
-                    error={errors.name?.message.length > 0}
-                    helperText={errors.name?.message}
-                    {...field}
-                  />
-                )}
-              />
-              <Controller
-                name='phone'
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    id='phone'
-                    label='Ваш номер телефона.'
-                    error={errors.phone?.message.length > 0}
-                    helperText={errors.phone?.message}
-                    {...field}
-                  />
-                )}
-              />
-              <Controller
-                name='email'
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    id='email'
-                    label='Ваш e-mail'
-                    {...field}
-                    error={errors.email?.message.length > 0}
-                    helperText={errors.email?.message}
-                  />
-                )}
-              />
-            </Box>
+        <Box width='100%'>
+          <Typography variant='h3' color='#000000'>
+            Ваши данные
+          </Typography>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', lg: '3fr 3fr' },
+              gridTemplateRows: 'auto',
+              columnGap: { ...size(30), xs: 16 },
+              rowGap: 'max(20px,1vw)',
+              mt: 'max(20px,1vw)',
+            }}
+          >
+            <Controller
+              name='name'
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  label='Вашe имя'
+                  id='name'
+                  error={errors.name?.message.length > 0}
+                  helperText={errors.name?.message}
+                  {...field}
+                />
+              )}
+            />
+            <Controller
+              name='phone'
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  id='phone'
+                  label='Ваш номер телефона.'
+                  error={errors.phone?.message.length > 0}
+                  helperText={errors.phone?.message}
+                  {...field}
+                />
+              )}
+            />
+            <Controller
+              name='email'
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  id='email'
+                  label='Ваш e-mail'
+                  {...field}
+                  error={errors.email?.message.length > 0}
+                  helperText={errors.email?.message}
+                />
+              )}
+            />
           </Box>
-          {!checkoutOptions.selfReceive ? (
+        </Box>
+        {!checkoutOptions.selfReceive ? (
           <Box width='100%'>
             <Typography variant='h3' color='#000000'>
               Данные получателя
@@ -239,7 +269,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
                 display: 'grid',
                 gridTemplateColumns: { xs: '1fr', lg: '3fr 3fr' },
                 gridTemplateRows: 'auto',
-                columnGap: 'max(30px,1.5vw)',
+                columnGap: { ...size(30), xs: 16 },
                 rowGap: 'max(20px,1vw)',
                 mt: 'max(20px,1vw)',
               }}
@@ -257,7 +287,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
                   />
                 )}
               />
-              {/* <TextField id='customer-name' label='Имя получателя' /> */}
               <Controller
                 name='recipientPhone'
                 control={control}
@@ -271,13 +300,9 @@ export default function Checkout({ price, shopsList, orderlist }) {
                   />
                 )}
               />
-              {/* <TextField
-                id='customer-telephone'
-                label='Номер телефона получателя'
-              /> */}
             </Box>
           </Box>
-        ):null}
+        ) : null}
 
         <CheckoutsButtons
           title={'Доставка'}
@@ -293,48 +318,50 @@ export default function Checkout({ price, shopsList, orderlist }) {
                 display: 'grid',
                 gridTemplateColumns: '3fr 3fr',
                 gridTemplateRows: 'auto',
-                columnGap: 'max(30px,1.5vw)',
+                columnGap: { ...size(30), xs: 16 },
                 rowGap: 'max(20px,1vw)',
                 mt: 'max(20px,1vw)',
                 '& button': { fontSize: '16px !important' },
               }}
             >
-              <Controller
-                name='date'
-                control={control}
-                render={({ field }) => (
-                  // <DesktopDatePicker
-                  <DatePicker
-                    sx={{
-                      fontSize: '16px',
-                      backGroundColor: 'red',
-                      '& button': { fontSize: '16px !important' },
-                    }}
-                    label='Выберите дату'
-                    inputFormat='dd/MM/yyyy'
-                    value={dateValue}
-                    onChange={(newValue) => {
-                      setDateValue(newValue);
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                    {...field}
-                  />
-                )}
+              <DatePicker
+                label='Выберите дату'
+                inputFormat='dd/MM/yyyy'
+                value={dateValue}
+                onChange={(newValue) => {
+                  setDateValue(newValue);
+                }}
+                renderInput={(params) => <TextField {...params}  />}
               />
-              <Controller
-                name='time'
-                control={control}
-                render={({ field }) => (
-                  <TimePicker
-                    label='Выберите время'
-                    value={dateValue}
-                    onChange={handleChange}
-                    renderInput={(params) => <TextField {...params} />}
-                    className={styles.datePicker}
-                    {...field}
-                  />
-                )}
-              />
+
+              <FormControl
+                fullWidth
+                sx={{ '& ul': { height: '300px !important' } }}
+              >
+                <InputLabel id='demo-simple-select-label'>
+                  Выберите время
+                </InputLabel>
+                <Select
+                  labelId='demo-simple-select-label'
+                  id='demo-simple-select'
+                  value={time}
+                  label='Выберите время'
+                  onChange={handleChangeTime}
+                  MenuProps={MenuProps}
+                >
+                  {deliveryIntervals.map((interval) => {
+                    return (
+                      <MenuItem
+                        key={interval}
+                        sx={{ fontSize: size(24) }}
+                        value={interval}
+                      >
+                        {interval}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
 
               <Controller
                 name='street'
@@ -349,16 +376,12 @@ export default function Checkout({ price, shopsList, orderlist }) {
                   />
                 )}
               />
-
-              {/* <TextField id='customer-time' label='Выберите время' /> */}
-              {/* <TextField id='customer-street' label='Улица' /> */}
               <Box
                 sx={{
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr',
                 }}
               >
-                {/* <TextField id='customer-house' label='Дом' /> */}
                 <Controller
                   name='house'
                   control={control}
@@ -374,10 +397,8 @@ export default function Checkout({ price, shopsList, orderlist }) {
                 />
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <Switch
-                    label='Частный дом'
                     checked={isPrivareHouse}
                     onChange={handleChangeIsPrivareHouse}
-                    // inputProps={{ 'aria-label': 'controlled' }}
                   />
                   <Typography variant='body1' color='#000000'>
                     Частный дом
@@ -391,7 +412,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
                       display: 'grid',
                       gridTemplateColumns: '2fr 1fr',
                       gridTemplateRows: 'auto',
-                      columnGap: 'max(30px,1.5vw)',
+                      columnGap: { ...size(30), xs: 16 },
                     }}
                   >
                     <Controller
@@ -407,7 +428,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
                         />
                       )}
                     />
-                    {/* <TextField id='customer-enter' label='Подъезд' /> */}
                     <Controller
                       name='floor'
                       control={control}
@@ -421,7 +441,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
                         />
                       )}
                     />
-                    {/* <TextField id='customer-floor' label='Этаж' /> */}
                   </Box>
                   <Box
                     sx={{
@@ -444,11 +463,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
                         />
                       )}
                     />
-                    {/* <TextField
-                      sx={{ gridColumn: { xs: '1/3', lg: '1' } }}
-                      id='customer-flat'
-                      label='Квартира'
-                    /> */}
                   </Box>
                 </>
               ) : null}

@@ -1,4 +1,3 @@
-
 html,
 body {
   padding: 0;
@@ -22,8 +21,8 @@ a {
   font-family: 'Zeferino One';
   src: url('../public/fonts/ZeferinoOne.eot');
   src: url('../public/fonts/ZeferinoOne.eot?#iefix') format('embedded-opentype'),
-      url('../public/fonts/ZeferinoOne.woff2') format('woff2'),
-      url('../public/fonts/ZeferinoOne.woff') format('woff');
+    url('../public/fonts/ZeferinoOne.woff2') format('woff2'),
+    url('../public/fonts/ZeferinoOne.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -33,8 +32,8 @@ a {
   font-family: 'Zeferino One';
   src: url('../public/fonts/ZeferinoOne.eot');
   src: url('../public/fonts/ZeferinoOne.eot?#iefix') format('embedded-opentype'),
-      url('../public/fonts/ZeferinoOne.woff2') format('woff2'),
-      url('../public/fonts/ZeferinoOne.woff') format('woff');
+    url('../public/fonts/ZeferinoOne.woff2') format('woff2'),
+    url('../public/fonts/ZeferinoOne.woff') format('woff');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -44,20 +43,23 @@ a {
   html {
     color-scheme: dark;
   }
+
   /* body {
     color: white;
     background: black;
   } */
 }
-.MuiPickersPopper-root button{
+
+.MuiPickersPopper-root button {
   font-size: 16px;
 }
 
-.swiper{
+.swiper {
   padding: max(20px) 0 !important;
   height: auto !important;
 }
-.swiper-wrapper{
+
+.swiper-wrapper {
   padding-bottom: 20px;
 }
 
@@ -87,9 +89,20 @@ a {
   opacity: 0;
 } */
 
-.MuiCalendarOrClockPicker-root{
+.MuiCalendarOrClockPicker-root {
   /* background: #F8F2EA !important; */
 }
-.MuiDayPicker-weekDayLabel{
+
+.MuiDayPicker-weekDayLabel {
   font-size: 18px !important;
+}
+
+@media (max-width: 600px) {
+  .MuiDayPicker-weekDayLabel {
+    font-size: 16px !important;
+  }
+  .MuiPickersPopper-root button {
+    font-size: 12px;
+  }
+
 }
