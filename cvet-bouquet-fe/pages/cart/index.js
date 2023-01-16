@@ -141,6 +141,9 @@ export default function Cart({ data }) {
         +((price + delivery) * (promoCodeValue.percent / 100)).toFixed(2)
       : +(price + delivery);
 
+
+      console.log(orderSumma.toFixed(2))
+
   return (
     <>
       <Head>
@@ -542,7 +545,7 @@ export default function Cart({ data }) {
 
           {isCheckout && bouquets.length > 0 ? (
             <Checkout
-              price={price}
+              price={orderSumma.toFixed(2)}
               shopsList={data?.generalInfo?.shopsList}
               orderlist={bouquets}
             ></Checkout>
