@@ -19,6 +19,8 @@ export const sendMessageAboutOrder = (orderInfo) => {
         'Имя': orderInfo.name,
         'Телефон': orderInfo.phone,
         'Email': orderInfo.email,
+        'Имя получателя': orderInfo.recipientName,
+        'Телефон получателя': orderInfo.recipientPhone,
         'Сообщение': orderInfo.comment,
         'Состав заказа': orderInfo.orderlist,
         'Тип доставки': orderInfo.deliveryType,
