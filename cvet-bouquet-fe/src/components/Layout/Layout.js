@@ -12,17 +12,33 @@ export default function Layout({ children }) {
   const [data, setData] = useState([]);
   const [instagramPosts, setInstagramPosts] = useState([]);
   const fetchData = useCallback(async () => {
-    try{
-      const response = await fetch('api/getCategories');
-      const data = await response.json()
-      setData(data)
-
-    }catch(err){
-      console.error
-    }
-
-    // getCategories().then((data) => setData(data)).catch(console.error);
-    // fetch('api/getCategories').then((data) => setData(data)).catch(console.error);
+    sanityClient
+			.fetch(
+				`*[ _type == "generalInfo"][0]{
+          ...,
+          "categories": *[ _type == "categoryList"][0]{
+                  _id,
+                  categories[]->{
+                    _id,
+                    slug,
+                    title,
+                    mainImage,
+                    published,
+                    bouqets[]->{
+                      _id,
+                      title,
+                      slug,
+                      images,
+                      price,
+                      description,
+                    }
+                  },
+                }
+        }`
+			)
+			.then((data) => setData(data))
+      
+			.catch(console.error);
   }, []);
 
   const fetchInstagrammData = useCallback(async () => {
