@@ -194,7 +194,7 @@ export default function SearchModal({}) {
                         style={{cursor:'pointer'}}
                       ></Image>
                       </Box>
-                      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                      <Box sx={{ display: 'flex', flexDirection: 'column',width:{xs:100,md:'auto'} }}>
                         <Typography variant='body1'>
                           {bouquet?.title?.ru}
                         </Typography>
