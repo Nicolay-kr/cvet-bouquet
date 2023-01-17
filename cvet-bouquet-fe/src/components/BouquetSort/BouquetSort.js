@@ -27,7 +27,7 @@ export default function BouquetSort({ sorting, activeSorting }) {
             withClick={sorting.price}
           ></WordWithArrow>
           <WordWithArrow
-            isActive={activeSorting === 'novelty'}
+            isActive={activeSorting === 'publishedAt'}
             title='новизне'
             withClick={sorting.novelty}
           ></WordWithArrow>

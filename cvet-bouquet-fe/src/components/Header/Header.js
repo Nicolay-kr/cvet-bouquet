@@ -23,7 +23,6 @@ export const Header = ({ data }) => {
     { title: 'E-pos оплата', slug: { current: 'e-pos' } },
     { title: 'Доставка и самовывоз', slug: { current: 'delivery' } },
   ];
-  console.log(data)
 
   const navList = (
     <ul className={styles.navigation}>

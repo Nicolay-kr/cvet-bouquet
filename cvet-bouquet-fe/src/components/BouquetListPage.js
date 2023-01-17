@@ -6,135 +6,113 @@ import BouquetSort from './BouquetSort/BouquetSort';
 import PriceFilter from './PriceFilter';
 import size from '../utils/size';
 import { useRouter } from 'next/router';
+import sortArray from 'sort-array';
 
-const BouquetListPage = ({
-  category,
-  breadCrumbsList,
-  generalInfo,
-}) => {
+const BouquetListPage = ({ category, breadCrumbsList, generalInfo }) => {
   const defaultBouquetsList = category?.bouqets;
   const [bouquetsList, setBouquetsList] = React.useState(defaultBouquetsList);
+  const [filtredBouquetsList, setFilterdBouquetsList] = React.useState([]);
   const router = useRouter();
 
   const [value, setValue] = React.useState(
     router.query.price ? router.query.price : 'all'
   );
 
-  const sortingFunction = {
-    price: handlePriceSort,
-    novelty: handleNoveltySort,
-    popularity: handlePopularitySort,
-  };
+  const [sortBy, setSortBy] = React.useState({
+    by: 'popularity',
+    order: 'asc',
+  });
 
-  const [sortBy, setSortBy] = React.useState(
-    router.query.sortBy
-      ? {
-          parametr: router.query.sortBy,
-          type: 'acs',
-          func: sortingFunction[router.query.sortBy],
-        }
-      : { parametr: 'popularity', type: 'none', func: handlePopularitySort }
-  );
-
-  const handleChangePrice = (value) => {
+  const handleChangePrice = (value,isDesc=false) => {
     setValue(value);
     router.push(
       {
         pathname: router.pathname,
         query: !(value === 'all')
           ? { price: `${value}`, slug: router.query.slug }
-          : router.query.slug? { slug: router.query.slug }:null
+          : router.query.slug
+          ? { slug: router.query.slug }
+          : null,
       },
       undefined,
       { shallow: true }
     );
 
     let arrValue = [];
+    let filtredBouquetsList = [];
 
     if (value === 'primary') {
       arrValue = [1001, 10000];
-    } else {
-      arrValue = value.split('-');
-    }
-    if (value === 'all') {
-      let sortedBouquetsList = handlePriceSort(defaultBouquetsList);
-      sortedBouquetsList = sortBy.func(sortedBouquetsList);
-      setBouquetsList([...sortedBouquetsList]);
-    } else {
-      let sortedBouquetsList = defaultBouquetsList.filter(
+      filtredBouquetsList = defaultBouquetsList.filter(
         (bouquet) =>
           arrValue[0] <= +bouquet.price && +bouquet.price <= +arrValue[1]
       );
-      sortedBouquetsList = sortBy.func(sortedBouquetsList);
-
-      setBouquetsList([...sortedBouquetsList]);
+    } else if (value === 'all') {
+      filtredBouquetsList = defaultBouquetsList;
+    } else {
+      arrValue = value.split('-');
+      filtredBouquetsList = defaultBouquetsList.filter(
+        (bouquet) =>
+          arrValue[0] <= +bouquet.price && +bouquet.price <= +arrValue[1]
+      );
     }
+    setBouquetsList([...filtredBouquetsList]);
+    setFilterdBouquetsList([...filtredBouquetsList]);
   };
 
   useEffect(() => {
-    setBouquetsList([...defaultBouquetsList]);
-  }, [defaultBouquetsList]);
+    let newbouquetsList = [...bouquetsList];
+    let sortedBouquetsList = sortArray(newbouquetsList, sortBy)
+    setBouquetsList([...sortedBouquetsList]);
+  },[sortBy])
 
   useEffect(() => {
     handleChangePrice(value);
   }, []);
 
-  function handlePriceSort(bouquets) {
-    const sortedBouquetsList = bouquets.sort((a, b) => a.price - b.price);
-    const sortedBouquetsListDesc = [...sortedBouquetsList].reverse();
-    if (sortBy.parametr === 'price' && sortBy.type === 'desc') {
-      setSortBy({ parametr: 'price', type: 'acs', func: handlePriceSort });
-      return sortedBouquetsList;
-    } else if (sortBy.parametr === 'price' && sortBy.type === 'acs') {
-      setSortBy({ parametr: 'price', type: 'desc', func: handlePriceSort });
-      return sortedBouquetsListDesc;
+  function handlePriceSort() {
+    if (sortBy.by === 'price' && sortBy.order === 'asc') {
+      setSortBy({
+        by: 'price',
+        order: 'desc',
+      });
     } else {
-      setSortBy({ parametr: 'price', type: 'acs', func: handlePriceSort });
-      return sortedBouquetsList;
+      setSortBy({
+        by: 'price',
+        order: 'asc',
+      });
     }
   }
 
-  function handleNoveltySort(bouquets) {
-    const sortedBouquetsList = bouquets.sort(
-      (a, b) => new Date(a.publishedAt) - new Date(b.publishedAt)
-    );
-    const sortedBouquetsListDesc = [...sortedBouquetsList].reverse();
-    if (sortBy.parametr === 'novelty' && sortBy.type === 'desc') {
-      setSortBy({ parametr: 'novelty', type: 'acs', func: handleNoveltySort });
-      return sortedBouquetsList;
-    } else if (sortBy.parametr === 'novelty' && sortBy.type === 'acs') {
-      setSortBy({ parametr: 'novelty', type: 'desc', func: handleNoveltySort });
-      return sortedBouquetsListDesc;
+  function handleNoveltySort() {
+    if (sortBy.by === 'publishedAt' && sortBy.order === 'asc') {
+      setSortBy({
+        by: 'publishedAt',
+        order: 'desc',
+      });
     } else {
-      setSortBy({ parametr: 'novelty', type: 'acs', func: handleNoveltySort });
-      return sortedBouquetsList;
+      setSortBy({
+        by: 'publishedAt',
+        order: 'asc',
+      });
     }
   }
 
-  function handlePopularitySort(bouquets) {
-    const sortedBouquetsList = [...bouquets];
-    const sortedBouquetsListDesc = [...sortedBouquetsList].reverse();
-    if (sortBy.parametr === 'popularity' && sortBy.type === 'desc') {
+  function handlePopularitySort() {
+    if (sortBy.by === 'popularity' && sortBy.order === 'asc') {
       setSortBy({
-        parametr: 'popularity',
-        type: 'acs',
-        func: handlePopularitySort,
+        by: 'popularity',
+        order: 'desc',
       });
-      return sortedBouquetsListDesc;
-    } else if (sortBy.parametr === 'popularity' && sortBy.type === 'acs') {
-      setSortBy({
-        parametr: 'popularity',
-        type: 'desc',
-        func: handlePopularitySort,
-      });
-      return sortedBouquetsListDesc;
+      let reverseList = [...filtredBouquetsList];
+      setBouquetsList([...reverseList.reverse()]);
     } else {
       setSortBy({
-        parametr: 'popularity',
-        type: 'acs',
-        func: handlePopularitySort,
+        by: 'popularity',
+        order: 'asc',
       });
-      return sortedBouquetsList;
+      setBouquetsList([...filtredBouquetsList]);
+
     }
   }
 
@@ -142,19 +120,16 @@ const BouquetListPage = ({
     <>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <BouquetSort
-        activeSorting={sortBy.parametr}
+        activeSorting={sortBy.by}
         sorting={{
-          price: () => setBouquetsList([...handlePriceSort(bouquetsList)]),
-          novelty: () => setBouquetsList([...handleNoveltySort(bouquetsList)]),
-          popularity: () =>
-            setBouquetsList([...handlePopularitySort(bouquetsList)]),
+          price: () => handlePriceSort(),
+          novelty: () => handleNoveltySort(),
+          popularity: () => handlePopularitySort(),
         }}
       />
       <PriceFilter value={value} changeFunc={handleChangePrice}></PriceFilter>
       <Box sx={{ width: '100%', px: { xs: '3%', lg: '9.4%' }, my: size(30) }}>
-        <Box
-          sx={{ width: '100%', mx: 'auto' }}
-        >
+        <Box sx={{ width: '100%', mx: 'auto' }}>
           <Box
             sx={{
               display: 'grid',
@@ -164,7 +139,7 @@ const BouquetListPage = ({
                 lg: '1fr 1fr 1fr 1fr',
               },
               columnGap: size(10),
-              rowGap: {...size(60),xs:40},
+              rowGap: { ...size(60), xs: 40 },
             }}
           >
             {category ? (
