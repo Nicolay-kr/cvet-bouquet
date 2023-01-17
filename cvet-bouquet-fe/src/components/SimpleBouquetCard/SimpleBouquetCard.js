@@ -108,7 +108,7 @@ export default function SimpleBouquetCard({
               }}
             >
               <Typography
-                sx={{ textAlign: {xs:isPremium?'left':'center',lg:'center'},fontSize:{...size(24),xs:isPremium?14:18} }}
+                sx={{ textAlign: {xs:isPremium?'left':'center',lg:'center'},fontSize:{...size(24),xs:14} }}
                 variant='h4'
                 component='p'
               >

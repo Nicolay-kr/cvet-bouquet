@@ -17,6 +17,7 @@ export default function CaruselBlock({
   title,
   subtitle,
   categoryslug = null,
+  customMt = null,
 }) {
   const caruselRef = useRef(null);
 
@@ -32,7 +33,7 @@ export default function CaruselBlock({
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
-        mt: size(200),
+        mt: customMt? customMt: size(200),
       }}
     >
       <TitleWithSubtitle
