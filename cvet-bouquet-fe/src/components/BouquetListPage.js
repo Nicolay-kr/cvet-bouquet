@@ -8,8 +8,8 @@ import size from '../utils/size';
 import { useRouter } from 'next/router';
 import sortArray from 'sort-array';
 
-const BouquetListPage = ({ category, breadCrumbsList, generalInfo }) => {
-  const defaultBouquetsList = category?.bouqets;
+const BouquetListPage = ({ category, breadCrumbsList, generalInfo, bouqets }) => {
+  const defaultBouquetsList = bouqets;
   const [bouquetsList, setBouquetsList] = React.useState(defaultBouquetsList);
   const [filtredBouquetsList, setFilterdBouquetsList] = React.useState([]);
   const router = useRouter();
@@ -68,7 +68,7 @@ const BouquetListPage = ({ category, breadCrumbsList, generalInfo }) => {
 
   useEffect(() => {
     handleChangePrice(value);
-  }, []);
+  }, [bouqets]);
 
   function handlePriceSort() {
     if (sortBy.by === 'price' && sortBy.order === 'asc') {

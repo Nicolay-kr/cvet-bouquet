@@ -14,7 +14,7 @@ export const CategoryBouquets = ({ data }) => {
     { title: 'Каталог', href: '/catalog' },
     { title: data?.category?.title, href: null },
   ];
-  
+
   const isPremium = data?.category?.slug.current === 'premium-floristika';
 
   return isPremium ? (
@@ -33,7 +33,13 @@ export const CategoryBouquets = ({ data }) => {
         isPremium={isPremium}
         isSpec={true}
       ></CaruselBlockWithArch>
-      <Box sx={{ px: { xs: '5%', lg: '10%' },mt: { xs: '20px'},textAlign: {xs:'center',md:'left'}, }}>
+      <Box
+        sx={{
+          px: { xs: '5%', lg: '10%' },
+          mt: { xs: '20px' },
+          textAlign: { xs: 'center', md: 'left' },
+        }}
+      >
         <Typography variant='h4'>
           Почаще напоминайте о своих чувствах просто и без повода.
         </Typography>
@@ -43,7 +49,7 @@ export const CategoryBouquets = ({ data }) => {
             fontFamily: 'Zeferino One, serif',
             fontSize: { xs: '36px', xl: '50px', xxl: '2.6vw' },
             lineHeight: '1',
-            textAlign: {xs:'center',md:'left'},
+            textAlign: { xs: 'center', md: 'left' },
             position: 'relative',
             left: { xs: '0%', lg: '-3%' },
             mt: { xs: '10px', lg: '20px' },
@@ -55,16 +61,16 @@ export const CategoryBouquets = ({ data }) => {
     </>
   ) : (
     <>
-       <Head>
+      <Head>
         <title>{data?.category?.title} | ЦВЕТ•БУКЕТ</title>
       </Head>
       <BouquetListPage
-      breadCrumbsList={breadCrumbsList}
-      category={data?.category}
-      generalInfo={data?.generalInfo}
-    ></BouquetListPage>
+        breadCrumbsList={breadCrumbsList}
+        category={data?.category}
+        generalInfo={data?.generalInfo}
+        bouqets={data?.category?.bouqets}
+      ></BouquetListPage>
     </>
-
   );
 };
 
