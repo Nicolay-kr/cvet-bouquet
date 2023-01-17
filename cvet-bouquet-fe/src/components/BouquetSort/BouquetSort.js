@@ -22,19 +22,25 @@ export default function BouquetSort({ sorting, activeSorting }) {
           }}
         >
           <WordWithArrow
-            isActive={activeSorting === 'price'}
+            isActive={activeSorting.by === 'price'}
             title='цене'
             withClick={sorting.price}
+            useOutsideState={true}
+            state={activeSorting.by === 'price' && activeSorting.order==='asc' }
           ></WordWithArrow>
           <WordWithArrow
-            isActive={activeSorting === 'publishedAt'}
+            isActive={activeSorting.by === 'publishedAt'}
             title='новизне'
             withClick={sorting.novelty}
+            useOutsideState={true}
+            state={activeSorting.by === 'publishedAt' && activeSorting.order==='asc' }
           ></WordWithArrow>
           <WordWithArrow
-            isActive={activeSorting === 'popularity'}
+            isActive={activeSorting.by === 'popularity'}
             title='популярности'
             withClick={sorting.popularity}
+            useOutsideState={true}
+            state={activeSorting.by === 'popularity' && activeSorting.order==='asc' }
           ></WordWithArrow>
         </Box>
       </Box>

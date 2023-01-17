@@ -20,7 +20,7 @@ const BouquetListPage = ({ category, breadCrumbsList, generalInfo }) => {
 
   const [sortBy, setSortBy] = React.useState({
     by: 'popularity',
-    order: 'asc',
+    order: 'desc',
   });
 
   const handleChangePrice = (value,isDesc=false) => {
@@ -104,14 +104,16 @@ const BouquetListPage = ({ category, breadCrumbsList, generalInfo }) => {
         by: 'popularity',
         order: 'desc',
       });
-      let reverseList = [...filtredBouquetsList];
-      setBouquetsList([...reverseList.reverse()]);
+      setBouquetsList([...filtredBouquetsList]);
+      
     } else {
       setSortBy({
         by: 'popularity',
         order: 'asc',
       });
-      setBouquetsList([...filtredBouquetsList]);
+      let reverseList = [...filtredBouquetsList];
+      setBouquetsList([...reverseList.reverse()]);
+      
 
     }
   }
@@ -120,7 +122,7 @@ const BouquetListPage = ({ category, breadCrumbsList, generalInfo }) => {
     <>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <BouquetSort
-        activeSorting={sortBy.by}
+        activeSorting={sortBy}
         sorting={{
           price: () => handlePriceSort(),
           novelty: () => handleNoveltySort(),
