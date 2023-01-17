@@ -11,6 +11,7 @@ import Fade from '@mui/material/Fade';
 import { useEffect } from 'react';
 
 import { urlFor } from '../../../sanity';
+import size from '../../utils/size';
 
 export default function SimpleBouquetCard({
   id,
@@ -38,7 +39,7 @@ export default function SimpleBouquetCard({
       setChecked(false);
     };
   });
-
+  
   return (
     <div className={styles.cardConteiner} key={id}>
       <Fade in={checked}>
@@ -48,6 +49,7 @@ export default function SimpleBouquetCard({
             height: '100%',
             bgcolor: 'fon.main',
             p: '0',
+            borderRadius:'0',
           }}
           className={styles.card}
           elevation={0}
@@ -76,7 +78,7 @@ export default function SimpleBouquetCard({
                 position: 'relative',
                 width: '100%',
                 height: width
-                  ? { xs: '40vw', md: width.md*4/3, xl: width.xl*4/3 }
+                  ? { xs: '40vw', md: width.md*4/3, xl: width.xl*4/3, xxl: `${18.75*4/3}vw` }
                   : {
                       xs: '60vw',
                       md: '38vw',
@@ -102,10 +104,11 @@ export default function SimpleBouquetCard({
                 flexDirection: 'column',
                 flexGrow: '1',
                 minHeight: '70px',
+                px:isPremium?0:16,
               }}
             >
               <Typography
-                sx={{ textAlign: 'center' }}
+                sx={{ textAlign: {xs:isPremium?'left':'center',lg:'center'},fontSize:{...size(24),xs:isPremium?14:18} }}
                 variant='h4'
                 component='p'
               >

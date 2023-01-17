@@ -77,8 +77,10 @@ export default function CaruselBlockWithArch({
               justifyContent: { md: 'space-between' },
               alignItems: 'start',
               position: 'relative',
-              minHeight: '94px',
+              minHeight: {xs:94,xxl:'4.5vw'},
               backgroundColor: 'fon.main',
+              px:'5px',
+              
             }}
           >
             <Typography
@@ -88,7 +90,8 @@ export default function CaruselBlockWithArch({
                 // mt: '16px',
                 textAlign: isPremium ? 'left' : 'center',
                 textDecoration: 'none',
-                fontWeight: '500',
+                fontWeight: '600',
+                fontSize:{...size(24),xs:16}
               }}
               variant='h3'
               component='p'
@@ -100,10 +103,10 @@ export default function CaruselBlockWithArch({
                 gutterBottom
                 variant='h3'
                 component='p'
-                sx={{ fontWeight: 700, display: 'flex', mb: '0' }}
+                sx={{ fontWeight: 700, display: 'flex', mb: '0',px:5 }}
               >
                 {item.price}{' '}
-                <sup style={{ fontSize: '10px', paddingTop: '4px' }}>BYN</sup>
+                <sup style={{ fontSize: '0.5em', paddingTop: '4px' }}>BYN</sup>
               </Typography>
             ) : null}
           </Box>

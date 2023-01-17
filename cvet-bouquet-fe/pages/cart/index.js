@@ -61,7 +61,7 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
               ></Image>
             </Link>
 
-            <Typography variant='body1'>{title}</Typography>
+            <Typography variant='h5'>{title}</Typography>
           </Box>
         </TableCell>
 
@@ -88,7 +88,6 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
           <IconButton
             component='div'
             // className={styles.cardHeart}
-            href='#'
             onClick={removeFromCart}
             aria-label='CrossIcon'
           >
@@ -365,7 +364,7 @@ export default function Cart({ data }) {
                     ></Image>
                   </Link>
                   <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <Typography sx={{ fontSize: '16px' }}>
+                    <Typography variant='h5'>
                       {bouquet.title}
                     </Typography>
                     <Box
