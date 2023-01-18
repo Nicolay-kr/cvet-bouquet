@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import sortArray from 'sort-array';
 
 const BouquetListPage = ({ category, breadCrumbsList, generalInfo, bouqets }) => {
-  const defaultBouquetsList = bouqets;
+  const defaultBouquetsList = bouqets.filter(item=>item.published===true);
   const [bouquetsList, setBouquetsList] = React.useState(defaultBouquetsList);
   const [filtredBouquetsList, setFilterdBouquetsList] = React.useState([]);
   const router = useRouter();
@@ -25,18 +25,7 @@ const BouquetListPage = ({ category, breadCrumbsList, generalInfo, bouqets }) =>
 
   const handleChangePrice = (value,isDesc=false) => {
     setValue(value);
-    router.push(
-      {
-        pathname: router.pathname,
-        query: !(value === 'all')
-          ? { price: `${value}`, slug: router.query.slug }
-          : router.query.slug
-          ? { slug: router.query.slug }
-          : null,
-      },
-      undefined,
-      { shallow: true }
-    );
+ 
 
     let arrValue = [];
     let filtredBouquetsList = [];
@@ -69,6 +58,20 @@ const BouquetListPage = ({ category, breadCrumbsList, generalInfo, bouqets }) =>
   useEffect(() => {
     handleChangePrice(value);
   }, [bouqets]);
+  useEffect(() => {
+    router.push(
+      {
+        pathname: router.pathname,
+        query: !(value === 'all')
+          ? { price: `${value}`, slug: router.query.slug }
+          : router.query.slug
+          ? { slug: router.query.slug }
+          : null,
+      },
+      undefined,
+      { shallow: false }
+    );
+  }, [value]);
 
   function handlePriceSort() {
     if (sortBy.by === 'price' && sortBy.order === 'asc') {

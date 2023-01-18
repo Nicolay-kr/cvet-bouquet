@@ -112,6 +112,12 @@ export default function Cart({ data }) {
   );
   const [promoCodeValue, setPromoCodeValue] = React.useState(null);
 
+  const orderlist = bouquets
+      .map((bouquet) => {
+        return `${bouquet.title} количество: ${bouquet.quantity} `;
+      })
+      .join('; ');
+
 
 
   const handleToCheckout = () => {
@@ -546,7 +552,7 @@ export default function Cart({ data }) {
             <Checkout
               price={orderSumma.toFixed(2)}
               shopsList={data?.generalInfo?.shopsList}
-              orderlist={bouquets}
+              orderlist={orderlist}
             ></Checkout>
           ) : null}
         </Box>

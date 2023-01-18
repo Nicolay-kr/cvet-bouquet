@@ -84,7 +84,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
     enter: '',
     floor: '',
     flat: '',
-    orderlist: orderlist,
   };
 
   const handleDeliveryChange = (value) => {
@@ -124,12 +123,6 @@ export default function Checkout({ price, shopsList, orderlist }) {
   const onSubmit = (data) => {
     setFormProcessing(true);
     setIsOpenModal(true)
-
-    let orderlist = data.orderlist
-      .map((bouquet) => {
-        return `${bouquet.title} количество: ${bouquet.quantity} `;
-      })
-      .join('; ');
 
     const orderData = {
       name: data.name,
