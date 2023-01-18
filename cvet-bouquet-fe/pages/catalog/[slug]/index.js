@@ -14,6 +14,7 @@ export const CategoryBouquets = ({ data }) => {
     { title: 'Каталог', href: '/catalog' },
     { title: data?.category?.title, href: null },
   ];
+  console.log('bouquets')
 
   const isPremium = data?.category?.slug.current === 'premium-floristika';
 
@@ -68,7 +69,7 @@ export const CategoryBouquets = ({ data }) => {
         breadCrumbsList={breadCrumbsList}
         category={data?.category}
         generalInfo={data?.generalInfo}
-        bouqets={data?.category?.bouqets}
+        bouqets={data?.category?.bouqets.filter(item=>item.published===true)}
       ></BouquetListPage>
     </>
   );
@@ -85,6 +86,7 @@ export const getServerSideProps = async (pageContext) => {
       data,
       bouqets[]->{
         _id,
+        published,
         title,
         slug,
         images,
