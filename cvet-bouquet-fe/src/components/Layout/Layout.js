@@ -5,54 +5,41 @@ import { sanityClient } from '../../../sanity';
 import InstagramBlock from '../InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import size from '../../utils/size';
-import getInstagramPost from '../../utils/getInstagramPost';
-import { getCategories } from '../../utils/sanityMethods/getCategories';
+import useSWR from 'swr';
+import groq from "groq";
+import CircularProgress from '@mui/material/CircularProgress';
+
+
+
+
 
 export default function Layout({ children }) {
-  const [data, setData] = useState([]);
-  const [instagramPosts, setInstagramPosts] = useState([]);
-  const fetchData = useCallback(async () => {
-    sanityClient
-			.fetch(
-				`*[ _type == "generalInfo"][0]{
-          ...,
-          "categories": *[ _type == "categoryList"][0]{
-                  _id,
-                  categories[]->{
-                    _id,
-                    slug,
-                    title,
-                    mainImage,
-                    published,
-                    bouqets[]->{
-                      _id,
-                      title,
-                      slug,
-                      images,
-                      price,
-                      description,
-                    }
-                  },
-                }
-        }`
-			)
-			.then((data) => setData(data))
-      
-			.catch(console.error);
-  }, []);
+  const { data, error, isLoading } = useSWR(groq`*[ _type == "generalInfo"][0]{
+    ...,
+    "categories": *[ _type == "categoryList"][0]{
+            _id,
+            categories[]->{
+              _id,
+              slug,
+              title,
+              mainImage,
+              published,
+              bouqets[]->{
+                _id,
+                title,
+                slug,
+                images,
+                price,
+                description,
+              }
+            },
+          }
+  }`, query =>
+  sanityClient.fetch(query)
+)
 
-  const fetchInstagrammData = useCallback(async () => {
-    const posts = await getInstagramPost();
-    setInstagramPosts(posts);
-  }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    fetchInstagrammData();
-  }, []);
+  if (error) return <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>
+  if (isLoading) return <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>
 
   return (
     <>
@@ -60,7 +47,7 @@ export default function Layout({ children }) {
       <main>
         {children}
         <Box sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}>
-          <InstagramBlock instagramPosts={instagramPosts}></InstagramBlock>
+          <InstagramBlock instagramPosts={data?.instagramBlock}></InstagramBlock>
         </Box>
       </main>
       <Footer data={data} />

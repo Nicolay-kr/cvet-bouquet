@@ -5,6 +5,8 @@ import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRouter } from 'next/router';
 import Image from 'next/image'
+import { urlFor } from '../../../sanity';
+
 
 
 export default function InstagramBlock({ instagramPosts }) {
@@ -38,15 +40,15 @@ export default function InstagramBlock({ instagramPosts }) {
         @cvetbuket.by
       </Box>
       <div className={styles.imagesConteiner}>
-        {instagramPosts?.data?.map((item, index) => {
+        {instagramPosts?.map((item, index) => {
           if (index <= postsNumber-1) {
             return (
               <Image
                 objectFit='cover'
-                key={item.id}
+                key={item._key}
                 width={400}
                 height={400}
-                src={item.media_url}
+                src={urlFor(item)?.width(500)?.url()}
                 alt='instagram image'
                 sizes="(max-width: 768px) 200px,
               (max-width: 1200px) 400px,

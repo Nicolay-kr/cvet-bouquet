@@ -31,6 +31,21 @@ export default {
       ],
     },
     {
+      name: 'instagramBlock',
+      title: 'Блок инстаграм',
+      type: 'array',
+      validation: (Rule) => Rule.max(6).error('Максимальное количество изображений 6шт. Удалите лишнее изображенее'),
+      of: [
+        {
+          type: 'image',
+          title:'Добавить изображение',
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+    },
+    {
       name: 'requisites',
       title: 'Реквизиты',
       type: 'string',
