@@ -3,7 +3,9 @@ import styles from './CaruselBlock.module.css';
 
 import { Swiper } from 'swiper/react';
 import { SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper';
 import 'swiper/css';
+import 'swiper/css/pagination';
 
 export default function BouquetCarusel({
   listItems,
@@ -17,6 +19,8 @@ export default function BouquetCarusel({
       loopedSlides={3}
       grabCursor={true}
       loop={true}
+      pagination={{dynamicBullets:true}}
+      modules={[Pagination]}
       ref={caruselRef}
       initialSlide={initialSlide?initialSlide:0}
     >

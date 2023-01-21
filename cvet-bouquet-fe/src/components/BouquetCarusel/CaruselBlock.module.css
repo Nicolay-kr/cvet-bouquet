@@ -4,3 +4,7 @@
   position: absolute;
   border:none;
 }
+.bulletClass{
+  color:red;
+  background-color:red;
+}
