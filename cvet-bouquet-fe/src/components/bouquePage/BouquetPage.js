@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
+import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -11,31 +11,26 @@ import AccordionCustom from '../AccordionCustom/AccordionCustom';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import { useAppContext } from '../context/BouquetsContext';
 import BreadCrumbs from '../breadcrubs/BreadCrumbs';
-import { useRouter } from 'next/router';
 import { urlFor } from '../../../sanity';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import size from '../../utils/size';
+import BouquetCarusel from '../BouquetCarusel/BouquetCarusel';
+import SuccsessModal from '../SuccsessModal';
 
-export const BouquetPage = ({
-  bouquet,
-  breadCrumbsList,
-  generalInfo,
-}) => {
+export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
   const [quantity, setQuantity] = useState(1);
   const bouckeList = useAppContext();
-  const baseImage = bouquet.images[0];
+  const bouquetCaruselhRef = useRef(null);
+  const [isOpenModal, setIsOpenModal] = React.useState(false);
+  const [formProcessing, setFormProcessing] = React.useState(false);
 
-  const [activeImg, setActiveImg] = useState(baseImage);
+  const [activeImg, setActiveImg] = useState(0);
   bouquet = {
     ...bouquet,
     imagePath: bouquet.images[0],
     quantity: quantity,
-    deliveryPrice:generalInfo.deliveryPrice,
-    deliveryMin:generalInfo.deliveryMin,
+    deliveryPrice: generalInfo.deliveryPrice,
+    deliveryMin: generalInfo.deliveryMin,
   };
-  useEffect(() => {
-    setActiveImg(baseImage);
-  }, [baseImage]);
 
   const [animation] = useState(true);
   const handlePlus = () => {
@@ -66,15 +61,58 @@ export const BouquetPage = ({
     },
   ];
 
-  const router = useRouter();
-
-  const handleImageClick = (e, image) => {
-    setActiveImg(image);
+  const handleImageClick = (e, index) => {
+    bouquetCaruselhRef.current.swiper.slideTo(index);
+    setActiveImg(index);
   };
+
+  const bouquetImagesList = bouquet.images.map(
+    (image) =>
+      image && (
+        <Image
+          fill={true}
+          src={urlFor(image)?.width(600)?.url()}
+          style={{ objectFit: 'cover' }}
+          alt='bouquet image'
+        ></Image>
+      )
+  );
+
+  const bouquetImagesListFullScreen = bouquet.images.map(
+    (image) =>
+      image && (
+        <Image
+          fill={true}
+          src={urlFor(image)?.width(900)?.url()}
+          style={{ objectFit: 'cover' }}
+          alt='bouquet image'
+        ></Image>
+      )
+  );
+
+  const onClose = () => {
+    setIsOpenModal(false);
+  };
+
+  const mainImgClickHandle = () =>{
+    setIsOpenModal(true)
+  }
 
   return (
     <>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
+      <SuccsessModal
+        onClose={onClose}
+        open={isOpenModal}
+        formProcessing={formProcessing}
+      >
+        <Box sx={{width:'min(90vh,90vw)',height:'min(90vh,90vw)'}}>
+          <BouquetCarusel
+            listItems={bouquetImagesListFullScreen}
+            initialSlide={activeImg}
+          ></BouquetCarusel>
+        </Box>
+      </SuccsessModal>
 
       <Box
         sx={{
@@ -99,26 +137,14 @@ export const BouquetPage = ({
               width: '100%',
               objectFit: 'cover',
               minHeight: { xs: '72vw', lg: '38vw' },
+              overflow: 'hidden',
             }}
+            onClick={mainImgClickHandle}
           >
-            {/* {activeImg && ( */}
-            <TransitionGroup>
-              <CSSTransition
-                key={activeImg._key}
-                in={true}
-                appear={true}
-                timeout={1000}
-                classNames='fade'
-              >
-                <Image
-                  fill={true}
-                  style={{ objectFit: 'cover' }}
-                  src={urlFor(activeImg)?.width(600)?.url()}
-                  alt='main bouquet image'
-                ></Image>
-              </CSSTransition>
-            </TransitionGroup>
-            {/* )} */}
+            <BouquetCarusel
+              listItems={bouquetImagesList}
+              caruselRef={bouquetCaruselhRef}
+            ></BouquetCarusel>
           </Box>
           <Box
             sx={{
@@ -127,28 +153,20 @@ export const BouquetPage = ({
               alignContent: 'space-between',
             }}
           >
-            {bouquet.images.map((image) => (
+            {bouquetImagesList.map((image, index) => (
               <Box
-                key={image._key}
-                onClick={(e) => handleImageClick(e, image)}
+                key={index}
+                onClick={(e) => handleImageClick(e, index)}
                 sx={{
                   position: 'relative',
                   width: '100%',
                   height: { xs: '24vw', lg: '12.5vw' },
                   objectFit: 'cover',
                   cursor: 'pointer',
-                  outline:
-                    activeImg._key === image._key ? '4px solid #8C7B5F' : null,
+                  // outline: activeImg === index ? '4px solid #8C7B5F' : null,
                 }}
               >
-                {image && (
-                  <Image
-                    fill={true}
-                    src={urlFor(image)?.width(600)?.url()}
-                    style={{ objectFit: 'cover' }}
-                    alt='bouquet image'
-                  ></Image>
-                )}
+                {image}
               </Box>
             ))}
           </Box>
@@ -195,7 +213,7 @@ export const BouquetPage = ({
           <Box
             sx={{
               display: 'grid',
-              height: {...size(60),xs:45},
+              height: { ...size(60), xs: 45 },
               gridTemplateColumns: '2fr 3fr',
               marginTop: { ...size(60), xs: 20 },
               columnGap: size(30),
@@ -213,7 +231,7 @@ export const BouquetPage = ({
                 variant='contained'
               ></AddToCartButton>
               <Button
-                sx={{ ml: size(10),height: {...size(60),xs:45}, }}
+                sx={{ ml: size(10), height: { ...size(60), xs: 45 } }}
                 variant='contained'
                 color='primary'
                 onClick={addToFavoritList}
@@ -319,16 +337,16 @@ export const BouquetPage = ({
               color='primary'
               onClick={addToFavoritList}
             >
-               <Box
-                  component={
-                    bouckeList.favoriteBouquets.find(
-                      (item) => item.id === bouquet.id
-                    )
-                      ? ButttonHeartFill
-                      : ButttonHeart
-                  }
-                  alt='heart icon'
-                ></Box>
+              <Box
+                component={
+                  bouckeList.favoriteBouquets.find(
+                    (item) => item.id === bouquet.id
+                  )
+                    ? ButttonHeartFill
+                    : ButttonHeart
+                }
+                alt='heart icon'
+              ></Box>
             </Button>
           </Box>
 

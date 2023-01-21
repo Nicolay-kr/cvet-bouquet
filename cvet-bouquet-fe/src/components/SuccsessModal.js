@@ -9,6 +9,7 @@ import Fade from '@mui/material/Fade';
 import Cros from '../../public/assets/icons/cros.svg';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import Whitecros from '../../public/assets/icons/whitecros.svg';
 
 const style = {
   display: 'flex',
@@ -28,6 +29,7 @@ export default function SuccsessModal({
   onClose,
   isContactsForm = false,
   formProcessing = false,
+  children,
 }) {
   const handleClose = () => {
     onClose(false);
@@ -51,48 +53,70 @@ export default function SuccsessModal({
           <CircularProgress color='fon' />
         ) : (
           <Fade in={open}>
-            <Paper sx={style}>
-              <IconButton
-                sx={{
-                  ml: 'auto',
-                }}
-                component='p'
-                role='presentation'
-                onClick={handleClose}
-                aria-label='CrossIcon'
-              >
-                <Box
-                  component={Cros}
-                  sx={{ width: '24px', height: '24px' }}
-                  viewBox='0 0 18 18'
-                ></Box>
-              </IconButton>
+            {children ? (
+              <Box>
+                {true ? (
+                  <IconButton
+                    sx={{
+                      mr: 'auto',
+                      position:'absolute',
+                      right:'10%',
+                      top:'5%',
+                    }}
+                    component='p'
+                    role='presentation'
+                    onClick={handleClose}
+                    aria-label='CrossIcon'
+                  >
+                    <Whitecros />
+                  </IconButton>
+                ) : null}
+                {children}
+              </Box>
+            ) : (
+              <Paper sx={style}>
+                <IconButton
+                  sx={{
+                    ml: 'auto',
+                  }}
+                  component='p'
+                  role='presentation'
+                  onClick={handleClose}
+                  aria-label='CrossIcon'
+                >
+                  <Box
+                    component={Cros}
+                    sx={{ width: '24px', height: '24px' }}
+                    viewBox='0 0 18 18'
+                  ></Box>
+                </IconButton>
 
-              <Typography id='modal-modal-title' variant='h3' component='h2'>
-                {isContactsForm
-                  ? 'Ваше соощение отправленно'
-                  : 'Ваш заказ отправлен'}
-              </Typography>
-              <Typography
-                id='modal-modal-description'
-                variant='h5'
-                component='p'
-                sx={{ mt: '20px' }}
-              >
-                {isContactsForm
-                  ? 'Мы свяжемся с Вами в ближайшее время'
-                  : 'Спасибо что воспользовались услугами нашей компании'}
-              </Typography>
+                <Typography id='modal-modal-title' variant='h3' component='h2'>
+                  {isContactsForm
+                    ? 'Ваше соощение отправленно'
+                    : 'Ваш заказ отправлен'}
+                </Typography>
+                <Typography
+                  id='modal-modal-description'
+                  variant='h5'
+                  component='p'
+                  sx={{ mt: '20px' }}
+                >
+                  {isContactsForm
+                    ? 'Мы свяжемся с Вами в ближайшее время'
+                    : 'Спасибо что воспользовались услугами нашей компании'}
+                </Typography>
 
-              <Button
-                onClick={handleClose}
-                variant='contained'
-                color='primary'
-                sx={{ mt: '40px', width: { xs: '100%', lg: '200px' } }}
-              >
-                Оk
-              </Button>
-            </Paper>
+                <Button
+                  onClick={handleClose}
+                  variant='contained'
+                  color='primary'
+                  sx={{ mt: '40px', width: { xs: '100%', lg: '200px' } }}
+                >
+                  Оk
+                </Button>
+              </Paper>
+            )}
           </Fade>
         )}
       </Modal>

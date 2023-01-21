@@ -79,9 +79,16 @@ export default function SearchModal({}) {
 
   return (
     <div>
-      <IconButton onClick={handleOpen} sx={{ px: { xs: '4px', sm: '8px'}}} aria-label="SearchIcon">
-        <Box sx={{width:{ xs: 22, sm: 24, lg: 26 } }} viewBox="0 0 26 26"component={SearchIcon}></Box>
-
+      <IconButton
+        onClick={handleOpen}
+        sx={{ px: { xs: '4px', sm: '8px' } }}
+        aria-label='SearchIcon'
+      >
+        <Box
+          sx={{ width: { xs: 22, sm: 24, lg: 26 } }}
+          viewBox='0 0 26 26'
+          component={SearchIcon}
+        ></Box>
       </IconButton>
       <Modal
         aria-labelledby='spring-modal-title'
@@ -130,7 +137,7 @@ export default function SearchModal({}) {
                   variant='contained'
                   color='primary'
                 >
-                  <Whitesearch/>
+                  <Whitesearch />
                 </Button>
               </Box>
               <IconButton
@@ -140,9 +147,9 @@ export default function SearchModal({}) {
                 component='p'
                 role='presentation'
                 onClick={handleClose}
-                aria-label="CrossIcon"
+                aria-label='CrossIcon'
               >
-            <Whitecros/>
+                <Whitecros />
               </IconButton>
             </Box>
             {sortedList.length > 0 ? (
@@ -166,9 +173,8 @@ export default function SearchModal({}) {
                     columnGap: { xs: '20px', lg: '30px' },
                     rowGap: { xs: '20px', lg: '30px' },
                     width: '100%',
-                    overflowY:'scroll',
-                    height:{xs:'77vh',lg:'30vh'}
-                    
+                    overflowY: 'scroll',
+                    height: { xs: '77vh', lg: '30vh' },
                   }}
                 >
                   {sortedList.map((bouquet, index) => (
@@ -183,18 +189,27 @@ export default function SearchModal({}) {
                       }}
                     >
                       <Box onClick={handleClose}>
-                      <Image
-                      onClick={() => router.replace(`/catalog/allbouquets/${bouquet.slug.current}`)}
-                        
-                        layout='fill'
-                        width={100}
-                        height={125}
-                        src={urlFor(bouquet?.images[0])?.width(400)?.url()}
-                        alt='bouquet'
-                        style={{cursor:'pointer'}}
-                      ></Image>
+                        <Image
+                          onClick={() =>
+                            router.replace(
+                              `/catalog/allbouquets/${bouquet.slug.current}`
+                            )
+                          }
+                          layout='fill'
+                          width={100}
+                          height={125}
+                          src={urlFor(bouquet?.images[0])?.width(400)?.url()}
+                          alt='bouquet'
+                          style={{ cursor: 'pointer' }}
+                        ></Image>
                       </Box>
-                      <Box sx={{ display: 'flex', flexDirection: 'column',width:{xs:100,md:'auto'} }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          width: { xs: 100, md: 'auto' },
+                        }}
+                      >
                         <Typography variant='body1'>
                           {bouquet?.title?.ru}
                         </Typography>
