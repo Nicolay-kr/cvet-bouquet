@@ -18,7 +18,7 @@ export default function BouquetCarusel({
       grabCursor={true}
       loop={true}
       ref={caruselRef}
-      initialSlide={initialSlide}
+      initialSlide={initialSlide?initialSlide:0}
     >
       {listItems.map((item, index) => (
         <SwiperSlide key={index}>{item}</SwiperSlide>
