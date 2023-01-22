@@ -84,7 +84,7 @@ export default function Contacts({ data }) {
                   variant='h5'
                   component='a'
                   sx={{
-                    textDecoration: 'underline',
+                    textDecoration: 'none',
                     ml: '10px',
                     cursor: 'pointer',
                     fontWeight: '600',
@@ -100,7 +100,7 @@ export default function Contacts({ data }) {
                   variant='h5'
                   component='a'
                   sx={{
-                    textDecoration: 'underline',
+                    textDecoration: 'none',
                     ml: '10px',
                     cursor: 'pointer',
                     fontWeight: '600',
@@ -162,7 +162,7 @@ export default function Contacts({ data }) {
                 )}`}
                 target='_component'
                 sx={{
-                  textDecoration: 'underline',
+                  textDecoration: 'none',
                   ml: '10px',
                   cursor: 'pointer',
                   fontWeight: '600',

@@ -4,10 +4,9 @@ import MetroIcon from '../../public/assets/icons/metro.svg';
 import Box from '@mui/material/Box';
 import size from '../utils/size';
 
-
-export default function ShopsList({shop, delivery=false}) {
+export default function ShopsList({ shop, delivery = false }) {
   return (
-    <Box >
+    <Box>
       <Typography
         sx={{
           alignSelf: 'left',
@@ -20,15 +19,20 @@ export default function ShopsList({shop, delivery=false}) {
         variant='h5'
         component='span'
       >
-        {shop.adress}
-        <span>
-        <Box
-          component={MetroIcon}
-          viewBox="0 0 33 33" 
-          sx={{ margin: '0 10px',width:size(32) }}
-        ></Box>
+        <span >
+          {shop.adress}
+          <span style={{display:'inline-flex', alignItems: 'center'}}>
+            
+            <Box
+              component={MetroIcon}
+              width={20}
+              height={20}
+              viewBox='0 0 33 33'
+              sx={{ width: size(32),position:'relative',mr:5 }}
+            ></Box>
+            {shop.metro}
+          </span>
         </span>
-        {shop.metro}
       </Typography>
       <Typography
         sx={{

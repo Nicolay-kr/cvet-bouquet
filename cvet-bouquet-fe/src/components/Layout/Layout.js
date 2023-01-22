@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { sanityClient } from '../../../sanity';
@@ -8,6 +8,7 @@ import size from '../../utils/size';
 import useSWR from 'swr';
 import groq from "groq";
 import CircularProgress from '@mui/material/CircularProgress';
+import deletingWithId from '../../utils/sanityMethods/deletingWithId';
 
 
 
@@ -37,6 +38,7 @@ export default function Layout({ children }) {
   }`, query =>
   sanityClient.fetch(query)
 )
+// useEffect(()=>deletingWithId(sanityClient, 'f934e94b-3059-42d9-beca-80fe4ca57611'),[])
 
   if (error) return <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>
   if (isLoading) return <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>

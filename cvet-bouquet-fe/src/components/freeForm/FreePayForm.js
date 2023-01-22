@@ -60,12 +60,16 @@ export default function FreePayForm({ isContactsForm = false }) {
     const orderNumber = await generateOrderNumber();
 
     const paymentData = {
-      OrderAmount: data.OrderAmount,
-      OrderNumber: orderNumber,
+      OrderAmount: '205.50',
+      OrderNumber: 'B20042011_27',
       OrderCurrency: 'BYN',
       Merchant_ID: +process.env.MERCHANT_ID,
+      // <input type='hidden' name='OrderNumber' value=' B20042011_27' />
+      //   <input type='hidden' name='OrderAmount' value='205.50'/>
+      //   <input type='hidden' name='OrderCurrency' value='BYN' />
       // URL_RETURN_OK: 'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
     };
+    const newdata = new URLSearchParams(paymentData)
 
     if (isContactsForm) {
       fetch('https://formspree.io/f/mzbqpyrw', {
@@ -107,7 +111,7 @@ export default function FreePayForm({ isContactsForm = false }) {
       // })
       fetch(`${process.env.SERVER_NAME}`, {
         method: 'POST',
-        body: JSON.stringify(paymentData),
+        body: newdata,
         headers: {
           Accept: 'application/json',
         },
