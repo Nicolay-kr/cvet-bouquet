@@ -17,6 +17,7 @@ import {
   contactSchema,
   defaultSchema,
 } from '../../verifiedSchemas/freePayFormSchema';
+import generateOrderNumber from '../../utils/generateOrderNumber';
 
 const defaultState = {
   name: '',
@@ -53,17 +54,27 @@ export default function FreePayForm({ isContactsForm = false }) {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setFormProcessing(true);
-    setIsOpenModal(true)
+    setIsOpenModal(true);
+    const orderNumber = await generateOrderNumber();
+
+    const paymentData = {
+      OrderAmount: data.OrderAmount,
+      OrderNumber: orderNumber,
+      OrderCurrency: 'BYN',
+      Merchant_ID: +process.env.MERCHANT_ID,
+      // URL_RETURN_OK: 'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
+    };
+
     if (isContactsForm) {
       fetch('https://formspree.io/f/mzbqpyrw', {
         method: 'POST',
         body: JSON.stringify({
-          'Имя': data.name,
-          'Телефон': data.phone,
-          'Email': data.email,
-          'Сообщение': data.comment,
+          Имя: data.name,
+          Телефон: data.phone,
+          Email: data.email,
+          Сообщение: data.comment,
         }),
         headers: {
           Accept: 'application/json',
@@ -82,14 +93,21 @@ export default function FreePayForm({ isContactsForm = false }) {
           setIsOpenModal(false);
         });
     } else {
-      fetch('api/createOrder', {
+      // fetch('api/createOrder', {
+      //   method: 'POST',
+      //   body: JSON.stringify({
+      //     ...data,
+      //     orderType: 'Свободный платеж',
+      //     paymentType: 'Онлайн оплата',
+      //     registration: new Date(),
+      //   }),
+      //   headers: {
+      //     Accept: 'application/json',
+      //   },
+      // })
+      fetch(`${process.env.SERVER_NAME}`, {
         method: 'POST',
-        body: JSON.stringify({
-          ...data,
-          orderType: 'Свободный платеж',
-          paymentType: 'Онлайн оплата',
-          registration: new Date(),
-        }),
+        body: JSON.stringify(paymentData),
         headers: {
           Accept: 'application/json',
         },
@@ -123,12 +141,22 @@ export default function FreePayForm({ isContactsForm = false }) {
       ></SuccsessModal>
       <Box
         component={'form'}
-        onSubmit={handleSubmit(onSubmit)}
+        // onSubmit={handleSubmit(onSubmit)}
+        action={`${process.env.SERVER_NAME}`}
+        method='POST'
         sx={{
           width: '100%',
           my: { xs: '40px', lg: '60px' },
         }}
       >
+        <input
+          type='hidden'
+          name='Merchant_ID'
+          value={+process.env.MERCHANT_ID}
+        />
+        <input type='hidden' name='OrderNumber' value=' B20042011_27' />
+        <input type='hidden' name='OrderAmount' value='205.50'/>
+        <input type='hidden' name='OrderCurrency' value='BYN' />
         <Paper
           sx={{
             px: { ...size(130), xs: '5%' },
