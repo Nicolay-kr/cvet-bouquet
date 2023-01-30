@@ -158,8 +158,8 @@ export default function FreePayForm({ isContactsForm = false }) {
           name='Merchant_ID'
           value={+process.env.MERCHANT_ID}
         />
-        <input type='hidden' name='OrderNumber' value=' B20042011_27' />
-        <input type='hidden' name='OrderAmount' value='205.50'/>
+        <input type='hidden' name='OrderNumber' value=' B20042012' />
+        <input type='hidden' name='OrderAmount' value='210'/>
         <input type='hidden' name='OrderCurrency' value='BYN' />
         <Paper
           sx={{

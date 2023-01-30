@@ -7,6 +7,7 @@ import Link from '../CustopNextComponents/Link';
 import logoFlower from '../../../public/assets/images/logo_flower_white.png';
 import logoText from '../../../public/assets/images/logo_text_white.png';
 import visa from '../../../public/assets/icons/visa.png';
+import mir from '../../../public/assets/icons/mir.png';
 import mastercard from '../../../public/assets/icons/mastercard.png';
 import belcard from '../../../public/assets/icons/belcard.png';
 import telegram from '../../../public/assets/icons/telegram.png';
@@ -19,10 +20,12 @@ import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import size from '../../utils/size';
 import Image from 'next/future/image';
+import BlockContentBox from '../blockcontentBox/BlockContentBox';
 
 export default function Footer({ data }) {
   const router = useRouter();
   const lg = useMediaQuery('(max-width:1200px)');
+  console.log(data);
   return (
     <>
       <Box
@@ -43,8 +46,18 @@ export default function Footer({ data }) {
                   href='/'
                   sx={{ gridColumnStart: '1', gridColumnEnd: '3' }}
                 >
-                  <Image src={logoFlower} quality={100} width={90} alt='logo flower' ></Image>
-                  <Image src={logoText} quality={100} width={236} alt='logo text'></Image>
+                  <Image
+                    src={logoFlower}
+                    quality={100}
+                    width={90}
+                    alt='logo flower'
+                  ></Image>
+                  <Image
+                    src={logoText}
+                    quality={100}
+                    width={236}
+                    alt='logo text'
+                  ></Image>
                 </Box>
                 <Typography
                   variant='h6'
@@ -202,17 +215,36 @@ export default function Footer({ data }) {
                     href={data?.telegram ? data?.telegram : '/'}
                     aria-label='TelegramIcon'
                   >
-                    <Image src={telegram} alt='telegram icon' quality={100} width={46} ></Image>
+                    <Image
+                      src={telegram}
+                      alt='telegram icon'
+                      quality={100}
+                      width={46}
+                    ></Image>
                   </IconButton>
-                  <IconButton component={Link} href={data?.viber ? data?.viber : '/'} aria-label='ViberIcon'>
-                    <Image src={viber} alt='viber icon' quality={100} width={46} ></Image>
+                  <IconButton
+                    component={Link}
+                    href={data?.viber ? data?.viber : '/'}
+                    aria-label='ViberIcon'
+                  >
+                    <Image
+                      src={viber}
+                      alt='viber icon'
+                      quality={100}
+                      width={46}
+                    ></Image>
                   </IconButton>
                   <IconButton
                     component={Link}
                     href={data?.whatsapp ? data?.whatsapp : '/'}
                     aria-label='WhatsappIcon'
                   >
-                    <Image src={whatsapp} alt='whatsapp icon' quality={100} width={46} ></Image>
+                    <Image
+                      src={whatsapp}
+                      alt='whatsapp icon'
+                      quality={100}
+                      width={46}
+                    ></Image>
                   </IconButton>
                 </Box>
                 {/* </Box> */}
@@ -329,14 +361,49 @@ export default function Footer({ data }) {
                   </Typography>
 
                   <Box columnGap={12} className={styles.iconsConteiner}>
-                    <Image src={visa} alt='visa icon' quality={100} width={62} ></Image>
-                    <Image src={mastercard} alt='mastercard icon' quality={100} width={62} ></Image>
-                    <Image src={belcard} alt='belcard icon' quality={100} width={62} ></Image>
+                    <Box
+                      component={Image}
+                      src={visa}
+                      alt='visa icon'
+                      quality={100}
+                      sx={{ width: size(64), height: size(46) }}
+                    ></Box>
+                    <Box
+                      component={Image}
+                      src={mastercard}
+                      alt='mastercard icon'
+                      quality={100}
+                      sx={{ width: size(64), height: size(46) }}
+                    ></Box>
+                    <Box
+                      component={Image}
+                      src={belcard}
+                      alt='belcard icon'
+                      quality={100}
+                      sx={{ width: size(64), height: size(46) }}
+                    ></Box>
+                    <Box
+                      component={Image}
+                      src={mir}
+                      alt='mir icon'
+                      quality={100}
+                      sx={{ width: size(64), height: size(46) }}
+                    ></Box>
                   </Box>
                 </Box>
                 <Box className={styles.logoConteiner} component={Link} href='/'>
-                  <Image src={logoFlower} quality={100} width={90}  alt='logo flower'></Image>
-                  <Image src={logoText} quality={100} width={236}  alt='logo text'></Image>
+                  <Image
+                    src={logoFlower}
+                    quality={100}
+                    width={90}
+                    alt='logo flower'
+                  ></Image>
+                  <Image
+                    src={logoText}
+                    quality={100}
+                    width={236}
+                    alt='logo text'
+                  ></Image>
                 </Box>
                 <Typography
                   variant='h6'
@@ -464,21 +531,36 @@ export default function Footer({ data }) {
                       href={data?.telegram ? data?.telegram : '/'}
                       aria-label='TelegramIcon'
                     >
-                      <Image src={telegram} alt='telegram icon' quality={100} width={46} ></Image>
+                      <Image
+                        src={telegram}
+                        alt='telegram icon'
+                        quality={100}
+                        width={46}
+                      ></Image>
                     </IconButton>
                     <IconButton
                       component={Link}
                       href={data?.viber ? data?.viber : '/'}
                       aria-label='ViberIcon'
                     >
-                      <Image src={viber} alt='viber icon' quality={100} width={46} ></Image>
+                      <Image
+                        src={viber}
+                        alt='viber icon'
+                        quality={100}
+                        width={46}
+                      ></Image>
                     </IconButton>
                     <IconButton
                       component={Link}
                       href={data?.whatsapp ? data?.whatsapp : '/'}
                       aria-label='WhatsappIcon'
                     >
-                      <Image src={whatsapp} alt='whatsapp icon' quality={100} width={46} ></Image>
+                      <Image
+                        src={whatsapp}
+                        alt='whatsapp icon'
+                        quality={100}
+                        width={46}
+                      ></Image>
                     </IconButton>
                   </Box>
                 </Box>
@@ -497,24 +579,62 @@ export default function Footer({ data }) {
               sx={{
                 display: 'grid',
                 rowGap: '24px',
-                gridTemplateRows: { xs: 'auto', lg: 'auto auto' },
+                width:{xs:'100%',lg:'45%'},
+                gridTemplateRows: 'auto',
+                color:'white',
+                '& p':{
+                  color:'white !important',
+                  m:0,
+                }
               }}
             >
-              <Typography variant='h6' component='p' color='white'>
+              {data?.orgInfo?.ru ? (
+                <BlockContentBox
+                  fs={18}
+                  blocks={data.orgInfo.ru}
+                ></BlockContentBox>
+              ) : null}
+
+              {/* <Typography variant='h6' component='p' color='white'>
                 ООО “Студия Цвет Букет” УНП 193608253
               </Typography>
               <Typography variant='h6' component='p' color='white'>
                 Регистрационный номер в торговом реестре РБ 455583 от
                 18.07.2019г.
-              </Typography>
+              </Typography> */}
             </Box>
           </Box>
           {lg ? (
             <>
               <Box columnGap={12} className={styles.iconsConteiner}>
-                <Image src={visa} alt='visa icon' quality={100} width={62} ></Image>
-                <Image src={mastercard} alt='mastercard icon' quality={100} width={62} ></Image>
-                <Image src={belcard} alt='belcard icon' quality={100} width={62} ></Image>
+                <Box
+                  component={Image}
+                  src={visa}
+                  alt='visa icon'
+                  quality={100}
+                  sx={{ width: size(64), height: size(46) }}
+                ></Box>
+                <Box
+                  component={Image}
+                  src={mastercard}
+                  alt='mastercard icon'
+                  quality={100}
+                  sx={{ width: size(64), height: size(46) }}
+                ></Box>
+                <Box
+                  component={Image}
+                  src={belcard}
+                  alt='belcard icon'
+                  quality={100}
+                  sx={{ width: size(64), height: size(46) }}
+                ></Box>
+                <Box
+                  component={Image}
+                  src={mir}
+                  alt='mir icon'
+                  quality={100}
+                  sx={{ width: size(64), height: size(46) }}
+                ></Box>
               </Box>
               <Box className={styles.info}>
                 <Box className={styles.infoContent}>

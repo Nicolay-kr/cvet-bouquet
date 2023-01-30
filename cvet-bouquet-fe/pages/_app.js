@@ -11,9 +11,6 @@ import createEmotionCache from '../src/createEmotionCache';
 import Layout from '../src/components/Layout/Layout';
 import { BouquetsProvider } from '../src/components/context/BouquetsContext';
 import logo from '../public/assets/images/logo_flower.png';
-// import LogRocket from 'logrocket';
-// LogRocket.init('wp94cm/cvet-buket');
-// import { sanityClient } from '../sanity';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

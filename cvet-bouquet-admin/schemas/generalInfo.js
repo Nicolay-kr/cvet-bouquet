@@ -46,6 +46,11 @@ export default {
       ],
     },
     {
+      name: 'orgInfo',
+      title: 'Информация об организации',
+      type: 'localeBlockContent',
+    },
+    {
       name: 'requisites',
       title: 'Реквизиты',
       type: 'string',

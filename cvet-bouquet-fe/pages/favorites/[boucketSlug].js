@@ -26,6 +26,7 @@ export const Bouquet = ({ data }) => {
 };
 
 export const getServerSideProps = async (pageContext) => {
+  console.log(pageContext)
   const boucketSlug = pageContext.query.boucketSlug;
   const categorySlug = pageContext.query.slug;
 

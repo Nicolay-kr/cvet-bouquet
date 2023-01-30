@@ -40,8 +40,8 @@ export default function Layout({ children }) {
 )
 // useEffect(()=>deletingWithId(sanityClient, 'f934e94b-3059-42d9-beca-80fe4ca57611'),[])
 
-  if (error) return <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>
-  if (isLoading) return <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>
+  // if (error) return <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>
+  // if (isLoading) return <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>
 
   return (
     <>
