@@ -24,7 +24,8 @@ export default function BlockContentBox({ blocks,fs=20 }) {
         },
       }}
     >
-      <BlockContent blocks={blocks}></BlockContent>
+      <BlockContent blocks={blocks} projectId={process.env.SANITY_PROJECT_ID}
+  dataset={process.env.SANITY_DATASET}></BlockContent>
     </Box>
   );
 }
