@@ -16,7 +16,9 @@ import Head from 'next/head';
 export default function Home({ data }) {
   const router = useRouter();
   const lg = useMediaQuery('(min-width:1200px)');
-  const [mappedBouquets, setMappedBouquets] = useState(data?.category);
+  const [mappedBouquets, setMappedBouquets] = useState(
+    data?.categories?.categories
+  );
 
   return (
     <>
@@ -136,7 +138,7 @@ export default function Home({ data }) {
           title={'Популярные'}
           subtitle={'букеты'}
           categoryslug='popular'
-          customMt={{...size(200), xs: 0}}
+          customMt={{ ...size(200), xs: 0 }}
         ></CaruselBlock>
       ) : null}
 
@@ -215,23 +217,21 @@ export const getServerSideProps = async (pageContext) => {
       description,
       "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
     },
-    "category": *[ _type == "category"]
-    {
-      _id,
-      slug,
-      title,
-      mainImage,
-      bouqets[]->{
-        _id,
-        title,
-        slug,
-        images,
-        price,
-        description,
-        "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
-      },
+    "categories":*[ _type == "categoryList"][0]{
+      categories[]->{
+        ...{...,bouqets[]->{
+            _id,
+            title,
+            slug,
+            images,
+            price,
+            description,
+            "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
+          },
+        }
+      }
     }
-  }`;
+}`;
 
   const data = await sanityClient.fetch(query);
 

@@ -25,7 +25,6 @@ import BlockContentBox from '../blockcontentBox/BlockContentBox';
 export default function Footer({ data }) {
   const router = useRouter();
   const lg = useMediaQuery('(max-width:1200px)');
-  console.log(data);
   return (
     <>
       <Box

@@ -16,7 +16,7 @@ export default function BouquetCarusel({
     <Swiper
       className={styles.swiperCustom}
       slidesPerView={1}
-      loopedSlides={3}
+      loopedSlides={1}
       grabCursor={true}
       loop={true}
       pagination={{dynamicBullets:true}}

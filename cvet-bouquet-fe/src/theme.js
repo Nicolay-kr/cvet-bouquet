@@ -53,25 +53,25 @@ const theme = createTheme({
   typography: {
     fontFamily: [
       'Raleway',
+      'Zeferino One',
       '-apple-system',
       'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
+      'Segoe UI',
+      'Helvetica Neue',
       'Arial',
       'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
     ].join(','),
 
     h1: {
+      fontFamily:'Zeferino One',
       fontSize: customFontsSize.h1.regular,
       lineHeight: 0.7,
       letterSpacing: '0.02em',
       fontWeight: 400,
       fontStyle: 'normal',
-      fontFamily:'Zeferino One',
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h1.adaptiv,
       },
@@ -83,10 +83,10 @@ const theme = createTheme({
       },
     },
     h2: {
+      fontFamily:'Raleway',
       fontSize: customFontsSize.h2.regular,
       lineHeight: 1.2,
       fontWeight: 300,
-      fontFamily:'Raleway',
       letterSpacing: '0.015em',
       fontStyle: 'normal',
       '@media (min-width:1921px)': {
@@ -100,6 +100,7 @@ const theme = createTheme({
       },
     },
     h3: {
+      fontFamily:'Raleway',
       fontSize: customFontsSize.h3.regular,
       lineHeight: 1.4,
       fontWeight: 400,
@@ -116,6 +117,7 @@ const theme = createTheme({
       },
     },
     h4: {
+      fontFamily:'Raleway',
       fontSize: customFontsSize.h4.regular,
       lineHeight: 1.4,
       fontWeight: 500,
@@ -133,6 +135,7 @@ const theme = createTheme({
     },
 
     h5: {
+      fontFamily:'Raleway',
       fontSize: customFontsSize.h5.regular,
       lineHeight: 1.4,
       fontWeight: 500,
@@ -152,6 +155,7 @@ const theme = createTheme({
     },
       
     h6: {
+      fontFamily:'Raleway',
       fontSize: customFontsSize.h6.regular,
       lineHeight: 1.4,
       fontStyle: 'normal',
@@ -165,6 +169,7 @@ const theme = createTheme({
       },
     },
     body1: {
+      fontFamily:'Raleway',
       fontSize: customFontsSize.body1.regular,
       lineHeight: 1.4,
       letterSpacing: '0.015em',
@@ -172,7 +177,6 @@ const theme = createTheme({
       fontStyle: 'normal',
       color: '#000000',
       scrollbarWidth: 'none',
-      fontFamily: ['Raleway', 'sans-serif'].join(','),
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.body1.adaptiv,
       },
@@ -184,12 +188,12 @@ const theme = createTheme({
       },
     },
     body2: {
+      fontFamily:'Raleway',
       fontSize: customFontsSize.body2.regular,
       lineHeight: 1.4,
       fontWeight: 400,
       fontStyle: 'normal',
       color: '#7C7C7C',
-      fontFamily: ['Railway', 'sans-serif'].join(','),
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.body2.adaptiv,
       },
@@ -201,12 +205,12 @@ const theme = createTheme({
       },
     },
     subtitle1: {
+      fontFamily:'Raleway',
       fontSize: customFontsSize.subtitle1.regular,
       lineHeight: 1.4,
       fontWeight: 500,
       fontStyle: 'normal',
       color: '#000',
-      fontFamily: ['Raleway', 'sans-serif'].join(','),
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.subtitle1.adaptiv,
       },
@@ -215,6 +219,7 @@ const theme = createTheme({
       },
     },
     subtitle2: {
+      fontFamily:'Raleway',
       fontSize: customFontsSize.subtitle2.regular,
       lineHeight: 1.4,
       fontWeight: 600,
@@ -226,18 +231,19 @@ const theme = createTheme({
       },
     },
     button: {
+      fontFamily:'Raleway',
       fontSize: customFontsSize.button.regular,
       lineHeight: 1.4,
       fontWeight: 500,
       fontStyle: 'normal',
       textTransform: 'uppercase',
       color: '#000000',
-      fontFamily: ['Raleway', 'sans-serif'].join(','),
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.button.adaptiv,
       },
     },
     caption: {
+      fontFamily:'Raleway',
       fontSize: customFontsSize.caption.regular,
       lineHeight: 1.4,
       fontWeight: 600,
