@@ -412,18 +412,22 @@ export default function Footer({ data }) {
                   className={styles.navigation}
                 >
                   Категории
-                  {data?.categories?.categories?.map((category) => (
-                    <Box key={category?.title}>
-                      <Typography
-                        variant='h6'
-                        component='li'
-                        color='white'
-                        onClick={() => router.push(`/${category.slug.current}`)}
-                      >
-                        {category?.title}
-                      </Typography>
-                    </Box>
-                  ))}
+                  {data?.categories?.categories
+                    ?.filter((category) => category?.published === true)
+                    .map((category) => (
+                      <Box key={category?.title}>
+                        <Typography
+                          variant='h6'
+                          component='li'
+                          color='white'
+                          onClick={() =>
+                            router.push(`/${category.slug.current}`)
+                          }
+                        >
+                          {category?.title}
+                        </Typography>
+                      </Box>
+                    ))}
                 </Typography>
                 <Box className={styles.lastColumn}>
                   <Typography
@@ -578,13 +582,13 @@ export default function Footer({ data }) {
               sx={{
                 display: 'grid',
                 rowGap: '24px',
-                width:{xs:'100%',lg:'45%'},
+                width: { xs: '100%', lg: '45%' },
                 gridTemplateRows: 'auto',
-                color:'white',
-                '& p':{
-                  color:'white !important',
-                  m:0,
-                }
+                color: 'white',
+                '& p': {
+                  color: 'white !important',
+                  m: 0,
+                },
               }}
             >
               {data?.orgInfo?.ru ? (

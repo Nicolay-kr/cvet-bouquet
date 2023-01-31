@@ -36,7 +36,9 @@ export default function Home({ data }) {
             }}
           >
             {data?.categories?.length ? (
-              data.categories.map(
+              data.categories.filter(
+                (category) => category?.published === true
+              ).map(
                 (
                   { _id, title, mainImage, slug },
                   
