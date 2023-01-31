@@ -7,13 +7,10 @@ import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 
 export default function Home({ data }) {
-  const [mappedBouquets, setMappedBouquets] = React.useState(data);
   const breadCrumbsList = [
     { title: 'Главная', href: '/' },
     { title: 'Каталог', href: null },
   ];
-
-  const orderedList = mappedBouquets?.sort((a, b) => a.order - b.order);
 
   return (
     <>
@@ -38,11 +35,11 @@ export default function Home({ data }) {
               rowGap: 'max(30px, 1.5vw)',
             }}
           >
-            {mappedBouquets.length ? (
-              orderedList.map(
+            {data?.categories?.length ? (
+              data.categories.map(
                 (
-                  { _id, title, description, mainImage, price, slug },
-                  index
+                  { _id, title, mainImage, slug },
+                  
                 ) => (
                   <Box key={_id}>
                     <SimpleBouquetCard
@@ -56,7 +53,7 @@ export default function Home({ data }) {
                 )
               )
             ) : (
-              <>Букеты не доступны</>
+              <>Категории не доступны</>
             )}
           </Box>
         </Box>
@@ -66,21 +63,25 @@ export default function Home({ data }) {
 }
 
 export const getServerSideProps = async (pageContext) => {
-  const queryCategory = `*[ _type == "category"]
-  {
+  const queryCategory = `*[ _type == "categoryList"][0]{
     _id,
-    slug,
-    title,
-    mainImage,
-    bouqets[]->{
+    categories[]->{
       _id,
-      title,
       slug,
-      images,
-      price,
-      description,
+      title,
+      mainImage,
+      published,
+      bouqets[]->{
+        _id,
+        title,
+        slug,
+        images,
+        price,
+        description,
+      }
     },
-  }`;
+  
+}`;
 
   const data = await sanityClient.fetch(queryCategory);
 
