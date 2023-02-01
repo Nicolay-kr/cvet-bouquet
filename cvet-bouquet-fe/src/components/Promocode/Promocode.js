@@ -97,6 +97,7 @@ const Promocode = ({ setPromoCodeValue }) => {
               borderRadius: '0 8px 8px 0',
               height: size(48),
               width: '100%',
+              fontSize: {...size(20),xs:16},
             }}
             variant='contained'
             onClick={handleCheckPromocode}

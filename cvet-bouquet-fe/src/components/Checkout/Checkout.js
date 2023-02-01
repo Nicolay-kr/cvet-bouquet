@@ -519,7 +519,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
         >
           <Button
             type='submit'
-            sx={{ mt: 'max(10px,0.05vw)', gridColumn: { xs: '1/3', lg: '1' } }}
+            sx={{ mt: 'max(10px,0.05vw)', gridColumn: { xs: '1/3', lg: '1' },fontSize: {...size(24),xs:18}, }}
             variant='contained'
           >
             Оформить заказ

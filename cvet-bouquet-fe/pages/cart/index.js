@@ -249,6 +249,7 @@ export default function Cart({ data }) {
                     mt: size(40),
                     height: size(48),
                     width: '100%',
+                    fontSize: size(20),
                   }}
                   variant='contained'
                   onClick={handleToCheckout}
@@ -469,6 +470,7 @@ export default function Cart({ data }) {
                     height: '60px',
                     width: { xs: '100%', sm: '200px' },
                     ml: { xs: '0', sm: 'auto' },
+                    fontSize: 16,
                   }}
                 >
                   К оформлению

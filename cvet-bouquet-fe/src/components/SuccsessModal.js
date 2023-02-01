@@ -10,6 +10,7 @@ import Cros from '../../public/assets/icons/cros.svg';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Whitecros from '../../public/assets/icons/whitecros.svg';
+import size from '../utils/size';
 
 const style = {
   display: 'flex',
@@ -111,7 +112,7 @@ export default function SuccsessModal({
                   onClick={handleClose}
                   variant='contained'
                   color='primary'
-                  sx={{ mt: '40px', width: { xs: '100%', lg: '200px' } }}
+                  sx={{ mt: '40px', width: { xs: '100%', lg: '200px',fontSize: {...size(24),xs:18}, } }}
                 >
                   Оk
                 </Button>

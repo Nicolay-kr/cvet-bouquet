@@ -399,7 +399,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                   type='submit'
                   variant='contained'
                   color='primary'
-                  sx={{ height: '60px', marginTop: 'auto' }}
+                  sx={{ height: '60px', marginTop: 'auto',fontSize: {...size(24), xs:18}, }}
                 >
                   Отправить
                 </Button>
