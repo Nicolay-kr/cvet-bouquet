@@ -76,9 +76,9 @@ const Promocode = ({ setPromoCodeValue }) => {
         <Box
           sx={{
             display: 'flex',
-            mt: size(40),
+            mt: {...size(40),xs:0},
             borderRadius: '8px',
-            height: size(48),
+            height: {...size(48),xs:36},
           }}
         >
           <TextField
@@ -95,7 +95,7 @@ const Promocode = ({ setPromoCodeValue }) => {
             sx={{
               color: 'white',
               borderRadius: '0 8px 8px 0',
-              height: size(48),
+              height: {...size(48),xs:'100%'},
               width: '100%',
               fontSize: {...size(20),xs:16},
             }}
@@ -110,7 +110,8 @@ const Promocode = ({ setPromoCodeValue }) => {
           sx={{
             color: 'primary.main',
             cursor: 'pointer',
-            mt:size(40),
+            mt:{...size(40),xs:0},
+            borderBottom: '1px solid transparent',
             '&:hover':{
               borderBottom: '1px solid',
             },

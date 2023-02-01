@@ -173,7 +173,7 @@ export default function Cart({ data }) {
                     display: 'flex',
                     justifyContent: 'flex-start',
                     width: '100%',
-                    alignItems: 'flex-start',
+                    alignItems:'center',
                   }}
                 >
                   <Typography variant='h5' component='p' mr={8}>
@@ -234,6 +234,7 @@ export default function Cart({ data }) {
                   href='/catalog'
                   variant='h5'
                   sx={{
+                    borderBottom: '1px solid transparent',
                     '&:hover': {
                       borderBottom: '1px solid ',
                     },
@@ -360,6 +361,7 @@ export default function Cart({ data }) {
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr',
                   columnGap: 20,
+                  mt:10,
                 }}
               >
                 <Box
@@ -387,19 +389,28 @@ export default function Cart({ data }) {
               {promoCodeValue ? (
                 <Box
                   sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
                     width: '100%',
                     alignItems: 'center',
                   }}
                 >
+                     <Box
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    alignItems: 'center',
+                    columnGap:size(40),
+                  }}
+                >
                   <Typography variant='h5' component='p' mr={8}>
-                    Промокод{' '}
-                    <Box component='span' sx={{ fontWeight: '600' }}>
-                      {promoCodeValue.code}
-                    </Box>
+                  Промокод
                   </Typography>
-                  <Box component='span' sx={{display:'flex', justifyContent: 'center'}}>
+                  <Typography variant='h5'  sx={{ fontWeight: '600' }}>
+                      {promoCodeValue.code}
+                    </Typography>
+                </Box>
+                  <Box component='span' sx={{display:'flex', justifyContent: 'end'}}>
                     <Typography variant='h4'>
                       -
                       {(
@@ -418,7 +429,6 @@ export default function Cart({ data }) {
                 sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr',columnGap:size(40) }}
               >
                 <Typography
-                  // sx={{ color: 'primary.main', mt: 2, textDecoration: 'underline', cursor:'pointer' }}
                   variant='h5'
                   component='p'
                   mr={8}
@@ -430,7 +440,7 @@ export default function Cart({ data }) {
                   sx={{
                     fontWeight: 700,
                     mx: '0',
-                    display:'flex', justifyContent: 'center',
+                    display:'flex', justifyContent: 'end',
                   }}
                 >
                   <Typography
@@ -455,7 +465,7 @@ export default function Cart({ data }) {
                   href='/catalog'
                   variant='h5'
                   sx={{
-                    
+                    m:'auto',
                     ml: 'auto',
                   }}
                 >
