@@ -289,6 +289,12 @@ const theme = createTheme({
             '@media (max-width:1536px)': {
               fontSize: '1.1em',
             },
+            '@media (max-width:600px)': {
+              fontSize: '1.4em',
+            },
+            '@media (min-width:200px)': {
+              fontSize: '0.6em',  
+            },
           }
         },
       },
