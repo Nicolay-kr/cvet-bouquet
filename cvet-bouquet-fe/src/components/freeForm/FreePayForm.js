@@ -54,8 +54,9 @@ export default function FreePayForm({ isContactsForm = false }) {
     formState: { errors },
   } = useForm({
     defaultValues: defaultValue,
-    resolver: yupResolver(schema),
+    // resolver: yupResolver(schema),
   });
+  console.log(errors)
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -266,31 +267,9 @@ export default function FreePayForm({ isContactsForm = false }) {
                     />
                   )}
                 />
-                {/* <Controller
-                  name='phone'
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      id='phone'
-                      label='Ваш номер телефона.'
-                      sx={{ mt: 'max(24px, 1.2vw)' }}
-                      error={errors.phone?.message.length > 0}
-                      helperText={errors.phone?.message}
-                      {...field}
-                    />
-                  )}
-                /> */}
-                {/* <PhoneInput
-                  name='phone'
-                  control={control}
-                  country={'by'}
-                  rules={{ required: true }}
-                  localization={ru}
-                /> */}
                 <Controller
                   control={control}
                   name='phone'
-                  label='Ваш номер телефона.'
                   rules={{ required: true }}
                   render={({ field: { ref, ...field } }) => (
                     <TextField
@@ -301,11 +280,16 @@ export default function FreePayForm({ isContactsForm = false }) {
                         required: true,
                         autoFocus: true,
                       }}
+                      sx={{mt:'max(24px, 1.2vw)'}}
                       country={'by'}
+                      value={field.value}
                       localization={ru}
                       placeholder='Ваш номер телефона.'
-                      error={errors.phone?.message.length > 0}
-                      helperText={errors.phone?.message}
+                      // isValid={()=>{
+                      //   console.log('error',errors.phone?.message.length > 0)
+                      //   return false
+                      // }}
+                      // defaultErrorMessage={`${errors.phone?.message?errors.phone?.message:''}`}
                     />
                   )}
                 />

@@ -51,15 +51,20 @@ a {
 
 .MuiBox-root .react-tel-input .form-control:focus {
   border-color: grey;
-  border-width:2px;
+  outline:1px solid grey;
+}
+.MuiBox-root .react-tel-input .form-control:focus+.flag-dropdown {
+  border-color: grey;
+  outline:1px solid grey;
 }
 .MuiBox-root .react-tel-input .form-control:hover {
   border-color: grey;
 }
-
-.MuiBox-root .react-tel-input {
-  margin-top: max(24px, 1.2vw) !important;
-  
+.MuiBox-root .react-tel-input .form-control:hover+.flag-dropdown {
+  border-color: grey;
+}
+.MuiBox-root .react-tel-input .form-control:hover .react-tel-input .flag-dropdown {
+  border-color: grey;
 }
 
 .react-tel-input .flag-dropdown {
@@ -128,11 +133,11 @@ a {
 @media (max-width: 1281px) {
   .MuiBox-root .react-tel-input .form-control {
 
-    height:48px;
+    /* height:48px; */
 
   }
   .MuiBox-root .react-tel-input .form-control {
-    height:48px;
+    /* height:48px; */
   }
 
 }

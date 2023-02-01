@@ -16,12 +16,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import SuccsessModal from '../SuccsessModal';
 import size from '../../utils/size';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { ru } from 'date-fns/locale';
+import { ru as ruLocale} from 'date-fns/locale';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import checkoutSchema from '../../verifiedSchemas/checkout';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import ru from 'react-phone-input-2/lang/ru.json';
 
 const MenuProps = {
   PaperProps: {
@@ -110,13 +113,13 @@ export default function Checkout({ price, shopsList, orderlist }) {
     formState: { errors },
   } = useForm({
     defaultValues: defaultState,
-    resolver: yupResolver(
-      checkoutSchema(
-        checkoutOptions.selfReceive,
-        isPrivareHouse,
-        !checkoutOptions.delivery
-      )
-    ),
+    // resolver: yupResolver(
+    //   checkoutSchema(
+    //     checkoutOptions.selfReceive,
+    //     isPrivareHouse,
+    //     !checkoutOptions.delivery
+    //   )
+    // ),
   });
 
   const onSubmit = (data) => {
@@ -170,7 +173,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns} locale={ru}>
+    <LocalizationProvider dateAdapter={AdapterDateFns} locale={ruLocale}>
       <SuccsessModal
         onClose={onClose}
         open={isOpenModal}
@@ -223,19 +226,27 @@ export default function Checkout({ price, shopsList, orderlist }) {
                 />
               )}
             />
-            <Controller
-              name='phone'
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  id='phone'
-                  label='Ваш номер телефона.'
-                  error={errors.phone?.message.length > 0}
-                  helperText={errors.phone?.message}
-                  {...field}
+               <Controller
+                  control={control}
+                  name='phone'
+                  rules={{ required: true }}
+                  render={({ field: { ref, ...field } }) => (
+                    <TextField
+                    component={PhoneInput}
+                      {...field}
+                      inputExtraProps={{
+                        ref,
+                        required: true,
+                        autoFocus: true,
+                      }}
+                      country={'by'}
+                      localization={ru}
+                      placeholder='Ваш номер телефона.'
+                      error={errors.phone?.message.length > 0}
+                      helperText={errors.phone?.message}
+                    />
+                  )}
                 />
-              )}
-            />
             <Controller
               name='email'
               control={control}
