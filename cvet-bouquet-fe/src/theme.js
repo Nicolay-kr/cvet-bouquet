@@ -274,7 +274,7 @@ const theme = createTheme({
           // Some CSS
           fontSize: '18px',
           '@media (max-width:1536px)': {
-            fontSize: '16px',
+            fontSize: '14px',
           },
         },
       },
@@ -300,7 +300,7 @@ const theme = createTheme({
           // Some CSS
           fontSize: '18px !important',
           '@media (max-width:1536px)': {
-            fontSize: '16px',
+            fontSize: '14px',
           },
         },
       },
