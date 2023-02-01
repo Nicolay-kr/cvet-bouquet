@@ -31,6 +31,7 @@ export default function Home({ data }) {
         <IntroBlock
           mainImage={data?.firstBlock.mainImage}
           secondImage={data?.firstBlock.secondImage}
+          isSecondFlower={true}
           mobileReverse={true}
           textBlock={
             <Box

@@ -163,7 +163,7 @@ export default function FreePayForm({ isContactsForm = false }) {
         <input type='hidden' name='OrderCurrency' value='BYN' />
         <Paper
           sx={{
-            px: { ...size(130), xs: '5%' },
+            px: { ...size(120), xs: '5%' },
             width: '100%',
             display: 'grid',
             gridTemplateColumns: { sx: '1fr', lg: '10fr' },
