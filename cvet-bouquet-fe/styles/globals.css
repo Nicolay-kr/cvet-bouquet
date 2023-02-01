@@ -39,17 +39,39 @@ a {
   box-sizing: border-box;
 }
 
+.MuiBox-root .react-tel-input .form-control {
+  width:100% !important;
+  background: transparent !important;
+  margin-right: 0;
+  font-family: Raleway;
+  font-size: 16px;
+  height:56px;
+  padding: 16.5px 48px !important;
+}
 
+.MuiBox-root .react-tel-input .form-control:focus {
+  border-color: grey;
+  border-width:2px;
+}
+.MuiBox-root .react-tel-input .form-control:hover {
+  border-color: grey;
+}
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.MuiBox-root .react-tel-input {
+  margin-top: max(24px, 1.2vw) !important;
+  
+}
 
-  /* body {
-    color: white;
-    background: black;
-  } */
+.react-tel-input .flag-dropdown {
+  background-color: transparent !important;
+}
+.react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
+  /* background-color: #AEA595 !important; */
+  background-color: transparent !important;
+}
+
+.react-tel-input .flag-dropdown.open .selected-flag {
+  background-color: transparent !important;
 }
 
 .MuiPickersPopper-root button {
@@ -101,6 +123,18 @@ a {
 
 .MuiDayPicker-weekDayLabel {
   font-size: 18px !important;
+}
+
+@media (max-width: 1281px) {
+  .MuiBox-root .react-tel-input .form-control {
+
+    height:48px;
+
+  }
+  .MuiBox-root .react-tel-input .form-control {
+    height:48px;
+  }
+
 }
 
 @media (max-width: 600px) {

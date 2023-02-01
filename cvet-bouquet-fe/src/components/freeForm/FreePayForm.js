@@ -18,6 +18,9 @@ import {
   defaultSchema,
 } from '../../verifiedSchemas/freePayFormSchema';
 import generateOrderNumber from '../../utils/generateOrderNumber';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import ru from 'react-phone-input-2/lang/ru.json';
 
 const defaultState = {
   name: '',
@@ -55,6 +58,7 @@ export default function FreePayForm({ isContactsForm = false }) {
   });
 
   const onSubmit = async (data) => {
+    console.log(data);
     setFormProcessing(true);
     setIsOpenModal(true);
     const orderNumber = await generateOrderNumber();
@@ -69,9 +73,9 @@ export default function FreePayForm({ isContactsForm = false }) {
       //   <input type='hidden' name='OrderCurrency' value='BYN' />
       // URL_RETURN_OK: 'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
     };
-    const newdata = new URLSearchParams(paymentData)
+    const newdata = new URLSearchParams(paymentData);
 
-    if (isContactsForm) {
+    if (false) {
       fetch('https://formspree.io/f/mzbqpyrw', {
         method: 'POST',
         body: JSON.stringify({
@@ -96,7 +100,7 @@ export default function FreePayForm({ isContactsForm = false }) {
           setFormProcessing(false);
           setIsOpenModal(false);
         });
-    } else {
+    } else if (false) {
       // fetch('api/createOrder', {
       //   method: 'POST',
       //   body: JSON.stringify({
@@ -145,9 +149,9 @@ export default function FreePayForm({ isContactsForm = false }) {
       ></SuccsessModal>
       <Box
         component={'form'}
-        // onSubmit={handleSubmit(onSubmit)}
-        action={`${process.env.SERVER_NAME}`}
-        method='POST'
+        onSubmit={handleSubmit(onSubmit)}
+        // action={`${process.env.SERVER_NAME}`}
+        // method='POST'
         sx={{
           width: '100%',
           my: { xs: '40px', lg: '60px' },
@@ -159,7 +163,7 @@ export default function FreePayForm({ isContactsForm = false }) {
           value={+process.env.MERCHANT_ID}
         />
         <input type='hidden' name='OrderNumber' value=' B20042012' />
-        <input type='hidden' name='OrderAmount' value='210'/>
+        <input type='hidden' name='OrderAmount' value='210' />
         <input type='hidden' name='OrderCurrency' value='BYN' />
         <Paper
           sx={{
@@ -254,6 +258,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                   render={({ field }) => (
                     <TextField
                       label='Вашe имя'
+                      style={{fontSize:'16px'}}
                       id='name'
                       error={errors.name?.message.length > 0}
                       helperText={errors.name?.message}
@@ -261,7 +266,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                     />
                   )}
                 />
-                <Controller
+                {/* <Controller
                   name='phone'
                   control={control}
                   render={({ field }) => (
@@ -272,6 +277,35 @@ export default function FreePayForm({ isContactsForm = false }) {
                       error={errors.phone?.message.length > 0}
                       helperText={errors.phone?.message}
                       {...field}
+                    />
+                  )}
+                /> */}
+                {/* <PhoneInput
+                  name='phone'
+                  control={control}
+                  country={'by'}
+                  rules={{ required: true }}
+                  localization={ru}
+                /> */}
+                <Controller
+                  control={control}
+                  name='phone'
+                  label='Ваш номер телефона.'
+                  rules={{ required: true }}
+                  render={({ field: { ref, ...field } }) => (
+                    <TextField
+                    component={PhoneInput}
+                      {...field}
+                      inputExtraProps={{
+                        ref,
+                        required: true,
+                        autoFocus: true,
+                      }}
+                      country={'by'}
+                      localization={ru}
+                      placeholder='Ваш номер телефона.'
+                      error={errors.phone?.message.length > 0}
+                      helperText={errors.phone?.message}
                     />
                   )}
                 />
@@ -299,7 +333,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                       display: 'grid',
                       gridTemplateColumns: '2fr 3fr',
                       columnGap: { ...size(30), xs: 16 },
-                      mt: 'auto',
+                      mt: '40px',
                     }}
                   >
                     <Button
@@ -399,7 +433,11 @@ export default function FreePayForm({ isContactsForm = false }) {
                   type='submit'
                   variant='contained'
                   color='primary'
-                  sx={{ height: '60px', marginTop: 'auto',fontSize: {...size(24), xs:18}, }}
+                  sx={{
+                    height: '60px',
+                    marginTop: 'auto',
+                    fontSize: { ...size(24), xs: 18 },
+                  }}
                 >
                   Отправить
                 </Button>

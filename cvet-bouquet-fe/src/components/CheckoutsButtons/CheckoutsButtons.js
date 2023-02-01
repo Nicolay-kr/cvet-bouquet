@@ -41,7 +41,7 @@ export default function CheckoutsButtons({
       >
         {title}
       </Typography>
-      <ButtonGroup
+      <Box
         sx={{
           width: '100%',
           height: 'max(140px,0.73vw)',
@@ -120,7 +120,7 @@ export default function CheckoutsButtons({
             </Typography>
           ) : null}
         </Button>
-      </ButtonGroup>
+      </Box>
     </Box>
   );
 }

@@ -267,6 +267,44 @@ const theme = createTheme({
         },
       },
     },
+    MuiInputBase: {
+      styleOverrides: {
+        // Name of the slot
+        input: {
+          // Some CSS
+          fontSize: '18px',
+          '@media (max-width:1536px)': {
+            fontSize: '16px',
+          },
+        },
+      },
+    },
+
+    MuiOutlinedInput: {
+      styleOverrides: {
+        // Name of the slot
+        notchedOutline : {
+          '& legend':{
+            fontSize: '0.9em',
+            '@media (max-width:1536px)': {
+              fontSize: '1.1em',
+            },
+          }
+        },
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          fontSize: '18px !important',
+          '@media (max-width:1536px)': {
+            fontSize: '16px',
+          },
+        },
+      },
+    },
     MuiSnackbarContent: {
       styleOverrides: {
         // Name of the slot

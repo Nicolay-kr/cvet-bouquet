@@ -27,7 +27,6 @@ const MenuProps = {
   PaperProps: {
     style: {
       height: 300,
-      backgroundColor: '#F8F2EA',
     },
   },
 };
