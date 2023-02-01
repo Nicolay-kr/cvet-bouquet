@@ -142,7 +142,7 @@ export default function Contacts({ data }) {
               color='#000000'
               sx={{ fontWeight: '700', mb: '20px' }}
             >
-              Попишитесь на наш инстаграм
+              Подишитесь на наш инстаграм
             </Typography>
             <Typography
               variant='h5'

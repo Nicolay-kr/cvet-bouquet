@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from '../../styles/Cart.module.css';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -25,83 +24,7 @@ import Head from 'next/head';
 import size from '../../src/utils/size';
 import Promocode from '../../src/components/Promocode/Promocode';
 import EmptyCart from '../../src/components/EmptyCart/EmptyCart';
-
-const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
-  const bouquetsContext = useAppContext();
-
-  const removeFromCart = () => {
-    bouquetsContext.removeFromCart(id);
-  };
-  return (
-    <>
-      <TableRow
-        key={id}
-        sx={{
-          '&:last-child td, &:last-child th': { border: 0 },
-          transition: '0.3s',
-        }}
-      >
-        <TableCell component='th' scope='row'>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '30px',
-              '& img': { objectFit: 'cover' },
-            }}
-          >
-            <Link href={`cart/${slug.current}`}>
-              <Image
-                style={{ objectFit: 'cover' }}
-                layout='fill'
-                width={100}
-                height={125}
-                src={urlFor(image)?.width(400)?.url()}
-                alt='bouquet'
-              ></Image>
-            </Link>
-
-            <Typography variant='h5'>{title}</Typography>
-          </Box>
-        </TableCell>
-
-        <TableCell align='right' sx={{ width: 'max(200px,7.5vw)' }}>
-          <span className={styles.price}>
-            <Typography variant='h4'>{price}</Typography>
-            <sup>BYN</sup>
-          </span>
-        </TableCell>
-
-        <TableCell variant='h4' align='center'>
-          {/* <Typography variant='h4'>{price}</Typography> */}
-          <CounterButtons id={id} value={quantity} />
-        </TableCell>
-
-        <TableCell align='center' sx={{ width: 'max(200px,7.5vw)' }}>
-          <span className={styles.price}>
-            <Typography variant='h4'>{price * quantity}</Typography>
-            <sup>BYN</sup>
-          </span>
-        </TableCell>
-
-        <TableCell align='center'>
-          <IconButton
-            component='div'
-            // className={styles.cardHeart}
-            onClick={removeFromCart}
-            aria-label='CrossIcon'
-          >
-            <Box
-              component={Cros}
-              sx={{ width: size(18) }}
-              viewBox='0 0 18 18'
-            ></Box>
-          </IconButton>
-        </TableCell>
-      </TableRow>
-    </>
-  );
-};
+import CartRow from '../../src/components/CartRow/CartRow';
 
 export default function Cart({ data }) {
   const bouquetsContext = useAppContext();
@@ -113,12 +36,10 @@ export default function Cart({ data }) {
   const [promoCodeValue, setPromoCodeValue] = React.useState(null);
 
   const orderlist = bouquets
-      .map((bouquet) => {
-        return `${bouquet.title} количество: ${bouquet.quantity} `;
-      })
-      .join('; ');
-
-
+    .map((bouquet) => {
+      return `${bouquet.title} количество: ${bouquet.quantity} `;
+    })
+    .join('; ');
 
   const handleToCheckout = () => {
     setIsCheckout(true);
@@ -146,9 +67,6 @@ export default function Cart({ data }) {
         +((price + delivery) * (promoCodeValue.percent / 100)).toFixed(2)
       : +(price + delivery);
 
-
-      console.log(orderSumma.toFixed(2))
-
   return (
     <>
       <Head>
@@ -163,7 +81,6 @@ export default function Cart({ data }) {
           }}
         >
           <Box
-            className={styles.conteiner}
             sx={{
               display: { xs: 'none', lg: 'grid' },
               gridTemplateColumns: { sx: '1fr', lg: '8fr 3fr' },
@@ -210,12 +127,17 @@ export default function Cart({ data }) {
             <Paper
               sx={{
                 ml: { sm: '10%' },
-                px: '10%',
                 bgcolor: 'fon.main',
                 height: 'fit-content',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                px: size(60),
+                pt: size(84),
+                pb: size(40),
               }}
               elevation={3}
-              className={styles.summConteiner}
             >
               <Typography sx={{ fontWeight: 700 }} variant='h4'>
                 В корзине
@@ -229,32 +151,29 @@ export default function Cart({ data }) {
               </Typography>
               <Promocode setPromoCodeValue={setPromoCodeValue}></Promocode>
               <Box
-                mt={10}
-                className={styles.deliveryPrice}
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  columnGap: size(30),
                   width: '100%',
-                  alignItems: 'center',
+                  mt: size(40),
                 }}
               >
-                <Typography variant='h5' component='p' mr={8}>
+                <Typography variant='h5' component='p'>
                   Доставка
                 </Typography>
-                <span className={styles.price}>
+                <Box component='span' sx={{display:'flex'}}>
                   <Typography variant='h4'>{delivery}</Typography>
                   <sup>BYN</sup>
-                </span>
+                </Box>
               </Box>
               {promoCodeValue ? (
                 <Box
-                  mt={10}
-                  className={styles.deliveryPrice}
                   sx={{
                     display: 'flex',
-                    justifyContent: 'space-between',
+                    justifyContent: 'flex-start',
                     width: '100%',
-                    alignItems: 'center',
+                    alignItems: 'flex-start',
                   }}
                 >
                   <Typography variant='h5' component='p' mr={8}>
@@ -263,7 +182,7 @@ export default function Cart({ data }) {
                       {promoCodeValue.code}
                     </Box>
                   </Typography>
-                  <span className={styles.price}>
+                  <Box component='span' sx={{display:'flex', justifyContent: 'center'}}>
                     <Typography variant='h4'>
                       -
                       {(
@@ -272,22 +191,30 @@ export default function Cart({ data }) {
                       ).toFixed(2)}
                     </Typography>
                     <sup>BYN</sup>
-                  </span>
+                  </Box>
                 </Box>
               ) : null}
 
               <Divider light sx={{ width: '100%', my: '20px' }} />
 
-              <Box className={styles.deliveryPrice}>
-                <Typography variant='h5' component='p' mr={8}>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  columnGap: size(30),
+                  
+                  width: '100%',
+                }}
+              >
+                <Typography variant='h5' component='p' >
                   Итого
                 </Typography>
                 <Typography
                   component='div'
                   sx={{
+                    display:'flex',
                     fontWeight: 700,
                   }}
-                  className={styles.price}
                 >
                   <Typography
                     variant='h4'
@@ -307,17 +234,21 @@ export default function Cart({ data }) {
                   href='/catalog'
                   variant='h5'
                   sx={{
-                    textDecoration: 'underline',
-                    mt: 10,
+                    '&:hover': {
+                      borderBottom: '1px solid ',
+                    },
+                    textDecoration: 'none',
+                    mt: size(40),
                   }}
                 >
-                  Вернуться в католог
+                  Вернуться в каталог
                 </Typography>
               ) : (
                 <Button
                   sx={{
-                    mt: 10,
-                    height: '36px',
+                    mt: size(40),
+                    height: size(48),
+                    width: '100%',
                   }}
                   variant='contained'
                   onClick={handleToCheckout}
@@ -329,6 +260,7 @@ export default function Cart({ data }) {
           </Box>
 
           {/* mobile version */}
+
           <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
             <BreadCrumbs
               breadCrumbsList={breadCrumbsList}
@@ -370,9 +302,7 @@ export default function Cart({ data }) {
                     ></Image>
                   </Link>
                   <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <Typography variant='h5'>
-                      {bouquet.title}
-                    </Typography>
+                    <Typography variant='h5'>{bouquet.title}</Typography>
                     <Box
                       sx={{ display: 'flex', mt: '10px', alignItems: 'center' }}
                     >
@@ -382,7 +312,7 @@ export default function Cart({ data }) {
                           value={bouquet.quantity}
                         />
                       </Box>
-                      <Box className={styles.price} sx={{ mx: 'auto' }}>
+                      <Box sx={{display:'flex', justifyContent: 'center', mx: 'auto' }}>
                         <Typography
                           variant='h4'
                           sx={{ fontWeight: '700', color: '#000000' }}
@@ -432,17 +362,17 @@ export default function Cart({ data }) {
                 }}
               >
                 <Box
-                  className={styles.deliveryPrice}
                   sx={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr',
                     alignItems: 'center',
+                    columnGap:size(40),
                   }}
                 >
                   <Typography variant='h5' component='p' mr={8}>
                     Доставка
                   </Typography>
-                  <Box sx={{ display: 'flex', ml: 'auto' }}>
+                  <Box sx={{ display: 'flex', mx: '0' }}>
                     <Typography variant='h4'>{delivery}</Typography>
                     <sup>BYN</sup>
                   </Box>
@@ -455,7 +385,6 @@ export default function Cart({ data }) {
 
               {promoCodeValue ? (
                 <Box
-                  className={styles.deliveryPrice}
                   sx={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -469,7 +398,7 @@ export default function Cart({ data }) {
                       {promoCodeValue.code}
                     </Box>
                   </Typography>
-                  <span className={styles.price}>
+                  <Box component='span' sx={{display:'flex', justifyContent: 'center'}}>
                     <Typography variant='h4'>
                       -
                       {(
@@ -478,15 +407,14 @@ export default function Cart({ data }) {
                       ).toFixed(2)}
                     </Typography>
                     <sup>BYN</sup>
-                  </span>
+                  </Box>
                 </Box>
               ) : null}
 
               <Divider light sx={{ width: '100%', my: '10px' }} />
 
               <Box
-                className={styles.deliveryPrice}
-                sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}
+                sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr',columnGap:size(40) }}
               >
                 <Typography
                   // sx={{ color: 'primary.main', mt: 2, textDecoration: 'underline', cursor:'pointer' }}
@@ -500,13 +428,14 @@ export default function Cart({ data }) {
                   component='div'
                   sx={{
                     fontWeight: 700,
-                    ml: 'auto',
+                    mx: '0',
+                    display:'flex', justifyContent: 'center',
                   }}
-                  className={styles.price}
                 >
                   <Typography
                     variant='h4'
                     sx={{
+                      display:'flex',
                       fontWeight: 700,
                       justifyContent: 'start',
                     }}
@@ -525,11 +454,11 @@ export default function Cart({ data }) {
                   href='/catalog'
                   variant='h5'
                   sx={{
-                    textDecoration: 'underline',
+                    
                     ml: 'auto',
                   }}
                 >
-                  Вернуться в католог
+                  Вернуться в каталог
                 </Typography>
               ) : (
                 <Button

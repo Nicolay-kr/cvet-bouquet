@@ -18,7 +18,7 @@ export default function Home({ data }) {
   const lg = useMediaQuery('(min-width:1200px)');
   const [mappedBouquets, setMappedBouquets] = useState(
     data?.categories?.categories.filter(
-      (category) => category?.published === true
+      (category) => category.published
     )
   );
 
@@ -136,7 +136,9 @@ export default function Home({ data }) {
 
       {data?.popularBouqets ? (
         <CaruselBlock
-          bouquets={data?.popularBouqets}
+          bouquets={data?.popularBouqets.filter(
+            item => item.published
+          )}
           title={'Популярные'}
           subtitle={'букеты'}
           categoryslug='popular'
@@ -215,6 +217,7 @@ export const getServerSideProps = async (pageContext) => {
       title,
       slug,
       images,
+      published,
       price,
       description,
       "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin}
@@ -225,6 +228,7 @@ export const getServerSideProps = async (pageContext) => {
             _id,
             title,
             slug,
+            published,
             images,
             price,
             description,

@@ -39,6 +39,7 @@ export default function SearchModal({}) {
           slug,
           images,
           price,
+          published,
           description,
         }`
       )
@@ -65,7 +66,7 @@ export default function SearchModal({}) {
       return [];
     }
     const searchStrArr = str.split(' ');
-    const sortArr = arr.filter((item) =>
+    const sortArr = arr.filter(item=>item.published).filter((item) =>
       search(item.title?.ru?.toLowerCase(), searchStrArr)
     );
     return sortArr;
