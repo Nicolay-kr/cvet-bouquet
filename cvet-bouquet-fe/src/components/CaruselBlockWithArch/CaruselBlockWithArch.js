@@ -45,7 +45,7 @@ export default function CaruselBlockWithArch({
 
   const listItems =
     bouquets &&
-    bouquets.map((item, index) => (
+    bouquets?.map((item, index) => (
       <SwiperSlide key={index}>
         <Box
           component={Link}
@@ -182,12 +182,13 @@ export default function CaruselBlockWithArch({
             modules={[EffectFade, Controller]}
             effect={'fade'}
             slidesPerView={1}
-            loopedSlides={5}
+            loopedSlides={listItems.length}
             grabCursor={true}
             loop={true}
             spaceBetween={10}
             onSwiper={setControlledSwiper}
             enabled={false}
+            initialSlide={0}
           >
             {listItems}
           </Swiper>
@@ -209,12 +210,14 @@ export default function CaruselBlockWithArch({
           ) : null}
 
           <Carusel
+          loopedSlides={bouquets.length-1}
             controlledSwiper={controlledSwiper}
             bouquets={bouquets}
             caruselRef={caruselWithArchRef}
             isSpec={isSpec}
             categoryslug={categoryslug}
             isPremium={isPremium}
+            initialSlide={1}
           />
         </Box>
       </Box>

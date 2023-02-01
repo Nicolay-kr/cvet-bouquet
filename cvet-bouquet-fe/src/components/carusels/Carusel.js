@@ -26,11 +26,13 @@ const Carusel = ({
   categoryslug,
   controlledSwiper = null,
   isPremium = false,
+  initialSlide=0,
+  loopedSlides=null
 }) => {
   const md = useMediaQuery('(max-width:720px)');
   const xl = useMediaQuery('(max-width:1536px)');
 
-  const listItems = bouquets?.map((bouquet) => {
+  const listItems = bouquets.map((bouquet) => {
     return (
       <SwiperSlide style={{ width: 'auto', height: 'auto' }} key={bouquet._id}>
         {isSpec ? (
@@ -66,7 +68,8 @@ const Carusel = ({
       // slidesPerView={breakpoints.m ? (breakpoints.xs ? "2" : "3") : "5"}
       slidesPerView={isSpec ? (md ? 1.5 : 'auto') : md ? 2.1 : 'auto'}
       // slidesPerView={md && !isSpec ? 2:'auto'}
-      loopedSlides={4}
+      initialSlide={initialSlide}
+      loopedSlides={loopedSlides?loopedSlides:4}
       grabCursor={true}
       loop={true}
       spaceBetween={md ? (isSpec ? 10 : 15) : xl ? (isSpec ? 20 : 30) : 30}
