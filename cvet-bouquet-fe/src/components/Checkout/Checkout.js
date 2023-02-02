@@ -113,13 +113,13 @@ export default function Checkout({ price, shopsList, orderlist }) {
     formState: { errors },
   } = useForm({
     defaultValues: defaultState,
-    // resolver: yupResolver(
-    //   checkoutSchema(
-    //     checkoutOptions.selfReceive,
-    //     isPrivareHouse,
-    //     !checkoutOptions.delivery
-    //   )
-    // ),
+    resolver: yupResolver(
+      checkoutSchema(
+        checkoutOptions.selfReceive,
+        isPrivareHouse,
+        !checkoutOptions.delivery
+      )
+    ),
   });
 
   const onSubmit = (data) => {
@@ -226,24 +226,25 @@ export default function Checkout({ price, shopsList, orderlist }) {
                 />
               )}
             />
-               <Controller
+            <Controller
                   control={control}
                   name='phone'
                   rules={{ required: true }}
                   render={({ field: { ref, ...field } }) => (
-                    <TextField
-                    component={PhoneInput}
+                    <PhoneInput
                       {...field}
                       inputExtraProps={{
                         ref,
                         required: true,
                         autoFocus: true,
                       }}
+                      containerStyle={{marginBottom: errors.phone?.message?.length > 0?'20px':0}}
                       country={'by'}
+                      value={field.value}
                       localization={ru}
                       placeholder='Ваш номер телефона.'
-                      error={errors.phone?.message.length > 0}
-                      helperText={errors.phone?.message}
+                      isValid={()=>!(errors.phone?.message.length > 0)}
+                      defaultErrorMessage={`${errors.phone?.message?errors.phone?.message:''}`}
                     />
                   )}
                 />

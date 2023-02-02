@@ -38,6 +38,9 @@ a {
 * {
   box-sizing: border-box;
 }
+.MuiBox-root .react-tel-input {
+  margin-top: max(24px, 1.2vw);
+}
 
 .MuiBox-root .react-tel-input .form-control {
   width:100% !important;
@@ -53,16 +56,20 @@ a {
   border-color: grey;
   outline:1px solid grey;
 }
+
 .MuiBox-root .react-tel-input .form-control:focus+.flag-dropdown {
   border-color: grey;
   outline:1px solid grey;
 }
+
 .MuiBox-root .react-tel-input .form-control:hover {
   border-color: grey;
 }
+
 .MuiBox-root .react-tel-input .form-control:hover+.flag-dropdown {
   border-color: grey;
 }
+
 .MuiBox-root .react-tel-input .form-control:hover .react-tel-input .flag-dropdown {
   border-color: grey;
 }
@@ -70,13 +77,31 @@ a {
 .react-tel-input .flag-dropdown {
   background-color: transparent !important;
 }
+
 .react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
-  /* background-color: #AEA595 !important; */
   background-color: transparent !important;
 }
 
 .react-tel-input .flag-dropdown.open .selected-flag {
   background-color: transparent !important;
+}
+
+.MuiBox-root .react-tel-input .form-control.invalid-number  {
+  border-color: red !important;
+  color: #ff1744;
+}
+
+.MuiBox-root .react-tel-input .invalid-number-message {
+  position: absolute;
+  z-index: 1;
+  font-size: 12px;
+  left: 14px;
+  top: unset;
+  background: transparent;
+  padding: 0;
+  color: #ff1744;
+  bottom: -35%;
+  font-weight: 600;
 }
 
 .MuiPickersPopper-root button {
