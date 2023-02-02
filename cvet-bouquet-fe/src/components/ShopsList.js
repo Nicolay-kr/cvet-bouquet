@@ -21,7 +21,7 @@ export default function ShopsList({ shop, delivery = false }) {
       >
         <span >
           {shop.adress}
-          <span style={{display:'inline-flex', alignItems: 'center'}}>
+          <span style={{display:'inline-flex', alignItems: 'center',verticalAlign: 'bottom'}}>
             
             <Box
               component={MetroIcon}
@@ -38,10 +38,11 @@ export default function ShopsList({ shop, delivery = false }) {
         sx={{
           alignSelf: 'left',
           opacity: !delivery || delivery === shop.adress ? '1' : '0.5',
+          mt:10,
         }}
         gutterBottom
         variant='body2'
-        component='span'
+        component='p'
       >
         {shop.time}
       </Typography>
