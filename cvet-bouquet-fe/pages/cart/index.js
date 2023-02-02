@@ -17,7 +17,7 @@ import Divider from '@mui/material/Divider';
 import CounterButtons from '../../src/components/CounterButtons/CounterButtons';
 import Checkout from '../../src/components/Checkout/Checkout';
 import Link from '../../src/components/CustopNextComponents/Link';
-import BreadCrumbs from '../../src/components/Breadcrubs/BreadCrumbs';
+import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
 import { sanityClient, urlFor } from '../../sanity';
 import { useRouter } from 'next/router';
 import Head from 'next/head';

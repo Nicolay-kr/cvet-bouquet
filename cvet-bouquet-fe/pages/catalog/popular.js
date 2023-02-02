@@ -1,6 +1,6 @@
 import React from 'react';
 import { sanityClient } from '../../sanity';
-import BouquetListPage from '../../src/components/BouquetListPage/BouquetListPage';
+import BouquetListPage from '../../src/components/BouquetListPage';
 import Head from 'next/head';
 
 export const Popular = ({ data }) => {

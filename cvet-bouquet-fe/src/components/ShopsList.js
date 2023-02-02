@@ -1,8 +1,8 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import MetroIcon from '../../../public/assets/icons/metro.svg';
+import MetroIcon from '../../public/assets/icons/metro.svg';
 import Box from '@mui/material/Box';
-import size from '../../utils/size';
+import size from '../utils/size';
 
 export default function ShopsList({ shop, delivery = false }) {
   return (

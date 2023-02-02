@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
-import BouquetCard from '../BouquetCard/BouquetCard';
-import BreadCrumbs from '../Breadcrubs/BreadCrumbs';
-import BouquetSort from '../BouquetSort/BouquetSort';
-import PriceFilter from '../PriceFilter/PriceFilter';
-import size from '../../utils/size';
+import BouquetCard from './BouquetCard/BouquetCard';
+import BreadCrumbs from './breadcrubs/BreadCrumbs';
+import BouquetSort from './BouquetSort/BouquetSort';
+import PriceFilter from './PriceFilter';
+import size from '../utils/size';
 import { useRouter } from 'next/router';
 import sortArray from 'sort-array';
 

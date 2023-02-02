@@ -9,7 +9,7 @@ import useSWR from 'swr';
 import groq from "groq";
 import CircularProgress from '@mui/material/CircularProgress';
 import deletingWithId from '../../utils/sanityMethods/deletingWithId';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '../ErrorBoundary';
 
 
 

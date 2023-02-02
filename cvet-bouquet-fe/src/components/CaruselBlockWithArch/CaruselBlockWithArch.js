@@ -23,7 +23,7 @@ import size from '../../utils/size';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/controller';
-import TextsQuote from '../TextsQuote/TextsQuote';
+import TextsQuote from '../TextsQuote';
 
 export default function CaruselBlockWithArch({
   bouquets,

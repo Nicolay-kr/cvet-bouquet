@@ -1,9 +1,9 @@
 import * as React from 'react';
-import NavArrow from '../../../public/assets/icons/navArrow.svg';
+import NavArrow from '../../public/assets/icons/navArrow.svg';
 import IconButton from '@mui/material/IconButton';
 import Image from 'next/future/image';
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
+import { Typography } from '../../node_modules/@mui/material/index';
 
 export default function WordWithArrow({
   title,
