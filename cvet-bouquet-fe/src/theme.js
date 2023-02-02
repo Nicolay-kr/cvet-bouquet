@@ -292,7 +292,7 @@ const theme = createTheme({
             '@media (max-width:600px)': {
               fontSize: '1.4em',
             },
-            '@media (min-width:200px)': {
+            '@media (min-width:2000px)': {
               fontSize: '0.6em',  
             },
           }
