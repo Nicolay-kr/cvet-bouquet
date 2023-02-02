@@ -15,7 +15,7 @@ export const CategoryBouquets = ({ data }) => {
     { title: data?.category?.title, href: null },
   ];
   
-  const bouquets = [...data?.category?.bouqets]
+  const bouquets = data?.category?.bouqets? [...data?.category?.bouqets]:[];
 
   const isPremium = data?.category?.slug.current === 'premium-floristika';
 
@@ -31,7 +31,7 @@ export const CategoryBouquets = ({ data }) => {
         <TextsQuote></TextsQuote>
       </Box>
       <CaruselBlockWithArch
-        bouquets={data?.category?.bouqets}
+        bouquets={bouquets}
         isPremium={isPremium}
         isSpec={true}
       ></CaruselBlockWithArch>
