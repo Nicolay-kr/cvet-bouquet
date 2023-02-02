@@ -4,14 +4,14 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import Image from 'next/future/image';
-import SearchIcon from '../../public/assets/icons/search.svg';
-import Whitesearch from '../../public/assets/icons/whitesearch.svg';
+import SearchIcon from '../../../public/assets/icons/search.svg';
+import Whitesearch from '../../../public/assets/icons/whitesearch.svg';
 import IconButton from '@mui/material/IconButton';
 import Fade from '@mui/material/Fade';
-import Whitecros from '../../public/assets/icons/whitecros.svg';
+import Whitecros from '../../../public/assets/icons/whitecros.svg';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { sanityClient, urlFor } from '../../sanity';
+import { sanityClient, urlFor } from '../../../sanity';
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 

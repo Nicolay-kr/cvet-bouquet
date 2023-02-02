@@ -6,7 +6,7 @@ import {
   List,
   ListItem,
   ListItemButton,
-} from '../../../node_modules/@mui/material/index';
+} from '@mui/material';
 import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
 import BurgerIcon from '../../../public/assets/icons/burger.svg';
@@ -16,7 +16,7 @@ import Whatsapp from '../../../public/assets/icons/whatsapp.svg';
 import Telegram from '../../../public/assets/icons/telegram.svg';
 import Instagram from '../../../public/assets/icons/instagram.svg';
 import Typography from '@mui/material/Typography';
-import BurgerAccordion from '../burgerAccordion/BurgerAccordion';
+import BurgerAccordion from '../BurgerAccordion/BurgerAccordion';
 import size from '../../utils/size';
 
 export default function BurgerMenu({ categories, data }) {

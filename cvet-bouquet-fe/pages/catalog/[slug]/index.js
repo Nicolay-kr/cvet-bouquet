@@ -1,11 +1,11 @@
 import React from 'react';
 import { sanityClient } from '../../../sanity';
-import BouquetListPage from '../../../src/components/BouquetListPage';
-import BreadCrumbs from '../../../src/components/breadcrubs/BreadCrumbs';
+import BouquetListPage from '../../../src/components/BouquetListPage/BouquetListPage';
+import BreadCrumbs from '../../../src/components/Breadcrubs/BreadCrumbs';
 import CaruselBlockWithArch from '../../../src/components/CaruselBlockWithArch/CaruselBlockWithArch';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import TextsQuote from '../../../src/components/TextsQuote';
+import TextsQuote from '../../../src/components/TextsQuote/TextsQuote';
 import Head from 'next/head';
 
 export const CategoryBouquets = ({ data }) => {

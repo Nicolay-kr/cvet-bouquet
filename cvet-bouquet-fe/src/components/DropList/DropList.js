@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import logoFlower from '../../../public/assets/images/logo_flower.svg';
-import WordWithArrow from '../WordWithArrow';
+import WordWithArrow from '../WordWithArrow/WordWithArrow';
 import size from '../../utils/size';
 
 export default function DropList({ list, prevSlug, title }) {

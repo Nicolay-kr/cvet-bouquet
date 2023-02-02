@@ -1,12 +1,12 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
-import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
-import DoubleBlock from '../src/components/doubleBlock/DoubleBlock';
+import TitleWithTextBlock from '../src/components/TitleWithTextBlock/TitleWithTextBlock';
+import DoubleBlock from '../src/components/DoubleBlock/DoubleBlock';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Image from 'next/future/image';
 import bigFlower from '../public/assets/images/bigFlower.png';
-import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
+import BreadCrumbs from '../src/components/Breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 import size from '../src/utils/size';
 

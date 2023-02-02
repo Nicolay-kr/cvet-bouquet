@@ -6,11 +6,11 @@ import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Fade from '@mui/material/Fade';
-import Cros from '../../public/assets/icons/cros.svg';
+import Cros from '../../../public/assets/icons/cros.svg';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
-import Whitecros from '../../public/assets/icons/whitecros.svg';
-import size from '../utils/size';
+import Whitecros from '../../../public/assets/icons/whitecros.svg';
+import size from '../../utils/size';
 
 const style = {
   display: 'flex',

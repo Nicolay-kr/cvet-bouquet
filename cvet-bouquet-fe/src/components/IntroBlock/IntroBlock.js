@@ -5,8 +5,8 @@ import ArcheMainConteiner from '../ArcheImageConteiners/ArcheMainConteiner';
 import { urlFor } from '../../../sanity';
 import ArcheSecondConteiner from '../ArcheImageConteiners/ArcheSecondConteiner';
 import bigFlower from '../../../public/assets/images/bigFlower.png';
-import MobileBlock from '../MobileBlock';
-import DesktopBlock from '../DesktopBlock';
+import MobileBlock from '../MobileBlock/MobileBlock';
+import DesktopBlock from '../DesktopBlock/DesktopBlock';
 import size from '../../utils/size';
 import Image from 'next/future/image';
 

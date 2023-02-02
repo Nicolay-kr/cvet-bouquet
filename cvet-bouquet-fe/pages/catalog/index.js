@@ -3,7 +3,7 @@ import styles from '../../styles/Catalog.module.css';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../../sanity';
 import SimpleBouquetCard from '../../src/components/SimpleBouquetCard/SimpleBouquetCard';
-import BreadCrumbs from '../../src/components/breadcrubs/BreadCrumbs';
+import BreadCrumbs from '../../src/components/Breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 
 export default function Home({ data }) {

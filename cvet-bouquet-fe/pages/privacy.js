@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
-import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
+import TitleWithTextBlock from '../src/components/TitleWithTextBlock/TitleWithTextBlock';
+import BreadCrumbs from '../src/components/Breadcrubs/BreadCrumbs';
 import { sanityClient } from '../sanity';
 
 export default function PrivacyPage({ data }) {

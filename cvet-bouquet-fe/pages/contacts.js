@@ -2,13 +2,13 @@ import React from 'react';
 // import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
-import ShopsList from '../src/components/ShopsList';
+import ShopsList from '../src/components/ShopsList/ShopsList';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import PhoneIcon from '../public/assets/icons/phoneBlack.svg';
 import Letter from '../public/assets/icons/emailIcon.svg';
 import InstaIcon from '../public/assets/icons/insta.svg';
 import Typography from '@mui/material/Typography';
-import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
+import BreadCrumbs from '../src/components/Breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 import size from '../src/utils/size';
 

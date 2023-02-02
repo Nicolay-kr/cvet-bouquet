@@ -8,7 +8,7 @@ export default function PaymentForm({ OrderNumber, OrderAmount}) {
   const refSumbitButton = React.useRef(null);
   useEffect(() => {
     if (OrderNumber !== '' && OrderAmount !== '') {
-      // refSumbitButton.current.click();
+      refSumbitButton.current.click();
     }
   }, [OrderNumber, OrderAmount]);
 
@@ -28,8 +28,12 @@ export default function PaymentForm({ OrderNumber, OrderAmount}) {
         <input type='hidden' name='OrderNumber' value={OrderNumber} />
         <input type='hidden' name='OrderAmount' value={OrderAmount} />
         <input type='hidden' name='OrderCurrency' value='BYN' />
+        
+        <input type='hidden' name='URL_RETURN' value='http://localhost:3000/cart' />
         <input type='submit' ref={refSumbitButton} />
       </Box>
     </>
   );
 }
+
+// http://localhost:3000/cart?billnumber=6474436448839960&ordernumber=order%2D2&payerdenial=0
