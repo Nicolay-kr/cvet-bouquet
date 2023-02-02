@@ -29,7 +29,7 @@ export default function PaymentForm({ OrderNumber, OrderAmount}) {
         <input type='hidden' name='OrderAmount' value={OrderAmount} />
         <input type='hidden' name='OrderCurrency' value='BYN' />
         
-        <input type='hidden' name='URL_RETURN' value='http://localhost:3000/cart' />
+        {/* <input type='hidden' name='URL_RETURN' value='http://localhost:3000/cart' /> */}
         <input type='submit' ref={refSumbitButton} />
       </Box>
     </>
