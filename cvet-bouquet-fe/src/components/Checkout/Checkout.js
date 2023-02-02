@@ -238,7 +238,10 @@ export default function Checkout({ price, shopsList, orderlist }) {
                         required: true,
                         autoFocus: true,
                       }}
-                      containerStyle={{marginBottom: errors.phone?.message?.length > 0?'20px':0}}
+                      containerStyle={{
+                        marginBottom: errors.phone?.message?.length > 0?'20px':0,
+                        marginTop: '0',
+                      }}
                       country={'by'}
                       value={field.value}
                       localization={ru}

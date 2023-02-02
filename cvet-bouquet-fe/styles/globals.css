@@ -48,30 +48,38 @@ a {
   margin-right: 0;
   font-family: Raleway;
   font-size: 16px;
-  height:56px;
-  padding: 16.5px 48px !important;
+  height:100%;
+  padding: 16px 48px !important;
 }
 
 .MuiBox-root .react-tel-input .form-control:focus {
-  border-color: grey;
-  outline:1px solid grey;
+  border-color: #746449;
+  outline:1px solid #746449;
+}
+.MuiBox-root .react-tel-input .form-control:focus.invalid-number  {
+  border-color: #ff1744;
+  outline:1px solid #ff1744;
 }
 
 .MuiBox-root .react-tel-input .form-control:focus+.flag-dropdown {
-  border-color: grey;
-  outline:1px solid grey;
+  border-color: #746449;
+  outline:1px solid #746449;
+}
+.MuiBox-root .react-tel-input .form-control:focus.invalid-number+.flag-dropdown {
+  border-color: #ff1744;
+  outline:1px solid #ff1744;
 }
 
 .MuiBox-root .react-tel-input .form-control:hover {
-  border-color: grey;
+  border-color: rgba(0, 0, 0,8);
 }
 
 .MuiBox-root .react-tel-input .form-control:hover+.flag-dropdown {
-  border-color: grey;
+  border-color: rgba(0, 0, 0, 0.8);
 }
 
 .MuiBox-root .react-tel-input .form-control:hover .react-tel-input .flag-dropdown {
-  border-color: grey;
+  border-color: rgba(0, 0, 0, 0.23);
 }
 
 .react-tel-input .flag-dropdown {
@@ -87,7 +95,11 @@ a {
 }
 
 .MuiBox-root .react-tel-input .form-control.invalid-number  {
-  border-color: red !important;
+  border-color: #ff1744 !important;
+  color: #ff1744;
+}
+.MuiBox-root .react-tel-input .form-control.invalid-number+.flag-dropdown   {
+  border-color: #ff1744 !important;
   color: #ff1744;
 }
 
@@ -101,7 +113,6 @@ a {
   padding: 0;
   color: #ff1744;
   bottom: -35%;
-  font-weight: 600;
 }
 
 .MuiPickersPopper-root button {
