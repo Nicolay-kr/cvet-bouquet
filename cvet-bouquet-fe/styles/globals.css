@@ -50,6 +50,7 @@ a {
   font-size: 16px;
   height:100%;
   padding: 16px 48px !important;
+  border: 1px solid rgba(0, 0, 0, 0.23);
 }
 
 .MuiBox-root .react-tel-input .form-control:focus {
@@ -70,11 +71,11 @@ a {
   outline:1px solid #ff1744;
 }
 
-.MuiBox-root .react-tel-input .form-control:hover {
+.MuiBox-root .react-tel-input:hover  .form-control{
   border-color: rgba(0, 0, 0,8);
 }
 
-.MuiBox-root .react-tel-input .form-control:hover+.flag-dropdown {
+.MuiBox-root .react-tel-input:hover  .form-control+.flag-dropdown {
   border-color: rgba(0, 0, 0, 0.8);
 }
 
