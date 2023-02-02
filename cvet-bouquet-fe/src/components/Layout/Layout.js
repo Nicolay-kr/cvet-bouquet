@@ -9,6 +9,7 @@ import useSWR from 'swr';
 import groq from "groq";
 import CircularProgress from '@mui/material/CircularProgress';
 import deletingWithId from '../../utils/sanityMethods/deletingWithId';
+import ErrorBoundary from '../ErrorBoundary';
 
 
 
@@ -46,12 +47,14 @@ export default function Layout({ children }) {
   return (
     <>
       <Header data={data} />
+      <ErrorBoundary>
       <main>
         {children}
         <Box sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}>
           <InstagramBlock instagramPosts={data?.instagramBlock}></InstagramBlock>
         </Box>
       </main>
+      </ErrorBoundary>
       <Footer data={data} />
     </>
   );
