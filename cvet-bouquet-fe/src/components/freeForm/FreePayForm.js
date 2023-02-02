@@ -41,6 +41,7 @@ export default function FreePayForm({ isContactsForm = false }) {
   const [isOpenSuccessModal, setIsOpenModal] = React.useState(false);
   const [OrderNumber, setOrderNumber] = React.useState('');
   const [OrderAmount, setOrderAmount] = React.useState('');
+  const [Email, setEmail] = React.useState('');
   const [formProcessing, setFormProcessing] = React.useState(false);
 
   const lg = useMediaQuery('(min-width:1200px)');
@@ -108,6 +109,7 @@ export default function FreePayForm({ isContactsForm = false }) {
 
         setOrderNumber(`${newdata.data.OrderNumber}`);
         setOrderAmount(`${newdata.data.OrderAmount}`);
+        setEmail(`${newdata.data.email}`);
         // setFormProcessing(false);
         // setIsOpenModal(true);
         // reset(defaultValue);
@@ -403,7 +405,7 @@ export default function FreePayForm({ isContactsForm = false }) {
         </Paper>
       </Box>
 
-      <PaymentForm OrderNumber={OrderNumber} OrderAmount={OrderAmount} ></PaymentForm>
+      <PaymentForm OrderNumber={OrderNumber} OrderAmount={OrderAmount} Email={Email} ></PaymentForm>
     </>
   );
 }

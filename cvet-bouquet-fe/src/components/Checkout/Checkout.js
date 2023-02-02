@@ -16,7 +16,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import SuccsessModal from '../SuccsessModal';
 import size from '../../utils/size';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { ru as ruLocale} from 'date-fns/locale';
+import { ru as ruLocale } from 'date-fns/locale';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import checkoutSchema from '../../verifiedSchemas/checkout';
 import InputLabel from '@mui/material/InputLabel';
@@ -57,6 +57,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
   const [formProcessing, setFormProcessing] = React.useState(false);
   const [OrderNumber, setOrderNumber] = React.useState('');
   const [OrderAmount, setOrderAmount] = React.useState('');
+  const [Email, setEmail] = React.useState('');
 
   const [time, setTime] = React.useState('');
 
@@ -125,9 +126,9 @@ export default function Checkout({ price, shopsList, orderlist }) {
     ),
   });
 
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     setFormProcessing(true);
-    setIsOpenModal(true)
+    setIsOpenModal(true);
 
     const orderData = {
       name: data.name,
@@ -135,7 +136,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
       email: data.email,
       orderlist: orderlist,
       comment: data.comment,
-      date: checkoutOptions.delivery ? dateValue.format('DD-MM-YYYY')  : '',
+      date: checkoutOptions.delivery ? dateValue.format('DD-MM-YYYY') : '',
       time: time,
       street: data.street,
       house: data.house,
@@ -165,10 +166,11 @@ export default function Checkout({ price, shopsList, orderlist }) {
       });
 
       const newdata = await response.json();
-      console.log('newdata',newdata)
+      console.log('newdata', newdata);
 
       setOrderNumber(`${newdata.data.OrderNumber}`);
       setOrderAmount(`${newdata.data.OrderAmount}`);
+      setEmail(`${newdata.data.email}`);
       // setFormProcessing(false);
       // setIsOpenModal(true);
       // reset(defaultValue);
@@ -236,30 +238,33 @@ export default function Checkout({ price, shopsList, orderlist }) {
               )}
             />
             <Controller
-                  control={control}
-                  name='phone'
-                  rules={{ required: true }}
-                  render={({ field: { ref, ...field } }) => (
-                    <PhoneInput
-                      {...field}
-                      inputExtraProps={{
-                        ref,
-                        required: true,
-                        autoFocus: true,
-                      }}
-                      containerStyle={{
-                        marginBottom: errors.phone?.message?.length > 0?'20px':0,
-                        marginTop: '0',
-                      }}
-                      country={'by'}
-                      value={field.value}
-                      localization={ru}
-                      placeholder='Ваш номер телефона.'
-                      isValid={()=>!(errors.phone?.message.length > 0)}
-                      defaultErrorMessage={`${errors.phone?.message?errors.phone?.message:''}`}
-                    />
-                  )}
+              control={control}
+              name='phone'
+              rules={{ required: true }}
+              render={({ field: { ref, ...field } }) => (
+                <PhoneInput
+                  {...field}
+                  inputExtraProps={{
+                    ref,
+                    required: true,
+                    autoFocus: true,
+                  }}
+                  containerStyle={{
+                    marginBottom:
+                      errors.phone?.message?.length > 0 ? '20px' : 0,
+                    marginTop: '0',
+                  }}
+                  country={'by'}
+                  value={field.value}
+                  localization={ru}
+                  placeholder='Ваш номер телефона.'
+                  isValid={() => !(errors.phone?.message.length > 0)}
+                  defaultErrorMessage={`${
+                    errors.phone?.message ? errors.phone?.message : ''
+                  }`}
                 />
+              )}
+            />
             <Controller
               name='email'
               control={control}
@@ -303,19 +308,34 @@ export default function Checkout({ price, shopsList, orderlist }) {
                   />
                 )}
               />
-              <Controller
-                name='recipientPhone'
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    id='phone'
-                    label='Номер телефона получателя'
-                    error={errors.recipientPhone?.message.length > 0}
-                    helperText={errors.recipientPhone?.message}
-                    {...field}
-                  />
-                )}
-              />
+                  <Controller
+              control={control}
+              name='recipientPhone'
+              rules={{ required: true }}
+              render={({ field: { ref, ...field } }) => (
+                <PhoneInput
+                  {...field}
+                  inputExtraProps={{
+                    ref,
+                    required: true,
+                    autoFocus: true,
+                  }}
+                  containerStyle={{
+                    marginBottom:
+                      errors.recipientPhone?.message?.length > 0 ? '20px' : 0,
+                    marginTop: '0',
+                  }}
+                  country={'by'}
+                  value={field.value}
+                  localization={ru}
+                  placeholder='Ваш номер телефона.'
+                  isValid={() => !(errors.recipientPhone?.message.length > 0)}
+                  defaultErrorMessage={`${
+                    errors.recipientPhone?.message ? errors.recipientPhone?.message : ''
+                  }`}
+                />
+              )}
+            />
             </Box>
           </Box>
         ) : null}
@@ -347,7 +367,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
                 onChange={(newValue) => {
                   setDateValue(dayjs(newValue));
                 }}
-                renderInput={(params) => <TextField {...params}  />}
+                renderInput={(params) => <TextField {...params} />}
               />
 
               <FormControl
@@ -542,14 +562,22 @@ export default function Checkout({ price, shopsList, orderlist }) {
         >
           <Button
             type='submit'
-            sx={{ mt: 'max(10px,0.05vw)', gridColumn: { xs: '1/3', lg: '1' },fontSize: {...size(24),xs:18}, }}
+            sx={{
+              mt: 'max(10px,0.05vw)',
+              gridColumn: { xs: '1/3', lg: '1' },
+              fontSize: { ...size(24), xs: 18 },
+            }}
             variant='contained'
           >
             Оформить заказ
           </Button>
         </Box>
       </Box>
-      <PaymentForm OrderNumber={OrderNumber} OrderAmount={OrderAmount} ></PaymentForm>
+      <PaymentForm
+        OrderNumber={OrderNumber}
+        OrderAmount={OrderAmount}
+        Email={Email}
+      ></PaymentForm>
     </LocalizationProvider>
   );
 }
