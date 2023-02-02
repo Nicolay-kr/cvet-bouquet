@@ -25,6 +25,7 @@ import Select from '@mui/material/Select';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import ru from 'react-phone-input-2/lang/ru.json';
+import PaymentForm from '../PaymentForm/PaymentForm';
 
 const MenuProps = {
   PaperProps: {
@@ -54,6 +55,8 @@ export default function Checkout({ price, shopsList, orderlist }) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [formProcessing, setFormProcessing] = React.useState(false);
+  const [OrderNumber, setOrderNumber] = React.useState('');
+  const [OrderAmount, setOrderAmount] = React.useState('');
 
   const [time, setTime] = React.useState('');
 
@@ -122,7 +125,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
     ),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     setFormProcessing(true);
     setIsOpenModal(true)
 
@@ -152,20 +155,26 @@ export default function Checkout({ price, shopsList, orderlist }) {
       registration: new Date(),
       orderType: 'Заказ через корзину',
     };
-
-    fetch('api/createOrder', {
-      method: 'POST',
-      body: JSON.stringify(orderData),
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then((response) => {
-        console.log('response', response);
-      })
-      .catch((error) => {
-        console.log('error', error);
+    try {
+      const response = await fetch('api/createOrder', {
+        method: 'POST',
+        body: JSON.stringify(orderData),
+        headers: {
+          Accept: 'application/json',
+        },
       });
+
+      const newdata = await response.json();
+      console.log('newdata',newdata)
+
+      setOrderNumber(`${newdata.data.OrderNumber}`);
+      setOrderAmount(`${newdata.data.OrderAmount}`);
+      // setFormProcessing(false);
+      // setIsOpenModal(true);
+      // reset(defaultValue);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const onClose = () => {
@@ -540,6 +549,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
           </Button>
         </Box>
       </Box>
+      <PaymentForm OrderNumber={OrderNumber} OrderAmount={OrderAmount} ></PaymentForm>
     </LocalizationProvider>
   );
 }

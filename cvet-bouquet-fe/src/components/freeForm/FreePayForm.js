@@ -17,16 +17,16 @@ import {
   contactSchema,
   defaultSchema,
 } from '../../verifiedSchemas/freePayFormSchema';
-import generateOrderNumber from '../../utils/generateOrderNumber';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import ru from 'react-phone-input-2/lang/ru.json';
+import PaymentForm from '../PaymentForm/PaymentForm';
 
 const defaultState = {
-  name: '',
+  name: 'ivan',
   phone: '',
-  OrderAmount: '',
-  email: '',
+  OrderAmount: '2000',
+  email: 'teat@test.com',
   comment: '',
 };
 
@@ -39,13 +39,15 @@ const defaultStateForContacts = {
 
 export default function FreePayForm({ isContactsForm = false }) {
   const [isOpenSuccessModal, setIsOpenModal] = React.useState(false);
+  const [OrderNumber, setOrderNumber] = React.useState('');
+  const [OrderAmount, setOrderAmount] = React.useState('');
   const [formProcessing, setFormProcessing] = React.useState(false);
 
   const lg = useMediaQuery('(min-width:1200px)');
 
   const defaultValue = isContactsForm ? defaultStateForContacts : defaultState;
 
-  const schema = isContactsForm ? contactSchema : defaultSchema;
+  const schema = isContactsForm ? contactSchema : defaultSchema
 
   const {
     control,
@@ -54,29 +56,14 @@ export default function FreePayForm({ isContactsForm = false }) {
     formState: { errors },
   } = useForm({
     defaultValues: defaultValue,
-    resolver: yupResolver(schema),
+    // resolver: yupResolver(schema),
   });
-  console.log(errors)
 
   const onSubmit = async (data) => {
-    console.log(data);
     setFormProcessing(true);
     setIsOpenModal(true);
-    const orderNumber = await generateOrderNumber();
 
-    const paymentData = {
-      OrderAmount: '205.50',
-      OrderNumber: 'B20042011_27',
-      OrderCurrency: 'BYN',
-      Merchant_ID: +process.env.MERCHANT_ID,
-      // <input type='hidden' name='OrderNumber' value=' B20042011_27' />
-      //   <input type='hidden' name='OrderAmount' value='205.50'/>
-      //   <input type='hidden' name='OrderCurrency' value='BYN' />
-      // URL_RETURN_OK: 'https://cvet-bouquet-nicolay-kr.vercel.app/cart',
-    };
-    const newdata = new URLSearchParams(paymentData);
-
-    if (false) {
+    if (isContactsForm) {
       fetch('https://formspree.io/f/mzbqpyrw', {
         method: 'POST',
         body: JSON.stringify({
@@ -101,38 +88,32 @@ export default function FreePayForm({ isContactsForm = false }) {
           setFormProcessing(false);
           setIsOpenModal(false);
         });
-    } else if (false) {
-      // fetch('api/createOrder', {
-      //   method: 'POST',
-      //   body: JSON.stringify({
-      //     ...data,
-      //     orderType: 'Свободный платеж',
-      //     paymentType: 'Онлайн оплата',
-      //     registration: new Date(),
-      //   }),
-      //   headers: {
-      //     Accept: 'application/json',
-      //   },
-      // })
-      fetch(`${process.env.SERVER_NAME}`, {
-        method: 'POST',
-        body: newdata,
-        headers: {
-          Accept: 'application/json',
-        },
-      })
-        .then((response) => {
-          console.log('response', response);
-          // setFormProcessing(false);
-          // setIsOpenModal(true);
-          // reset(defaultValue);
-        })
-
-        .catch((error) => {
-          console.log('error', error);
-          // setFormProcessing(false);
-          // setIsOpenModal(false);
+    } else {
+      try {
+        const response = await fetch('api/createOrder', {
+          method: 'POST',
+          body: JSON.stringify({
+            ...data,
+            orderType: 'Свободный платеж',
+            paymentType: 'Онлайн оплата',
+            registration: new Date(),
+          }),
+          headers: {
+            Accept: 'application/json',
+          },
         });
+
+        const newdata = await response.json();
+        console.log('newdata',newdata)
+
+        setOrderNumber(`${newdata.data.OrderNumber}`);
+        setOrderAmount(`${newdata.data.OrderAmount}`);
+        // setFormProcessing(false);
+        // setIsOpenModal(true);
+        // reset(defaultValue);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -151,21 +132,11 @@ export default function FreePayForm({ isContactsForm = false }) {
       <Box
         component={'form'}
         onSubmit={handleSubmit(onSubmit)}
-        // action={`${process.env.SERVER_NAME}`}
-        // method='POST'
         sx={{
           width: '100%',
           my: { xs: '40px', lg: '60px' },
         }}
       >
-        <input
-          type='hidden'
-          name='Merchant_ID'
-          value={+process.env.MERCHANT_ID}
-        />
-        <input type='hidden' name='OrderNumber' value=' B20042012' />
-        <input type='hidden' name='OrderAmount' value='210' />
-        <input type='hidden' name='OrderCurrency' value='BYN' />
         <Paper
           sx={{
             px: { ...size(120), xs: '5%' },
@@ -259,7 +230,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                   render={({ field }) => (
                     <TextField
                       label='Вашe имя'
-                      style={{fontSize:'16px'}}
+                      style={{ fontSize: '16px' }}
                       id='name'
                       error={errors.name?.message.length > 0}
                       helperText={errors.name?.message}
@@ -279,13 +250,18 @@ export default function FreePayForm({ isContactsForm = false }) {
                         required: true,
                         autoFocus: true,
                       }}
-                      containerStyle={{marginBottom: errors.phone?.message?.length > 0?'20px':0}}
+                      containerStyle={{
+                        marginBottom:
+                          errors.phone?.message?.length > 0 ? '20px' : 0,
+                      }}
                       country={'by'}
                       value={field.value}
                       localization={ru}
                       placeholder='Ваш номер телефона.'
-                      isValid={()=>!(errors.phone?.message.length > 0)}
-                      defaultErrorMessage={`${errors.phone?.message?errors.phone?.message:''}`}
+                      isValid={() => !(errors.phone?.message.length > 0)}
+                      defaultErrorMessage={`${
+                        errors.phone?.message ? errors.phone?.message : ''
+                      }`}
                     />
                   )}
                 />
@@ -426,6 +402,8 @@ export default function FreePayForm({ isContactsForm = false }) {
           </Box>
         </Paper>
       </Box>
+
+      <PaymentForm OrderNumber={OrderNumber} OrderAmount={OrderAmount} ></PaymentForm>
     </>
   );
 }
