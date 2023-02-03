@@ -51,7 +51,7 @@ const deliveryIntervals = [
   '21.00 - 22.00',
 ];
 
-export default function Checkout({ price, shopsList, orderlist }) {
+export default function Checkout({ price, shopsList, orderlist,promocode }) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [formProcessing, setFormProcessing] = React.useState(false);
@@ -155,6 +155,7 @@ export default function Checkout({ price, shopsList, orderlist }) {
       OrderAmount: price,
       registration: new Date(),
       orderType: 'Заказ через корзину',
+      promocode,
     };
     try {
       const response = await fetch('api/createOrder', {

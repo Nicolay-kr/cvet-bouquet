@@ -23,6 +23,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'billnumber',
+      title: 'Номер платежа в системе Ассист',
+      type: 'string',
+    },
+    {
       name: 'orderType',
       title: 'Тип заказа',
       type: 'string',
@@ -30,6 +35,11 @@ export default {
     {
       name: 'OrderAmount',
       title: 'Cтоимость',
+      type: 'string',
+    },
+    {
+      name: 'promoсode',
+      title: 'Промокод',
       type: 'string',
     },
     {

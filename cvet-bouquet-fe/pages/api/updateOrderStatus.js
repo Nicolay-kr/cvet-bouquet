@@ -12,10 +12,11 @@ export default async function handler(req, res) {
     );
     const id = order._id;
     const status = data.orderstate;
+    const billnumber = data.billnumber;
     if (id && data.merchant_id === process.env.MERCHANT_ID) {
       await sanityClient
         .patch(id) // Document ID to patch
-        .set({ status: status }) // Shallow merge
+        .set({ status: status, billnumber: billnumber, }) // Shallow merge
         .commit();
       return res.status(200).send(`Success. Order with id ${id} was update`);
     } else {
