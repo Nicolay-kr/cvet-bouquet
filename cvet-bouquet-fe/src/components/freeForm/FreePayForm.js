@@ -127,6 +127,7 @@ export default function FreePayForm({ isContactsForm = false }) {
   return (
     <>
       <SuccsessModal
+      onClose={ isContactsForm?onClose:null }
         open={isOpenSuccessModal}
         isContactsForm={isContactsForm}
         formProcessing={formProcessing}
