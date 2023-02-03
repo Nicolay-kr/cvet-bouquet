@@ -187,7 +187,6 @@ export default function Checkout({ price, shopsList, orderlist,promocode }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ruLocale}>
       <SuccsessModal
-        onClose={onClose}
         open={isOpenModal}
         formProcessing={formProcessing}
       ></SuccsessModal>
