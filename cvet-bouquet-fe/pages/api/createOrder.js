@@ -27,10 +27,7 @@ export default async function handler(req, res) {
 
     await sanityClient.createIfNotExists(data)
     await sendMessageAboutOrder(orderData);
-    // await createPayment({
-    //     OrderNumber: orderData.OrderNumber,
-    //     OrderAmount: orderData.OrderAmount,
-    // });
+    
     return res.status(200).json({ data:orderData, message: 'Order was created'})
     
   } catch (e) {

@@ -23,10 +23,10 @@ import ru from 'react-phone-input-2/lang/ru.json';
 import PaymentForm from '../PaymentForm/PaymentForm';
 
 const defaultState = {
-  name: 'ivan',
+  name: '',
   phone: '',
-  OrderAmount: '2000',
-  email: 'teat@test.com',
+  OrderAmount: '',
+  email: '',
   comment: '',
 };
 
@@ -57,7 +57,7 @@ export default function FreePayForm({ isContactsForm = false }) {
     formState: { errors },
   } = useForm({
     defaultValues: defaultValue,
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data) => {
@@ -122,11 +122,11 @@ export default function FreePayForm({ isContactsForm = false }) {
   const onClose = () => {
     setIsOpenModal(false);
   };
+  console.log(errors)
 
   return (
     <>
       <SuccsessModal
-        onClose={onClose}
         open={isOpenSuccessModal}
         isContactsForm={isContactsForm}
         formProcessing={formProcessing}

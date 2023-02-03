@@ -27,13 +27,15 @@ const style = {
 
 export default function SuccsessModal({
   open = false,
-  onClose,
+  onClose=null,
   isContactsForm = false,
   formProcessing = false,
   children,
 }) {
   const handleClose = () => {
-    onClose(false);
+    if(onClose){
+      onClose(false);
+    }
   };
 
   return (
