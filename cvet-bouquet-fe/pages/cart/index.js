@@ -494,7 +494,7 @@ export default function Cart({ data }) {
               price={orderSumma.toFixed(2)}
               shopsList={data?.generalInfo?.shopsList}
               orderlist={orderlist}
-              promocode={promoCodeValue.code?promoCodeValue.code:''}
+              promocode={promoCodeValue?.code? promoCodeValue?.code:''}
             ></Checkout>
           ) : null}
         </Box>

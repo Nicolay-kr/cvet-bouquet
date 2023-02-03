@@ -23,6 +23,7 @@ export default async function handler(req, res) {
       _id: orderId,
       _type: 'orders',
     }
+    console.log(data)
 
     await sanityClient.createIfNotExists(data)
     await sendMessageAboutOrder(orderData);

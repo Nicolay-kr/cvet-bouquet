@@ -38,7 +38,7 @@ export default {
       type: 'string',
     },
     {
-      name: 'promoсode',
+      name: 'promocode',
       title: 'Промокод',
       type: 'string',
     },
