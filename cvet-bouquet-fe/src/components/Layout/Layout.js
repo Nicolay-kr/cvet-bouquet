@@ -45,7 +45,7 @@ export default function Layout({ children }) {
 
 useEffect( () => {
   async function getStatus(){
-    if(localStorage.lastOrder){
+    if(localStorage?.lastOrder){
       const status = await checkOrderStatus(localStorage.lastOrder);
       if(status === 'Approved'){
         bouquetsContext.clearCart();
