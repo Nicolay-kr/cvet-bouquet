@@ -10,12 +10,15 @@ import groq from "groq";
 import CircularProgress from '@mui/material/CircularProgress';
 import deletingWithId from '../../utils/sanityMethods/deletingWithId';
 import ErrorBoundary from '../ErrorBoundary';
+import { checkOrderStatus, checkorderStatus } from '../../utils/sanityMethods/checkOrderStatus';
+import { useAppContext } from '../context/BouquetsContext';
 
 
 
 
 
 export default function Layout({ children }) {
+  const bouquetsContext = useAppContext();
   const { data, error, isLoading } = useSWR(groq`*[ _type == "generalInfo"][0]{
     ...,
     "categories": *[ _type == "categoryList"][0]{
@@ -39,6 +42,20 @@ export default function Layout({ children }) {
   }`, query =>
   sanityClient.fetch(query)
 )
+
+useEffect( () => {
+  async function getStatus(){
+    if(localStorage.lastOrder){
+      const status = await checkOrderStatus(localStorage.lastOrder);
+      if(status === 'Approved'){
+        bouquetsContext.clearCart();
+        localStorage.removeItem('lastOrder');
+      }
+    }
+  }
+  getStatus()
+},[])
+
 // useEffect(()=>deletingWithId(sanityClient, 'f934e94b-3059-42d9-beca-80fe4ca57611'),[])
 
   // if (error) return <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>

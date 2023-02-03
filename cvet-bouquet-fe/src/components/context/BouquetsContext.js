@@ -9,6 +9,7 @@ const defaultState = {
 
     defaultState.bouquetsInCarts.push(bouquet);
   },
+  clearCart: () => {},
   removeFromCart: (bouquet) => {},
   icreaseQuantity: (bouquet) => {},
   decreaseQuantity: (bouquet) => {},
@@ -71,6 +72,14 @@ class BouquetsProvider extends React.Component {
       };
     });
   };
+
+  clearCart = () => {
+    localStorage.removeItem('Cart');
+    this.setState({
+      bouquetsInCarts: [],
+    });
+
+  }
 
   icreaseQuantity = (id) => {
     this.setState((state) => {
@@ -156,6 +165,7 @@ class BouquetsProvider extends React.Component {
           bouquetsCategories,
           addOrRemoveToFavorite: this.addOrRemoveToFavorite,
           addToCart: this.addToCart,
+          clearCart: this.clearCart,
           removeFromCart: this.removeFromCart,
           icreaseQuantity: this.icreaseQuantity,
           decreaseQuantity: this.decreaseQuantity,

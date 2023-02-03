@@ -167,7 +167,7 @@ export default function Checkout({ price, shopsList, orderlist,promocode }) {
       });
 
       const newdata = await response.json();
-      console.log('newdata', newdata);
+      localStorage.setItem('lastOrder', newdata.data.OrderNumber.toString());
 
       setOrderNumber(`${newdata.data.OrderNumber}`);
       setOrderAmount(`${newdata.data.OrderAmount}`);
