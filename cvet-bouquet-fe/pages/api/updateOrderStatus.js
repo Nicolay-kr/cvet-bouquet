@@ -12,9 +12,11 @@ export default async function handler(req, res) {
     );
     const id = order._id;
     let status;
-    if(data.orderstate.toStrin() === 'Approved'){
+    console.log(data.orderstate)
+    // console.log(data.orderstate.toString())
+    if(data.orderstate === 'Approved'){
       status = 'Оплачен';
-    }else if (data.orderstate.toStrin() === 'Declined'){
+    }else if (data.orderstate === 'Declined'){
       status = 'Отклонен';
     }else{
       status = data.orderstate;
