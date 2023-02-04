@@ -47,7 +47,7 @@ useEffect( () => {
   async function getStatus(){
     if(localStorage?.lastOrder){
       const status = await checkOrderStatus(localStorage.lastOrder);
-      if(status === 'Approved'){
+      if(status === 'Оплачен'){
         bouquetsContext.clearCart();
         localStorage.removeItem('lastOrder');
       }
