@@ -11,16 +11,7 @@ export default async function handler(req, res) {
       }`
     );
     const id = order._id;
-    let status;
-    console.log(data.orderstate)
-    // console.log(data.orderstate.toString())
-    if(data.orderstate === 'Approved'){
-      status = 'Оплачен';
-    }else if (data.orderstate === 'Declined'){
-      status = 'Отклонен';
-    }else{
-      status = data.orderstate;
-    }
+    let status = data.orderstate;
     const billnumber = data.billnumber;
     if (id && data.merchant_id === process.env.MERCHANT_ID) {
       await sanityClient
