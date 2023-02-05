@@ -8,7 +8,7 @@ export default function PaymentForm({ OrderNumber, OrderAmount,Email}) {
   const refSumbitButton = React.useRef(null);
   useEffect(() => {
     if (OrderNumber !== '' && OrderAmount !== '' && OrderAmount !== '') {
-      refSumbitButton.current.click();
+      // refSumbitButton.current.click();
     }
   }, [OrderNumber, OrderAmount, Email]);
 
