@@ -12,6 +12,7 @@ export default async (req, res) => {
       const ret = await fetch(
         `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}`
       );
+      return res.status(200).send('OK');
     }
     if (req.body.message?.text === '/help') {
       console.log('inside help')
@@ -22,12 +23,16 @@ export default async (req, res) => {
       const ret = await fetch(
         `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}`
       );
+      return res.status(200).send('OK');
     }
     if (req.body.message?.text === '/test') {
-      const ret = await fetch('https://api.telegram.org/bot6123262918:AAETDuStLhRBZUsvfKFh2HA-6KyalCDrKuw/sendMessage?chat_id=336711852&text=Help%20for%20NextJS%20News%20Channel%20keyword%20to%20search%20for%20keyword%20in%20my%20Medium%20publication');
+      fetch('https://api.telegram.org/bot6123262918:AAETDuStLhRBZUsvfKFh2HA-6KyalCDrKuw/sendMessage?chat_id=336711852&text=Help%20for%20NextJS%20News%20Channel%20keyword%20to%20search%20for%20keyword%20in%20my%20Medium%20publication')
+      .then(response=>console.log('response: ',response))
+      .then(()=>res.status(200).send('OK'))
+      .catch((error)=>console.log('error: ',error))
     }
     
-    return res.status(200).send('OK');
+    // return res.status(200).send('OK');
 
   }catch(e){
     console.log(e)
