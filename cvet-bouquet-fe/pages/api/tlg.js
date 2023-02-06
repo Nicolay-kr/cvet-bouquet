@@ -32,16 +32,20 @@ export default async (req, res) => {
         );
       }
     } else if (req.body.message?.text.match(/order-\d+$/).length) {
-      const order =  await getOrderStatus(req.body.message?.text);
-      const message = `
-      Номер заказа: ${order.OrderNumber};
-      Текущий статус: ${order.status};
-      Номер платежа в системе Ассист: ${order.billnumber};
-      Сумма заказа: ${order.OrderAmount};
-      `;
-      const ret = await fetch(
-        `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${encodeURIComponent(message)}`
-      );
+      const order = await getOrderStatus(req.body.message?.text,req.body.message.chat.id);
+      if (order?.user?.chatId && order.user.chatId === req.body.message.chat.id) {
+        const message = `
+        Номер заказа: ${order.OrderNumber};
+        Текущий статус: ${order.status};
+        Номер платежа в системе Ассист: ${order.billnumber};
+        Сумма заказа: ${order.OrderAmount};
+        `;
+        const ret = await fetch(
+          `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${
+            req.body.message.chat.id
+          }&text=${encodeURIComponent(message)}`
+        );
+      }
     }
 
     return res.status(200).send('OK');
