@@ -33,6 +33,7 @@ export default async (req, res) => {
       }
     } else if (req.body.message?.text.match(/order-\d+$/).length) {
       const order = await getOrderStatus(req.body.message?.text,req.body.message.chat.id);
+      console.log('order',order)
       if (order?.user?.chatId && order.user.chatId === req.body.message.chat.id) {
         const message = `
         Номер заказа: ${order.OrderNumber};
@@ -40,11 +41,14 @@ export default async (req, res) => {
         Номер платежа в системе Ассист: ${order.billnumber};
         Сумма заказа: ${order.OrderAmount};
         `;
+        console.log('message',message)
+
         const ret = await fetch(
           `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${
             req.body.message.chat.id
           }&text=${encodeURIComponent(message)}`
         );
+        console.log('ret',ret)
       }
     }
 
