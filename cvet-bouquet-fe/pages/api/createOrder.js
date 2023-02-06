@@ -7,6 +7,7 @@ import generateOrderNumber from '../../src/utils/generateOrderNumber';
 import isJson from '../../src/utils/isJson';
 import { messageFormatter } from '../../src/utils/messageFormatter';
 import { sendMessageAboutOrder } from '../../src/utils/sendMessageAboutOrder';
+import senMessageToTelegram from '../../src/utils/senMessageToTelegram';
 
 export default async function handler(req, res) {
   const orderData = isJson(req.body) ? JSON.parse(req.body) : req.body;
@@ -28,11 +29,13 @@ export default async function handler(req, res) {
 
     await sanityClient.createIfNotExists(data);
     // await sendMessageAboutOrder(orderData);
+    const formatMessage = messageFormatter(orderData);
     await transporter.sendMail({
       ...mailOptions,
       subject: orderData.orderType,
-      text: messageFormatter(orderData)
+      text: formatMessage
     });
+    await senMessageToTelegram(formatMessage);
 
     return res
       .status(200)
