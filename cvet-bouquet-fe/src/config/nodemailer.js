@@ -14,5 +14,5 @@ export const transporter = nodemailer.createTransport({
 
 export const mailOptions = {
   from: email,
-  to: [email,'lerka947@gmail.com'],
+  to: [email],
 };

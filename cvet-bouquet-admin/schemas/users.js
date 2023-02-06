@@ -63,15 +63,12 @@ export default {
   preview: {
     select: {
       name: 'name',
-      emailBlock: 'emailBlock',
       active: 'active',
     },
     prepare: ({ name, emailBlock, active }) => {
-      console.log(active)
-      console.log(emailBlock)
       return {
         title: `${name} `,
-        subtitle: `${active?'Активный':'Не Активный'}, ${emailBlock.email?emailBlock.email:''}`,
+        subtitle: `${active?'Активный':'Не Активный'}`,
       };
     },
   },

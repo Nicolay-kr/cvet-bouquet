@@ -47,6 +47,7 @@ const nextConfig = {
     SERVER_NAME:process.env.SERVER_NAME,
     MERCHANT_ID:process.env.MERCHANT_ID,
     TELEGRAM_TOKEN:process.env.TELEGRAM_TOKEN,
+    MAIN_URL:process.env.MAIN_URL,
   },
   async redirects() {
     return [

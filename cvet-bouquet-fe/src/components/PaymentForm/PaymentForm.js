@@ -8,7 +8,7 @@ export default function PaymentForm({ OrderNumber, OrderAmount,Email}) {
   const refSumbitButton = React.useRef(null);
   useEffect(() => {
     if (OrderNumber !== '' && OrderAmount !== '' && OrderAmount !== '') {
-      // refSumbitButton.current.click();
+      refSumbitButton.current.click();
     }
   }, [OrderNumber, OrderAmount, Email]);
 
@@ -29,7 +29,7 @@ export default function PaymentForm({ OrderNumber, OrderAmount,Email}) {
         <input type='hidden' name='OrderAmount' value={OrderAmount} />
         <input type='hidden' name='Email' value={Email} />
         <input type='hidden' name='OrderCurrency' value='BYN' />
-        <input type='hidden' name='URL_RETURN' value='https://cvet-bouquet-nicolay-kr.vercel.app/' />
+        <input type='hidden' name='URL_RETURN' value={`${process.env.MAIN_URL}`} />
         <input type='submit' ref={refSumbitButton} />
       </Box>
     </>
