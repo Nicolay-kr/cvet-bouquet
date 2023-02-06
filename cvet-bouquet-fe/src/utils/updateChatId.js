@@ -6,8 +6,8 @@ export default async function updateChatId(user, chatId) {
     .patch(user._id)
     .set({
       telegramBlock: {
-        telegramAllow: user.telegramAllow,
-        telegramName: user.telegramName,
+        telegramAllow: user.telegramBlock.telegramAllow,
+        telegramName: user.telegramBlock.telegramName,
         chatId: `${chatId}`,
       },
     })
