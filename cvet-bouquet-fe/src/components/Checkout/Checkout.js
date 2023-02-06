@@ -26,6 +26,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import ru from 'react-phone-input-2/lang/ru.json';
 import PaymentForm from '../PaymentForm/PaymentForm';
+import Link from '../CustopNextComponents/Link';
 
 const MenuProps = {
   PaperProps: {
@@ -51,7 +52,7 @@ const deliveryIntervals = [
   '21.00 - 22.00',
 ];
 
-export default function Checkout({ price, shopsList, orderlist,promocode }) {
+export default function Checkout({ price, shopsList, orderlist, promocode }) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [formProcessing, setFormProcessing] = React.useState(false);
@@ -308,34 +309,36 @@ export default function Checkout({ price, shopsList, orderlist,promocode }) {
                   />
                 )}
               />
-                  <Controller
-              control={control}
-              name='recipientPhone'
-              rules={{ required: true }}
-              render={({ field: { ref, ...field } }) => (
-                <PhoneInput
-                  {...field}
-                  inputExtraProps={{
-                    ref,
-                    required: true,
-                    autoFocus: true,
-                  }}
-                  containerStyle={{
-                    marginBottom:
-                      errors.recipientPhone?.message?.length > 0 ? '20px' : 0,
-                    marginTop: '0',
-                  }}
-                  country={'by'}
-                  value={field.value}
-                  localization={ru}
-                  placeholder='Ваш номер телефона.'
-                  isValid={() => !(errors.recipientPhone?.message.length > 0)}
-                  defaultErrorMessage={`${
-                    errors.recipientPhone?.message ? errors.recipientPhone?.message : ''
-                  }`}
-                />
-              )}
-            />
+              <Controller
+                control={control}
+                name='recipientPhone'
+                rules={{ required: true }}
+                render={({ field: { ref, ...field } }) => (
+                  <PhoneInput
+                    {...field}
+                    inputExtraProps={{
+                      ref,
+                      required: true,
+                      autoFocus: true,
+                    }}
+                    containerStyle={{
+                      marginBottom:
+                        errors.recipientPhone?.message?.length > 0 ? '20px' : 0,
+                      marginTop: '0',
+                    }}
+                    country={'by'}
+                    value={field.value}
+                    localization={ru}
+                    placeholder='Ваш номер телефона.'
+                    isValid={() => !(errors.recipientPhone?.message.length > 0)}
+                    defaultErrorMessage={`${
+                      errors.recipientPhone?.message
+                        ? errors.recipientPhone?.message
+                        : ''
+                    }`}
+                  />
+                )}
+              />
             </Box>
           </Box>
         ) : null}
@@ -554,7 +557,8 @@ export default function Checkout({ price, shopsList, orderlist,promocode }) {
         <Box
           sx={{
             width: '100%',
-            height: 'max(60px,0.73vw)',
+            height: {...size(60),xs:48},
+            mt: 'max(10px,0.05vw)',
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             columnGap: 'max(30px,3.1vw)',
@@ -563,15 +567,38 @@ export default function Checkout({ price, shopsList, orderlist,promocode }) {
           <Button
             type='submit'
             sx={{
-              mt: 'max(10px,0.05vw)',
               gridColumn: { xs: '1/3', lg: '1' },
               fontSize: { ...size(24), xs: 18 },
+              fontWeight: '600',
             }}
             variant='contained'
           >
             Оформить заказ
           </Button>
         </Box>
+        <Typography
+          variant='h6'
+          component='p'
+          color='#000000'
+          sx={{
+            fontWeight: '700',
+            marginTop: 'auto',
+            width:'100%',
+            fontSize: { ...size(18), xs: 12 },
+
+          }}
+        >
+          Отправляя заявку, вы принимаете{' '}
+          <Link style={{ 
+            color: '#8C7B5F',
+            cursor: 'pointer',
+            textDecoration:'none',
+            '&:hover':{textDecoration:'underline'}, 
+            }} href='/privacy'>
+            соглашение об обработке персональных данных, политику
+            конфиденциальности и договор оферты
+          </Link>
+        </Typography>
       </Box>
       <PaymentForm
         OrderNumber={OrderNumber}

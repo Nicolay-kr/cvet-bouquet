@@ -297,6 +297,16 @@ const theme = createTheme({
             },
           }
         },
+        root: {
+          // Some CSS
+          fontSize: '18px !important',
+          '@media (max-width:1536px)': {
+            fontSize: '14px',
+          },
+          '@media (max-width:600px)': {
+            fontSize: '12px',
+          },
+        },
       },
     },
     MuiFormLabel: {
@@ -307,6 +317,9 @@ const theme = createTheme({
           fontSize: '18px !important',
           '@media (max-width:1536px)': {
             fontSize: '14px',
+          },
+          '@media (max-width:600px)': {
+            fontSize: '12px',
           },
         },
       },

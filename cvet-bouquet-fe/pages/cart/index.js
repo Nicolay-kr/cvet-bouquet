@@ -101,10 +101,10 @@ export default function Cart({ data }) {
                   <TableHead>
                     <TableRow>
                       <TableCell sx={{ width: '40%' }}></TableCell>
-                      <TableCell align='center'>Цена</TableCell>
-                      <TableCell align='center'>Количество</TableCell>
-                      <TableCell align='center'>Сумма</TableCell>
-                      <TableCell align='center'></TableCell>
+                      <TableCell sx={{ fontSize: size(20), color:'#7C7975' }} align='center'>Цена</TableCell>
+                      <TableCell sx={{ fontSize: size(20), color:'#7C7975' }} align='center'>Количество</TableCell>
+                      <TableCell sx={{ fontSize: size(20), color:'#7C7975' }} align='center'>Сумма</TableCell>
+                      <TableCell sx={{ fontSize: size(20), color:'#7C7975' }} align='center'></TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>

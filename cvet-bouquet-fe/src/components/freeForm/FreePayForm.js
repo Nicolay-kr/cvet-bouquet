@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Paper from '@mui/material/Paper';
-import { Link } from '../../../node_modules/@mui/material/index';
+import Link from '../CustopNextComponents/Link';
 import TextField from '@mui/material/TextField';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -292,19 +292,20 @@ export default function FreePayForm({ isContactsForm = false }) {
                       display: 'grid',
                       gridTemplateColumns: '2fr 3fr',
                       columnGap: { ...size(30), xs: 16 },
-                      mt: '40px',
+                      mt: {...size(40), xs:40,md:40},
                     }}
                   >
                     <Button
                       type='submit'
                       variant='contained'
                       color='primary'
-                      sx={{ height: '60px', marginTop: 'auto' }}
+                      sx={{ height: {...size(60),xs:60,md:60}, marginTop: 'auto',fontSize: { ...size(24), xs: 16 },
+                      fontWeight:'600' }}
                     >
                       Отправить
                     </Button>
                     <Typography
-                      variant='body2'
+                      variant='h6'
                       component='p'
                       color='#000000'
                       sx={{
@@ -314,7 +315,12 @@ export default function FreePayForm({ isContactsForm = false }) {
                     >
                       Отправляя заявку, вы принимаете{' '}
                       <Link
-                        style={{ color: '#8C7B5F', cursor: 'pointer' }}
+                        style={{
+                          color: '#8C7B5F',
+                          cursor: 'pointer',
+                          textDecoration:'none',
+                          '&:hover':{textDecoration:'underline'},  
+                        }}
                         href='/privacy'
                       >
                         соглашение об обработке персональных данных, политику
@@ -353,10 +359,11 @@ export default function FreePayForm({ isContactsForm = false }) {
                       style={{ height: '100%' }}
                       sx={{
                         mt: 'max(24px, 1.2vw)',
+                        minHeight: '150px',
                         '& div': { height: '100%' },
                         '& textarea': { height: '100% !important' },
                       }}
-                      rows={isContactsForm ? 8 : 10}
+                      // rows={isContactsForm ? 8 : 10}
                       id='comment'
                       label={
                         isContactsForm ? 'Ваш вопрос' : 'Комментарии к заказу'
@@ -377,10 +384,11 @@ export default function FreePayForm({ isContactsForm = false }) {
                 }}
               >
                 <Typography
-                  variant='body1'
+                  variant='h6'
                   component='p'
                   color='#000000'
-                  sx={{ mb: 40 }}
+                  sx={{ mb: 40, fontSize: { ...size(18), xs: 12 },}}
+                  
                 >
                   Отправляя заявку, вы принимаете{' '}
                   <Link style={{ color: '#8C7B5F' }} href='/privacy'>
@@ -393,7 +401,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                   variant='contained'
                   color='primary'
                   sx={{
-                    height: '60px',
+                    height: {...size(60),xs:48},
                     marginTop: 'auto',
                     fontSize: { ...size(24), xs: 18 },
                   }}
