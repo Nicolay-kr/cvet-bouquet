@@ -53,7 +53,7 @@ export default {
           name: 'chatId',
           title: 'Чат id',
           type: 'string',
-          readOnly: true,
+          // readOnly: true,
         },
       ],
     },

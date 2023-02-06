@@ -13,6 +13,7 @@ export default async (req, res) => {
       );
 
       if(user){
+        console.log('user',user)
         await updateChatId(user,req.body.message.chat.id)
         const message = 'Вы будите получать уведомления о заказах';
         const ret = await fetch(
