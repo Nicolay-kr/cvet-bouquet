@@ -313,8 +313,8 @@ export default function FreePayForm({ isContactsForm = false }) {
                       }}
                     >
                       Отправляя заявку, вы принимаете{' '}
-                      <Link
-                        style={{
+                      <Box component={Link}
+                        sx={{
                           color: '#8C7B5F',
                           cursor: 'pointer',
                           textDecoration:'none',
@@ -324,7 +324,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                       >
                         соглашение об обработке персональных данных, политику
                         конфиденциальности и договор оферты
-                      </Link>
+                      </Box>
                     </Typography>
                   </Box>
                 ) : null}
@@ -383,17 +383,17 @@ export default function FreePayForm({ isContactsForm = false }) {
                 }}
               >
                 <Typography
-                  variant='h6'
+                  variant='body2'
                   component='p'
                   color='#000000'
                   sx={{ mb: 40, fontSize: { ...size(14), xs: 12 },}}
                   
                 >
                   Отправляя заявку, вы принимаете{' '}
-                  <Link style={{ color: '#8C7B5F' }} href='/privacy'>
+                  <Box component={Link} style={{ color: '#8C7B5F' }} href='/privacy'>
                     соглашение об обработке персональных данных, политику
                     конфиденциальности и договор оферты
-                  </Link>
+                  </Box>
                 </Typography>
                 <Button
                   type='submit'

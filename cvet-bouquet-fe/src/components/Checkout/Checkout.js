@@ -589,7 +589,7 @@ export default function Checkout({ price, shopsList, orderlist, promocode }) {
           }}
         >
           Отправляя заявку, вы принимаете{' '}
-          <Link style={{ 
+          <Box component={Link} sx={{ 
             color: '#8C7B5F',
             cursor: 'pointer',
             textDecoration:'none',
@@ -597,7 +597,7 @@ export default function Checkout({ price, shopsList, orderlist, promocode }) {
             }} href='/privacy'>
             соглашение об обработке персональных данных, политику
             конфиденциальности и договор оферты
-          </Link>
+          </Box>
         </Typography>
       </Box>
       <PaymentForm
