@@ -3,7 +3,7 @@ import { sanityClient } from '../../sanity';
 
 export default async function updateChatId(user, chatId) {
   return await sanityClient
-    .patch(user.id)
+    .patch(user._id)
     .set({
       telegramBlock: {
         telegramAllow: user.telegramAllow,
