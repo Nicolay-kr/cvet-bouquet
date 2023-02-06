@@ -11,18 +11,19 @@ export default async (req, res) => {
         (user) =>
           user.telegramBlock.telegramName === req.body.message.chat.username
       );
-      console.log('user',user)
 
       if(user){
-        await updateChatId(user._id,req.body.message.chat.id)
+        await updateChatId(user,req.body.message.chat.id)
         const message = 'Вы будите получать уведомления о заказах';
         const ret = await fetch(
           `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}`
         );
-        console.log('message', req.body.message?.text);
+      }else{
+        const message = 'Вашего имени нет в базе данных. Вы не будите получать уведомления о заказах';
+        const ret = await fetch(
+          `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}`
+        );
       }
-
-
     }
 
     return res.status(200).send('OK');
