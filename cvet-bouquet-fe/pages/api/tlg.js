@@ -34,7 +34,7 @@ export default async (req, res) => {
     } else if (req.body.message?.text.match(/order-\d+$/)?.length) {
       const order = await getOrderStatus(req.body.message?.text, req.body.message.chat.id);
       console.log('order',order)
-      if (order?.user?.chatId && order.user.chatId === req.body.message.chat.id) {
+      if (order?.user?.chatId && order.user.chatId === `${req.body.message.chat.id}`) {
         const message = `
         Номер заказа: ${order.OrderNumber};
         Текущий статус: ${order.status};
