@@ -386,7 +386,9 @@ export default function FreePayForm({ isContactsForm = false }) {
                   variant='body2'
                   component='p'
                   color='#000000'
-                  sx={{ mb: 40, fontSize: { ...size(14), xs: 12 },}}
+                  sx={{ mb: 40, fontSize: { ...size(14), xs: 12 },
+                  textDecoration:'none',
+                  '&:hover':{textDecoration:'underline'},  }}
                   
                 >
                   Отправляя заявку, вы принимаете{' '}
