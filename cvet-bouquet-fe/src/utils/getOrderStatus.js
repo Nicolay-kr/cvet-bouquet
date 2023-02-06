@@ -1,7 +1,7 @@
 import { sanityClient } from '../../sanity';
 
 const getOrderStatus = async (order) => {
-  const order = await sanityClient.fetch(
+  const orderInfo = await sanityClient.fetch(
     `*[ _type == "orders" && OrderNumber == ${order}]{
       OrderNumber,
       status,
@@ -10,7 +10,7 @@ const getOrderStatus = async (order) => {
     }`
   );
 
-  return order;
+  return orderInfo;
 };
 
 export default getOrderStatus;
