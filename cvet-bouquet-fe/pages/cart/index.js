@@ -251,6 +251,7 @@ export default function Cart({ data }) {
                     height: size(48),
                     width: '100%',
                     fontSize: size(20),
+                    fontWeight: '600',
                   }}
                   variant='contained'
                   onClick={handleToCheckout}
@@ -477,10 +478,11 @@ export default function Cart({ data }) {
                   onClick={handleToCheckout}
                   sx={{
                     mt: 10,
-                    height: '60px',
+                    height: '48px',
                     width: { xs: '100%', sm: '200px' },
                     ml: { xs: '0', sm: 'auto' },
-                    fontSize: 16,
+                    fontSize: 18,
+                    fontWeight:'600'
                   }}
                 >
                   К оформлению
