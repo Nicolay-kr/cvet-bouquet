@@ -15,7 +15,7 @@ export default async (req, res) => {
 
       if (user && !user.telegramBlock.chatId) {
         await updateChatId(user, req.body.message.chat.id);
-        const message = 'Вы будите получать уведомления о заказах';
+        const message = 'Вы будете получать уведомления о заказах';
         const ret = await fetch(
           `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}`
         );
@@ -31,7 +31,7 @@ export default async (req, res) => {
           `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}`
         );
       }
-    } else if (req.body.message?.text.match(/order-\d+$/)?.length) {
+    } else if (req.body.message?.text.match(/order-\d+$/gmi)?.length) {
       const order = await getOrderStatus(req.body.message?.text, req.body.message.chat.id);
       if (order?.user?.chatId && order.user.chatId === `${req.body.message.chat.id}`) {
         const message = `
