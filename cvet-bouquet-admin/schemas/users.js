@@ -18,14 +18,44 @@ export default {
       type: 'string',
     },
     {
-      name: 'phone',
-      title: 'Телефон',
-      type: 'string',
+      title: 'Email уведомления',
+      name: 'emailBlock',
+      type: 'object',
+      fields: [
+        {
+          name: 'emailAllow',
+          title: 'Получать email уведомления',
+          type: 'boolean',
+        },
+        {
+          name: 'email',
+          title: 'Email',
+          type: 'string',
+        },
+      ],
     },
     {
-      name: 'email',
-      title: 'Email',
-      type: 'string',
+      title: 'Telegram уведомления',
+      name: 'telegramBlock',
+      type: 'object',
+      fields: [
+        {
+          name: 'telegramAllow',
+          title: 'Получать telegram уведомления',
+          type: 'boolean',
+        },
+        {
+          name: 'telegramName',
+          title: 'Телеграм username',
+          type: 'string',
+        },
+        {
+          name: 'chatId',
+          title: 'Чат id',
+          type: 'string',
+          readOnly: true,
+        },
+      ],
     },
 
 
@@ -33,13 +63,15 @@ export default {
   preview: {
     select: {
       name: 'name',
-      phone: 'phone',
-      email: 'email',
+      emailBlock: 'emailBlock',
+      active: 'active',
     },
-    prepare: ({ name, phone, email }) => {
+    prepare: ({ name, emailBlock, active }) => {
+      console.log(active)
+      console.log(emailBlock)
       return {
         title: `${name} `,
-        subtitle: `${phone}, ${email}`,
+        subtitle: `${active?'Активный':'Не Активный'}, ${emailBlock.email?emailBlock.email:''}`,
       };
     },
   },
