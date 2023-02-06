@@ -4,6 +4,7 @@ async function senMessageToTelegram(message) {
   const tgbot = process.env.TELEGRAM_TOKEN;
   try {
     const users = await getUsers();
+    console.log(users);
     const activeUsers = users.filter(
       (user) =>
         user.active &&
