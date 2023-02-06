@@ -65,7 +65,7 @@ export default function FreePayForm({ isContactsForm = false }) {
     setIsOpenModal(true);
 
     if (isContactsForm) {
-      fetch('https://formspree.io/f/mzbqpyrw', {
+      fetch('api/sendMessage', {
         method: 'POST',
         body: JSON.stringify({
           Имя: data.name,
@@ -122,7 +122,6 @@ export default function FreePayForm({ isContactsForm = false }) {
   const onClose = () => {
     setIsOpenModal(false);
   };
-  console.log(errors)
 
   return (
     <>
@@ -310,7 +309,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                       color='#000000'
                       sx={{
                         fontWeight: '700',
-                        marginTop: 'auto',
+                        fontSize: 'max(14px,0.7vw)',
                       }}
                     >
                       Отправляя заявку, вы принимаете{' '}
@@ -387,7 +386,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                   variant='h6'
                   component='p'
                   color='#000000'
-                  sx={{ mb: 40, fontSize: { ...size(18), xs: 12 },}}
+                  sx={{ mb: 40, fontSize: { ...size(14), xs: 12 },}}
                   
                 >
                   Отправляя заявку, вы принимаете{' '}
