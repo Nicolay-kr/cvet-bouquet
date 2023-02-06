@@ -1,5 +1,6 @@
 import getUsers from '../../src/utils/getUsers';
 import updateChatId from '../../src/utils/updateChatId';
+import getOrderStatus from '../../src/utils/getOrderStatus';
 
 export default async (req, res) => {
   const tgbot = process.env.TELEGRAM_TOKEN;
@@ -30,6 +31,17 @@ export default async (req, res) => {
           `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}`
         );
       }
+    } else if (req.body.message?.text.match(/order-\d+$/).length) {
+      const order =  await getOrderStatus(req.body.message?.text);
+      const message = `
+      Номер заказа: ${order.OrderNumber};
+      Текущий статус: ${order.status};
+      Номер платежа в системе Ассист: ${order.billnumber};
+      Сумма заказа: ${order.OrderAmount};
+      `;
+      const ret = await fetch(
+        `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${encodeURIComponent(message)}`
+      );
     }
 
     return res.status(200).send('OK');
