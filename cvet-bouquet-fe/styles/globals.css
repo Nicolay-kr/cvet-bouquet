@@ -38,44 +38,48 @@ a {
 * {
   box-sizing: border-box;
 }
+
 .MuiBox-root .react-tel-input {
   margin-top: max(24px, 1.2vw);
 }
 
 .MuiBox-root .react-tel-input .form-control {
-  width:100% !important;
+  width: 100% !important;
+  height: 58px !important;
   background: transparent !important;
   margin-right: 0;
   font-family: Raleway;
   font-size: 16px;
-  height:100%;
+  height: 100%;
   padding: 16px 48px !important;
   border: 1px solid rgba(0, 0, 0, 0.23);
 }
 
 .MuiBox-root .react-tel-input .form-control:focus {
   border-color: #746449;
-  outline:1px solid #746449;
+  outline: 1px solid #746449;
 }
-.MuiBox-root .react-tel-input .form-control:focus.invalid-number  {
+
+.MuiBox-root .react-tel-input .form-control:focus.invalid-number {
   border-color: #ff1744;
-  outline:1px solid #ff1744;
+  outline: 1px solid #ff1744;
 }
 
 .MuiBox-root .react-tel-input .form-control:focus+.flag-dropdown {
   border-color: #746449;
-  outline:1px solid #746449;
+  outline: 1px solid #746449;
 }
+
 .MuiBox-root .react-tel-input .form-control:focus.invalid-number+.flag-dropdown {
   border-color: #ff1744;
-  outline:1px solid #ff1744;
+  outline: 1px solid #ff1744;
 }
 
-.MuiBox-root .react-tel-input:hover  .form-control{
-  border-color: rgba(0, 0, 0,8);
+.MuiBox-root .react-tel-input:hover .form-control {
+  border-color: rgba(0, 0, 0, 8);
 }
 
-.MuiBox-root .react-tel-input:hover  .form-control+.flag-dropdown {
+.MuiBox-root .react-tel-input:hover .form-control+.flag-dropdown {
   border-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -87,7 +91,8 @@ a {
   background-color: transparent !important;
 }
 
-.react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
+.react-tel-input .selected-flag:hover,
+.react-tel-input .selected-flag:focus {
   background-color: transparent !important;
 }
 
@@ -95,11 +100,12 @@ a {
   background-color: transparent !important;
 }
 
-.MuiBox-root .react-tel-input .form-control.invalid-number  {
+.MuiBox-root .react-tel-input .form-control.invalid-number {
   border-color: #ff1744 !important;
   color: #ff1744;
 }
-.MuiBox-root .react-tel-input .form-control.invalid-number+.flag-dropdown   {
+
+.MuiBox-root .react-tel-input .form-control.invalid-number+.flag-dropdown {
   border-color: #ff1744 !important;
   color: #ff1744;
 }
@@ -128,9 +134,10 @@ a {
 .swiper-wrapper {
   padding-bottom: 20px;
 }
-.swiper-pagination-bullet{
-  color:#746449 !important;
-  background-color:#746449 !important;
+
+.swiper-pagination-bullet {
+  color: #746449 !important;
+  background-color: #746449 !important;
 }
 
 /* enter */
@@ -173,6 +180,7 @@ a {
     /* height:48px; */
 
   }
+
   .MuiBox-root .react-tel-input .form-control {
     /* height:48px; */
   }
@@ -183,11 +191,19 @@ a {
   .MuiDayPicker-weekDayLabel {
     font-size: 16px !important;
   }
-  .MuiPickersDay-root .MuiPickersDay-dayWithMargin{
+
+  .MuiPickersDay-root .MuiPickersDay-dayWithMargin {
     font-size: 16px !important;
   }
+
   .MuiPickersPopper-root button {
-    font-size: 12px !important;;
+    font-size: 12px !important;
+    ;
+  }
+
+  .MuiBox-root .react-tel-input .form-control {
+    height: 53px !important;
+
   }
 
 }
