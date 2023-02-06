@@ -2,24 +2,24 @@
 export default async (req, res) => {
 
   const tgbot = process.env.TELEGRAM_TOKEN;
+  console.log(req.body.message)
   try{
     if (req.body.message?.text === '/start') {
       console.log('message',req.body.message?.text)
-      const message =
-        'Welcome to <i>NextJS News Channel</i> <b>' +
-        req.body.message.from.first_name +
-        '</b>.%0ATo get a list of commands sends /help';
+      const message = 'hello from NextJS'
       const ret = await fetch(
-        `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}&parse_mode=HTML`
+        `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}`
       );
+      console.log(ret)
+      
     }
     if (req.body.message?.text === '/help') {
       console.log('message',req.body.message?.text)
-      const message =
-        'Help for <i>NextJS News Channel</i>.%0AUse /search <i>keyword</i> to search for <i>keyword</i> in my Medium publication';
+      const message = 'hello from NextJS';
       const ret = await fetch(
-        `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}&parse_mode=HTML`
+        `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}`
       );
+      console.log(ret)
     }
     return res.status(200).send('OK');
 
