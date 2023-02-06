@@ -13,7 +13,6 @@ const getOrderStatus = async (order,chatId) => {
           }
     }`
   );
-  console.log('orderInfo',orderInfo)
 
   return orderInfo;
 };
