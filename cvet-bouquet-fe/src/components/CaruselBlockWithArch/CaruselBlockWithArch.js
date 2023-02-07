@@ -77,10 +77,9 @@ export default function CaruselBlockWithArch({
               justifyContent: { md: 'space-between' },
               alignItems: 'start',
               position: 'relative',
-              minHeight: {xs:94,xxl:'4.5vw'},
+              minHeight: { xs: 94, xxl: '4.5vw' },
               backgroundColor: 'fon.main',
-              px:'5px',
-              
+              px: '5px',
             }}
           >
             <Typography
@@ -91,7 +90,7 @@ export default function CaruselBlockWithArch({
                 textAlign: isPremium ? 'left' : 'center',
                 textDecoration: 'none',
                 fontWeight: '600',
-                fontSize:{...size(24),xs:16}
+                fontSize: { ...size(24), xs: 16 },
               }}
               variant='h3'
               component='p'
@@ -103,7 +102,7 @@ export default function CaruselBlockWithArch({
                 gutterBottom
                 variant='h3'
                 component='p'
-                sx={{ fontWeight: 700, display: 'flex', mb: '0',px:5 }}
+                sx={{ fontWeight: 700, display: 'flex', mb: '0', px: 5 }}
               >
                 {item.price}{' '}
                 <sup style={{ fontSize: '0.5em', paddingTop: '4px' }}>BYN</sup>
@@ -139,23 +138,30 @@ export default function CaruselBlockWithArch({
         >
           <IconButton
             onClick={handleLeftArrowClick}
-            sx={{ marginLeft: isSpec ? 0 : { xs: '5vw', lg: '10vw' }}}
-            aria-label="LeftArrowIcon"
+            sx={{ marginLeft: isSpec ? 0 : { xs: '5vw', lg: '10vw' } }}
+            aria-label='LeftArrowIcon'
           >
-           <Box sx={{width:{ xs: '32px', sm: '60px', lg: '94px' }}} viewBox="0 0 104 18"  component={LeftArrow}></Box>
-
+            <Box
+              sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
+              viewBox='0 0 104 18'
+              component={LeftArrow}
+            ></Box>
           </IconButton>
           <IconButton
             sx={{ marginRight: { xs: '5vw', lg: '10vw' } }}
             onClick={handleRightArrowClick}
-            aria-label="RightArrowIcon"
+            aria-label='RightArrowIcon'
           >
-            <Box sx={{width:{ xs: '32px', sm: '60px', lg: '94px' } }} viewBox="0 0 104 18"  component={RightArrow}></Box>
+            <Box
+              sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
+              viewBox='0 0 104 18'
+              component={RightArrow}
+            ></Box>
           </IconButton>
         </Box>
       )}
 
-      <Box sx={{ display: 'flex', alignItems: 'end', position: 'relative' }}>
+      <Box sx={{ display: 'flex', position: 'relative' }}>
         <Box
           component={Image}
           src={bigFlower}
@@ -193,7 +199,7 @@ export default function CaruselBlockWithArch({
             {listItems}
           </Swiper>
         </Box>
-        <Box sx={{ overflow: 'hidden' }}>
+        <Box sx={{ overflow: 'hidden',mt:'auto' }}>
           {isPremium ? (
             <Box
               sx={{
@@ -210,7 +216,7 @@ export default function CaruselBlockWithArch({
           ) : null}
 
           <Carusel
-          loopedSlides={bouquets.length-1}
+            loopedSlides={bouquets.length - 1}
             controlledSwiper={controlledSwiper}
             bouquets={bouquets}
             caruselRef={caruselWithArchRef}
