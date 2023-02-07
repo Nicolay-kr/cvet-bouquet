@@ -13,9 +13,16 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
-    // logErrorToMyService(error, errorInfo);
-    console.error(error, errorInfo)
+    fetch('api/sendError', {
+      method: 'POST',
+      body: JSON.stringify({ error, errorInfo }),
+      headers: {
+        Accept: 'application/json',
+      },
+    }).catch((error) => {
+      console.log('error', error);
+    });
+    console.error(error, errorInfo);
   }
 
   render() {
@@ -24,7 +31,7 @@ class ErrorBoundary extends React.Component {
       return <Custom404></Custom404>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 

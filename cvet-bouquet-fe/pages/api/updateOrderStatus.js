@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { sanityClient } from '../../sanity';
+import logger from '../../services/logger';
 import isJson from '../../src/utils/isJson';
 
 export default async function handler(req, res) {
@@ -30,6 +31,7 @@ export default async function handler(req, res) {
       return res.status(500).send(`order with ${id} wasn't found.`);
     }
   } catch (e) {
+    logger.error(e.stack);
     return res.status(500).send(`Order wasn't update. ${e}`);
   }
 }

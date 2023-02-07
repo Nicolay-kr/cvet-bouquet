@@ -38,6 +38,8 @@
     "swr": "^2.0.1",
     "uniqid": "^5.4.0",
     "use-device-pixel-ratio": "^1.1.0",
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {
