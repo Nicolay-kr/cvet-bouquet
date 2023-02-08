@@ -164,14 +164,14 @@ sudo certbot --nginx -d domainname.com
 
 
 
-————— helpful commands ————
+### ————— helpful commands ————
 pm2 start npm --name name_of_app -- start  (make sure you're inside the site's directory first)
 systemctl restart nginx (restart NGINX)
 sudo certbot --nginx -d domainname.com (Add SSL)
 
 
 ### nginx config file for Nextjs App
-### place in /etc/nginx/sites-available/name_of_config_file
+place in /etc/nginx/sites-available/name_of_config_file
         server {
                 listen 80;
                 server_name domainname.com;
