@@ -2,7 +2,7 @@ import React from 'react';
 import IntroBlock from '../src/components/IntroBlock/IntroBlock';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
-import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
+import TitleWithTextBlock from '../src/components/TitleWithTextBlock/TitleWithTextBlock';
 import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
 import Typography from '@mui/material/Typography';
 import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';

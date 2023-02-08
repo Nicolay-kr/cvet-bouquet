@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
-import TitleWithTextBlock from '../src/components/titleWithTextBlock/TitleWithTextBlock';
+import TitleWithTextBlock from '../src/components/TitleWithTextBlock/TitleWithTextBlock';
 import DoubleBlock from '../src/components/doubleBlock/DoubleBlock';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Image from 'next/future/image';
