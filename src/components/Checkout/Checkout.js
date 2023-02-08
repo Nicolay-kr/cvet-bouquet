@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -27,6 +27,7 @@ import 'react-phone-input-2/lib/style.css';
 import ru from 'react-phone-input-2/lang/ru.json';
 import PaymentForm from '../PaymentForm/PaymentForm';
 import Link from '../CustopNextComponents/Link';
+import { useAppContext } from '../context/BouquetsContext';
 
 const MenuProps = {
   PaperProps: {
@@ -59,6 +60,7 @@ export default function Checkout({ price, shopsList, orderlist, promocode }) {
   const [OrderNumber, setOrderNumber] = React.useState('');
   const [OrderAmount, setOrderAmount] = React.useState('');
   const [Email, setEmail] = React.useState('');
+  const bouquetsContext = useAppContext();
 
   const [time, setTime] = React.useState('');
 
@@ -115,6 +117,7 @@ export default function Checkout({ price, shopsList, orderlist, promocode }) {
     control,
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: defaultState,
@@ -167,15 +170,17 @@ export default function Checkout({ price, shopsList, orderlist, promocode }) {
         },
       });
 
-      const newdata = await response.json();
-      localStorage.setItem('lastOrder', newdata.data.OrderNumber.toString());
-
-      setOrderNumber(`${newdata.data.OrderNumber}`);
-      setOrderAmount(`${newdata.data.OrderAmount}`);
-      setEmail(`${newdata.data.email}`);
-      // setFormProcessing(false);
-      // setIsOpenModal(true);
-      // reset(defaultValue);
+      if (orderData.paymentType === 'Наличные') {
+        setFormProcessing(false);
+        setIsOpenModal(true);
+        reset(defaultState);
+      }else{
+        const newdata = await response.json();
+        localStorage.setItem('lastOrder', newdata.data.OrderNumber.toString());
+        setOrderNumber(`${newdata.data.OrderNumber}`);
+        setOrderAmount(`${newdata.data.OrderAmount}`);
+        setEmail(`${newdata.data.email}`);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -183,11 +188,13 @@ export default function Checkout({ price, shopsList, orderlist, promocode }) {
 
   const onClose = () => {
     setIsOpenModal(false);
+    bouquetsContext.clearCart();
   };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ruLocale}>
       <SuccsessModal
+        onClose={ checkoutOptions.paymentByCard ?null: onClose}
         open={isOpenModal}
         formProcessing={formProcessing}
       ></SuccsessModal>
@@ -557,7 +564,7 @@ export default function Checkout({ price, shopsList, orderlist, promocode }) {
         <Box
           sx={{
             width: '100%',
-            height: {...size(60),xs:48},
+            height: { ...size(60), xs: 48 },
             mt: 'max(10px,0.05vw)',
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
@@ -583,18 +590,21 @@ export default function Checkout({ price, shopsList, orderlist, promocode }) {
           sx={{
             fontWeight: '700',
             marginTop: 'auto',
-            width:'100%',
+            width: '100%',
             fontSize: { ...size(18), xs: 12 },
-
           }}
         >
           Отправляя заявку, вы принимаете{' '}
-          <Box component={Link} sx={{ 
-            color: '#8C7B5F',
-            cursor: 'pointer',
-            textDecoration:'none',
-            '&:hover':{textDecoration:'underline'}, 
-            }} href='/privacy'>
+          <Box
+            component={Link}
+            sx={{
+              color: '#8C7B5F',
+              cursor: 'pointer',
+              textDecoration: 'none',
+              '&:hover': { textDecoration: 'underline' },
+            }}
+            href='/privacy'
+          >
             соглашение об обработке персональных данных, политику
             конфиденциальности и договор оферты
           </Box>

@@ -67,12 +67,7 @@ export default function FreePayForm({ isContactsForm = false }) {
     if (isContactsForm) {
       fetch('api/sendMessage', {
         method: 'POST',
-        body: JSON.stringify({
-          Имя: data.name,
-          Телефон: data.phone,
-          Email: data.email,
-          Сообщение: data.comment,
-        }),
+        body: JSON.stringify(data),
         headers: {
           Accept: 'application/json',
         },
