@@ -1,6 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import size from '../utils/size';
+import size from '../../utils/size';
 
 export default function TextsQuote() {
   return (

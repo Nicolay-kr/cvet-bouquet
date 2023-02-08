@@ -9,7 +9,7 @@ import Link from '../CustopNextComponents/Link';
 import TextField from '@mui/material/TextField';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import SuccsessModal from '../SuccsessModal';
+import SuccsessModal from '../SuccsessModal/SuccsessModal';
 import size from '../../utils/size';
 import verticalLogo from '../../../public/assets/images/verticalLogo.png';
 import Image from 'next/future/image';

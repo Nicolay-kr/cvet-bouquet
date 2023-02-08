@@ -1,4 +1,4 @@
-import { urlFor } from "../../sanity"
+import { urlFor } from "../../../sanity"
 
 const SanityImage = ({ image }) => {
   return (

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import WordWithArrow from '../WordWithArrow';
+import WordWithArrow from '../WordWithArrow/WordWithArrow';
 
 export default function BouquetSort({ sorting, activeSorting }) {
   return (

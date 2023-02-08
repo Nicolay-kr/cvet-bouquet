@@ -14,7 +14,7 @@ import BreadCrumbs from '../breadcrubs/BreadCrumbs';
 import { urlFor } from '../../../sanity';
 import size from '../../utils/size';
 import BouquetCarusel from '../BouquetCarusel/BouquetCarusel';
-import SuccsessModal from '../SuccsessModal';
+import SuccsessModal from '../SuccsessModal/SuccsessModal';
 
 export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
   const [quantity, setQuantity] = useState(1);

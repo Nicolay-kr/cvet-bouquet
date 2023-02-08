@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import size from '../utils/size';
+import size from '../../utils/size';
 import { useRouter } from 'next/router';
 
 export default function PriceFilter({ value, changeFunc }) {
