@@ -118,7 +118,7 @@ export default function IntroBlock({
               position: 'absolute',
               top: '0',
               right: '0',
-              mr: { xs: isSecondFlower ? '15%' : '0', lg: '0' },
+              mr: { xs: isSecondFlowerMobile ? '15%' : '0', lg: '0' },
             }}
           >
             {secondImage ? (
