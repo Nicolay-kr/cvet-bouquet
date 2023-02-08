@@ -142,7 +142,7 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
           <Box
             sx={{
               position: 'relative',
-              width: '100%',
+              width: {xs:'64vw',lg:'31vw'},
               objectFit: 'cover',
               minHeight: { xs: '72vw', lg: '38vw' },
               overflow: 'hidden',
