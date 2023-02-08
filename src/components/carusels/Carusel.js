@@ -37,7 +37,7 @@ const Carusel = ({
       <SwiperSlide style={{ width: 'auto', height: 'auto' }} key={bouquet._id}>
         {isSpec ? (
           <SimpleBouquetCard
-            width={{ ...size(360), xs: '100%' }}
+            width={{ ...size(360), xs: '100%',sm:270 }}
             isPremium={isPremium}
             id={bouquet._id}
             title={bouquet.title?.ru ? bouquet.title?.ru : bouquet.title}
@@ -47,7 +47,7 @@ const Carusel = ({
           ></SimpleBouquetCard>
         ) : (
           <BouquetCard
-            width={{ ...size(360), xs: '100%' }}
+            width={{ ...size(360), xs: '100%', }}
             id={bouquet._id}
             title={bouquet.title?.ru}
             price={bouquet.price}
