@@ -37,6 +37,7 @@ export default function IntroBlock({
               width: '40vw',
               height: '40vw',
             }}
+            priority
             src={bigFlower}
             alt='flower'
           ></Image>
@@ -53,6 +54,7 @@ export default function IntroBlock({
             width: { xs: '80vw', lg: '47vw' },
             height: { xs: '80vw', lg: '47vw' },
           }}
+          priority
           src={bigFlower}
           alt='flower'
         ></Box>
@@ -97,6 +99,7 @@ export default function IntroBlock({
                   height: '80vw',
                 }}
                 src={bigFlower}
+                priority
                 alt='flower'
               ></Image>
             </MobileBlock>

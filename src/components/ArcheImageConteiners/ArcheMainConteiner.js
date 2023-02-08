@@ -25,6 +25,9 @@ export default function ArcheMainConteiner({ src, isSwiper = false,priority=fals
         src={src}
         alt='Bouquet image'
         fill={true}
+        sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
         priority={priority}
         style={{
           objectFit: 'cover',

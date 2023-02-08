@@ -71,6 +71,9 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
       image && (
         <Image
           fill={true}
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
           src={urlFor(image)?.width(600)?.url()}
           style={{ objectFit: 'cover' }}
           alt='bouquet image'
@@ -83,6 +86,9 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
       image && (
         <Image
           fill={true}
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              50vw"
           src={urlFor(image)?.width(900)?.url()}
           style={{ objectFit: 'cover' }}
           alt='bouquet image'
