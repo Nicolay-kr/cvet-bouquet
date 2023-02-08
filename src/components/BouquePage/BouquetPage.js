@@ -123,6 +123,7 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
       <Box
         sx={{
           display: 'grid',
+          position: 'relative',
           gridTemplateColumns: { xs: '1fr', lg: '7fr 5fr' },
           px: { xs: '5%', lg: '10%' },
           mb: size(32),
@@ -133,6 +134,7 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
         <Box
           sx={{
             display: 'grid',
+            position: 'relative',
             gridTemplateColumns: '5fr 2fr',
             columnGap: { xs: '16px', lg: 'max(30px,1.5vw)' },
           }}
