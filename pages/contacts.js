@@ -8,7 +8,7 @@ import PhoneIcon from '../public/assets/icons/phoneBlack.svg';
 import Letter from '../public/assets/icons/emailIcon.svg';
 import InstaIcon from '../public/assets/icons/insta.svg';
 import Typography from '@mui/material/Typography';
-import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
+import BreadCrumbs from '../src/components/Breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 import size from '../src/utils/size';
 

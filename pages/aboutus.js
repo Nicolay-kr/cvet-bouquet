@@ -3,8 +3,8 @@ import IntroBlock from '../src/components/IntroBlock/IntroBlock';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/TitleWithTextBlock/TitleWithTextBlock';
-import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
-import FreePayForm from '../src/components/freeForm/FreePayForm';
+import BreadCrumbs from '../src/components/Breadcrubs/BreadCrumbs';
+import FreePayForm from '../src/components/FreeForm/FreePayForm';
 import size from '../src/utils/size';
 import Head from 'next/head';
 

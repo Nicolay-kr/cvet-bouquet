@@ -1,7 +1,7 @@
 import React from 'react';
 import { sanityClient } from '../../../sanity';
 import BouquetListPage from '../../../src/components/BouquetListPage/BouquetListPage';
-import BreadCrumbs from '../../../src/components/breadcrubs/BreadCrumbs';
+import BreadCrumbs from '../../../src/components/Breadcrubs/BreadCrumbs';
 import CaruselBlockWithArch from '../../../src/components/CaruselBlockWithArch/CaruselBlockWithArch';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';

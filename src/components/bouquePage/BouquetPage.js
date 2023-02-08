@@ -10,7 +10,7 @@ import Image from 'next/future/image';
 import AccordionCustom from '../AccordionCustom/AccordionCustom';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import { useAppContext } from '../context/BouquetsContext';
-import BreadCrumbs from '../breadcrubs/BreadCrumbs';
+import BreadCrumbs from '../Breadcrubs/BreadCrumbs';
 import { urlFor } from '../../../sanity';
 import size from '../../utils/size';
 import BouquetCarusel from '../BouquetCarusel/BouquetCarusel';

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import Typography from '@mui/material/Typography';
 import TitleWithTextBlock from '../src/components/TitleWithTextBlock/TitleWithTextBlock';
-import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
+import BreadCrumbs from '../src/components/Breadcrubs/BreadCrumbs';
 import Head from 'next/head';
 
 export default function EposPage({ data }) {

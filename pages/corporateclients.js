@@ -3,7 +3,7 @@ import IntroBlock from '../src/components/IntroBlock/IntroBlock';
 import Box from '@mui/material/Box';
 import { sanityClient } from '../sanity';
 import TitleWithTextBlock from '../src/components/TitleWithTextBlock/TitleWithTextBlock';
-import BreadCrumbs from '../src/components/breadcrubs/BreadCrumbs';
+import BreadCrumbs from '../src/components/Breadcrubs/BreadCrumbs';
 import Typography from '@mui/material/Typography';
 import AccordionCustom from '../src/components/AccordionCustom/AccordionCustom';
 import Head from 'next/head';
