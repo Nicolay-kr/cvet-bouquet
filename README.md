@@ -172,7 +172,7 @@ sudo certbot --nginx -d domainname.com (Add SSL)
 
 ### nginx config file for Nextjs App
 ### place in /etc/nginx/sites-available/name_of_config_file
-server {
+`server {
         listen 80;
         server_name domainname.com;
 
@@ -197,7 +197,7 @@ server {
                 proxy_set_header Host $host;
                 proxy_cache_bypass $http_upgrade;
         }
-}
+}`
 
 
 
