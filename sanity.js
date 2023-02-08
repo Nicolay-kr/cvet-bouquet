@@ -26,6 +26,7 @@ export const config = {
    * You might need this if you host the preview on a different url than Sanity Studio
    */
   token: process.env.SANITY_API_TOKEN,
+  ignoreBrowserTokenWarning: true,
  /* EventSource:  provide your own event source implementation. Required in browsers to support the above token parameter. */
 };
 
