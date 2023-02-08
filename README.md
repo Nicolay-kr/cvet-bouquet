@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 ###  After clonning repo create an .env file in the root derictory with next Environment Variables
-
+```
 SANITY_PROJECT_ID=
 SANITY_DATASET=production
 SANITY_API_TOKEN=
@@ -23,6 +23,7 @@ TELEGRAM_TOKEN=
 
 <!-- base site url for -->
 MAIN_URL=
+```
 
 ### Then, install all dependencies
 npm install
