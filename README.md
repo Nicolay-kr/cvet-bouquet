@@ -3,22 +3,47 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+#  After clonning repo create an .env file in the root derictory with next Environment Variables
 
-First, run the development server:
+SANITY_PROJECT_ID=
+SANITY_DATASET=production
+SANITY_API_TOKEN=
+ANALYZE=false
+
+<!-- credentials for Assist -->
+<!-- SERVER_NAME=https://test.paysec.by/pay/order.cfm -->
+SERVER_NAME=https://test.paysec.by/pay/order.cfm
+MERCHANT_ID=
+
+<!-- email to receve information about orders -->
+EMAIL=
+EMAIL_PASS=
+
+TELEGRAM_TOKEN=
+
+<!-- base site url for -->
+MAIN_URL=
+
+# Then, install all dependencies
+npm install
+
+
+# Then, run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
 ```
+# Then Connect the Webhook for telegram bot
+In a browser add the following URL:
+https://api.telegram.org/bot<TELEGRAM_TOKEN>/setWebhook?url=<YOUR_HTTPS_URL>/api/tlg
+
+# Then add <YOUR_HTTPS_URL>/updateOrderStatus  in Assist accout to get iformation about orders 
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ## Learn More
 
@@ -35,10 +60,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## Deploy on Ubuntu steps:
-
-1. Setup NextJS on Ubuntu server Terminal Commands
-# based on my YouTube video
+## Setup NextJS app on Ubuntu server Terminal Commands
 
 # login to server
 ssh root@ip_address
@@ -80,7 +102,7 @@ cd name_of_app
 # (if you cloned the repo from somewhere else, make sure to npm install first
 npm install)
 
-# Create .env file in cvet-bouquet-fe folder with next Environment Variables
+# Create .env file with next Environment Variables
 
 SANITY_PROJECT_ID=
 SANITY_DATASET=production

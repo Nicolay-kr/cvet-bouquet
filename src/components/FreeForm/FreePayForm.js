@@ -410,7 +410,7 @@ export default function FreePayForm({ isContactsForm = false }) {
         </Paper>
       </Box>
 
-      <PaymentForm OrderNumber={OrderNumber} OrderAmount={OrderAmount} Email={Email} ></PaymentForm>
+      <PaymentForm OrderNumber={OrderNumber} OrderAmount={OrderAmount} Email={Email}></PaymentForm>
     </>
   );
 }
