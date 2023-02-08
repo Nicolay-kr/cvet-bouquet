@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import BlockContentBox from '../blockcontentBox/BlockContentBox';
+import BlockContentBox from '../BlockcontentBox/BlockContentBox';
 
 
 export default function TitleWithTextBlocks({ title, blocks }) {

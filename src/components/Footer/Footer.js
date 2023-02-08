@@ -20,7 +20,7 @@ import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import size from '../../utils/size';
 import Image from 'next/future/image';
-import BlockContentBox from '../blockcontentBox/BlockContentBox';
+import BlockContentBox from '../BlockcontentBox/BlockContentBox';
 
 export default function Footer({ data }) {
   const router = useRouter();

@@ -11,7 +11,7 @@ import Badge from '@mui/material/Badge';
 import Image from 'next/future/image';
 import DropList from '../DropList/DropList';
 import { useAppContext } from '../context/BouquetsContext';
-import BurgerMenu from '../burgerMenu/BurgerMenu';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import SearchModal from '../SearchModal/SearchModal';
 import size from '../../utils/size';
 

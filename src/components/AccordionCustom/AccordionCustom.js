@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import NavArrow from '../../../public/assets/icons/navArrow.svg';
 import Image from 'next/future/image';
-import BlockContentBox from '../blockcontentBox/BlockContentBox';
+import BlockContentBox from '../BlockcontentBox/BlockContentBox';
 
 
 export default function AccordionCustom({ fieldList }) {

@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import BlockContentBox from '../src/components/blockcontentBox/BlockContentBox';
+import BlockContentBox from '../src/components/BlockcontentBox/BlockContentBox';
 import CaruselBlockWithArch from '../src/components/CaruselBlockWithArch/CaruselBlockWithArch';
 import size from '../src/utils/size';
 import Head from 'next/head';

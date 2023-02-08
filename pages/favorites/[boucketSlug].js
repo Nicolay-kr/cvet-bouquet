@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 import { sanityClient } from '../../sanity';
-import BouquetPage from '../../src/components/bouquePage/BouquetPage';
+import BouquetPage from '../../src/components/BouquePage/BouquetPage';
 
 export const Bouquet = ({ data }) => {
   const breadCrumbsList = [
