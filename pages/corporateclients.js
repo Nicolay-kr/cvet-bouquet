@@ -17,7 +17,7 @@ export default function CorporateClientsPage({ data }) {
   return (
     <>
     <Head>
-        <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
+        {`${data?.title?.ru} | ЦВЕТ•БУКЕТ`}
       </Head>
       <IntroBlock
         mainImage={data?.mainImage}

@@ -20,7 +20,7 @@ export default function DeliveryPage({ data }) {
   return (
     <>
       <Head>
-        <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
+        {`${data?.title?.ru} | ЦВЕТ•БУКЕТ`}
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <DoubleBlock>

@@ -14,7 +14,7 @@ export default function EposPage({ data }) {
   return (
     <>
        <Head>
-        <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
+        {`${data?.title?.ru} | ЦВЕТ•БУКЕТ`}
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box

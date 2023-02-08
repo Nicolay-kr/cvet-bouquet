@@ -19,7 +19,7 @@ export default function BonusCardPage({ data }) {
   return (
     <>
        <Head>
-        <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
+        <title> {`${data?.title?.ru} | ЦВЕТ•БУКЕТ`}</title>
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <DoubleBlock>

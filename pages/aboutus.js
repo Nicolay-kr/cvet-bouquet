@@ -18,7 +18,7 @@ export default function AboutUs({ data }) {
   return (
     <>
      <Head>
-        <title> {data?.title?.ru} | ЦВЕТ•БУКЕТ</title>
+        <title>{`${data?.title?.ru} | ЦВЕТ•БУКЕТ`}</title>
       </Head>
       <IntroBlock
         mainImage={data?.aboutusBlock?.mainImage}
