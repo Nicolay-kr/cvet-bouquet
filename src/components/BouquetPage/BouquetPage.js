@@ -48,15 +48,15 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
 
   const serviceList = [
     {
-      title: '????????',
+      title: 'Описание',
       desc: bouquet.description,
     },
     {
-      title: '????????',
+      title: 'Доставка',
       desc: bouquet.delivery.delivery,
     },
     {
-      title: '???? ?? ???????',
+      title: 'Уход за букетом',
       desc: bouquet.care,
     },
   ];
@@ -209,10 +209,10 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
             color='#000000'
           >
             {bouquet.price >= generalInfo.deliveryMin ? (
-              '?????????? ???????? ? ???????? ????'
+              'Бесплатная доставка в пределах МКАД'
             ) : (
               <span>
-                ????????? ???????? {generalInfo.deliveryPrice}
+                Стоимость доставки {generalInfo.deliveryPrice}
                 <Box sx={{ fontSize: '0.5em', pt: size(4) }} component='sup'>
                   BYN
                 </Box>
@@ -316,10 +316,10 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
               color='#000000'
             >
               {bouquet.price >= generalInfo.deliveryMin ? (
-                '?????????? ???????? ? ???????? ????'
+                'Бесплатная доставка в пределах МКАД'
               ) : (
                 <span>
-                  ????????? ???????? {generalInfo.deliveryPrice}
+                  Стоимость доставки {generalInfo.deliveryPrice}
                   <Box sx={{ fontSize: '0.5em', pt: size(4) }} component='sup'>
                     BYN
                   </Box>
