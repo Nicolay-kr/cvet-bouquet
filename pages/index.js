@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import IntroBlock from '../src/components/IntroBlock/IntroBlock';
 import Box from '@mui/material/Box';
-import CaruselBlock from '../src/components/CaruselBlock/CaruselBlock';
+// import CaruselBlock from '../src/components/CaruselBlock/CaruselBlock';
 import { sanityClient } from '../sanity';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -12,6 +12,14 @@ import BlockContentBox from '../src/components/BlockcontentBox/BlockContentBox';
 import CaruselBlockWithArch from '../src/components/CaruselBlockWithArch/CaruselBlockWithArch';
 import size from '../src/utils/size';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
+import CircularProgress from '@mui/material/CircularProgress';
+
+const DynamicCaruselBlock = dynamic(() => import('../src/components/CaruselBlock/CaruselBlock'), {
+  loading: () => <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>,
+})
+
+
 
 export default function Home({ data }) {
   const router = useRouter();
@@ -136,7 +144,7 @@ export default function Home({ data }) {
       ) : null}
 
       {data?.popularBouqets ? (
-        <CaruselBlock
+        <DynamicCaruselBlock
           bouquets={data?.popularBouqets.filter(
             item => item.published
           )}
@@ -144,7 +152,7 @@ export default function Home({ data }) {
           subtitle={'букеты'}
           categoryslug='popular'
           customMt={{ ...size(200), xs: 0 }}
-        ></CaruselBlock>
+        ></DynamicCaruselBlock>
       ) : null}
 
       {data?.secondBlock?.published ? (
