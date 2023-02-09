@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Header } from '../Header/Header';
-// import Footer from '../Footer/Footer';
+import Footer from '../Footer/Footer';
 import { sanityClient } from '../../../sanity';
-// import InstagramBlock from '../InstagramBlock/InstagramBlock';
+import InstagramBlock from '../InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import size from '../../utils/size';
 import useSWR from 'swr';
@@ -12,15 +12,6 @@ import deletingWithId from '../../utils/sanityMethods/deletingWithId';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import { checkOrderStatus, checkorderStatus } from '../../utils/sanityMethods/checkOrderStatus';
 import { useAppContext } from '../context/BouquetsContext';
-import dynamic from 'next/dynamic';
-
-const DynamicFooter = dynamic(() => import('../Footer/Footer'), {
-  loading: () => <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>,
-})
-
-const DynamicInstagramBlock  = dynamic(() => import('../InstagramBlock/InstagramBlock'), {
-loading: () => <CircularProgress sx={{position:'absolute',top:'50%',left:'50%'}}/>,
-})
 
 
 
@@ -77,11 +68,11 @@ useEffect( () => {
       <main>
         {children}
         <Box sx={{ my: size(300), px: { xs: '5%', lg: '10%' } }}>
-          <DynamicInstagramBlock instagramPosts={data?.instagramBlock}></DynamicInstagramBlock>
+          <InstagramBlock instagramPosts={data?.instagramBlock}></InstagramBlock>
         </Box>
       </main>
       </ErrorBoundary>
-      <DynamicFooter data={data} />
+      <Footer data={data} />
     </>
   );
 }
