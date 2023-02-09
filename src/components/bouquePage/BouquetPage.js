@@ -61,7 +61,7 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
     },
   ];
 
-  const handleImageClick = (e, index) => {
+  const handleImageClick = (index) => {
     bouquetCaruselhRef.current.swiper.slideTo(index);
     setActiveImg(index);
   };
@@ -164,7 +164,7 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
             {bouquetImagesList.map((image, index) => (
               <Box
                 key={index}
-                onClick={(e) => handleImageClick(e, index)}
+                onClick={() => handleImageClick(index+1)}
                 sx={{
                   position: 'relative',
                   width: '100%',
