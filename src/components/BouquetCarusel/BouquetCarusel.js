@@ -11,6 +11,7 @@ export default function BouquetCarusel({
   listItems,
   caruselRef = null,
   initialSlide = null,
+  setActiveIndex=null
 }) {
   return (
     <Swiper
@@ -22,6 +23,7 @@ export default function BouquetCarusel({
       pagination={{dynamicBullets:true}}
       modules={[Pagination]}
       ref={caruselRef}
+      onActiveIndexChange={(swiper)=>setActiveIndex?setActiveIndex(swiper.activeIndex-1):null}
       initialSlide={initialSlide?initialSlide:0}
     >
       {listItems.map((item, index) => (

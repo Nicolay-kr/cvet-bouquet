@@ -22,7 +22,7 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
   const bouquetCaruselhRef = useRef(null);
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [formProcessing, setFormProcessing] = React.useState(false);
-
+  
   const [activeImg, setActiveImg] = useState(1);
   bouquet = {
     ...bouquet,
@@ -62,8 +62,8 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
   ];
 
   const handleImageClick = (index) => {
-    bouquetCaruselhRef.current.swiper.slideTo(index);
-    setActiveImg(index+1);
+    bouquetCaruselhRef.current.swiper.slideTo(index+1);
+    setActiveImg(index);
   };
 
   const bouquetImagesList = bouquet.images.map(
@@ -152,6 +152,7 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
             <BouquetCarusel
               listItems={bouquetImagesList}
               caruselRef={bouquetCaruselhRef}
+              setActiveIndex={setActiveImg}
             ></BouquetCarusel>
           </Box>
           <Box
@@ -164,7 +165,7 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
             {bouquetImagesList.map((image, index) => (
               <Box
                 key={index}
-                onClick={() => handleImageClick(index+1)}
+                onClick={() => handleImageClick(index)}
                 sx={{
                   position: 'relative',
                   width: '100%',
