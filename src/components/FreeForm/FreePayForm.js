@@ -304,7 +304,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                       color='#000000'
                       sx={{
                         fontWeight: '700',
-                        fontSize: 'max(14px,0.7vw)',
+                        fontSize: 'max(14px,0.7vw) !important',
                       }}
                     >
                       Отправляя заявку, вы принимаете{' '}
