@@ -12,6 +12,7 @@ import BlockContentBox from '../src/components/BlockcontentBox/BlockContentBox';
 import CaruselBlockWithArch from '../src/components/CaruselBlockWithArch/CaruselBlockWithArch';
 import size from '../src/utils/size';
 import Head from 'next/head';
+import { gsap } from "gsap";
 
 export default function Home({ data }) {
   const router = useRouter();
@@ -21,6 +22,19 @@ export default function Home({ data }) {
       (category) => category.published
     )
   );
+
+  const conteiner = React.useRef();;
+    
+  React.useEffect(() => {
+    let ctx = gsap.context(() => {
+      // gsap.fromTo(".header", {opacity: 0},{delay:1,opacity:1,duration:2,ease: "back.out(0.5)"})
+      gsap.to(conteiner.current, { delay:0.5, opacity: 1, duration: 2,});
+
+
+    }, conteiner);
+    
+    return () => ctx.revert();
+  }, []);
 
   return (
     <>
@@ -33,9 +47,13 @@ export default function Home({ data }) {
           secondImage={data?.firstBlock.secondImage}
           isSecondFlower={true}
           mobileReverse={true}
+          isHedden={true}
           textBlock={
             <Box
+              ref={conteiner}
+              className='header'
               sx={{
+                opacity:'0',
                 display: 'flex',
                 flexDirection: 'column',
                 height: '100%',
@@ -46,7 +64,6 @@ export default function Home({ data }) {
                   display: 'flex',
                   flexDirection: 'column',
                   pt: { ...size(100), xs: 30 },
-                  // width: { xs: '100%', md: '50%' },
                 }}
               >
                 <Typography

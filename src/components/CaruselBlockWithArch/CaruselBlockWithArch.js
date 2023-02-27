@@ -18,12 +18,16 @@ import { EffectFade, Controller } from 'swiper';
 import Link from '../CustopNextComponents/Link';
 import bigFlower from '../../../public/assets/images/bigFlower.png';
 import size from '../../utils/size';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/controller';
 import TextsQuote from '../TextsQuote/TextsQuote';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function CaruselBlockWithArch({
   bouquets,
@@ -43,11 +47,36 @@ export default function CaruselBlockWithArch({
     caruselWithArchRef.current.swiper.slidePrev();
   };
 
+  const conteiner = React.useRef();
+
+  React.useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.flower',
+        { scale: 0 },
+        { scale: 1, duration: 1.5, ease: 'back.out(0.5)', scrollTrigger: {
+          trigger: '.conteiner',
+        } }
+      )
+      gsap.to('.flower', {
+        scrollTrigger: {
+          trigger: '.conteiner',
+        },
+        rotation: 360,
+        repeat:-1,
+        duration: 300,
+      });
+    }, conteiner);
+
+    return () => ctx.revert();
+  }, []);
+
   const listItems =
     bouquets &&
     bouquets?.map((item, index) => (
       <SwiperSlide key={index}>
         <Box
+          className='conteiner'
           component={Link}
           sx={{
             textDecoration: 'none',
@@ -115,6 +144,7 @@ export default function CaruselBlockWithArch({
 
   return (
     <Box
+      ref={conteiner}
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
@@ -165,6 +195,7 @@ export default function CaruselBlockWithArch({
         <Box
           component={Image}
           src={bigFlower}
+          className='flower'
           alt='fower imgage'
           sx={{
             position: 'absolute',
@@ -173,6 +204,7 @@ export default function CaruselBlockWithArch({
             width: { xs: '70vw', lg: isPremium ? '40vw' : '50vw' },
             height: { xs: '70vw', lg: isPremium ? '40vw' : '50vw' },
             pointerEvents: 'none',
+            transform: 'scale(0)',
           }}
         ></Box>
         <Box
@@ -199,7 +231,7 @@ export default function CaruselBlockWithArch({
             {listItems}
           </Swiper>
         </Box>
-        <Box sx={{ overflow: 'hidden',mt:'auto' }}>
+        <Box sx={{ overflow: 'hidden', mt: 'auto' }}>
           {isPremium ? (
             <Box
               sx={{

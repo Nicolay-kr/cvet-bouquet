@@ -9,6 +9,10 @@ import MobileBlock from '../MobileBlock/MobileBlock';
 import DesktopBlock from '../DesktopBlock/DesktopBlock';
 import size from '../../utils/size';
 import Image from 'next/future/image';
+import { gsap } from "gsap";
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function IntroBlock({
   mainImage,
@@ -20,22 +24,65 @@ export default function IntroBlock({
   desctopReverse = false,
   mobileReverse = false,
   isDrop = false,
+  isHedden=false,
 }) {
+
+    const conteiner = React.useRef();;
+    
+    React.useEffect(() => {
+      let ctx = gsap.context(() => {
+        if(isSecondFlower){
+          gsap.fromTo(".secondflower", {scale: 0},{delay:0.5,scale:1,duration:2,ease: "back.out(0.5)"})
+          gsap.to(".secondflower", { delay:2.5, rotation: 360,
+            repeat:-1,
+            duration: 300,
+          });
+        }
+        if(isMainFlower){
+          gsap.fromTo(
+            '.mainflower',
+            { scale: 0 },
+            { scale: 1, duration: 1.5, ease: 'back.out(0.5)', scrollTrigger: {
+              trigger: '.mainflower',
+            } }
+          )
+          gsap.to('.mainflower', {
+            scrollTrigger: {
+              trigger: '.mainflower',
+            },
+            rotation: 360,
+            repeat:-1,
+            duration: 300,
+          });
+
+        }
+     
+
+      }, conteiner);
+      
+      return () => ctx.revert();
+    }, []);
+
   return (
     <Box
+      ref={conteiner}
       component='section'
       width='100%'
-      sx={{ px: { xs: '5%', lg: '10%' }, position: 'relative' }}
+      sx={{ px: { xs: '5%', lg: '10%' }, position: 'relative',
+       overflow:isHedden?'hidden':'none',
+      }}
     >
       {isSecondFlower ? (
         <DesktopBlock>
           <Image
+          className='secondflower'
             style={{
               position: 'absolute',
               top: '0',
               right: '0',
               width: '40vw',
               height: '40vw',
+              transform:'scale(0)'
             }}
             priority
             src={bigFlower}
@@ -47,12 +94,14 @@ export default function IntroBlock({
       {isMainFlower ? (
         <Box
           component={Image}
+          className='mainflower'
           sx={{
             position: 'absolute',
             top: { xs: '-10vw', lg: '-2vw' },
             left: { xs: '-8vw', lg: '40vw' },
             width: { xs: '80vw', lg: '47vw' },
             height: { xs: '80vw', lg: '47vw' },
+            transform:'scale(0)'
           }}
           priority
           src={bigFlower}
