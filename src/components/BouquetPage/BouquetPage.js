@@ -22,11 +22,12 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
   const bouquetCaruselhRef = useRef(null);
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [formProcessing, setFormProcessing] = React.useState(false);
-  
+  console.log('bouquet', bouquet);
+
   const [activeImg, setActiveImg] = useState(1);
   bouquet = {
     ...bouquet,
-    imagePath: bouquet.images[0],
+    imagePath: bouquet.images ? bouquet.images[0] : null,
     quantity: quantity,
     deliveryPrice: generalInfo.deliveryPrice,
     deliveryMin: generalInfo.deliveryMin,
@@ -62,18 +63,18 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
   ];
 
   const handleImageClick = (index) => {
-    bouquetCaruselhRef.current.swiper.slideTo(index+1);
+    bouquetCaruselhRef.current.swiper.slideTo(index + 1);
     setActiveImg(index);
   };
 
-  const bouquetImagesList = bouquet.images.map(
+  const bouquetImagesList = bouquet?.images?.map(
     (image) =>
       image && (
         <Image
           fill={true}
-          sizes="(max-width: 768px) 100vw,
+          sizes='(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
-              33vw"
+              33vw'
           src={urlFor(image)?.width(600)?.url()}
           style={{ objectFit: 'cover' }}
           alt='bouquet image'
@@ -81,14 +82,14 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
       )
   );
 
-  const bouquetImagesListFullScreen = bouquet.images.map(
+  const bouquetImagesListFullScreen = bouquet?.images?.map(
     (image) =>
       image && (
         <Image
           fill={true}
-          sizes="(max-width: 768px) 100vw,
+          sizes='(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
-              50vw"
+              50vw'
           src={urlFor(image)?.width(900)?.url()}
           style={{ objectFit: 'cover' }}
           alt='bouquet image'
@@ -100,9 +101,9 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
     setIsOpenModal(false);
   };
 
-  const mainImgClickHandle = () =>{
-    setIsOpenModal(true)
-  }
+  const mainImgClickHandle = () => {
+    setIsOpenModal(true);
+  };
 
   return (
     <>
@@ -112,7 +113,7 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
         open={isOpenModal}
         formProcessing={formProcessing}
       >
-        <Box sx={{width:'min(90vh,90vw)',height:'min(90vh,90vw)'}}>
+        <Box sx={{ width: 'min(90vh,90vw)', height: 'min(90vh,90vw)' }}>
           <BouquetCarusel
             listItems={bouquetImagesListFullScreen}
             initialSlide={activeImg}
@@ -142,18 +143,20 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
           <Box
             sx={{
               position: 'relative',
-              width: {xs:'64vw',lg:'31vw'},
+              width: { xs: '64vw', lg: '31vw' },
               objectFit: 'cover',
               minHeight: { xs: '72vw', lg: '38vw' },
               overflow: 'hidden',
             }}
             onClick={mainImgClickHandle}
           >
-            <BouquetCarusel
-              listItems={bouquetImagesList}
-              caruselRef={bouquetCaruselhRef}
-              setActiveIndex={setActiveImg}
-            ></BouquetCarusel>
+            {bouquetImagesList ? (
+              <BouquetCarusel
+                listItems={bouquetImagesList}
+                caruselRef={bouquetCaruselhRef}
+                setActiveIndex={setActiveImg}
+              ></BouquetCarusel>
+            ) : null}
           </Box>
           <Box
             sx={{
@@ -162,7 +165,7 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
               alignContent: 'space-between',
             }}
           >
-            {bouquetImagesList.map((image, index) => (
+            {bouquetImagesList?.map((image, index) => (
               <Box
                 key={index}
                 onClick={() => handleImageClick(index)}
