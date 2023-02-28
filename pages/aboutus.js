@@ -25,6 +25,7 @@ export default function AboutUs({ data }) {
         secondImage={data?.aboutusBlock?.secondImage}
         isSecondFlower={true}
         isSecondFlowerMobile={true}
+        isHedden={true}
         textBlock={
           <Box
             sx={{
