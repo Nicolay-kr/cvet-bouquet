@@ -199,7 +199,7 @@ export default function SearchModal({}) {
                           layout='fill'
                           width={100}
                           height={125}
-                          src={urlFor(bouquet?.images[0])?.width(400)?.url()}
+                          src={bouquet?.images? urlFor(bouquet?.images[0])?.width(400)?.url():null}
                           alt='bouquet'
                           style={{ cursor: 'pointer' }}
                         ></Image>

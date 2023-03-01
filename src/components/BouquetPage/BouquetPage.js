@@ -50,15 +50,15 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
   const serviceList = [
     {
       title: 'Описание',
-      desc: bouquet.description,
+      desc: bouquet.description?bouquet.description:'',
     },
     {
       title: 'Доставка',
-      desc: bouquet.delivery.delivery,
+      desc: bouquet.delivery?.delivery,
     },
     {
       title: 'Уход за букетом',
-      desc: bouquet.care,
+      desc: bouquet.care?bouquet.care:'',
     },
   ];
 
