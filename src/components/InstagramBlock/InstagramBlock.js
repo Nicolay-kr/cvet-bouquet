@@ -44,6 +44,7 @@ export default function InstagramBlock({ instagramPosts }) {
           if (index <= postsNumber-1) {
             return (
               <Image
+                onClick={() => router.push('https://www.instagram.com/cvetbuket.by/')}
                 objectFit='cover'
                 key={item._key}
                 width={400}
