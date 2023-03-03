@@ -29,6 +29,10 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-variant: lining-nums;
 }
+html {
+  overflow: hidden;
+  width: 100%;
+  }
 
 a {
   color: inherit;

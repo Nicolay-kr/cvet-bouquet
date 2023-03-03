@@ -30,6 +30,14 @@ export default function BurgerMenu({ categories, data }) {
     ) {
       return;
     }
+    if(open){
+      document.body.style.position = "fixed";
+      document.body.style.overflowY = "scroll";
+    }else{
+      document.body.style.position = "relative";
+      document.body.style.overflowY = "hidden";
+
+    }
 
     setIsOpen(open);
   };
@@ -74,15 +82,6 @@ export default function BurgerMenu({ categories, data }) {
         onClick={(e) => toggleDrawer(e, true)}
         onKeyDown={(e) => toggleDrawer(e, true)}
       >
-        {/* <Box
-          component={Image}
-          sx={{
-            width: { xs: '24px', sm: '24px' },
-            height: { xs: '24px', sm: '24px' },
-          }}
-          src={burgerIcon}
-          alt='belcard icon'
-        ></Box> */}
         <BurgerIcon />
       </IconButton>
       <SwipeableDrawer
@@ -102,8 +101,7 @@ export default function BurgerMenu({ categories, data }) {
             display: 'flex',
             flexDirection: 'column',
             px: '5%',
-            pt: '40px',
-            pb:'60px'
+            py: '40px',
           }}
         >
           <IconButton
