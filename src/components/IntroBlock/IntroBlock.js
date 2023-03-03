@@ -114,7 +114,7 @@ export default function IntroBlock({
           mt: '0',
           position: 'relative',
           display: 'grid',
-          columnGap: size(160),
+          columnGap: {...size(160),xl:120},
           gridTemplateColumns: {
             xs: '1fr',
             lg: '5fr 6fr',
