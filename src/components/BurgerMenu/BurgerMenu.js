@@ -102,7 +102,8 @@ export default function BurgerMenu({ categories, data }) {
             display: 'flex',
             flexDirection: 'column',
             px: '5%',
-            py: '40px',
+            pt: '40px',
+            pb:'60px'
           }}
         >
           <IconButton
