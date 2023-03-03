@@ -260,6 +260,8 @@ export default function FreePayForm({ isContactsForm = false }) {
                       }}
                       country={'by'}
                       value={field.value}
+                      preferredCountries={['by','ru','ua','pl','lt','lv','ee']}
+                      preserveOrder={"preferredCountries"}
                       localization={ru}
                       placeholder='Ваш номер телефона.'
                       isValid={() => !(errors.phone?.message.length > 0)}

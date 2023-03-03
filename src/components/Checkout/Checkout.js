@@ -300,6 +300,8 @@ export default function Checkout({
                     marginTop: '0',
                   }}
                   country={'by'}
+                  preferredCountries={['by','ru','ua','pl','lt','lv','ee']}
+                  preserveOrder={"preferredCountries"}
                   value={field.value}
                   localization={ru}
                   placeholder='Ваш номер телефона.'
