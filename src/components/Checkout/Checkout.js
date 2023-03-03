@@ -53,7 +53,13 @@ const deliveryIntervals = [
   '21.00 - 22.00',
 ];
 
-export default function Checkout({ price, shopsList, orderlist, promocode }) {
+export default function Checkout({
+  price,
+  shopsList,
+  orderlist,
+  promocode,
+  payments,
+}) {
   const [dateValue, setDateValue] = React.useState(dayjs(new Date()));
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [formProcessing, setFormProcessing] = React.useState(false);
@@ -73,6 +79,7 @@ export default function Checkout({ price, shopsList, orderlist, promocode }) {
     selfReceive: true,
     paymentByCard: true,
   };
+  console.log(payments);
 
   const [delivery, setDelivery] = React.useState(shopsList[0].adress);
   const [checkoutOptions, setCheckoutOptions] = React.useState(
@@ -131,72 +138,86 @@ export default function Checkout({ price, shopsList, orderlist, promocode }) {
   });
 
   const onSubmit = async (data) => {
-    setFormProcessing(true);
-    setIsOpenModal(true);
+    if (!payments.paymentsOff) {
+      setFormProcessing(true);
+      setIsOpenModal(true);
 
-    const orderData = {
-      name: data.name,
-      phone: data.phone,
-      email: data.email,
-      orderlist: orderlist,
-      comment: data.comment,
-      date: checkoutOptions.delivery ? dateValue.format('DD-MM-YYYY') : '',
-      time: time,
-      street: data.street,
-      house: data.house,
-      enter: data.enter,
-      floor: data.floor,
-      flat: data.flat,
-      deliveryType: checkoutOptions.delivery ? 'Курьер' : 'Самовывоз',
-      deliveryPlace: !checkoutOptions.delivery ? delivery : '',
-      recipientName: !checkoutOptions.selfReceive
-        ? data.recipientName
-        : data.name,
-      recipientPhone: !checkoutOptions.selfReceive
-        ? data.recipientPhone
-        : data.phone,
-      paymentType: checkoutOptions.paymentByCard ? 'Онлайн оплата' : 'Наличные',
-      OrderAmount: price,
-      registration: new Date(),
-      orderType: 'Заказ через корзину',
-      promocode,
-    };
-    try {
-      const response = await fetch('api/createOrder', {
-        method: 'POST',
-        body: JSON.stringify(orderData),
-        headers: {
-          Accept: 'application/json',
-        },
-      });
+      const orderData = {
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        orderlist: orderlist,
+        comment: data.comment,
+        date: checkoutOptions.delivery ? dateValue.format('DD-MM-YYYY') : '',
+        time: time,
+        street: data.street,
+        house: data.house,
+        enter: data.enter,
+        floor: data.floor,
+        flat: data.flat,
+        deliveryType: checkoutOptions.delivery ? 'Курьер' : 'Самовывоз',
+        deliveryPlace: !checkoutOptions.delivery ? delivery : '',
+        recipientName: !checkoutOptions.selfReceive
+          ? data.recipientName
+          : data.name,
+        recipientPhone: !checkoutOptions.selfReceive
+          ? data.recipientPhone
+          : data.phone,
+        paymentType: checkoutOptions.paymentByCard
+          ? 'Онлайн оплата'
+          : 'Наличные',
+        OrderAmount: price,
+        registration: new Date(),
+        orderType: 'Заказ через корзину',
+        promocode,
+      };
+      try {
+        const response = await fetch('api/createOrder', {
+          method: 'POST',
+          body: JSON.stringify(orderData),
+          headers: {
+            Accept: 'application/json',
+          },
+        });
 
-      if (orderData.paymentType === 'Наличные') {
-        setFormProcessing(false);
-        setIsOpenModal(true);
-        reset(defaultState);
-      }else{
-        const newdata = await response.json();
-        localStorage.setItem('lastOrder', newdata.data.OrderNumber.toString());
-        setOrderNumber(`${newdata.data.OrderNumber}`);
-        setOrderAmount(`${newdata.data.OrderAmount}`);
-        setEmail(`${newdata.data.email}`);
+        if (orderData.paymentType === 'Наличные') {
+          setFormProcessing(false);
+          setIsOpenModal(true);
+          reset(defaultState);
+        } else {
+          const newdata = await response.json();
+          localStorage.setItem(
+            'lastOrder',
+            newdata.data.OrderNumber.toString()
+          );
+          setOrderNumber(`${newdata.data.OrderNumber}`);
+          setOrderAmount(`${newdata.data.OrderAmount}`);
+          setEmail(`${newdata.data.email}`);
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
+    } else {
+      // setFormProcessing(true);
+      setIsOpenModal(true);
     }
-  };
+  }
 
   const onClose = () => {
     setIsOpenModal(false);
-    bouquetsContext.clearCart();
+    if(!payments.paymentsOff){
+      bouquetsContext.clearCart();
+    }
   };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ruLocale}>
       <SuccsessModal
-        onClose={ checkoutOptions.paymentByCard ?null: onClose}
+        onClose={payments.paymentsOff? onClose:null}
         open={isOpenModal}
         formProcessing={formProcessing}
+        title={payments.title}
+        text={payments.text}
       ></SuccsessModal>
 
       <Box

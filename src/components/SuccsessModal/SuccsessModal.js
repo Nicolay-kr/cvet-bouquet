@@ -27,13 +27,15 @@ const style = {
 
 export default function SuccsessModal({
   open = false,
-  onClose=null,
+  onClose = null,
   isContactsForm = false,
   formProcessing = false,
+  title,
+  text,
   children,
 }) {
   const handleClose = () => {
-    if(onClose){
+    if (onClose) {
       onClose(false);
     }
   };
@@ -58,22 +60,20 @@ export default function SuccsessModal({
           <Fade in={open}>
             {children ? (
               <Box>
-                {true ? (
-                  <IconButton
-                    sx={{
-                      mr: 'auto',
-                      position:'absolute',
-                      right:'10%',
-                      top:'5%',
-                    }}
-                    component='p'
-                    role='presentation'
-                    onClick={handleClose}
-                    aria-label='CrossIcon'
-                  >
-                    <Whitecros />
-                  </IconButton>
-                ) : null}
+                <IconButton
+                  sx={{
+                    mr: 'auto',
+                    position: 'absolute',
+                    right: '10%',
+                    top: '5%',
+                  }}
+                  component='p'
+                  role='presentation'
+                  onClick={handleClose}
+                  aria-label='CrossIcon'
+                >
+                  <Whitecros />
+                </IconButton>
                 {children}
               </Box>
             ) : (
@@ -95,9 +95,7 @@ export default function SuccsessModal({
                 </IconButton>
 
                 <Typography id='modal-modal-title' variant='h3' component='h2'>
-                  {isContactsForm
-                    ? 'Ваше соощение отправленно'
-                    : 'Ваш заказ отправлен'}
+                    {title}
                 </Typography>
                 <Typography
                   id='modal-modal-description'
@@ -105,16 +103,21 @@ export default function SuccsessModal({
                   component='p'
                   sx={{ mt: '20px' }}
                 >
-                  {isContactsForm
-                    ? 'Мы свяжемся с Вами в ближайшее время'
-                    : 'Спасибо что воспользовались услугами нашей компании'}
+                    {text}
                 </Typography>
 
                 <Button
                   onClick={handleClose}
                   variant='contained'
                   color='primary'
-                  sx={{ mt: '40px', width: { xs: '100%', lg: '200px',fontSize: {...size(24),xs:18}, } }}
+                  sx={{
+                    mt: '40px',
+                    width: {
+                      xs: '100%',
+                      lg: '200px',
+                      fontSize: { ...size(24), xs: 18 },
+                    },
+                  }}
                 >
                   Оk
                 </Button>

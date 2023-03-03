@@ -497,6 +497,7 @@ export default function Cart({ data }) {
               shopsList={data?.generalInfo?.shopsList}
               orderlist={orderlist}
               promocode={promoCodeValue?.code? promoCodeValue?.code:''}
+              payments={data?.generalInfo?.payments}
             ></Checkout>
           ) : null}
         </Box>
@@ -517,6 +518,7 @@ export const getServerSideProps = async (pageContext) => {
       instagram,
       worktime,
       shopsList[],
+      payments,
     }
   }`;
 
