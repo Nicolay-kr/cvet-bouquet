@@ -149,7 +149,7 @@ export const Header = ({ data }) => {
             <InstaIcon/>
           </IconButton>
           <IconButton
-            sx={{ pr: '0px !important', pt: '4px !important' }}
+            sx={{ mr: '-10px !important', pt: '4px !important' }}
             component={Link}
             href='/cart'
             aria-label="BagIcon"
