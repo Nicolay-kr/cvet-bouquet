@@ -91,7 +91,7 @@ export default function BurgerMenu({ categories, data }) {
         onClose={(e) => toggleDrawer(e, false)}
         onOpen={(e) => toggleDrawer(e, true)}
         PaperProps={{
-          sx: { width: '100%', bgcolor: 'primary.main' },
+          sx: { width: '100%', bgcolor: 'primary.main',position:'fixed' },
         }}
         swipeAreaWidth={0}
       >
