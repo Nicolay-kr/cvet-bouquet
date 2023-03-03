@@ -28,6 +28,7 @@ import ru from 'react-phone-input-2/lang/ru.json';
 import PaymentForm from '../PaymentForm/PaymentForm';
 import Link from '../CustopNextComponents/Link';
 import { useAppContext } from '../context/BouquetsContext';
+import Snackbar from '@mui/material/Snackbar';
 
 const MenuProps = {
   PaperProps: {
@@ -79,13 +80,13 @@ export default function Checkout({
     selfReceive: true,
     paymentByCard: true,
   };
-  console.log(payments);
 
   const [delivery, setDelivery] = React.useState(shopsList[0].adress);
   const [checkoutOptions, setCheckoutOptions] = React.useState(
     checkoutOptionsDefault
   );
   const [isPrivareHouse, setIsPrivareHouse] = React.useState(false);
+  const [isOpenSnack, setIsOpenSnack] = React.useState(false);
 
   const defaultState = {
     name: '',
@@ -209,6 +210,14 @@ export default function Checkout({
       bouquetsContext.clearCart();
     }
   };
+  const onError = (errors, e) => setIsOpenSnack(true);
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setIsOpenSnack(false);
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ruLocale}>
@@ -219,10 +228,17 @@ export default function Checkout({
         title={payments.title}
         text={payments.text}
       ></SuccsessModal>
+        <Snackbar
+          autoHideDuration={1000}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          open={isOpenSnack}
+          message='Проверьте заполненные данные'
+          onClose={handleCloseSnackbar}
+        />
 
       <Box
         component={'form'}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit, onError)}
         sx={{
           width: { xs: '100%', lg: '60%' },
           mt: size(80),
