@@ -30,7 +30,7 @@ export default function BurgerAccordion({ title, links, parentSlug, onClose }) {
         aria-controls='panel1a-content'
         id='panel1a-header'
       >
-        <Box component='p' sx={{ color: 'white', m: '0', fontSize: '24px' }}>
+        <Box component='p' sx={{ color: 'white', m: '0', fontSize: '3vh' }}>
           {title}
         </Box>
       </AccordionSummary>
@@ -41,7 +41,8 @@ export default function BurgerAccordion({ title, links, parentSlug, onClose }) {
             sx={{
               color: 'white',
               my: '0',
-              fontSize: '20px',
+              ml:'10px',
+              fontSize: '2.5vh',
               fontWeight: '300',
             }}
             component='p'

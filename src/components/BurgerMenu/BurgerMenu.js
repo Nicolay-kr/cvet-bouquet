@@ -127,8 +127,9 @@ export default function BurgerMenu({ categories, data }) {
           <List
             sx={{
               my: '20px',
+              mt: 'auto',
               '& li+li': {
-                mt: '20px',
+                mt: '10px',
               },
             }}
           >
@@ -144,7 +145,7 @@ export default function BurgerMenu({ categories, data }) {
                     />
                   ) : (
                     <Box
-                      sx={{ color: 'white', my: '0', fontSize: '24px' }}
+                      sx={{ color: 'white', my: '0', fontSize: '3vh' }}
                       component='p'
                       onClick={(e) => {
                         router.push(item.href), toggleDrawer(e, false);
@@ -189,7 +190,7 @@ export default function BurgerMenu({ categories, data }) {
               <Instagram />
             </IconButton>
           </Box>
-          <Box sx={{ mt: '40px', mr: 'auto' }}>
+          <Box sx={{ mt: '30px', mr: 'auto' }}>
             <Typography
               variant='h6'
               component='a'
