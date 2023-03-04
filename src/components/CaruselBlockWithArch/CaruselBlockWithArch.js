@@ -149,7 +149,7 @@ export default function CaruselBlockWithArch({
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
-        mt: !isPremium ? { ...size(300), xs: 80 } : '0',
+        mt: !isPremium ? { ...size(150), xs: 80 } : '0',
       }}
     >
       {title || subtitle ? (
