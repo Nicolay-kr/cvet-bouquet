@@ -80,7 +80,7 @@ export default function CaruselBlockWithArch({
           component={Link}
           sx={{
             textDecoration: 'none',
-            mt: size(200),
+            mt: size(100),
             position: 'relative',
           }}
           href={`/catalog/${

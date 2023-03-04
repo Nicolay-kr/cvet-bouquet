@@ -161,12 +161,12 @@ export default function Home({ data }) {
           title={'Популярные'}
           subtitle={'букеты'}
           categoryslug='popular'
-          customMt={{ ...size(200), xs: 0 }}
+          customMt={{ ...size(100), xs: 0 }}
         ></CaruselBlock>
       ) : null}
 
       {data?.secondBlock?.published ? (
-        <Box sx={{ mt: size(200) }}>
+        <Box sx={{ mt: size(100) }}>
           <IntroBlock
             mainImage={data?.secondBlock.mainImage}
             secondImage={data?.secondBlock.secondImage}

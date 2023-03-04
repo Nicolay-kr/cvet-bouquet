@@ -33,7 +33,7 @@ export default function CaruselBlock({
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
-        mt: customMt? customMt: size(200),
+        mt: customMt? customMt: size(100),
       }}
     >
       <TitleWithSubtitle
