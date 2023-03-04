@@ -166,13 +166,13 @@ export default function Home({ data }) {
       ) : null}
 
       {data?.secondBlock?.published ? (
-        <Box sx={{ mt: size(100) }}>
           <IntroBlock
             mainImage={data?.secondBlock.mainImage}
             secondImage={data?.secondBlock.secondImage}
             isDrop={true}
             mobileReverse={true}
             isMainFlower={true}
+            mt={size(100)}
             textBlock={
               <Box
                 sx={{
@@ -218,7 +218,6 @@ export default function Home({ data }) {
               </Box>
             }
           ></IntroBlock>
-        </Box>
       ) : null}
     </>
   );

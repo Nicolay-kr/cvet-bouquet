@@ -145,6 +145,7 @@ export default function CaruselBlockWithArch({
   return (
     <Box
       ref={conteiner}
+      component='section'
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,

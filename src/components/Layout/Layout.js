@@ -67,7 +67,7 @@ useEffect( () => {
       <ErrorBoundary>
       <main>
         {children}
-        <Box sx={{ my: size(150), px: { xs: '5%', lg: '10%' } }}>
+        <Box sx={{ my: size(150), px: { xs: '5%', lg: '10%' } }} component='section'> 
           <InstagramBlock instagramPosts={data?.instagramBlock}></InstagramBlock>
         </Box>
       </main>

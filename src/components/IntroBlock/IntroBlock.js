@@ -26,6 +26,7 @@ export default function IntroBlock({
   isDrop = false,
   isHedden=false,
   isSecondFlowerOnMainMobile=false
+  mt=null
 }) {
 
     const conteiner = React.useRef();;
@@ -69,7 +70,7 @@ export default function IntroBlock({
       ref={conteiner}
       component='section'
       width='100%'
-      sx={{ px: { xs: '5%', lg: '10%' }, position: 'relative',
+      sx={{ mt: mt, px: { xs: '5%', lg: '10%' }, position: 'relative',
        overflow:isHedden?'hidden':'none',
       }}
     >

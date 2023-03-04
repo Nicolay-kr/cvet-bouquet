@@ -30,6 +30,7 @@ export default function Contacts({ data }) {
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <Box
+        component='section'
         sx={{
           display: 'grid',
           columnGap: 'max(30px,1.5vw)',

@@ -30,10 +30,11 @@ export default function CaruselBlock({
 
   return (
     <Box
+      component='section'
       sx={{
         width: '100%',
         pl: isSpec ? { xs: '5%', lg: '10%' } : 0,
-        mt: customMt? customMt: size(100),
+        mt: customMt ? customMt : size(100),
       }}
     >
       <TitleWithSubtitle
@@ -51,7 +52,7 @@ export default function CaruselBlock({
         <IconButton
           onClick={handleLeftArrowClick}
           sx={{ marginLeft: isSpec ? 0 : { xs: '5vw', lg: '10vw' } }}
-          aria-label="LeftArrowIcon"
+          aria-label='LeftArrowIcon'
         >
           <Box
             sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}
@@ -62,7 +63,7 @@ export default function CaruselBlock({
         <IconButton
           sx={{ marginRight: { xs: '5vw', lg: '10vw' } }}
           onClick={handleRightArrowClick}
-          aria-label="RightArrowIcon"
+          aria-label='RightArrowIcon'
         >
           <Box
             sx={{ width: { xs: '32px', sm: '60px', lg: '94px' } }}

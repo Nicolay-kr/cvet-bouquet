@@ -122,6 +122,7 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
       </SuccsessModal>
 
       <Box
+        component='section'
         sx={{
           display: 'grid',
           position: 'relative',
