@@ -25,7 +25,7 @@ export default function IntroBlock({
   mobileReverse = false,
   isDrop = false,
   isHedden=false,
-  isSecondFlowerOnMainMobile=false
+  isSecondFlowerOnMainMobile=false,
   mt=null
 }) {
 
