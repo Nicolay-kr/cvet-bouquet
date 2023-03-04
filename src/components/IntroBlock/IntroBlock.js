@@ -142,13 +142,14 @@ export default function IntroBlock({
           {isSecondFlowerMobile || isSecondFlowerOnMainMobile ? (
             <MobileBlock>
               <Image
-              className='secondflower'
+                className='secondflower'
                 style={{
                   position: 'absolute',
                   right: isSecondFlowerOnMainMobile? '-25%':'-5%',
                   top: isSecondFlowerOnMainMobile? '-10%':'-15%',
                   width: '80vw',
                   height: '80vw',
+                  transform:'scale(0)'
                 }}
                 src={bigFlower}
                 priority
