@@ -313,7 +313,10 @@ export default function FreePayForm({ isContactsForm = false }) {
                       color='#000000'
                       sx={{
                         fontWeight: '700',
-                        fontSize: 'max(14px,0.7vw) !important',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        fontSize: `${{ ...size(14), md:12, xs: 12 }} !important`,
                       }}
                     >
                       Отправляя заявку, вы принимаете{' '}
@@ -390,7 +393,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                   variant='body2'
                   component='p'
                   color='#000000'
-                  sx={{ mb: 40, fontSize: { ...size(14), xs: 12 },
+                  sx={{ mb: 40, fontSize: { ...size(14), md:12, xs: 12 },
                   textDecoration:'none',
                   '&:hover':{textDecoration:'underline'},  }}
                   
