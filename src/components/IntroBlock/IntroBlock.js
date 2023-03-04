@@ -25,6 +25,7 @@ export default function IntroBlock({
   mobileReverse = false,
   isDrop = false,
   isHedden=false,
+  isSecondFlowerOnMainMobile=false
 }) {
 
     const conteiner = React.useRef();;
@@ -137,13 +138,14 @@ export default function IntroBlock({
             order: { xs: mobileReverse ? 1 : 2, lg: 2 },
           }}
         >
-          {isSecondFlowerMobile ? (
+          {isSecondFlowerMobile || isSecondFlowerOnMainMobile ? (
             <MobileBlock>
               <Image
+              className='secondflower'
                 style={{
                   position: 'absolute',
-                  right: '-5%',
-                  top: '-15%',
+                  right: isSecondFlowerOnMainMobile? '-25%':'-5%',
+                  top: isSecondFlowerOnMainMobile? '-10%':'-15%',
                   width: '80vw',
                   height: '80vw',
                 }}

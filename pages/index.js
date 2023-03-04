@@ -46,6 +46,7 @@ export default function Home({ data }) {
           mainImage={data?.firstBlock.mainImage}
           secondImage={data?.firstBlock.secondImage}
           isSecondFlower={true}
+          isSecondFlowerOnMainMobile={true}
           mobileReverse={true}
           isHedden={true}
           textBlock={
