@@ -75,7 +75,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h1.adaptiv,
       },
-      '@media (max-width:1536px)': {
+      '@media (max-width:1538px)': {
         fontSize: '105px',
       },
       '@media (max-width:600px)': {
@@ -92,7 +92,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h2.adaptiv,
       },
-      '@media (max-width:1536px)': {
+      '@media (max-width:1538px)': {
         fontSize: '32px',
       },
       '@media (max-width:600px)': {
@@ -109,7 +109,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h3.adaptiv,
       },
-      '@media (max-width:1536px)': {
+      '@media (max-width:1538px)': {
         fontSize: '24px',
       },
       '@media (max-width:600px)': {
@@ -126,7 +126,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h4.adaptiv,
       },
-      '@media (max-width:1536px)': {
+      '@media (max-width:1538px)': {
         fontSize: '18px',
       },
       '@media (max-width:600px)': {
@@ -146,7 +146,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h5.adaptiv,
       },
-      '@media (max-width:1536px)': {
+      '@media (max-width:1538px)': {
         fontSize: '15px',
       },
       '@media (max-width:600px)': {
@@ -164,7 +164,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h6.adaptiv,
       },
-      '@media (max-width:1536px)': {
+      '@media (max-width:1538px)': {
         fontSize: '14px',
       },
     },
@@ -180,7 +180,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.body1.adaptiv,
       },
-      '@media (max-width:1536px)': {
+      '@media (max-width:1538px)': {
         fontSize: '12px',
       },
       '@media (max-width:600px)': {
@@ -197,7 +197,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.body2.adaptiv,
       },
-      '@media (max-width:1536px)': {
+      '@media (max-width:1538px)': {
         fontSize: '12px',
       },
       '@media (max-width:600px)': {
@@ -273,7 +273,7 @@ const theme = createTheme({
         input: {
           // Some CSS
           fontSize: '18px',
-          '@media (max-width:1536px)': {
+          '@media (max-width:1538px)': {
             fontSize: '14px',
           },
         },
@@ -286,7 +286,7 @@ const theme = createTheme({
         notchedOutline : {
           '& legend':{
             fontSize: '0.9em',
-            '@media (max-width:1536px)': {
+            '@media (max-width:1538px)': {
               fontSize: '1.1em',
             },
             '@media (max-width:600px)': {
@@ -305,7 +305,7 @@ const theme = createTheme({
         root: {
           // Some CSS
           fontSize: '18px !important',
-          '@media (max-width:1536px)': {
+          '@media (max-width:1538px)': {
             fontSize: '14px',
           },
           '@media (max-width:600px)': {
