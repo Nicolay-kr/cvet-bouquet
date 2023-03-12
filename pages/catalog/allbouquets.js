@@ -18,8 +18,7 @@ export const AllBouquetsPage = ({ data }) => {
       <BouquetListPage
         breadCrumbsList={breadCrumbsList}
         category={[{ bouqets: data?.bouquets, slug: { current: 'allbouquets' } }]}
-        generalInfo={data?.generalInfo}
-      ></BouquetListPage>
+        generalInfo={data?.generalInfo} bouqets={data?.bouquets}      ></BouquetListPage>
     </>
   );
 };
@@ -33,6 +32,7 @@ export const getServerSideProps = async (pageContext) => {
       images,
       price,
       description,
+      published,
       care,
       "delivery":*[_type == "generalInfo"][0]{deliveryPrice,deliveryMin},
       publishedAt,

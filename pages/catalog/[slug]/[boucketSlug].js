@@ -20,7 +20,7 @@ export const Bouquet = ({ data }) => {
     breadCrumbsList = [
       { title: 'Главная', href: '/' },
       { title: 'Каталог', href: '/catalog' },
-      { title: data?.bouquet.title?.ru, href: null },
+      { title: data?.bouquet?.title?.ru, href: null },
     ];
   }
 

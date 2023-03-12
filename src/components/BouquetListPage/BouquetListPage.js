@@ -9,10 +9,11 @@ import { useRouter } from 'next/router';
 import sortArray from 'sort-array';
 
 const BouquetListPage = ({ category, breadCrumbsList, generalInfo, bouqets }) => {
-  const defaultBouquetsList = bouqets.filter(item=>item.published===true);
+  const defaultBouquetsList = bouqets?.filter(item=>item.published===true);
   const [bouquetsList, setBouquetsList] = React.useState(defaultBouquetsList);
   const [filtredBouquetsList, setFilterdBouquetsList] = React.useState([]);
   const router = useRouter();
+  console.log(bouqets)
 
   const [value, setValue] = React.useState(
     router.query.price ? router.query.price : 'all'
@@ -154,7 +155,7 @@ const BouquetListPage = ({ category, breadCrumbsList, generalInfo, bouqets }) =>
                     <BouquetCard
                       id={_id}
                       title={title?.ru}
-                      imagePath={images[0]}
+                      imagePath={images?.length?images[0]:null}
                       slug={slug}
                       categorySlug={`catalog/${category?.slug?.current}`}
                       price={price}
