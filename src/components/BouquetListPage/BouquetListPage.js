@@ -13,7 +13,6 @@ const BouquetListPage = ({ category, breadCrumbsList, generalInfo, bouqets }) =>
   const [bouquetsList, setBouquetsList] = React.useState(defaultBouquetsList);
   const [filtredBouquetsList, setFilterdBouquetsList] = React.useState([]);
   const router = useRouter();
-  console.log(bouqets)
 
   const [value, setValue] = React.useState(
     router.query.price ? router.query.price : 'all'
@@ -158,9 +157,11 @@ const BouquetListPage = ({ category, breadCrumbsList, generalInfo, bouqets }) =>
                       imagePath={images?.length?images[0]:null}
                       slug={slug}
                       categorySlug={`catalog/${category?.slug?.current}`}
+                      categoryName={`catalog/${category?.slug?.title}`}
                       price={price}
                       deliveryPrice={generalInfo?.deliveryPrice}
                       deliveryMin={generalInfo?.deliveryMin}
+                      category={category?.slug?.current}
                     ></BouquetCard>
                   </Box>
                 )

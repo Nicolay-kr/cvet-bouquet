@@ -17,7 +17,7 @@ export const AllBouquetsPage = ({ data }) => {
       </Head>
       <BouquetListPage
         breadCrumbsList={breadCrumbsList}
-        category={[{ bouqets: data?.bouquets, slug: { current: 'allbouquets' } }]}
+        category={[{ bouqets: data?.bouquets, slug: { current: 'products' } }]}
         generalInfo={data?.generalInfo} bouqets={data?.bouquets}      ></BouquetListPage>
     </>
   );

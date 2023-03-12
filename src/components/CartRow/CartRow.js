@@ -36,7 +36,10 @@ const CartRow = ({ id, title, price, image, quantity, slug, categorySlug }) => {
               '& img': { objectFit: 'cover' },
             }}
           >
-            <Link href={`cart/${slug.current}`}>
+            <Link    href={{
+              pathname: `/catalog/products/${slug?.current}`,
+              query: { category: 'cart'}
+            }}>
               <Image
                 style={{ objectFit: 'cover' }}
                 layout='fill'

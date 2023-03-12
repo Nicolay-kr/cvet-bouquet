@@ -2,20 +2,38 @@ import Head from 'next/head';
 import React from 'react';
 import { sanityClient } from '../../../sanity';
 import BouquetPage from '../../../src/components/BouquetPage/BouquetPage';
+import { useRouter } from 'next/router';
 
 export const Bouquet = ({ data }) => {
   let breadCrumbsList = [];
+  const router = useRouter();
+  const categoryTitleMap = { 'favorites': 'Избранное','cart':'Корзина' };
+  const categoryTitle = categoryTitleMap[router.query.category]
 
-  if (data?.category && data?.category?.title) {
-    breadCrumbsList = [
-      { title: 'Главная', href: '/' },
-      { title: 'Каталог', href: '/catalog' },
-      {
-        title: data?.category?.title,
-        href: `/catalog/${data?.category.slug.current}`,
-      },
-      { title: data?.bouquet?.title?.ru, href: null },
-    ];
+  if ((categoryTitle||data?.category?.title) && router.query.category) {
+    if(categoryTitle){
+      breadCrumbsList = [
+        { title: 'Главная', href: '/' },
+        {
+          title: categoryTitle || data?.category?.title,
+          href: categoryTitle? `/${router.query.category}`:`/catalog/${router.query.category}`,
+        },
+        { title: data?.bouquet?.title?.ru, href: null },
+      ];
+
+    }else{
+      breadCrumbsList = [
+        { title: 'Главная', href: '/' },
+        { title: 'Каталог', href: '/catalog' },
+        {
+          title: categoryTitle || data?.category?.title,
+          href: categoryTitle? `/${router.query.category}`:`/catalog/${router.query.category}`,
+        },
+        { title: data?.bouquet?.title?.ru, href: null },
+      ];
+
+    }
+
   } else {
     breadCrumbsList = [
       { title: 'Главная', href: '/' },
@@ -41,7 +59,7 @@ export const Bouquet = ({ data }) => {
 
 export const getServerSideProps = async (pageContext) => {
   const boucketSlug = pageContext.query.boucketSlug;
-  const categorySlug = pageContext.query.slug;
+  const categorySlug = pageContext.query.category;
 
   if (!boucketSlug) {
     return {

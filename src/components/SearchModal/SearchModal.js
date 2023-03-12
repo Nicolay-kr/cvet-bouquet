@@ -193,7 +193,7 @@ export default function SearchModal({}) {
                         <Image
                           onClick={() =>
                             router.replace(
-                              `/catalog/allbouquets/${bouquet.slug.current}`
+                              `/catalog/products/${bouquet.slug.current}`
                             )
                           }
                           layout='fill'

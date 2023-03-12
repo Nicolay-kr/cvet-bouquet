@@ -22,7 +22,6 @@ export const BouquetPage = ({ bouquet, breadCrumbsList, generalInfo }) => {
   const bouquetCaruselhRef = useRef(null);
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [formProcessing, setFormProcessing] = React.useState(false);
-  console.log('bouquet', bouquet);
 
   const [activeImg, setActiveImg] = useState(1);
   bouquet = {

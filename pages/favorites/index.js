@@ -54,6 +54,7 @@ export default function Favorites() {
                       slug={slug}
                       deliveryPrice={deliveryPrice}
                       deliveryMin={deliveryMin}
+                      category='favorites'
                   ></BouquetCard>
                   </Box>
                 )

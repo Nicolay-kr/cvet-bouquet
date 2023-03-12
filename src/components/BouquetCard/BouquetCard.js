@@ -35,6 +35,7 @@ export default function BouquetCard({
   deliveryPrice,
   deliveryMin,
   width = null,
+  category=null,
 }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
@@ -154,7 +155,11 @@ export default function BouquetCard({
             }}
             component={Link}
             noLinkStyle
-            href={`/${categorySlug ? categorySlug + '/' : ''}${slug?.current}`}
+            // href={`/catalog/products/${slug?.current}`}
+            href={{
+              pathname: `/catalog/products/${slug?.current}`,
+              query: { category: category?category:''}
+            }}
           >
             <Box
               sx={{
