@@ -294,7 +294,10 @@ export default function Cart({ data }) {
                     columnGap: 'max(30px,1.5vw)',
                   }}
                 >
-                  <Link href={`cart/${bouquet.slug.current}`}>
+                  <Link href={{
+              pathname: `/catalog/products/${bouquet?.slug?.current}`,
+              query: { category: 'cart'}
+            }}>
                     <Image
                       style={{ objectFit: 'cover' }}
                       layout='fill'
