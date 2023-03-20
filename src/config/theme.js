@@ -18,19 +18,21 @@ export const customFontsSize = {
   caption: { regular: 30, adaptiv: '1.56vw' }, // Raleway
 };
 
+const breakpoints = {
+  values: {
+    xs: 0,
+    sm: 600,
+    md: 900,
+    lg: 1200,
+    xl: 1601,
+    xxl: 1921,
+  }
+};
+
 // Create a theme instance.
 const theme = createTheme({
   spacing: 1,
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1200,
-      xl: 1538,
-      xxl: 1921,
-    },
-  },
+  breakpoints: breakpoints,
   palette: {
     fon: {
       main: '#F8F2EA',
@@ -75,7 +77,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h1.adaptiv,
       },
-      '@media (max-width:1538px)': {
+      [`@media (max-width:${breakpoints.xl}px)`]: {
         fontSize: '105px',
       },
       '@media (max-width:600px)': {
@@ -92,7 +94,8 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h2.adaptiv,
       },
-      '@media (max-width:1538px)': {
+      
+      [`@media (max-width:${breakpoints.xl}px)`]: {
         fontSize: '32px',
       },
       '@media (max-width:600px)': {
@@ -109,7 +112,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h3.adaptiv,
       },
-      '@media (max-width:1538px)': {
+      [`@media (max-width:${breakpoints.xl}px)`]: {
         fontSize: '24px',
       },
       '@media (max-width:600px)': {
@@ -126,7 +129,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h4.adaptiv,
       },
-      '@media (max-width:1538px)': {
+      [`@media (max-width:${breakpoints.xl}px)`]: {
         fontSize: '18px',
       },
       '@media (max-width:600px)': {
@@ -146,7 +149,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h5.adaptiv,
       },
-      '@media (max-width:1538px)': {
+      [`@media (max-width:${breakpoints.xl}px)`]: {
         fontSize: '15px',
       },
       '@media (max-width:600px)': {
@@ -164,7 +167,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.h6.adaptiv,
       },
-      '@media (max-width:1538px)': {
+      [`@media (max-width:${breakpoints.xl}px)`]: {
         fontSize: '14px',
       },
     },
@@ -180,7 +183,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.body1.adaptiv,
       },
-      '@media (max-width:1538px)': {
+      [`@media (max-width:${breakpoints.xl}px)`]: {
         fontSize: '12px',
       },
       '@media (max-width:600px)': {
@@ -197,7 +200,7 @@ const theme = createTheme({
       '@media (min-width:1921px)': {
         fontSize: customFontsSize.body2.adaptiv,
       },
-      '@media (max-width:1538px)': {
+      [`@media (max-width:${breakpoints.xl}px)`]: {
         fontSize: '12px',
       },
       '@media (max-width:600px)': {
@@ -273,7 +276,7 @@ const theme = createTheme({
         input: {
           // Some CSS
           fontSize: '18px',
-          '@media (max-width:1538px)': {
+          [`@media (max-width:${breakpoints.xl}px)`]: {
             fontSize: '14px',
           },
         },
@@ -286,7 +289,7 @@ const theme = createTheme({
         notchedOutline : {
           '& legend':{
             fontSize: '0.9em',
-            '@media (max-width:1538px)': {
+            [`@media (max-width:${breakpoints.xl}px)`]: {
               fontSize: '1.1em',
             },
             '@media (max-width:600px)': {
@@ -305,7 +308,7 @@ const theme = createTheme({
         root: {
           // Some CSS
           fontSize: '18px !important',
-          '@media (max-width:1538px)': {
+          [`@media (max-width:${breakpoints.xl}px)`]: {
             fontSize: '14px',
           },
           '@media (max-width:600px)': {
