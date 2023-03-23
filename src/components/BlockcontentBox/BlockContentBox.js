@@ -24,10 +24,8 @@ export default function BlockContentBox({ blocks, fs = 20 }) {
         },
         '& figure':{
           display:'inline-flex',
-          '@media (max-width:550px)': {
-            width:'50%',
-            margin:'20px 0',
-          },
+          width:'50%',
+          margin:'20px 0',
         }
       
       }}
