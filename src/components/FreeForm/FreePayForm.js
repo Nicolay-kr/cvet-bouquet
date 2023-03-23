@@ -308,7 +308,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                       Отправить
                     </Button>
                     <Typography
-                      variant='h6'
+                      variant='body2'
                       component='p'
                       color='#000000'
                       sx={{
@@ -390,7 +390,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                 }}
               >
                 <Typography
-                  variant='body2'
+                variant='body2'
                   component='p'
                   color='#000000'
                   sx={{ mb: 40, fontSize: { ...size(14), md:12, xs: 12 },
