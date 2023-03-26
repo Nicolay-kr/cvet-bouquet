@@ -23,6 +23,10 @@ export default function ArcheMainConteiner({ src, isDrop = false }) {
           : { xs: '0 0 400px 400px' },
         overflow: 'hidden',
         flexShrink: 0,
+        '@media (max-height:724px) and (min-width:1200px)': {
+          height: isDrop? '38vh':'52vh',
+          width:isDrop? '38vh':'20vw',
+        },
       }}
     >
       <Image

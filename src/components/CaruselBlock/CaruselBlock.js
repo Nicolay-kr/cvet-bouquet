@@ -47,6 +47,9 @@ export default function CaruselBlock({
           display: 'flex',
           justifyContent: 'space-between',
           mb: { xs: '0', lg: '40px' },
+          '@media (max-height:724px) and (min-width:1200px)': {
+            mb:'20px',
+          },
         }}
       >
         <IconButton

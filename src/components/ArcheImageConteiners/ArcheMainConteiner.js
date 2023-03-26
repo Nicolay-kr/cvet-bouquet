@@ -19,6 +19,11 @@ export default function ArcheMainConteiner({ src, isSwiper = false,priority=fals
         borderRight: '4px solid #F8F2EA',
         borderLeft: '4px solid #F8F2EA',
         borderRadius: '400px 400px 0 0',
+        '@media (max-height:724px) and (min-width:1200px)': {
+          height: '64vh',
+          width: '22vw',
+          mr:'0'
+        },
       }}
     >
       <Image
@@ -26,7 +31,7 @@ export default function ArcheMainConteiner({ src, isSwiper = false,priority=fals
         alt='Bouquet image'
         fill={true}
         sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
+              (max-width: 1200px) 35vw,
               33vw"
         priority={priority}
         style={{

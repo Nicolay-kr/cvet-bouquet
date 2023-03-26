@@ -161,7 +161,7 @@ export default function Home({ data }) {
           title={'Популярные'}
           subtitle={'букеты'}
           categoryslug='popular'
-          customMt={{ ...size(100), xs: 0 }}
+          customMt={{ ...size(40), xs: 0 }}
         ></CaruselBlock>
       ) : null}
 

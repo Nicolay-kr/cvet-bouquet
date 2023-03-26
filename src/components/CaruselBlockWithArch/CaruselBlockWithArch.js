@@ -164,7 +164,7 @@ export default function CaruselBlockWithArch({
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            mb: { xs: '0', lg: '40px' },
+            mb: 0,
           }}
         >
           <IconButton
@@ -206,6 +206,13 @@ export default function CaruselBlockWithArch({
             height: { xs: '70vw', lg: isPremium ? '40vw' : '50vw' },
             pointerEvents: 'none',
             transform: 'scale(0)',
+            '@media (max-height:724px) and (min-width:1200px)': {
+              width: '36vw' ,
+              height:'36vw' ,
+              left: '-7vw',
+              top: isPremium ?'-4vw':'-6vw',
+            },
+            
           }}
         ></Box>
         <Box
@@ -213,6 +220,9 @@ export default function CaruselBlockWithArch({
             position: 'relative',
             // top: { xs: '6vw', lg: '2vw' },
             width: { xs: '45vw', lg: '25.5vw' },
+            '@media (max-height:724px) and (min-width:1200px)': {
+              width: '22vw' ,
+            },
             mr: { ...size(30), xs: 10 },
             // '&>div': { pb: '40px' },
           }}
@@ -242,6 +252,9 @@ export default function CaruselBlockWithArch({
                 ml: 'auto',
                 mr: '10vw',
                 mb: '40px',
+                '@media (max-height:724px) and (min-width:1200px)': {
+                  mb: '24px',
+                },
               }}
             >
               <TextsQuote></TextsQuote>

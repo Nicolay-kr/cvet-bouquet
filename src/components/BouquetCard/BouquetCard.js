@@ -118,7 +118,7 @@ export default function BouquetCard({
             <HeartIconFill
               width={'100%'}
               height={'100%'}
-              viewBox='-2 -3 30 30'
+              viewBox='-3 -3 30 30'
             />
           ) : (
             <HeartIcon width={'100%'} height={'100%'} viewBox='-3 -3 30 30' />
@@ -195,6 +195,11 @@ export default function BouquetCard({
                 flexDirection: 'column',
                 flexGrow: '1',
                 px: '0px',
+                '@media (max-height:724px) and (min-width:1200px)': {
+                  py:'16px',
+                },
+                
+                
               }}
             >
               <Typography gutterBottom variant='h4' component='p'>

@@ -76,20 +76,25 @@ export default function IntroBlock({
     >
       {isSecondFlower ? (
         <DesktopBlock>
-          <Image
+          <Box
+          component={Image}
           className='secondflower'
-            style={{
+            sx={{
               position: 'absolute',
               top: '0',
               right: '0',
               width: '40vw',
               height: '40vw',
-              transform:'scale(0)'
+              transform:'scale(0)',
+              '@media (max-height:724px) and (min-width:1200px)': {
+                width: '34vw',
+                height: '34vw',
+              },
             }}
             priority
             src={bigFlower}
             alt='flower'
-          ></Image>
+          ></Box>
         </DesktopBlock>
       ) : null}
 
@@ -103,7 +108,12 @@ export default function IntroBlock({
             left: { xs: '-8vw', lg: '40vw' },
             width: { xs: '80vw', lg: '47vw' },
             height: { xs: '80vw', lg: '47vw' },
-            transform:'scale(0)'
+            transform:'scale(0)',
+            '@media (max-height:724px) and (min-width:1200px)': {
+              width: '36vw',
+              height: '36vw',
+              left: '42.5vw' ,
+            },
           }}
           priority
           src={bigFlower}

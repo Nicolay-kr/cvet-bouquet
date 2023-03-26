@@ -31,13 +31,14 @@ const Carusel = ({
 }) => {
   const md = useMediaQuery('(max-width:720px)');
   const xl = useMediaQuery('(max-width:1536px)');
+  const upTo724height = useMediaQuery('(max-height:724px)');
 
   const listItems = bouquets.map((bouquet) => {
     return (
       <SwiperSlide style={{ width: 'auto', height: 'auto' }} key={bouquet._id}>
         {isSpec ? (
           <SimpleBouquetCard
-            width={{ ...size(360), xs: '100%',sm:270 }}
+            width={{ ...size(upTo724height?336:360), xs: '100%',sm:270 }}
             isPremium={isPremium}
             id={bouquet._id}
             title={bouquet.title?.ru ? bouquet.title?.ru : bouquet.title}
@@ -47,7 +48,7 @@ const Carusel = ({
           ></SimpleBouquetCard>
         ) : (
           <BouquetCard
-            width={{ ...size(360), xs: '100%', }}
+            width={{ ...size(upTo724height?300:360), xs: '100%', }}
             id={bouquet._id}
             title={bouquet.title?.ru}
             price={bouquet.price}
