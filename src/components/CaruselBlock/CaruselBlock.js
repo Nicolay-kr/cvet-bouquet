@@ -82,6 +82,7 @@ export default function CaruselBlock({
           caruselRef={caruselRef}
           isSpec={isSpec}
           categoryslug={categoryslug}
+          loopedSlides={6}
         />
       </Box>
     </Box>
