@@ -125,12 +125,8 @@ export default function FreePayForm({ isContactsForm = false }) {
         open={isOpenSuccessModal}
         isContactsForm={isContactsForm}
         formProcessing={formProcessing}
-        title={isContactsForm
-          ? 'Ваше соощение отправленно'
-          : 'Ваш заказ отправлен'}
-        text={isContactsForm
-          ? 'Мы свяжемся с Вами в ближайшее время'
-          : 'Спасибо что воспользовались услугами нашей компании'}
+        title={'Ваше соощение отправленно'}
+        text={'Мы свяжемся с Вами в ближайшее время'}
         
       ></SuccsessModal>
       <Box

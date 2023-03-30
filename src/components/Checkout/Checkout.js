@@ -222,11 +222,11 @@ export default function Checkout({
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ruLocale}>
       <SuccsessModal
-        onClose={payments.paymentsOff? onClose:null}
+        onClose={payments.paymentsOff || !checkoutOptions.paymentByCard? onClose:null}
         open={isOpenModal}
         formProcessing={formProcessing}
-        title={payments.title}
-        text={payments.text}
+        title={checkoutOptions.paymentByCard? payments.title :'Ваш заказ отправлен'}
+        text={checkoutOptions.paymentByCard? payments.text :'Спасибо что воспользовались услугами нашего магазина'}
       ></SuccsessModal>
         <Snackbar
           autoHideDuration={1000}
