@@ -8,7 +8,7 @@ const generateOrderNumber = async () => {
       status,
     }`
   );
-  return `order-${orders.length+1}`
+  return `order-N${orders.length+1}`
 };
 
 export default generateOrderNumber;
