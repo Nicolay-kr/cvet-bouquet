@@ -1,9 +1,11 @@
 import getUsers from '../../src/utils/getUsers';
 import updateChatId from '../../src/utils/updateChatId';
 import getOrderStatus from '../../src/utils/getOrderStatus';
+import logger from '../../services/logger';
 
 export default async (req, res) => {
   const tgbot = process.env.TELEGRAM_TOKEN;
+  logger.info('tlg', req.body.message);
   console.log(req.body.message);
   try {
     if (req.body.message?.text === '/start') {

@@ -12,7 +12,7 @@ import { sendMessageAboutOrder } from '../../src/utils/sendMessageAboutOrder';
 import senMessageToTelegram from '../../src/utils/senMessageToTelegram';
 
 export default async function handler(req, res) {
-  logger.info(req);
+  logger.info('createOrder', req);
 
   try {
     const orderData = isJson(req.body) ? JSON.parse(req.body) : req.body;

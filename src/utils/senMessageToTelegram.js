@@ -1,6 +1,8 @@
+import logger from '../../services/logger';
 import getUsers from '../../src/utils/getUsers';
 
 async function senMessageToTelegram(message) {
+  logger.info('senMessageToTelegram', message);
   const tgbot = process.env.TELEGRAM_TOKEN;
   try {
     const users = await getUsers();
