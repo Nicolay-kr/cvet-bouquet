@@ -37,7 +37,7 @@ export default function Cart({ data }) {
 
   const orderlist = bouquets
     .map((bouquet) => {
-      return `${bouquet.title} количество: ${bouquet.quantity} `;
+      return `${bouquet.title}(${process.env.MAIN_URL}catalog/products/${bouquet.slug.current}) количество: ${bouquet.quantity} `;
     })
     .join('; ');
 

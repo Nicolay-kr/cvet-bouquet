@@ -291,14 +291,14 @@ export default function FreePayForm({ isContactsForm = false }) {
                       display: 'grid',
                       gridTemplateColumns: '2fr 3fr',
                       columnGap: { ...size(30), xs: 16 },
-                      mt: {...size(40), xs:40,md:40},
+                      mt: {...size(40), xs:40,md: 40},
                     }}
                   >
                     <Button
                       type='submit'
                       variant='contained'
                       color='primary'
-                      sx={{ height: {...size(60),xs:60,md:60}, marginTop: 'auto',fontSize: { ...size(24), xs: 16 },
+                      sx={{ height: {...size(60),xs:48,}, marginTop: 'auto',fontSize: { ...size(24), xs: 16 },
                       fontWeight:'600' }}
                     >
                       Отправить
@@ -312,7 +312,10 @@ export default function FreePayForm({ isContactsForm = false }) {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        fontSize: `${{ ...size(14), md:12, xs: 12 }} !important`,
+                        fontSize: `${{ xs: 11, md:11,  xl: 14 }}`,
+                        '@media (max-width:1601px)': {
+                          fontSize: '11px !important',
+                        },
                       }}
                     >
                       Отправляя заявку, вы принимаете{' '}
