@@ -291,7 +291,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                       display: 'grid',
                       gridTemplateColumns: '2fr 3fr',
                       columnGap: { ...size(30), xs: 16 },
-                      mt: {...size(40), xs:40,md:40},
+                      mt: {...size(40), xs:40,md: 40},
                     }}
                   >
                     <Button
@@ -312,7 +312,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        fontSize: `${{ ...size(14), md:11, xs: 12 }} !important`,
+                        fontSize: `${{ ...size(14), xs: 12, md:11,  xl: 11 }} !important`,
                       }}
                     >
                       Отправляя заявку, вы принимаете{' '}
