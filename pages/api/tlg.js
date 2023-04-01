@@ -33,8 +33,9 @@ export default async (req, res) => {
           `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${req.body.message.chat.id}&text=${message}`
         );
       }
-    } else if (req.body.message?.text.match(/order-N\d+$/gmi)?.length) {
-      const order = await getOrderStatus(req.body.message?.text, req.body.message.chat.id);
+    } else if (req.body.message?.text.match(/\d+/gmi)?.length) {
+      const orderNumber = req.body.message?.text.match(/\d+/gmi)[0];
+      const order = await getOrderStatus(`order-N${orderNumber}`, req.body.message.chat.id);
       if (order?.user?.chatId && order.user.chatId === `${req.body.message.chat.id}`) {
         const message = `
         Номер заказа: ${order.OrderNumber};
