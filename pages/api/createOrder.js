@@ -3,13 +3,11 @@ import uniqid from 'uniqid';
 import { sanityClient } from '../../sanity';
 import logger from '../../services/logger';
 import { transporter, mailOptions } from '../../src/config/nodemailer';
-import { createPayment } from '../../src/utils/createPayment';
 import generateOrderNumber from '../../src/utils/generateOrderNumber';
 import getActiveEmails from '../../src/utils/getActiveEmails';
 import isJson from '../../src/utils/isJson';
 import { messageFormatter } from '../../src/utils/messageFormatter';
-import { sendMessageAboutOrder } from '../../src/utils/sendMessageAboutOrder';
-import senMessageToTelegram from '../../src/utils/senMessageToTelegram';
+import sendMessageToTlgproxy from '../../src/utils/sendMessageToTlgproxy';
 
 export default async function handler(req, res) {
   logger.info('createOrder', req);
@@ -40,8 +38,7 @@ export default async function handler(req, res) {
       subject: orderData.orderType,
       text: formatMessage,
     });
-    await senMessageToTelegram(encodeURIComponent(formatMessage));
-
+    await sendMessageToTlgproxy(formatMessage);
     return res
       .status(200)
       .json({ data: orderData, message: 'Order was created' });
