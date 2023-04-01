@@ -118,10 +118,10 @@ export default function BouquetCard({
             <HeartIconFill
               width={'100%'}
               height={'100%'}
-              viewBox='-3 -3 30 30'
+              viewBox='-2 -4 30 30'
             />
           ) : (
-            <HeartIcon width={'100%'} height={'100%'} viewBox='-3 -3 30 30' />
+            <HeartIcon width={'100%'} height={'100%'} viewBox='-2 -4 30 30' />
           )}
         </Box>
       </IconButton>
