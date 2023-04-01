@@ -30,16 +30,16 @@ export default async function handler(req, res) {
     };
     console.log(data);
 
-    // const activeEmails = await getActiveEmails();
+    const activeEmails = await getActiveEmails();
 
-    // await sanityClient.createIfNotExists(data);
+    await sanityClient.createIfNotExists(data);
     const formatMessage = messageFormatter(orderData);
-    // await transporter.sendMail({
-    //   ...mailOptions,
-    //   to: [...mailOptions.to, ...activeEmails],
-    //   subject: orderData.orderType,
-    //   text: formatMessage,
-    // });
+    await transporter.sendMail({
+      ...mailOptions,
+      to: [...mailOptions.to, ...activeEmails],
+      subject: orderData.orderType,
+      text: formatMessage,
+    });
     await senMessageToTelegram(encodeURIComponent(formatMessage));
 
     return res

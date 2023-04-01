@@ -15,7 +15,7 @@ async function senMessageToTelegram(message) {
     if (activeUsers.length) {
       const messages = activeUsers.map((user) =>
         fetch(
-          `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${336711852}&text=${message}`
+          `https://api.telegram.org/bot${tgbot}/sendMessage?chat_id=${user.telegramBlock.chatId}&text=${message}`
         )
       );
       return await Promise.all(messages);
