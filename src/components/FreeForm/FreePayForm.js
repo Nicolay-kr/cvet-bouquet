@@ -298,7 +298,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                       type='submit'
                       variant='contained'
                       color='primary'
-                      sx={{ height: {...size(60),xs:60,md:60}, marginTop: 'auto',fontSize: { ...size(24), xs: 16 },
+                      sx={{ height: {...size(60),xs:48,}, marginTop: 'auto',fontSize: { ...size(24), xs: 16 },
                       fontWeight:'600' }}
                     >
                       Отправить
@@ -312,7 +312,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        fontSize: `${{ ...size(14), md:12, xs: 12 }} !important`,
+                        fontSize: `${{ ...size(14), md:11, xs: 12 }} !important`,
                       }}
                     >
                       Отправляя заявку, вы принимаете{' '}
