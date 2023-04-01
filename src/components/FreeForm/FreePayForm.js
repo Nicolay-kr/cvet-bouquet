@@ -304,14 +304,18 @@ export default function FreePayForm({ isContactsForm = false }) {
                       Отправить
                     </Button>
                     <Typography
+                      variant='body2'
                       component='p'
+                      color='#000000'
                       sx={{
                         fontWeight: '700',
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
                         fontSize: `${{ xs: 11, md:11,  xl: 14 }}`,
-                        color:'red'
+                        '@media (max-width:1601px)': {
+                          fontSize: '11px !important',
+                        },
                       }}
                     >
                       Отправляя заявку, вы принимаете{' '}
