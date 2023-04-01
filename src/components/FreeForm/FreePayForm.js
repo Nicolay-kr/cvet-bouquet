@@ -312,7 +312,7 @@ export default function FreePayForm({ isContactsForm = false }) {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        fontSize: `${{ ...size(14), xs: 12, md:11,  xl: 11 }} !important`,
+                        fontSize: `${{ xs: 11, md:11,  xl: 14 }}`,
                       }}
                     >
                       Отправляя заявку, вы принимаете{' '}
