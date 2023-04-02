@@ -3,7 +3,7 @@ import * as yup from 'yup';
 const defaultSchema = yup
 .object({
   name: yup.string().required('Это поле должно быть заполнено'),
-  phone: yup.string().min(12,'Введите корректный телефон').required('Это поле должно быть заполнено'),
+  phone: yup.string().required('Это поле должно быть заполнено'),
   OrderAmount: yup
     .number()
     .required('Это поле должно быть заполнено')
@@ -15,7 +15,7 @@ const defaultSchema = yup
 const contactSchema = yup
 .object({
   name: yup.string().required('Это поле должно быть заполнено'),
-  phone: yup.string().min(12, 'Введите корректный телефон').required('Это поле должно быть заполнено'),
+  phone: yup.string().required('Это поле должно быть заполнено'),
   email: yup.string().email('E-mail введен не корректно').required('Это поле должно быть заполнено'),
 })
 .required();
