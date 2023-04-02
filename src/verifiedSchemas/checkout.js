@@ -4,7 +4,7 @@ const createCheckoutSchema = (selfReceive, isPrivareHouse, isDelivery) => {
   const checkoutSchema = yup
     .object({
       name: yup.string().required('Это поле должно быть заполнено'),
-      phone: yup.string().min(12, 'Введите корректный телефон').required('Это поле должно быть заполнено'),
+      phone: yup.string().required('Это поле должно быть заполнено'),
       recipientName: selfReceive
         ? yup.mixed()
         : yup.string().required('Это поле должно быть заполнено'),
