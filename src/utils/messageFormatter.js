@@ -4,6 +4,7 @@ export const messageFormatter = (orderInfo) => {
         ${orderInfo.orderType}
         Номер заказа: ${orderInfo.OrderNumber},
         Статус: ${orderInfo.status},
+        Ссылка на заказы: https://cvetbuket-admin.sanity.studio/desk/orders,
         Сумма: ${orderInfo.OrderAmount},
         Имя: ${orderInfo.name},
         Телефон: ${orderInfo.phone},
@@ -14,6 +15,7 @@ export const messageFormatter = (orderInfo) => {
         ${orderInfo.orderType}
         Номер заказа: ${orderInfo.OrderNumber},
         Статус: ${orderInfo.status},
+        Ссылка на заказы: https://cvetbuket-admin.sanity.studio/desk/orders,
         Тип заказа: ${orderInfo.orderType},
         Сумма: ${orderInfo.OrderAmount},
         Промокод: ${orderInfo.promocode},
