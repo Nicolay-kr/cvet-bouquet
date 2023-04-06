@@ -3,7 +3,7 @@ import styles from './Header.module.css';
 import Link from '../CustopNextComponents/Link';
 import Box from '@mui/material/Box';
 import logo from '../../../public/assets/images/logo.png';
-import HeeartIcon from '../../../public/assets/icons/heart.svg';
+import HeeartIcon from '../../../public/assets/icons/heartBlack.svg';
 import InstaIcon from '../../../public/assets/icons/insta.svg';
 import BagIcon from '../../../public/assets/icons/bag.svg';
 import IconButton from '@mui/material/IconButton';
