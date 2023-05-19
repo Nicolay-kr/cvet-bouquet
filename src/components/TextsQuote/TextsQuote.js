@@ -32,7 +32,7 @@ export default function TextsQuote() {
         оригинальные <span>замыслы</span>
       </Box>
       <Box component='p' sx={{ textAlign: 'center' }}>
-        становятся <span> реальностью </span> помощью наших опытных
+        становятся <span> реальностью </span> с помощью наших опытных
       </Box>
       <Box component='p' sx={{ textAlign: 'right' }}>
         <span> флористов. </span>
