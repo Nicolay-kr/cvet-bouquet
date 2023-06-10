@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import CounterButtons from '../CounterButtons/CounterButtons';
 import ButttonHeart from '../../../public/assets/icons/buttonHeart.svg';
 import ButttonHeartFill from '../../../public/assets/icons/buttonHeartFill.svg';
-import Image from 'next/future/image';
+import Image from "next/image";
 import AccordionCustom from '../AccordionCustom/AccordionCustom';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import { useAppContext } from '../context/BouquetsContext';

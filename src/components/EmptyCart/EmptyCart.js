@@ -5,7 +5,7 @@ import bigFlower from '../../../public/assets/images/bigFlower.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
 import size from '../../utils/size';
-import Image from 'next/future/image';
+import Image from "next/image";
 
 export default function EmptyCart() {
   const router = useRouter();

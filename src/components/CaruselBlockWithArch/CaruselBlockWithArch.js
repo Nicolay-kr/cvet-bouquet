@@ -3,7 +3,7 @@ import styles from './CaruselBlock.module.css';
 
 import Box from '@mui/material/Box';
 
-import Image from 'next/future/image';
+import Image from "next/image";
 import LeftArrow from '../../../public/assets/icons/leftArrow.svg';
 import RightArrow from '../../../public/assets/icons/rightArrow.svg';
 import IconButton from '@mui/material/IconButton';

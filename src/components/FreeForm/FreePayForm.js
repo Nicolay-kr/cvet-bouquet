@@ -12,7 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import SuccsessModal from '../SuccsessModal/SuccsessModal';
 import size from '../../utils/size';
 import verticalLogo from '../../../public/assets/images/verticalLogo.png';
-import Image from 'next/future/image';
+import Image from "next/image";
 import {
   contactSchema,
   defaultSchema,

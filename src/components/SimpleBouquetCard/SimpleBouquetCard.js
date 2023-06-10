@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Link from '../CustopNextComponents/Link';
-import Image from 'next/future/image';
+import Image from "next/image";
 import { useAppContext } from '../context/BouquetsContext';
 import Fade from '@mui/material/Fade';
 import { useEffect } from 'react';

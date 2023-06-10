@@ -8,7 +8,7 @@ import bigFlower from '../../../public/assets/images/bigFlower.png';
 import MobileBlock from '../MobileBlock/MobileBlock';
 import DesktopBlock from '../DesktopBlock/DesktopBlock';
 import size from '../../utils/size';
-import Image from 'next/future/image';
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 

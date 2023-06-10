@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 import Box from '@mui/material/Box';
-import Image from 'next/future/image';
+import Image from "next/image";
 
 export default function ArcheMainConteiner({ src, isSwiper = false,priority=false}) {
   return (

@@ -3,7 +3,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
-import Image from 'next/future/image';
+import Image from "next/image";
 import SearchIcon from '../../../public/assets/icons/search.svg';
 import Whitesearch from '../../../public/assets/icons/whitesearch.svg';
 import IconButton from '@mui/material/IconButton';

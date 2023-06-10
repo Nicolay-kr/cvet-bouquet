@@ -4,7 +4,7 @@ import styles from './InstagramBlock.module.css';
 import TitleWithSubtitle from '../TitleWithSubtitle/TitleWithSubtitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRouter } from 'next/router';
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { urlFor } from '../../../sanity';
 
 

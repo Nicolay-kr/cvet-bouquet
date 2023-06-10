@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import navArrow from '../../../public/assets/icons/navArrow.svg';
-import Image from 'next/future/image';
+import Image from "next/image";
 import BlockContentBox from '../BlockcontentBox/BlockContentBox';
 import Box from '@mui/material/Box';
 import { useRouter } from 'next/router';

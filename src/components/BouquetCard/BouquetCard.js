@@ -9,7 +9,7 @@ import Link from '../CustopNextComponents/Link';
 import HeartIcon from '../../../public/assets/icons/heart.svg';
 import HeartIconFill from '../../../public/assets/icons/heartFill.svg';
 import IconButton from '@mui/material/IconButton';
-import Image from 'next/future/image';
+import Image from "next/image";
 import { useAppContext } from '../context/BouquetsContext';
 import Fade from '@mui/material/Fade';
 import { useEffect } from 'react';

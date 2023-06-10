@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Image from 'next/future/image';
+import Image from "next/image";
 import { useRouter } from 'next/router';
 import logoFlower from '../../../public/assets/images/logo_flower.svg';
 import WordWithArrow from '../WordWithArrow/WordWithArrow';

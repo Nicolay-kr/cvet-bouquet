@@ -8,7 +8,7 @@ import InstaIcon from '../../../public/assets/icons/insta.svg';
 import BagIcon from '../../../public/assets/icons/bag.svg';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import Image from 'next/future/image';
+import Image from "next/image";
 import DropList from '../DropList/DropList';
 import { useAppContext } from '../context/BouquetsContext';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';

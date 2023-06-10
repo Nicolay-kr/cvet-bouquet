@@ -4,7 +4,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import NavArrow from '../../../public/assets/icons/navArrow.svg';
-import Image from 'next/future/image';
+import Image from "next/image";
 import BlockContentBox from '../BlockcontentBox/BlockContentBox';
 
 
