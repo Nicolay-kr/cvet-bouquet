@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import { useAppContext } from '../../src/components/context/BouquetsContext';
 import Cros from '../../public/assets/icons/cros.svg';
 import IconButton from '@mui/material/IconButton';
-import Image from 'next/future/image';
+import Image from "next/image";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';

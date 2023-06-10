@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Image from 'next/future/image';
+import Image from "next/image";
 import bigFlower404 from '../public/assets/images/404.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
