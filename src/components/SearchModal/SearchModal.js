@@ -66,9 +66,9 @@ export default function SearchModal({}) {
       return [];
     }
     const searchStrArr = str.split(' ');
-    const sortArr = arr.filter(item=>item.published).filter((item) =>
-      search(item.title?.ru?.toLowerCase(), searchStrArr)
-    );
+    const sortArr = arr
+      .filter((item) => item.published)
+      .filter((item) => search(item.title?.ru?.toLowerCase(), searchStrArr));
     return sortArr;
   };
 
@@ -181,29 +181,34 @@ export default function SearchModal({}) {
                   {sortedList.map((bouquet, index) => (
                     <Box
                       key={`${bouquet.id}-${index}`}
+                      onClick={() => {
+                        handleClose();
+                        router.replace(
+                          `/catalog/products/${bouquet.slug.current}`
+                        )
+                      }
+                      }
                       sx={{
                         display: 'flex',
+                        cursor: 'pointer' ,
                         alignItems: 'center',
                         flexDirection: { xs: 'column', lg: 'row' },
                         gap: '20px',
                         '& img': { objectFit: 'cover' },
+                        
                       }}
                     >
-                      <Box onClick={handleClose}>
-                        <Image
-                          onClick={() =>
-                            router.replace(
-                              `/catalog/products/${bouquet.slug.current}`
-                            )
-                          }
-                          layout='fill'
-                          width={100}
-                          height={125}
-                          src={bouquet?.images? urlFor(bouquet?.images[0])?.width(400)?.url():null}
-                          alt='bouquet'
-                          style={{ cursor: 'pointer' }}
-                        ></Image>
-                      </Box>
+                      {bouquet?.images ? (
+                        <Box>
+                          <Image
+                            layout='fill'
+                            width={100}
+                            height={125}
+                            src={urlFor(bouquet?.images[0])?.width(400)?.url()}
+                            alt='bouquet'
+                          ></Image>
+                        </Box>
+                      ) : null}
                       <Box
                         sx={{
                           display: 'flex',
