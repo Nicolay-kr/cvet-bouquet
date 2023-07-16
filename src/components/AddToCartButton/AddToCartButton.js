@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import { useAppContext } from '../context/BouquetsContext';
 import Snackbar from '@mui/material/Snackbar';
 import size from '../../utils/size';
+import SuccsessModal from '../SuccsessModal/SuccsessModal';
 
 export default function AddToCartButton({
   bouquet,
@@ -22,22 +23,30 @@ export default function AddToCartButton({
     deliveryMin,
   } = bouquet;
   const [isOpenSnack, setIsOpenSnack] = React.useState(false);
+  const [isOpenModal, setIsOpenModal] = React.useState(false);
   const bouckeList = useAppContext();
+  const payments = bouckeList.data.payments;
+
   const addToCart = (e) => {
-    setIsOpenSnack(true);
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-    bouckeList.addToCart({
-      id,
-      title,
-      imagePath: imagePath,
-      price,
-      slug,
-      quantity,
-      categorySlug,
-      deliveryPrice,
-      deliveryMin,
-    });
+    if(!payments.paymentsOff){
+      setIsOpenSnack(true);
+      e.stopPropagation();
+      e.nativeEvent.stopImmediatePropagation();
+      bouckeList.addToCart({
+        id,
+        title,
+        imagePath: imagePath,
+        price,
+        slug,
+        quantity,
+        categorySlug,
+        deliveryPrice,
+        deliveryMin,
+      });
+    }else{
+      setIsOpenModal(true);
+    }
+ 
   };
 
   const handleCloseSnackbar = (event, reason) => {
@@ -47,9 +56,19 @@ export default function AddToCartButton({
     setIsOpenSnack(false);
   };
 
+  const onClose = () => {
+    setIsOpenModal(false);
+  };
+
   return (
     <>
       <div>
+      <SuccsessModal
+        onClose={onClose}
+        open={isOpenModal}
+        title={payments?.title || ''}
+        text={payments?.text || '' }
+      ></SuccsessModal>
         <Snackbar
           // sx={{ background: 'primary.main' }}
           autoHideDuration={1000}

@@ -1,5 +1,10 @@
 import React from 'react';
+import { sanityClient } from '../../../sanity';
+
+const FIVE_MINUTES = 300000;
+
 const defaultState = {
+  data: {},
   favoriteBouquets: [],
   addOrRemoveToFavorite: (bouquet) => {
     defaultState.favoriteBouquets.push(bouquet);
@@ -23,6 +28,7 @@ class BouquetsProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      data:{},
       favoriteBouquets: [],
       bouquetsInCarts: [],
       bouquetsCategories:[],
@@ -140,6 +146,40 @@ class BouquetsProvider extends React.Component {
   }
 
   componentDidMount() {
+    const data = JSON.parse(localStorage.getItem('data'));
+    const timeDifference = data?.time? Date.now() - data.time : null;
+    if (data && (timeDifference && timeDifference < FIVE_MINUTES)) {
+      this.setState({ data });
+    } else {
+      sanityClient.fetch(`*[ _type == "generalInfo"][0]{
+        ...,
+        "categories": *[ _type == "categoryList"][0]{
+                _id,
+                categories[]->{
+                  _id,
+                  slug,
+                  title,
+                  mainImage,
+                  published,
+                  bouqets[]->{
+                    _id,
+                    title,
+                    slug,
+                    images,
+                    price,
+                    description,
+                  }
+                },
+              }
+      }`)
+      .then(data => {
+          data.time = Date.now();
+          localStorage.setItem('data', JSON.stringify(data));
+          this.setState({ data });
+        })
+      .catch((e)=> console.log('Data wasn\'t received ', e))
+    }
+
     const heartsList = JSON.parse(localStorage.getItem('Hearts'));
     if (heartsList) {
       this.setState({ favoriteBouquets: heartsList });
@@ -156,10 +196,11 @@ class BouquetsProvider extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { favoriteBouquets, bouquetsInCarts, bouquetsCategories } = this.state;
+    const { data, favoriteBouquets, bouquetsInCarts, bouquetsCategories } = this.state;
     return (
       <BouquetsContext.Provider
         value={{
+          data,
           favoriteBouquets,
           bouquetsInCarts,
           bouquetsCategories,
@@ -170,6 +211,7 @@ class BouquetsProvider extends React.Component {
           icreaseQuantity: this.icreaseQuantity,
           decreaseQuantity: this.decreaseQuantity,
           setbouquetsCategories: this.setbouquetsCategories,
+          
         }}
       >
         {children}
