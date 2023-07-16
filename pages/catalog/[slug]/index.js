@@ -19,7 +19,7 @@ export const CategoryBouquets = ({ data }) => {
 
   const isPremium = data?.category?.slug.current === 'premium-floristika';
 
-  return isPremium ? (
+  return isPremium && bouquets?.length > 3? (
     <>
       <Head>
         <title>{data?.category?.title} | ЦВЕТ•БУКЕТ</title>
