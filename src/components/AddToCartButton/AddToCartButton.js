@@ -4,6 +4,7 @@ import { useAppContext } from '../context/BouquetsContext';
 import Snackbar from '@mui/material/Snackbar';
 import size from '../../utils/size';
 import SuccsessModal from '../SuccsessModal/SuccsessModal';
+import useFetchGeneralData from '../../utils/hooks/fetchGeneralData';
 
 export default function AddToCartButton({
   bouquet,
@@ -25,7 +26,8 @@ export default function AddToCartButton({
   const [isOpenSnack, setIsOpenSnack] = React.useState(false);
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const bouckeList = useAppContext();
-  const payments = bouckeList.data.payments;
+  const { data } = useFetchGeneralData();
+  const payments = data?.payments? data?.payments : {paymentsOff:true} ;
 
   const addToCart = (e) => {
     if(!payments.paymentsOff){

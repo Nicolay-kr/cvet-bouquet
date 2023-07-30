@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Header } from '../Header/Header';
 import Footer from '../Footer/Footer';
 import InstagramBlock from '../InstagramBlock/InstagramBlock';
 import Box from '@mui/material/Box';
 import size from '../../utils/size';
-// import { sanityClient } from '../../../sanity';
-// import CircularProgress from '@mui/material/CircularProgress';
-// import deletingWithId from '../../utils/sanityMethods/deletingWithId';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import { checkOrderStatus } from '../../utils/sanityMethods/checkOrderStatus';
 import { useAppContext } from '../context/BouquetsContext';
+import useFetchGeneralData from '../../utils/hooks/fetchGeneralData';
 
 
 
@@ -17,6 +15,7 @@ import { useAppContext } from '../context/BouquetsContext';
 
 export default function Layout({ children }) {
   const bouquetsContext = useAppContext();
+  const { data, error, isLoading } = useFetchGeneralData();
 
   useEffect( () => {
     async function getStatus(){
@@ -38,16 +37,16 @@ export default function Layout({ children }) {
 
   return (
     <>
-      <Header data={bouquetsContext.data} />
+      <Header data={data} />
       <ErrorBoundary>
       <main>
         {children}
         <Box sx={{ my: size(200), px: { xs: '5%', lg: '10%' } }} component='section'> 
-          <InstagramBlock instagramPosts={bouquetsContext.data?.instagramBlock}></InstagramBlock>
+          <InstagramBlock instagramPosts={data?.instagramBlock}></InstagramBlock>
         </Box>
       </main>
       </ErrorBoundary>
-      <Footer data={bouquetsContext.data} />
+      <Footer data={data} />
     </>
   );
 }
