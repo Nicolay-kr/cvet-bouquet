@@ -19,6 +19,10 @@ export default function AboutUs({ data }) {
     <>
      <Head>
         <title>{`${data?.title?.ru} | ЦВЕТ•БУКЕТ`}</title>
+        <meta property="og:title" content={`${data?.title?.ru} | ЦВЕТ•БУКЕТ`} />
+        <meta property="og:url" content="https://cvetbuket.by/aboutus" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://cvetbuket.by/aboutus" />
       </Head>
       <IntroBlock
         mainImage={data?.aboutusBlock?.mainImage}

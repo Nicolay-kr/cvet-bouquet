@@ -16,8 +16,12 @@ export default function CorporateClientsPage({ data }) {
 
   return (
     <>
-    <Head>
-        {`${data?.title?.ru} | ЦВЕТ•БУКЕТ`}
+      <Head>
+        <title>{`${data?.title?.ru} | ЦВЕТ•БУКЕТ`}</title>
+        <meta property="og:title" content={`${data?.title?.ru} | ЦВЕТ•БУКЕТ`} />
+        <meta property="og:url" content="https://cvetbuket.by/corporateclients" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://cvetbuket.by/corporateclients" />
       </Head>
       <IntroBlock
         mainImage={data?.mainImage}

@@ -19,7 +19,11 @@ export default function BonusCardPage({ data }) {
   return (
     <>
        <Head>
-        <title> {`${data?.title?.ru} | ЦВЕТ•БУКЕТ`}</title>
+        <title>{`${data?.title?.ru} | ЦВЕТ•БУКЕТ`}</title>
+        <meta property="og:title" content={`${data?.title?.ru} | ЦВЕТ•БУКЕТ`} />
+        <meta property="og:url" content="https://cvetbuket.by/bonuscard" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://cvetbuket.by/bonuscard" />
       </Head>
       <BreadCrumbs breadCrumbsList={breadCrumbsList}></BreadCrumbs>
       <DoubleBlock>

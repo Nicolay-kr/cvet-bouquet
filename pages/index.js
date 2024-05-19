@@ -40,6 +40,10 @@ export default function Home({ data }) {
     <>
       <Head>
         <title>{`${data?.title?.ru} | ЦВЕТ•БУКЕТ`}</title>
+        <meta property="og:title" content={`${data?.title?.ru} | ЦВЕТ•БУКЕТ`} />
+        <meta property="og:url" content="https://cvetbuket.by" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://cvetbuket.by" />
       </Head>
       {data?.firstBlock?.published ? (
         <IntroBlock

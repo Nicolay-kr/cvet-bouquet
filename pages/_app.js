@@ -33,7 +33,6 @@ export default function MyApp(props) {
           property='twitter:title'
           content='Премиум цветы 💐 в Минске'
         ></meta>
-        {/* <meta property='og:url' content='https://cvetbuket.by'></meta> */}
         <meta property='vk:image' content={logo.src}></meta>
         <meta property='twitter:image' content={logo.src}></meta>
         <meta property='og:image' content={logo.src}></meta>
