@@ -14,9 +14,7 @@ export default function FreepayPage({}) {
     <>
       <Head>
         <title>Свободный платеж | ЦВЕТ•БУКЕТ</title>
-        <meta name="description" content="Make a free payment on ЦВЕТ•БУКЕТ for your flowers and bouquets." />
         <meta property="og:title" content="Свободный платеж | ЦВЕТ•БУКЕТ" />
-        <meta property="og:description" content="Make a free payment on ЦВЕТ•БУКЕТ for your flowers and bouquets." />
         <meta property="og:url" content="https://cvetbuket.by/freepay" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://cvetbuket.by/freepay" />
