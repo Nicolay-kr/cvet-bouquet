@@ -1,0 +1,208 @@
+@font-face {
+  font-family: 'Zeferino One';
+  src: url('../public/fonts/ZeferinoOne.eot');
+  src: url('../public/fonts/ZeferinoOne.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/ZeferinoOne.woff2') format('woff2'),
+    url('../public/fonts/ZeferinoOne.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zeferino One';
+  src: url('../public/fonts/ZeferinoOne.eot');
+  src: url('../public/fonts/ZeferinoOne.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/ZeferinoOne.woff2') format('woff2'),
+    url('../public/fonts/ZeferinoOne.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #F8F2EA !important;
+  font-family: Raleway, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-variant: lining-nums;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.MuiBox-root .react-tel-input {
+  margin-top: max(24px, 1.2vw);
+}
+
+.MuiBox-root .react-tel-input .form-control {
+  width: 100% !important;
+  background: transparent !important;
+  margin-right: 0;
+  font-family: Raleway;
+  font-size: 16px;
+  height: 100%;
+  padding: 16px 48px !important;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+}
+
+.MuiBox-root .react-tel-input .form-control:focus {
+  border-color: #746449;
+  outline: 1px solid #746449;
+}
+
+.MuiBox-root .react-tel-input .form-control:focus.invalid-number {
+  border-color: #ff1744;
+  outline: 1px solid #ff1744;
+}
+
+.MuiBox-root .react-tel-input .form-control:focus+.flag-dropdown {
+  border-color: #746449;
+  outline: 1px solid #746449;
+}
+
+.MuiBox-root .react-tel-input .form-control:focus.invalid-number+.flag-dropdown {
+  border-color: #ff1744;
+  outline: 1px solid #ff1744;
+}
+
+.MuiBox-root .react-tel-input:hover .form-control {
+  border-color: rgba(0, 0, 0, 8);
+}
+
+.MuiBox-root .react-tel-input:hover .form-control+.flag-dropdown {
+  border-color: rgba(0, 0, 0, 0.8);
+}
+
+.MuiBox-root .react-tel-input .form-control:hover .react-tel-input .flag-dropdown {
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.react-tel-input .flag-dropdown {
+  background-color: transparent !important;
+}
+
+.react-tel-input .selected-flag:hover,
+.react-tel-input .selected-flag:focus {
+  background-color: transparent !important;
+}
+
+.react-tel-input .flag-dropdown.open .selected-flag {
+  background-color: transparent !important;
+}
+
+.MuiBox-root .react-tel-input .form-control.invalid-number {
+  border-color: #ff1744 !important;
+  color: #ff1744;
+}
+
+.MuiBox-root .react-tel-input .form-control.invalid-number+.flag-dropdown {
+  border-color: #ff1744 !important;
+  color: #ff1744;
+}
+
+.MuiBox-root .react-tel-input .invalid-number-message {
+  position: absolute;
+  z-index: 1;
+  font-size: 12px;
+  left: 14px;
+  top: unset;
+  background: transparent;
+  padding: 0;
+  color: #ff1744;
+  bottom: -35%;
+}
+
+.MuiPickersPopper-root button {
+  font-size: 16px;
+}
+
+.swiper {
+  padding: max(20px) 0 !important;
+  height: auto !important;
+}
+
+.swiper-wrapper {
+  padding-bottom: 20px;
+}
+
+.swiper-pagination-bullet {
+  color: #746449 !important;
+  background-color: #746449 !important;
+}
+
+/* enter */
+.fade-enter {
+  /* position: absolute; */
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+/* exit */
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
+/* .fadeHouse-exit-done {
+  opacity: 0;
+} */
+
+.MuiCalendarOrClockPicker-root {
+  /* background: #F8F2EA !important; */
+}
+
+.MuiDayPicker-weekDayLabel {
+  font-size: 18px !important;
+}
+
+@media (max-width: 1281px) {
+  .MuiBox-root .react-tel-input .form-control {
+
+    /* height:48px; */
+
+  }
+
+  .MuiBox-root .react-tel-input .form-control {
+    /* height:48px; */
+  }
+
+}
+
+@media (max-width: 600px) {
+  .MuiDayPicker-weekDayLabel {
+    font-size: 16px !important;
+  }
+
+  .MuiPickersDay-root .MuiPickersDay-dayWithMargin {
+    font-size: 16px !important;
+  }
+
+  .MuiPickersPopper-root button {
+    font-size: 12px !important;
+    ;
+  }
+
+  .MuiBox-root .react-tel-input .form-control {
+    height: 53px !important;
+
+  }
+
+}

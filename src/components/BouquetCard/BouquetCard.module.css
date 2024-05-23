@@ -1,0 +1,12 @@
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.cardConteiner:hover{
+  transition: 0.3s;
+}
+

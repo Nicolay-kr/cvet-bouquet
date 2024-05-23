@@ -1,0 +1,29 @@
+.cardConteiner {
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  transition: 0.3s;
+}
+.card img{
+  object-fit: cover;
+}
+
+
+.cardConteiner:hover{
+  transition: 0.3s;
+}
+
+.cardHeart{
+  
+  position: absolute !important;
+  right:8%;
+  top:4%;
+  background-color: #F8F2EA !important;
+}
+
