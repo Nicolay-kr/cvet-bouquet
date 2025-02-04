@@ -24,7 +24,8 @@ export default class MyDocument extends Document {
                   trackLinks: true,
                   accurateTrackBounce: true,
                   webvisor: true,
-                  params: { __ym: { noCookie: true, disabled: true } }
+                  params: { __ym: { noCookie: true, disabled: true } },
+                  disableCookies: true 
                 });
               `,
             }}
