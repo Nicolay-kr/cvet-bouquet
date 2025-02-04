@@ -4,6 +4,19 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
+const cspHeader = `
+    default-src 'self';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' blob: data:;
+    font-src 'self';
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    upgrade-insecure-requests;
+`
+
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
@@ -57,14 +70,15 @@ const nextConfig = {
       },
     ];
   },
-  headers: async () => {
+
+  async headers() {
     return [
       {
-        source: '/:path*',
+        source: '/(.*)',
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "script-src 'self' 'unsafe-eval' 'unsafe-inline';",
+            value: cspHeader.replace(/\n/g, ''),
           },
         ],
       },
@@ -72,5 +86,5 @@ const nextConfig = {
   },
 };
 
-// module.exports = withBundleAnalyzer(nextConfig);
-module.exports = nextConfig;
+// module.exports = withBundleAnalyzer(nextConfig)
+module.exports = nextConfig
