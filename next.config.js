@@ -2,7 +2,7 @@
 require('dotenv').config
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
-})
+});
 
 const nextConfig = {
   reactStrictMode: false,
@@ -35,18 +35,18 @@ const nextConfig = {
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
       use: ['@svgr/webpack'],
-    })
+    });
 
-    return config
+    return config;
   },
   env: {
-    SANITY_PROJECT_ID : process.env.SANITY_PROJECT_ID,
-    SANITY_DATASET : process.env.SANITY_DATASET,
-    SANITY_API_TOKEN : process.env.SANITY_API_TOKEN,
-    SERVER_NAME:process.env.SERVER_NAME,
-    MERCHANT_ID:process.env.MERCHANT_ID,
-    TELEGRAM_TOKEN:process.env.TELEGRAM_TOKEN,
-    MAIN_URL:process.env.MAIN_URL,
+    SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
+    SANITY_DATASET: process.env.SANITY_DATASET,
+    SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
+    SERVER_NAME: process.env.SERVER_NAME,
+    MERCHANT_ID: process.env.MERCHANT_ID,
+    TELEGRAM_TOKEN: process.env.TELEGRAM_TOKEN,
+    MAIN_URL: process.env.MAIN_URL,
   },
   async redirects() {
     return [
@@ -55,9 +55,22 @@ const nextConfig = {
         destination: 'https://cvetbuket-admin.sanity.studio',
         permanent: true,
       },
-    ]
+    ];
   },
-}
+  headers: async () => {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "script-src 'self' 'unsafe-eval' 'unsafe-inline';",
+          },
+        ],
+      },
+    ];
+  },
+};
 
-// module.exports = withBundleAnalyzer(nextConfig)
-module.exports = nextConfig
+// module.exports = withBundleAnalyzer(nextConfig);
+module.exports = nextConfig;
