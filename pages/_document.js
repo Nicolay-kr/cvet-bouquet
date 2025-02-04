@@ -9,6 +9,10 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
+          <meta
+            httpEquiv="Content-Security-Policy"
+            content="script-src 'self' 'unsafe-eval' 'unsafe-inline'"
+          />
           {/* <script
             dangerouslySetInnerHTML={{
               __html: `
