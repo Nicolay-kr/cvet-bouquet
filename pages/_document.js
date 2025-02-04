@@ -19,7 +19,8 @@ export default class MyDocument extends Document {
                 ym(52372558, "init", {
                       clickmap:true,
                       trackLinks:true,
-                      accurateTrackBounce:true
+                      accurateTrackBounce:true,
+                      params: { __ym: { noCookie: true } }
                 });
               `,
             }}
