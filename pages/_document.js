@@ -23,7 +23,8 @@ export default class MyDocument extends Document {
                   clickmap: true,
                   trackLinks: true,
                   accurateTrackBounce: true,
-                  params: { __ym: { firstPartyEnabled: true } }
+                  webvisor: true,
+                  params: { __ym: { noCookie: true, disabled: true } }
                 });
               `,
             }}
