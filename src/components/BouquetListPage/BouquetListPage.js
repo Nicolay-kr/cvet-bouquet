@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import sortArray from 'sort-array';
 
 const BouquetListPage = ({ category, breadCrumbsList, generalInfo, bouqets }) => {
-  const defaultBouquetsList = bouqets?.filter(item=>item.published===true);
+  const defaultBouquetsList = bouqets?.filter(item=>item?.published===true);
   const [bouquetsList, setBouquetsList] = React.useState(defaultBouquetsList);
   const [filtredBouquetsList, setFilterdBouquetsList] = React.useState([]);
   const router = useRouter();
