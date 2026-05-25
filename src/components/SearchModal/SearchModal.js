@@ -32,7 +32,7 @@ export default function SearchModal({}) {
   const fetchCategories = useCallback(async () => {
     sanityClient
       .fetch(
-        `*[ _type == "bouquet"]
+        `*[ _type == "bouquet" && published == true]
         {
           _id,
           title,
